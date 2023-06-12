@@ -2,6 +2,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { BsArrowRight } from "react-icons/bs";
 import { Tools } from '@/components/Home/Tools';
+import { Offer } from '@/components/Home/Offer';
+import { Choose } from '@/components/Home/Choose';
 
 
 export default function Home() {
@@ -146,6 +148,13 @@ export default function Home() {
                 </a>
             </div>
         </main> */}
+
+        <Tools />
+
+        <Offer />
+
+        <Choose />
+
         <section className="">
             <div>
                 <p>The drive and determination.</p>
@@ -162,8 +171,6 @@ export default function Home() {
                 />
             </div>               
         </section>
-
-        <Tools />
 
         <section className="py-10">
             <div className="flex flex-col items-center space-y-5 mb-12">

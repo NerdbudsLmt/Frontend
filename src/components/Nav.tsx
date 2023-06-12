@@ -16,13 +16,13 @@ const Nav = () => {
             <div className=" flex justify-between items-center">
                 <div>
                     <Link href="/">
-                        {/* <Image
+                        <Image
                             src="/images/nerdbuds-logo.png"
                             alt="Vercel Logo"
                             width={100}
                             height={24}
                             priority
-                        /> */}
+                        />
                     </Link>
                 </div>
                 <div className="flex justify-between items-center space-x-8">
