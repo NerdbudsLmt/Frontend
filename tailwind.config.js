@@ -17,7 +17,15 @@ module.exports = {
         'app-porange': '#E9B11C', // primary
         'app-pblue': '#132E40', // secondary
         'app-sblue': '#3F9BD5', // secondary
-      }
+      },
+      screens: {
+        mobile: "360px",
+        tablet: "580px",
+        laptop: "780px",
+        laptop_l: "1000px",
+        desktop: "1020px",
+        xl: "1400px",
+      },
     },
   },
   plugins: [

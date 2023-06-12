@@ -1,5 +1,5 @@
 import Link from "next/link";
-import NLForm from "@/app/components/NLForm";
+import NLForm from "@/components/NLForm";
 import { FaLinkedin, FaTwitterSquare } from "react-icons/fa";
 import { AiFillInstagram, AiFillFacebook } from "react-icons/ai";
 

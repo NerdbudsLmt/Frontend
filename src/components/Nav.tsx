@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { useTheme } from 'next-themes'
-import NavLink from "@/app/components/NavLink";
+import NavLink from "@/components/NavLink";
 
 
 const Nav = () => {
