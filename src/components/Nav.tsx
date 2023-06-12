@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { useTheme } from 'next-themes'
-import NavLink from "@/components/NavLink";
+import NavLink from "@/components/UI/NavLink";
 
 
 const Nav = () => {
@@ -12,11 +12,12 @@ const Nav = () => {
     console.log("Current theme: ", theme, systemTheme);
 
     return (
-        <nav className="py-4">
-            <div className="app-container flex justify-between items-center">
+        <nav className="py-4 w-[95%] mx-auto bg-blue-400">
+            <div className=" flex justify-between items-center">
                 <div>
                     <Link href="/">
                         <Image
+                        className="bg-green-500"
                             src="/images/nerdbuds-logo.png"
                             alt="Vercel Logo"
                             width={100}

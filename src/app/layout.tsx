@@ -1,31 +1,32 @@
-import './globals.css'
-import { Inter } from 'next/font/google'
+import "./globals.css";
+import { Inter } from "next/font/google";
 import UIProvider from "@/context/UIProvider";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 
-
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-    title: 'Nerdbuds',
-    description: 'Home Page for Nerdbuds software development organization',
-}
+  title: "Nerdbuds",
+  description: "Home Page for Nerdbuds software development organization",
+};
 
 export default function RootLayout({
-    children,
+  children,
 }: {
-    children: React.ReactNode
+  children: React.ReactNode;
 }) {
-    return (
-        <html lang="en">
-            <body className={inter.className}>
-                <UIProvider>
-                    <Nav />
-                    {children}
-                    <Footer />
-                </UIProvider>
-            </body>
-        </html>
-    )
+  return (
+    <html lang="en">
+      <body className={inter.className}>
+        <UIProvider>
+          <div className="mx-auto bg-red-500 w-full lg:w-[1350px] ">
+            <Nav />
+            {children}
+          </div>
+          <Footer />
+        </UIProvider>
+      </body>
+    </html>
+  );
 }

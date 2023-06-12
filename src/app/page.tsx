@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { BsArrowRight } from "react-icons/bs";
-import pro from '../../public/images/nerdbuds-banner.jpg'
+import { Tools } from '@/components/Home/Tools';
 
 
 export default function Home() {
@@ -161,6 +161,9 @@ export default function Home() {
                 />
             </div>               
         </section>
+
+        <Tools />
+
         <section className="py-10">
             <div className="flex flex-col items-center space-y-5 mb-12">
                 <div>
