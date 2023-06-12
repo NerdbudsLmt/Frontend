@@ -6,7 +6,7 @@ import { Tools } from '@/components/Home/Tools';
 
 export default function Home() {
     return (
-        <section className="app-container">
+        <section className="">
         <header className="py-10">
             <div className="flex flex-col items-center space-y-5 mb-12">
                 <div>
@@ -37,6 +37,7 @@ export default function Home() {
                 alt="nerdbud's banner"
                 width={1400}
                 height={1400}
+                priority
             />
         </header>
         {/* <main className="bg-app-pblue flex min-h-screen flex-col items-center justify-between p-24">

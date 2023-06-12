@@ -12,18 +12,17 @@ const Nav = () => {
     console.log("Current theme: ", theme, systemTheme);
 
     return (
-        <nav className="py-4 w-[95%] mx-auto bg-blue-400">
+        <nav className="py-4 w-[95%] mx-auto">
             <div className=" flex justify-between items-center">
                 <div>
                     <Link href="/">
-                        <Image
-                        className="bg-green-500"
+                        {/* <Image
                             src="/images/nerdbuds-logo.png"
                             alt="Vercel Logo"
                             width={100}
                             height={24}
                             priority
-                        />
+                        /> */}
                     </Link>
                 </div>
                 <div className="flex justify-between items-center space-x-8">
@@ -33,7 +32,7 @@ const Nav = () => {
                     <NavLink path="/about" text="About Us" />
                     <NavLink path="/contact" text="Contact Us" />
                 </div>
-                <div className="flex justify-between items-center space-x-2">
+                <div className="flex justify-between items-center space-x-3">
                     <button onClick={e => { setTheme("light") }}>Light</button>
                     <button onClick={e => { setTheme("dark") }}>Dark</button>
                     <div>
