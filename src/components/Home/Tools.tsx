@@ -47,7 +47,7 @@ export const Tools = () => {
               <Image
                 src={item.img}
                 alt="lang"
-                width={60}
+                width={50}
                 height={40}
                 priority
               />
