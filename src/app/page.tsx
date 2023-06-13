@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { BsArrowRight } from "react-icons/bs";
+import { MdRocketLaunch } from "react-icons/md";
 
 
 export default function Home() {
@@ -145,12 +146,12 @@ export default function Home() {
             </div>
         </main>
         <section className="">
-            <div>
-                <p>The drive and determination.</p>
-                <h3>Our Mission</h3>
-                <p>Crafting remarkable software, empowering brands to conquer their goals with digital innovation.</p>
+            <div className="flex flex-col space-y-2">
+                <p className="text-app-sblue">The drive and determination.</p>
+                <h3 className="text-lg font-bold text-neutral-900 dark:text-white">Our Mission</h3>
+                <p className="text-app-sblue">Crafting remarkable software, empowering brands to conquer their goals with digital innovation.</p>
             </div> 
-            <div className="h-[350px]">
+            <div className="h-[350px] relative">
                 <Image
                     className="relative h-full w-full object-cover rounded-xl"
                     src="/images/mission-banner.jpg"
@@ -158,6 +159,26 @@ export default function Home() {
                     width={180}
                     height={180}
                 />
+                <div className="absolute top-0">
+                    <div className="flex items-center">
+                        <div className="">
+                            <MdRocketLaunch />
+                            <h3 className="text-app-porange text-lg">Our Drive</h3>
+                            <p>
+                                At Nerdbuds, we{`'`}re on a mission to create extraordinary software solutions that empower brands to reach new heights. 
+                                With our expertise and passion for innovation. 
+                            </p>
+                        </div>
+                        <div className="">
+                            <MdRocketLaunch />
+                            <h3 className="text-app-pblue text-lg">Our Determination</h3>
+                            <p>
+                                We collaborate closely with clients to craft tailor-made digital experiences that drive success. 
+                                Together, let{`'`}s conquer your goals and unlock boundless possibilities. 
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>               
         </section>
         <section className="py-10">
