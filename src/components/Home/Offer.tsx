@@ -55,10 +55,10 @@ export const Offer = () => {
                   //   priority
                 />
                 <div className="ml-1.5">
-                  <p className="font-[500] my-2  text-neutral-900 dark:text-white">
+                  <p className="font-[600] my-2 text-[18px]  text-neutral-900 dark:text-white">
                     {item.title}
                   </p>
-                  <p className="text-[12px]  text-neutral-900 dark:text-white">
+                  <p className=" text-neutral-900 dark:text-white">
                     {item.desc}
                   </p>
                 </div>
