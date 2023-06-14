@@ -13,11 +13,11 @@ export default function Home() {
         <section className="">
             {/* header section */}
             <header className="py-10">
-                <div className="flex flex-col items-center space-y-5 mb-20">
+                <div className="flex flex-col items-center space-y-5 mb-16 md:mb-20">
                     <div>
                         <Link 
                             href="/"
-                            className="flex items-center space-x-2 border-2 border-app-sblue text-app-sblue py-1 px-3 rounded-full"
+                            className="flex items-center space-x-2 border-2 border-app-sblue text-app-sblue text-[12px] md:text-base py-1 px-3 rounded-full"
                         >
                             <>
                                 <span>Introducing: Student Galore</span>
@@ -26,18 +26,18 @@ export default function Home() {
                         </Link>
                     </div>
                     <div>
-                        <h1 className="text-9xl font-bold text-center text-neutral-900 dark:text-white">You <span className="text-app-sblue">Think.</span></h1>
-                        <h1 className="text-9xl font-bold text-center text-neutral-900 dark:text-white">We <span className="text-app-porange">Build.</span></h1>
+                        <h1 className="text-5xl sm:text-6xl md:text-9xl font-bold text-center text-neutral-900 dark:text-white">You <span className="text-app-sblue">Think.</span></h1>
+                        <h1 className="text-5xl sm:text-6xl md:text-9xl font-bold text-center text-neutral-900 dark:text-white">We <span className="text-app-porange">Build.</span></h1>
                     </div>
                     <div className="text-center">
-                        <p className="w-8/12 mx-auto text-center mb-8">
+                        <p className="w-full md:9/12 lg:w-8/12 mx-auto text-center mb-8">
                             {`"Experience innovation at its finest with us. We craft exceptional software solutions that redefine excellence and elevate your business."`}
                         </p>
-                        <Link href="/" className="bg-app-porange border-2 border-app-porange text-white py-3 px-4 rounded-full">Get Started</Link>
+                        <Link href="/" className="bg-app-porange border-2 border-app-porange text-white text-[15px] md:text-base py-2 md:py-3 px-3 md:px-4 rounded-full">Get Started</Link>
                     </div>
                 </div>
                 <Image
-                    className="relative h-[700px] w-full object-cover rounded-xl"
+                    className="relative h-[450px] md:h-[700px] w-full object-cover rounded-xl"
                     src="/images/nerdbuds-banner.jpg"
                     alt="nerdbud's banner"
                     width={1400}
@@ -49,7 +49,7 @@ export default function Home() {
             <Choose />
             {/* drive & determination section */}
             <section className="">
-                <div className="mb-14">
+                <div className="mb-5 md:mb-14">
                     <p className="text-app-sblue text-[20px] font-[500]">
                         The drive and determination.
                     </p>
@@ -60,15 +60,8 @@ export default function Home() {
                         Crafting remarkable software, empowering brands to conquer their goals with digital innovation.
                     </p>
                 </div>
-                <div className="h-auto md:h-[350px] relative overflow-hidden">
-                    <Image
-                        className="relative h-full w-full object-cover rounded-xl"
-                        src="/images/mission-banner.jpg"
-                        alt="nerdbud's banner"
-                        width={1400}
-                        height={1400}
-                    />
-                    <div className="absolute top-0 h-full w-full">
+                <div className="h-auto md:h-[350px] relative bg-[url('/images/mission-banner.jpg')] bg-center bg-cover bg-no-repeat overflow-hidden">
+                    <div className="h-full w-full">
                         <div className="h-full flex flex-col md:flex-row md:items-center justify-center md:justify-normal">
                             <div className="flex flex-col justify-center spacey-3 p-4">
                                 <GiArcheryTarget className="text-white text-5xl" />
@@ -93,11 +86,11 @@ export default function Home() {
             {/* our tools */}
             <Tools />
             {/* get started section */}
-            <section className="my-32">
+            <section className="my-14 md:my-24 lg:my-32">
                 <div className="flex flex-col items-center space-y-5 mb-12">
                     <div>
-                        <h1 className="text-6xl font-bold text-center text-app-sblue">Get started with Nerdbuds.</h1>
-                        <h1 className="text-6xl font-bold text-center text-app-porange">Explore our offers today.</h1>
+                        <h1 className="text-3xl md:text-6xl font-bold text-center text-app-sblue">Get started with Nerdbuds.</h1>
+                        <h1 className="text-3xl md:text-6xl font-bold text-center text-app-porange">Explore our offers today.</h1>
                     </div>
                     <div className="flex flex-col items-center">
                         <p className="w-8/12 mx-auto text-center mb-5">

@@ -28,8 +28,7 @@ const lang = [
 
 export const Offer = () => {
   return (
-    <div>
-      <div className="mt-10 mb-32">
+      <div className="mt-0 md:mt-10 mb-10 md:mb-24 lg:mb-32">
         <div>
           <p className="text-app-sblue text-[20px] font-[500]">
             Open For Business.
@@ -43,8 +42,8 @@ export const Offer = () => {
           </p>
         </div>
 
-        <div className="mt-14">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-10 md:gap-y-6 xl:gap-y-0">
+        <div className="mt-5 md:mt-14">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-8 md:gap-y-6 xl:gap-y-0">
             {lang.map((item) => (
               <div key={item.img} className="w-full md:w-[270px] mx-auto">
                 <Image
@@ -55,10 +54,12 @@ export const Offer = () => {
                   //   priority
                 />
                 <div className="ml-1.5">
-                  <p className="font-[600] my-2 text-[18px]  text-neutral-900 dark:text-white">
+
+                  <p className="font-[500] my-2 text-[17px] text-neutral-900 dark:text-white">
                     {item.title}
                   </p>
-                  <p className=" text-neutral-900 dark:text-white">
+                  <p className="text-[12px] md:text-[15px]  text-neutral-900 dark:text-white">
+
                     {item.desc}
                   </p>
                 </div>
@@ -67,10 +68,10 @@ export const Offer = () => {
           </div>
         </div>
         
-        <div className="mt-20 flex justify-between flex-col md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-4">
+        <div className="mt-10 md:mt-20 flex justify-between flex-col md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-4">
           <div className="relative flex-grow bg-center bg-cover bg-no-repeat bg-[url('/images/help.svg')] rounded-md">
             <div className="h-full w-full flex flex-col justify-between space-y-6 md:space-y-28 mx-auto p-5">
-              <p className="text-black w-[280px] ml-0 md:ml-auto font-[500]">
+              <p className="text-black w-full lg:w-[280px] ml-0 md:ml-auto font-[500]">
                 Get ahead with your final year programming projects! Our expert
                 team handles the coding while you focus on success.
               </p>
@@ -96,9 +97,9 @@ export const Offer = () => {
               </div>
             </div>
           </div>
-          <div className="relative w-full md:basis-[29%] bg-center bg-cover bg-no-repeat bg-[url('/images/money.svg')] rounded-md overflow-hidden">
-            <div className="h-full w-full flex flex-col justify-between space-y-28">
-              <div className="pt-3">
+          <div className="relative h-[350px] md:h-auto w-full md:basis-[29%] bg-[url('/images/money.svg')] bg-center bg-cover bg-no-repeat rounded-md overflow-hidden">
+            <div className="h-full w-full flex flex-col justify-between space-y-28 py-3">
+              <div className="">
                 <Link
                   href="/"
                   className="text-yellow text-[14px] mx-auto flex gap-2 items-center border-2 w-fit py-1 px-4 rounded-full"
@@ -117,7 +118,7 @@ export const Offer = () => {
               </div>
               <Link
                 href="/"
-                className="mb-3 border-yellow text-yellow text-[14px] mx-auto flex gap-2 items-center border-2 w-fit py-2 px-4 rounded-full"
+                className="border-yellow text-yellow text-[14px] mx-auto flex gap-2 items-center border-2 w-fit py-2 px-4 rounded-full"
               >
                 Get Started
                 <BsArrowRight className="text-lg" />
@@ -126,6 +127,5 @@ export const Offer = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };

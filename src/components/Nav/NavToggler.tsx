@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const Path = (props: any) => {
     const { theme } = useTheme();
-    console.log("theme:", theme);
+    // console.log("theme:", theme);
 
     return   (<motion.path
         fill="transparent"
