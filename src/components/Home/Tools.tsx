@@ -60,7 +60,7 @@ export const Tools = () => {
             Welcome to <span className="text-[26px] text-app-sblue">Nerd</span>
             <span className="text-[26px] text-app-porange">buds</span>
           </p>
-          <p className="text-center w-[720px] mx-auto mt-3  text-neutral-900 dark:text-white">
+          <p className="text-center w-[90%] tablet_l:w-[550px] laptop_l:w-[720px] mx-auto mt-3  text-neutral-900 dark:text-white">
             {" "}
             A powerhouse of brilliant engineers crafting cutting-edge software
             solutions. With unmatched expertise and relentless dedication, our
