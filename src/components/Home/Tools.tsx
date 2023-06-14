@@ -55,7 +55,7 @@ export const Tools = () => {
           ))}
         </div>
 
-        <div className="justify-center flex flex-col">
+        {/* <div className="justify-center flex flex-col">
           <p className="font-[500] text-[18px] text-center mt-20  text-neutral-900 dark:text-white">
             Welcome to <span className="text-[26px] text-app-sblue">Nerd</span>
             <span className="text-[26px] text-app-porange">buds</span>
@@ -76,7 +76,7 @@ export const Tools = () => {
             Get Started
             <BsArrowRight className="text-lg" />
           </Link>
-        </div>
+        </div> */}
       </div>
     </div>
   );

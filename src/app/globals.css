@@ -26,55 +26,6 @@
 
 body {
   @apply bg-white dark:bg-app-pblue;
-  /* color: rgb(var(--foreground-rgb)); */
-  /* background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb)); */
+  overflow-x: hidden;
 }
 
-/* app container styles */
-.app-container {
-  width: 100%;
-  padding: 0 15px;
-  margin: 0 auto;
-}
-
-@media (min-width: 576px){
-  .app-container {
-    max-width: 560px;
-  }
-}
-
-@media (min-width: 768px){
-  .app-container {
-    max-width: 750px;
-  }
-}
-
-@media (min-width: 992px){
-  .app-container {
-    max-width: 980px;
-  }
-}
-
-@media (min-width: 1200px){
-  .app-container {
-    max-width: 1190px;
-  }
-}
-
-@media (min-width: 1280px){
-  .app-container {
-    max-width: 1270px;
-  }
-}
-
-@media only screen and (min-width: 1200px) and (max-width: 3640px)
-{
-  .app-container {
-    max-width: 1170px;
-  }
-}
