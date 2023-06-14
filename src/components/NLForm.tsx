@@ -11,8 +11,8 @@ const NLForm = () => {
             className=""
             onSubmit={e => e.preventDefault()}
         >
-            <div className="flex justify-between items-center space-x-2 p-2 border-2 border-neutral-700 dark:border-white/40 rounded-md">
-                <AiOutlineMail className="text-2xl text-neutral-900 dark:text-white" />
+            <div className="flex justify-between items-center space-x-2 p-2 border-2 border-neutral-700/60 dark:border-white/40 rounded-md">
+                <AiOutlineMail className="text-2xl text-neutral-900/50 dark:text-white" />
                 <input 
                     type="text" 
                     className="flex-grow bg-transparent text-neutral-900 dark:text-white outline-none"

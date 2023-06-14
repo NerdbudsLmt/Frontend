@@ -1,0 +1,42 @@
+.navToggler{
+    @apply flex flex-col md:hidden relative h-4 w-8 justify-between;
+}
+  
+.navToggler::before, 
+.navToggler::after {
+    content: "";
+    @apply h-[0.2rem] w-full bg-neutral-900 dark:bg-white left-0 transition-transform ease-in duration-300;
+}
+  
+.navToggler::before {
+    /* @apply top-0; */
+}
+  
+.navToggler::after {
+    /* @apply bottom-0; */
+}
+  
+.navOpen{
+    @apply justify-center;
+}
+  
+.navOpen::before, 
+.navOpen::after {
+    content: "";
+    @apply absolute;
+}
+  
+.navOpen::before {
+    /* @apply top-0; */
+    transform: rotateZ(45deg);
+}
+  
+.navOpen::after {
+    /* @apply bottom-0; */
+    transform: rotateZ(-45deg);
+}
+  
+.mobileNav {
+    background: rgb(14, 14, 14);
+}
+  

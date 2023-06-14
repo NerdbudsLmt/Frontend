@@ -29,7 +29,7 @@ const lang = [
 export const Offer = () => {
   return (
     <div>
-      <div className="my-32">
+      <div className="mt-10 mb-32">
         <div>
           <p className="text-app-sblue text-[20px] font-[500]">
             Open For Business.
@@ -44,9 +44,9 @@ export const Offer = () => {
         </div>
 
         <div className="mt-14">
-          <div className="flex tablet_l:flex-row flex-col justify-between tablet_l:gap-x-4 gap-y-10 flex-wrap">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-10 md:gap-y-6 xl:gap-y-0">
             {lang.map((item) => (
-              <div key={item.img} className="w-full tablet_l:w-[270px] mx-auto">
+              <div key={item.img} className="w-full md:w-[270px] mx-auto">
                 <Image
                   src={item.img}
                   alt="lang"
@@ -66,23 +66,25 @@ export const Offer = () => {
             ))}
           </div>
         </div>
-
-        <div className="flex justify-between flex-col tablet_l:flex-row gap-9 mt-20 h-fit ">
-          <div className="relative w-full tablet_l:w-[65%] h-[410px] rounded-3xl bg-center bg-cover bg-no-repeat bg-[url('/images/help.svg')] ">
-            <div className="absolute h-full top-0 w-full mx-auto">
-              <p className="text-black w-[280px] ml-auto  mt-8 font-[500]">
+        
+        <div className="mt-20 flex justify-between flex-col md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-4">
+          <div className="relative flex-grow bg-center bg-cover bg-no-repeat bg-[url('/images/help.svg')] rounded-md">
+            <div className="h-full w-full flex flex-col justify-between space-y-6 md:space-y-28 mx-auto p-5">
+              <p className="text-black w-[280px] ml-0 md:ml-auto font-[500]">
                 Get ahead with your final year programming projects! Our expert
                 team handles the coding while you focus on success.
               </p>
-              <div className=" w-fit ml-4 mt-16">
-                <h1 className="text-4xl laptop:text-5xl font-bold text-center text-neutral-900 dark:text-white">
-                  <span className="text-app-sblue">Help Us </span>to
-                </h1>
-                <h1 className="text-4xl laptop:text-5xl font-bold text-center text-neutral-900 dark:text-white">
-                  {" "}
-                  <span className="text-app-porange">Help You</span>
-                  <span className="text-app-sblue">.</span>
-                </h1>
+              <div className="">
+                <div>
+                  <h1 className="text-4xl laptop:text-5xl font-bold text-neutral-900 dark:text-white">
+                    <span className="text-app-sblue">Help Us </span>to
+                  </h1>
+                  <h1 className="text-4xl laptop:text-5xl font-bold text-neutral-900 dark:text-white">
+                    {" "}
+                    <span className="text-app-porange">Help You</span>
+                    <span className="text-app-sblue">.</span>
+                  </h1>
+                </div>
                 <Link
                   href="/"
                   className="border-app-sblue flex gap-2 items-center bg-app-sblue border-2 w-fit mt-6 text-white py-3 px-4 rounded-full"
@@ -94,32 +96,32 @@ export const Offer = () => {
               </div>
             </div>
           </div>
-          <div className="relative w-full tablet_l:w-[30%] h-[410px] bg-center bg-cover bg-no-repeat bg-[url('/images/money.svg')]">
-            <div className="absolute h-full w-full flex flex-col justify-between">
-              <div className="pt-5 pb-2">
+          <div className="relative w-full md:basis-[29%] bg-center bg-cover bg-no-repeat bg-[url('/images/money.svg')] rounded-md overflow-hidden">
+            <div className="h-full w-full flex flex-col justify-between space-y-28">
+              <div className="pt-3">
                 <Link
                   href="/"
-                  className="border-yellow text-yellow text-[14px] mx-auto flex gap-2 items-center border-2 w-fit py-1 px-4 rounded-full"
+                  className="text-yellow text-[14px] mx-auto flex gap-2 items-center border-2 w-fit py-1 px-4 rounded-full"
                 >
                   Brand Building & Management
                   {/* <BsArrowRight className="text-lg" /> */}
                   <Image
-                  src='/images/cube.svg'
-                  alt="lang"
-                  width={10}
-                  height={15}
-                  //   priority
-                />
+                    src='/images/cube.svg'
+                    alt="lang"
+                    width={10}
+                    height={15}
+                    //   priority
+                  />
                 </Link>
-                <p className="text-yellow text-2xl font-[600] text-center w-fit mx-auto">Mastering brands with precision.</p>
+                <p className="mt-3 text-yellow text-2xl font-[600] text-center w-fit mx-auto">Mastering brands with precision.</p>
               </div>
               <Link
-                  href="/"
-                  className="border-yellow text-yellow text-[14px] mx-auto flex gap-2 items-center border-2 mb-6 w-fit py-2 px-4 rounded-full"
-                >
-                 Get Started
-                  <BsArrowRight className="text-lg" />
-                </Link>
+                href="/"
+                className="mb-3 border-yellow text-yellow text-[14px] mx-auto flex gap-2 items-center border-2 w-fit py-2 px-4 rounded-full"
+              >
+                Get Started
+                <BsArrowRight className="text-lg" />
+              </Link>
             </div>
           </div>
         </div>

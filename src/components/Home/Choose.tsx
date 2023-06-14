@@ -18,7 +18,7 @@ export const Choose = () => {
           software for unparalleled user satisfaction.
         </p>
       </div>
-
+      
       <div className="flex justify-between mt-20 flex-col tablet_l:flex-row">
         <div className="relative w-full tablet_l:w-[45%] h-[300px] bg-center bg-auto bg-no-repeat bg-[url('/images/building.svg')] rounded-3xl">
           <div className="absolute h-full w-full flex flex-col justify-between">
