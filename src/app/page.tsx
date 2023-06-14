@@ -30,7 +30,7 @@ export default function Home() {
                         <h1 className="text-5xl sm:text-6xl md:text-9xl font-bold text-center text-neutral-900 dark:text-white">We <span className="text-app-porange">Build.</span></h1>
                     </div>
                     <div className="text-center">
-                        <p className="w-8/12 mx-auto text-center mb-8">
+                        <p className="w-full md:9/12 lg:w-8/12 mx-auto text-center mb-8">
                             {`"Experience innovation at its finest with us. We craft exceptional software solutions that redefine excellence and elevate your business."`}
                         </p>
                         <Link href="/" className="bg-app-porange border-2 border-app-porange text-white text-[15px] md:text-base py-2 md:py-3 px-3 md:px-4 rounded-full">Get Started</Link>
