@@ -26,7 +26,7 @@ const lang = [
 
 export const Tools = () => {
   return (
-    <div className="my-28">
+    <div className="my-10 md:my-24 lg:my-28">
       <div>
         <p className="text-app-sblue text-[20px] font-[500]">
           Software for Change.
@@ -40,7 +40,7 @@ export const Tools = () => {
         </p>
       </div>
 
-      <div className="mt-14">
+      <div className="mt-5 md:mt-14">
         <div className="flex justify-between gap-4 gap-y-10 flex-wrap">
           {lang.map((item) => (
             <div key={item.img} className="w-fit mx-auto">
