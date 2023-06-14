@@ -58,7 +58,7 @@ export const Offer = () => {
                   <p className="font-[600] my-2 text-[18px]  text-neutral-900 dark:text-white">
                     {item.title}
                   </p>
-                  <p className=" text-neutral-900 dark:text-white">
+                  <p className="text-justify text-neutral-900 dark:text-white">
                     {item.desc}
                   </p>
                 </div>
