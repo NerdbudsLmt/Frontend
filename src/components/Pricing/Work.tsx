@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import { BsArrowRight } from "react-icons/bs";
 import arrowdown from '../../../public/images/arrowdown.svg'
 import Link from "next/link";
 
@@ -21,7 +20,6 @@ export const Work = ({ title, bg, content, img, btn, name }: webProps) => {
       >
         <>
           <span>{name}</span>
-          {/* <BsArrowRight className="text-lg" /> */}
           <Image
           src={arrowdown}
           alt="web"

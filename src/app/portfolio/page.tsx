@@ -92,20 +92,20 @@ export default function Home() {
         </div>
 
         <div
-          className="py-6 px-6 flex flex-col laptop:flex-row laptop:gap-[1%] gap-5 justify-center rounded-3xl mt-8 h-fit"
+          className="py-6 px-6 flex flex-col laptop:flex-row laptop:gap-4 gap-5 justify-center rounded-3xl my-16 h-fit"
           style={{
             background:
               "linear-gradient(180deg, #151515 57.81%, rgba(21, 21, 21, 0) 100%)",
           }}
         >
           <Image
-            className="grow w-[90%] mx-auto laptop:w-[47%]"
+            className="grow  mx-auto"
             src="/images/man.svg"
             alt="web"
-            width={786}
-            height={545}
+            width={156}
+            height={165}
           />
-          <div className=" grow w-[90%] mx-auto laptop:w-[47%] my-auto ">
+          <div className=" grow w-[90%] ml-auto laptop:w-[46%] my-auto ">
             <div>
               <p className="text-[20px] tablet_l:text-[24px] laptop_L:text-[30px] font-bold leading[24px] laptop_l:leading-[48px]">
                 Get in touch with us to learn more.
