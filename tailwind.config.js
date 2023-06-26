@@ -18,6 +18,7 @@ module.exports = {
         'app-pblue': '#132E40', // secondary
         'app-sblue': '#3F9BD5', // secondary
         'yellow': '#FFE393',
+        
       },
       screens: {
         mobile: "360px",
