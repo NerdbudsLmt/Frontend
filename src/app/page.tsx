@@ -17,7 +17,7 @@ export default function Home() {
                     <div>
                         <Link 
                             href="/"
-                            className="flex items-center space-x-2 border-2 border-app-sblue text-app-sblue py-1 px-3 rounded-full"
+                            className="flex items-center space-x-2 border-2 border-app-sblue text-app-sblue py-1 px-10 rounded-full"
                         >
                             <>
                                 <span>Introducing: Student Galore</span>
@@ -26,14 +26,14 @@ export default function Home() {
                         </Link>
                     </div>
                     <div>
-                        <h1 className="text-9xl font-bold text-center text-neutral-900 dark:text-white">You <span className="text-app-sblue">Think.</span></h1>
-                        <h1 className="text-9xl font-bold text-center text-neutral-900 dark:text-white">We <span className="text-app-porange">Build.</span></h1>
+                        <h1 className="text-7xl font-bold text-center text-neutral-900 dark:text-white">You <span className="text-app-sblue">Dream.</span></h1>
+                        <h1 className="text-7xl font-bold text-center text-neutral-900 dark:text-white">We <span className="text-app-porange">Build.</span></h1>
                     </div>
                     <div className="text-center">
-                        <p className="w-8/12 mx-auto text-center mb-8">
+                        <p className="w-[85%] tablet_l:w-[520px] text-[18px] mx-auto text-center mb-8">
                             {`"Experience innovation at its finest with us. We craft exceptional software solutions that redefine excellence and elevate your business."`}
                         </p>
-                        <Link href="/" className="bg-app-porange border-2 border-app-porange text-white py-3 px-4 rounded-full">Get Started</Link>
+                        <Link href="/" className="bg-app-sblue border-2 border-app-sblue text-white py-3 px-4 rounded-full">Get Started</Link>
                     </div>
                 </div>
                 <Image
