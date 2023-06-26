@@ -1,17 +1,15 @@
+"use client";
+
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Tools } from "@/components/Home/Tools";
-import { Offer } from "@/components/Home/Offer";
-import { Choose } from "@/components/Home/Choose";
 import { BsArrowRight } from "react-icons/bs";
 import { BiMobileAlt } from "react-icons/bi";
-import web from "../../../public/images/web.svg";
-import mobile from "../../../public/images/mobile.svg";
-import { MdRocketLaunch } from "react-icons/md";
-import { GiArcheryTarget } from "react-icons/gi";
-import { Work } from "@/components/Pricing/Work";
+import { Web } from "@/components/Pricing/Web";
+import { Mobile } from "@/components/Pricing/Mobile";
 
 export default function Home() {
+  const [isWeb, setIsWeb] = useState<boolean>(true);
   return (
     <section>
       <header className="pt-10">
@@ -42,60 +40,26 @@ export default function Home() {
 
       <section className="mb-8 w-[95%] max-w-[1100px] mx-auto">
         <div className="flex gap-5 w-fit mx-auto mb-16">
-          <button className=" flex gap-2 items-center bg-app-sblue border-2 border-app-sblue py-2 px-5 rounded-full">
+          <button
+          className={isWeb ? 'flex gap-2 items-center transition bg-app-sblue border-2 border-app-sblue py-2 px-5 rounded-full'
+        : 'flex gap-2 items-center  border-2 border-app-sblue transition py-2 px-5 rounded-full'
+        }
+            onClick={() => setIsWeb(true)}
+          >
             Web
             <Image src="/images/web.svg" alt="web" width={15} height={15} />
           </button>
-          <button className=" flex gap-2 items-center  border-2 border-app-sblue  py-2 px-5 rounded-full">
+          <button
+            onClick={() => setIsWeb(false)}
+            className={!isWeb ? 'flex gap-2 items-center transition bg-app-sblue border-2 border-app-sblue py-2 px-5 rounded-full'
+        : 'flex gap-2 items-center  border-2 border-app-sblue transition py-2 px-5 rounded-full'
+        }
+          >
             Mobile
             <BiMobileAlt />
           </button>
         </div>
-        <div className="w-full my-20 ">
-          <Work
-            title="Focused, Active Management of High-Growth Digital Asset"
-            bg="linear-gradient(180deg, #16181D 3.12%, #4C515F 56.25%)"
-            content="Trade Bitcoin with confidence. Our secure software company ensures a safe and reliable platform for seamless Bitcoin transactions."
-            img="/images/bit.svg"
-            btn="#1A1C22"
-            name="Crypto & Mining"
-          />
-          <Work
-            title="Discover your perfect read with secure AI"
-            bg="linear-gradient(180deg, #C29D4C 0%, #463E2C 61.46%)"
-            content="Unlock the world of knowledge with our secure software. Discover your next great read with our powerful AI book recommendation engine."
-            img="/images/seAi.svg"
-            btn="#B89649"
-            name="Artificial Intelligence"
-          />
-
-          <Work
-            title="Simplify HR tasks with our secure app"
-            bg="linear-gradient(180deg, #8D8BFA 0%, #373650 61.46%)"
-            content="Revolutionize your HR management with our secure software. Streamline tasks, automate processes, and maximize efficiency with HRIS."
-            btn="#807EDF"
-            img="/images/hr.svg"
-            name="Human Resources"
-          />
-
-          <Work
-            title="Simplify HR tasks with our secure app"
-            bg="linear-gradient(180deg, #6A2A86 0%, #271A2D 61.46%)"
-            content="Transforming payment security. Our website empowers businesses and individuals to manage payments securely. Experience peace of mind today!"
-            btn="#5D2775"
-            img="/images/payRec.svg"
-            name="Commerce & Payments"
-          />
-
-          <Work
-            title="Simplify healthcare management with MSC"
-            bg="linear-gradient(180deg, #4CA1C8 0%, #0F2D3C 71.87%)"
-            content="Revolutionize your medical management with our cutting-edge website. Simplify and streamline your healthcare journey effortlessly, all in one place."
-            btn="#4799BE"
-            img="/images/msc.svg"
-            name="Healthcare"
-          />
-        </div>
+        {isWeb ? <Web /> : <Mobile />}
       </section>
 
       <div>
