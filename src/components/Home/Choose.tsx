@@ -5,12 +5,12 @@ import Link from "next/link";
 
 export const Choose = () => {
   return (
-    <div className="my-32">
+    <div className="my-10 md:my-24 lg:my-32">
       <div>
         <p className="text-app-sblue text-[20px] font-[500]">
           How we can help?
         </p>
-        <p className="text-[32px] font-[600] my-2  text-neutral-900 dark:text-white">
+        <p className="text-[32px] font-[600] my-2 text-neutral-900 dark:text-white">
           Why choose us?
         </p>
         <p className="text-app-sblue text-[16px] font-[500] w-full tablet:w-[80%]  laptop:w-[550px]">
@@ -19,7 +19,7 @@ export const Choose = () => {
         </p>
       </div>
       
-      <div className="flex justify-between mt-20 flex-col tablet_l:flex-row">
+      <div className="mt-5 md:mt-14 flex justify-between flex-col tablet_l:flex-row">
         <div className="relative w-full tablet_l:w-[45%] h-[300px] bg-center bg-auto bg-no-repeat bg-[url('/images/building.svg')] rounded-3xl">
           <div className="absolute h-full w-full flex flex-col justify-between">
             <div className="pt-5 pb-2">

@@ -154,7 +154,7 @@ const Nav = () => {
               {links?.map((link, index) => (
                 <MobileNavLink
                   key={index}
-                  className="text-[3.2rem] sm:text-[3.7rem] uppercase cursor-pointer font-semibold"
+                  className="text-[2rem] sm:text-[3.2rem] uppercase cursor-pointer font-semibold"
                   onClick={() => setNavOpen(false)}
                   isOpen={navOpen}
                   {...link}
