@@ -6,6 +6,8 @@ import { BiMobileAlt } from "react-icons/bi";
 import { Web } from "@/components/Portfolio/Web";
 import { Mobile } from "@/components/Portfolio/Mobile";
 import Pakage from "@/components/Pricing/Pakage";
+import { AiFillInstagram, AiOutlineTwitter, AiOutlineMail, AiFillLinkedin } from 'react-icons/ai'
+import { BsFacebook } from 'react-icons/bs'
 
 export default function Home() {
   return (
