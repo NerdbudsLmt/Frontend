@@ -5,8 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { BsArrowRight } from "react-icons/bs";
 import { BiMobileAlt } from "react-icons/bi";
-import { Web } from "@/components/Pricing/Web";
-import { Mobile } from "@/components/Pricing/Mobile";
+import { Web } from "@/components/Portfolio/Web";
+import { Mobile } from "@/components/Portfolio/Mobile";
 
 export default function Home() {
   const [isWeb, setIsWeb] = useState<boolean>(true);
@@ -116,9 +116,6 @@ export default function Home() {
               </p>
               <Link
                 href="/"
-                // style={{
-                //   background: "#",
-                // }}
                 className="flex gap-3 px-5 py-2 mt-3 w-fit bg-[#151719] text-[14px] laptop:text[16px]  rounded-3xl"
               >
                 Contact us
@@ -127,41 +124,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-        {/* <div
-          key={img}
-          className="py-6 px-6 flex flex-col-reverse laptop:flex-row laptop:gap-[1%] gap-5 justify-center rounded-3xl mt-8 h-fit"
-          style={{
-            background: bg,
-          }}
-        >
-          <Image
-            className="grow w-[90%] mx-auto laptop:w-[47%]"
-            src={img}
-            alt="web"
-            width={786}
-            height={545}
-          />
-          <div className=" grow w-[90%] mx-auto laptop:w-[47%] my-auto ">
-            <div>
-              <p className="text-[20px] tablet_l:text-[24px] laptop_L:text-[30px] font-bold leading[24px] laptop_l:leading-[48px]">
-                {title}
-              </p>
-              <p className="mt-4 mb-5 text-[14px] laptop:text[16px] ">
-                {content}
-              </p>
-              <Link
-                href="/"
-                style={{
-                  background: btn,
-                }}
-                className="px-5 py-2 text-[14px] laptop:text[16px]  rounded-3xl"
-              >
-                Learn more
-              </Link>
-            </div>
-          </div>
-        </div> */}
       </div>
     </section>
   );
