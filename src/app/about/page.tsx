@@ -3,10 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { BsArrowRight } from "react-icons/bs";
 import { BiMobileAlt } from "react-icons/bi";
-import { Web } from "@/components/Portfolio/Web";
-import { Mobile } from "@/components/Portfolio/Mobile";
-import Pakage from "@/components/Pricing/Pakage";
-import { AiFillInstagram, AiOutlineTwitter, AiOutlineMail, AiFillLinkedin } from 'react-icons/ai'
+import { MdEmail } from 'react-icons/md'
+import { AiFillInstagram, AiOutlineTwitter, AiFillLinkedin } from 'react-icons/ai'
 import { BsFacebook } from 'react-icons/bs'
 
 export default function Home() {
@@ -135,7 +133,13 @@ export default function Home() {
                 Sean Chinedu
               </p>
               <p className="font-semibold">CEO & Founder</p>
-              <div></div>
+              <div className="flex gap-3">
+                <AiFillInstagram className="text-[#fff] w-[20px] h-[20px]"/>
+                <BsFacebook className="text-[#fff] w-[20px] h-[20px]"/>
+                <AiOutlineTwitter className="text-[#fff] w-[20px] h-[20px]"/>
+                <MdEmail className="text-[#fff] w-[20px] h-[20px]"/>
+                <AiFillLinkedin className="text-[#fff] w-[20px] h-[20px]"/>
+              </div>
             </div>
           </div>
         </div>
