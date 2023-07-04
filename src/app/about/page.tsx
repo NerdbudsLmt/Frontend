@@ -113,7 +113,7 @@ export default function Home() {
       </div>
 
       <div className="mt-20 mb-10 pb-20 border-b-2 border-[#fff]">
-        <p className="mb-8 text-center underline text-3xl font-bold  text-app-sblue">
+        <p className="mb-8 text-center border-b-2 mx-auto w-fit border-[#fff] text-3xl font-bold  text-app-sblue">
           Meet
           <span className="text-[#fff]"> the</span>
           <span className="text-app-porange"> Nerds </span>
@@ -124,16 +124,16 @@ export default function Home() {
               src="/images/sean.svg"
               className="h-[350px] w-[250px]"
               alt="hand"
-              width={400}
+              width={350}
               height={200}
               priority
             />
-            <div className="-mt-3">
+            <div className="relative -top-5">
               <p className=" text-app-sblue font-bold text-[1.15rem]">
                 Sean Chinedu
               </p>
               <p className="font-semibold">CEO & Founder</p>
-              <div className="flex gap-3">
+              <div className="flex gap-3 mt-3">
                 <AiFillInstagram className="text-[#fff] w-[20px] h-[20px]"/>
                 <BsFacebook className="text-[#fff] w-[20px] h-[20px]"/>
                 <AiOutlineTwitter className="text-[#fff] w-[20px] h-[20px]"/>
