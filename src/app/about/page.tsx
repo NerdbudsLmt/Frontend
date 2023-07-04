@@ -118,21 +118,141 @@ export default function Home() {
           <span className="text-[#fff]"> the</span>
           <span className="text-app-porange"> Nerds </span>
         </p>
-        <div>
-          <div>
+        <div className="flex justify-around mx-auto gap-x-8 flex-wrap">
+          <div className="mt-9 w-[30%]">
             <Image
               src="/images/sean.svg"
-              className="h-[350px] w-[250px]"
+              className="h-[300px] w-[250px]"
               alt="hand"
-              width={350}
+              width={400}
               height={200}
               priority
             />
-            <div className="relative -top-5">
+            <div className="relative ">
               <p className=" text-app-sblue font-bold text-[1.15rem]">
                 Sean Chinedu
               </p>
-              <p className="font-semibold">CEO & Founder</p>
+              <p className="">Founder & CEO</p>
+              <div className="flex gap-3 mt-3">
+                <AiFillInstagram className="text-[#fff] w-[20px] h-[20px]"/>
+                <BsFacebook className="text-[#fff] w-[20px] h-[20px]"/>
+                <AiOutlineTwitter className="text-[#fff] w-[20px] h-[20px]"/>
+                <MdEmail className="text-[#fff] w-[20px] h-[20px]"/>
+                <AiFillLinkedin className="text-[#fff] w-[20px] h-[20px]"/>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-9 w-[30%]">
+            <Image
+              src="/images/benard.svg"
+              className="h-[300px] w-[250px]"
+              alt="hand"
+              width={400}
+              height={200}
+              priority
+            />
+            <div className="relative ">
+              <p className=" text-app-sblue font-bold text-[1.15rem]">
+              Joshua Chidi-Bernard
+              </p>
+              <p className="">Product Manager & UI/UX Designer</p>
+              <div className="flex gap-3 mt-3">
+                <AiFillInstagram className="text-[#fff] w-[20px] h-[20px]"/>
+                <BsFacebook className="text-[#fff] w-[20px] h-[20px]"/>
+                <AiOutlineTwitter className="text-[#fff] w-[20px] h-[20px]"/>
+                <MdEmail className="text-[#fff] w-[20px] h-[20px]"/>
+                <AiFillLinkedin className="text-[#fff] w-[20px] h-[20px]"/>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-9 w-[30%]">
+            <Image
+              src="/images/muhammod.svg"
+              className="h-[300px] w-[250px]"
+              alt="hand"
+              width={400}
+              height={200}
+              priority
+            />
+            <div className="relative ">
+              <p className=" text-app-sblue font-bold text-[1.15rem]">
+              Muhammoud Ajibade
+              </p>
+              <p className="">Front End Developer</p>
+              <div className="flex gap-3 mt-3">
+                <AiFillInstagram className="text-[#fff] w-[20px] h-[20px]"/>
+                <BsFacebook className="text-[#fff] w-[20px] h-[20px]"/>
+                <AiOutlineTwitter className="text-[#fff] w-[20px] h-[20px]"/>
+                <MdEmail className="text-[#fff] w-[20px] h-[20px]"/>
+                <AiFillLinkedin className="text-[#fff] w-[20px] h-[20px]"/>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-9 w-[30%]">
+            <Image
+              src="/images/enoch.svg"
+              className="h-[300px] w-[250px]"
+              alt="hand"
+              width={400}
+              height={200}
+              priority
+            />
+            <div className="relative ">
+              <p className=" text-app-sblue font-bold text-[1.15rem]">
+              Enoch Olasinde
+              </p>
+              <p className="">Full Stack Developer</p>
+              <div className="flex gap-3 mt-3">
+                <AiFillInstagram className="text-[#fff] w-[20px] h-[20px]"/>
+                <BsFacebook className="text-[#fff] w-[20px] h-[20px]"/>
+                <AiOutlineTwitter className="text-[#fff] w-[20px] h-[20px]"/>
+                <MdEmail className="text-[#fff] w-[20px] h-[20px]"/>
+                <AiFillLinkedin className="text-[#fff] w-[20px] h-[20px]"/>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-9 w-[30%]">
+            <Image
+              src="/images/john.svg"
+              className="h-[300px] w-[250px]"
+              alt="hand"
+              width={400}
+              height={200}
+              priority
+            />
+            <div className="relative ">
+              <p className=" text-app-sblue font-bold text-[1.15rem]">
+              John Alafiatayo
+              </p>
+              <p className="">Back End Developer</p>
+              <div className="flex gap-3 mt-3">
+                <AiFillInstagram className="text-[#fff] w-[20px] h-[20px]"/>
+                <BsFacebook className="text-[#fff] w-[20px] h-[20px]"/>
+                <AiOutlineTwitter className="text-[#fff] w-[20px] h-[20px]"/>
+                <MdEmail className="text-[#fff] w-[20px] h-[20px]"/>
+                <AiFillLinkedin className="text-[#fff] w-[20px] h-[20px]"/>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-9 w-[30%]">
+            <Image
+              src="/images/samuel.svg"
+              className="h-[300px] w-[250px]"
+              alt="hand"
+              width={400}
+              height={200}
+              priority
+            />
+            <div className="relative ">
+              <p className=" text-app-sblue font-bold text-[1.15rem]">
+              Olutekunbi Samuel
+              </p>
+              <p className="">Head of Marketing</p>
               <div className="flex gap-3 mt-3">
                 <AiFillInstagram className="text-[#fff] w-[20px] h-[20px]"/>
                 <BsFacebook className="text-[#fff] w-[20px] h-[20px]"/>
