@@ -29,3 +29,13 @@ body {
   overflow-x: hidden;
 }
 
+.blue_gradient {
+  background: linear-gradient(180deg, #3F9BD5 0%, rgba(63, 155, 213, 0) 100%);
+}
+.black_graident {
+  background: #2A3339;
+}
+
+.yellow_gradient {
+  background: linear-gradient(180deg, #C79B1E 0%, rgba(255, 227, 147, 0) 100%);
+}
