@@ -180,10 +180,10 @@ export default function Home() {
 
       <div className="mt-16 mb-[10rem]">
       <div>
-            <p className="text-4xl tablet_l:text-7xl font-bold text-center text-app-porange">
+            <p className="text-4xl tablet_l:text-6xl font-bold text-center text-app-porange">
             Create an account today!
             </p>
-            <p className="text-4xl tablet_l:text-7xl mt-2 font-bold text-center text-app-sblue">Unlock our features.</p>
+            <p className="text-4xl tablet_l:text-6xl mt-2 font-bold text-center text-app-sblue">Unlock our features.</p>
 
           </div>
           <div className="text-center">
