@@ -1,4 +1,4 @@
-"use client";
+
 
 import React, { useState } from "react";
 import Link from "next/link";
@@ -38,6 +38,7 @@ export default function Home() {
           </div>
         </div>
       </header>
+
       <Pakage />
 
       <div className="blue_gradient tablet_l:py-16 py-7 rounded-[28px] tablet_l:w-[75%] w-[95%] mx-auto">
