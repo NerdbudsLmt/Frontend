@@ -16,7 +16,7 @@ export default function Home() {
         <div className="flex flex-col items-center space-y-5 mb-16">
           <div>
             <Link
-              href="/"
+              href="/pricing"
               className="flex items-center space-x-2 border-2 border-app-sblue text-app-sblue py-1 px-10 rounded-full"
             >
               <>
@@ -115,7 +115,7 @@ export default function Home() {
                 us today and elevate your business with our software expertise.
               </p>
               <Link
-                href="/"
+                href="/contact"
                 className="flex gap-3 px-5 py-2 mt-3 w-fit bg-[#151719] text-[14px] laptop:text[16px]  rounded-3xl"
               >
                 Contact us

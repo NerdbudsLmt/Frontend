@@ -8,8 +8,7 @@ const Pakage = () => {
     <div className="flex justify-around gap-y-12 gap-x-3 flex-wrap my-16">
       <div className="relative blue_gradient w-[85%] tablet_l:max-w-[350px] rounded-3xl">
         <div className="pt-3 pb-2">
-          <Link
-            href="/"
+          <div
             className="border-white text-white text-[14px] mx-auto flex gap-2 items-center border-2 w-fit py-1 px-5 rounded-full"
           >
             Design and Implementation
@@ -20,7 +19,7 @@ const Pakage = () => {
               height={15}
               //   priority
             />
-          </Link>
+          </div>
           <p className="text-white text-3xl font-[600] text-center w-fit mt-2 mx-auto">
             For Companies
           </p>
@@ -81,20 +80,23 @@ const Pakage = () => {
           </ul>
         </div>
         <Link
-          href="/"
+          href="/signup"
           className="border-[#265D80] bg-[#265D80] text-white text-[14px] mx-auto flex gap-2 items-center border-2 mt-8 mb-0 w-fit py-2 px-3 rounded-full"
         >
           Get Started
           <BsArrowRight className="text-lg" />
         </Link>
-        <p className="text-white mt-1 mb-9 text-center w-fit mx-auto">
+        <Link href='/contact' 
+          className="border-b-2 text-white text-[14px] mx-auto flex mt-2 mb-4 w-fit"
+        
+        // className="text-white  mt-2 border-b-2 mb-9 text-center w-fit mx-auto"
+        >
           or contact sales
-        </p>
+        </Link>
       </div>
       <div className="relative black_graident w-[85%] tablet_l:max-w-[350px] rounded-3xl">
         <div className="pt-3 pb-2">
-          <Link
-            href="/"
+          <div
             className="border-white text-white text-[14px] mx-auto flex gap-2 items-center border-2 w-fit py-1 px-5 rounded-full"
           >
             For Our Academics
@@ -105,7 +107,7 @@ const Pakage = () => {
               height={15}
               //   priority
             />
-          </Link>
+          </div>
           <p className="text-white text-3xl font-[600] text-center w-fit mt-2 mx-auto">
           Student Galore
           </p>
@@ -166,7 +168,7 @@ const Pakage = () => {
           </ul>
         </div>
         <Link
-          href="/"
+          href="/signup"
           className="border-[#ffffff] bg-[#ffffff] text-[#151515] text-[14px] mx-auto flex gap-2 items-center border-2 mt-8 mb-0 w-fit py-2 px-3 rounded-full"
         >
           Get Started with Student Galore 
@@ -175,8 +177,7 @@ const Pakage = () => {
       </div>
       <div className="relative yellow_gradient w-[85%] tablet_l:max-w-[350px] rounded-3xl pb-9">
         <div className="pt-3 pb-2">
-          <Link
-            href="/"
+          <div
             className="border-white text-white text-[14px] mx-auto flex gap-2 items-center border-2 w-fit py-1 px-5 rounded-full"
           >
             Simplicity for Everyone
@@ -187,7 +188,7 @@ const Pakage = () => {
               height={15}
               //   priority
             />
-          </Link>
+          </div>
           <p className="text-white text-3xl font-[600] text-center w-fit mt-2 mx-auto">
           For Individuals
           </p>
@@ -238,7 +239,7 @@ const Pakage = () => {
           </ul>
         </div>
         <Link
-          href="/"
+          href="/signup"
           className="border-[#B09334] bg-[#B09334] text-[#fff] text-[14px] mx-auto flex gap-2 items-center border-2 mt-8 mb-0 w-fit py-2 px-3 rounded-full"
         >
           Get Started

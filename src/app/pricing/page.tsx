@@ -16,7 +16,7 @@ export default function Home() {
         <div className="flex flex-col items-center space-y-5 mb-16">
           <div>
             <Link
-              href="/"
+              href="/about"
               className="flex items-center space-x-2 border-2 border-app-sblue text-app-sblue py-1 px-10 rounded-full"
             >
               <>
@@ -53,7 +53,7 @@ export default function Home() {
               tailored software solutions. Don&apos;t miss out!
             </p>
             <Link
-              href="/"
+              href="/contact"
               className=" border-[#3F9BD5] bg-[#3F9BD5] text-white text-[14px] mx-auto flex gap-2 items-center border-2 w-fit mt-6 tablet_l:mt-0 py-2 px-6 rounded-full"
             >
               Contact sales
@@ -193,7 +193,7 @@ export default function Home() {
             </p>
           </div>
           <Link
-          href="/"
+          href="/signup"
           className="border-app-sblue bg-app-sblue text-white text-[14px] mx-auto flex gap-2 items-center border-2 mt-8 mb-0 w-fit py-2 px-5 rounded-full"
         >
           Get Started

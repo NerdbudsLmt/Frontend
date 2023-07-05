@@ -15,7 +15,7 @@ export default function Home() {
         <div className="flex flex-col items-center space-y-5 mb-16 md:mb-20">
           <div>
             <Link
-              href="/"
+              href="/pricing"
               className="flex items-center space-x-2 border-2 border-app-sblue text-app-sblue py-1 px-10 rounded-full"
             >
               <>
@@ -37,7 +37,7 @@ export default function Home() {
               {`"Experience innovation at its finest with us. We craft exceptional software solutions that redefine excellence and elevate your business."`}
             </p>
             <Link
-              href="/"
+              href="/signup"
               className="bg-app-sblue border-2 border-app-sblue text-white py-3 px-4 rounded-full"
             >
               Get Started
@@ -116,7 +116,7 @@ export default function Home() {
               {`"Experience innovation at its finest with us. We craft exceptional software solutions that redefine excellence and elevate your business."`}
             </p>
             <Link
-              href="/"
+              href="/pricing"
               className="flex items-center space-x-2 border-2 border-app-sblue bg-app-sblue text-white py-1 px-3 rounded-full"
             >
               <>
