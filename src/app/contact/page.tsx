@@ -19,7 +19,7 @@ export default function Home() {
         <div className="flex flex-col items-center space-y-5 mb-16">
           <div>
             <Link
-              href="/"
+              href="/about"
               className="flex items-center space-x-2 border-2 border-app-sblue text-app-sblue py-1 px-10 rounded-full"
             >
               <>

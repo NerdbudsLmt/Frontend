@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <UIProvider>
-          <div className="mx-auto w-[97%] tablet:w-[95%] max-w-[1100px]">
+          <div className="mx-auto w-[97%] tablet:w-[95%] max-w-[1380px]">
             <Nav />
             {children}
           </div>

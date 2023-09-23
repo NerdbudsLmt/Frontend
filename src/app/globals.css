@@ -40,3 +40,7 @@ body {
 .yellow_gradient {
   background: linear-gradient(180deg, #C79B1E 0%, rgba(255, 227, 147, 0) 100%);
 }
+
+.bg-sign {
+  background: rgba(255, 255, 255, 0.20);
+}
