@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { BsEyeSlashFill, BsEyeFill, BsChevronLeft } from "react-icons/bs";
-import { FcGoogle } from 'react-icons/fc'
+import { FcGoogle } from "react-icons/fc";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
@@ -57,9 +57,9 @@ export default function Company() {
 
   return (
     <div className="my-6">
-       <Link href="/signup">
-          <BsChevronLeft size={30} className="my-5" />
-        </Link>
+      <Link href="/signup">
+        <BsChevronLeft size={30} className="my-5" />
+      </Link>
       <div className="flex gap-8 mb-4">
         <div className=" basis-[40%] ">
           <Image
@@ -67,7 +67,6 @@ export default function Company() {
             alt="Vercel Logo"
             width={600}
             height={600}
-            priority
           />
         </div>
         <div className="basis-[55%]">
@@ -91,7 +90,7 @@ export default function Company() {
                 <input
                   type="text"
                   id="firstName"
-                  name="firstName"
+                  // name="firstName"
                   placeholder="First Name"
                   {...formik.getFieldProps("firstName")}
                   className="border-[1.5px] w-full text-[16px] rounded-md text-black bg-white px-3 py-1 mt-1"
@@ -112,7 +111,7 @@ export default function Company() {
                 <input
                   type="text"
                   id="lastName"
-                  name="lastName"
+                  // name="lastName"
                   placeholder="Last Name"
                   {...formik.getFieldProps("lastName")}
                   className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
@@ -136,7 +135,7 @@ export default function Company() {
                 <input
                   type="text"
                   id="company"
-                  name="company"
+                  // name="company"
                   placeholder="Company Name"
                   {...formik.getFieldProps("company")}
                   className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
@@ -160,7 +159,7 @@ export default function Company() {
                 <input
                   type="text"
                   id="industry"
-                  name="industry"
+                  // name="industry"
                   placeholder="Software Design"
                   {...formik.getFieldProps("industry")}
                   className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
@@ -181,7 +180,7 @@ export default function Company() {
                 <input
                   type="text"
                   id="position"
-                  name="position"
+                  // name="position"
                   placeholder="Project Manager"
                   {...formik.getFieldProps("position")}
                   className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
@@ -205,7 +204,7 @@ export default function Company() {
                 <input
                   type="text"
                   id="email"
-                  name="email"
+                  // name="email"
                   placeholder="nerdbudsltd@gmail.com"
                   {...formik.getFieldProps("email")}
                   className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
@@ -228,7 +227,7 @@ export default function Company() {
               <input
                 type={show ? "text" : "password"}
                 id="password"
-                name="password"
+                // name="password"
                 placeholder="Password"
                 {...formik.getFieldProps("password")}
                 className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
@@ -269,12 +268,12 @@ export default function Company() {
             <span className="text-app-porange underline"> Privacy Policy.</span>{" "}
           </p>
           <button
-              className="bg-[#265D80] flex items-center justify-center mt-6 gap-4 text-white py-2 px-5 w-full rounded-full"
-              // type="submit"
-            >
-              <FcGoogle />
-                       Sign up with Google
-            </button>
+            className="bg-[#265D80] flex items-center justify-center mt-6 gap-4 text-white py-2 px-5 w-full rounded-full"
+            // type="submit"
+          >
+            <FcGoogle />
+            Sign up with Google
+          </button>
         </div>
       </div>
     </div>

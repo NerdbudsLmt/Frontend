@@ -80,7 +80,6 @@ export default function ProjectPal() {
               alt="Vercel Logo"
               width={600}
               height={600}
-              priority
             />
 
             <div className="bg-sign my-10 p-4 rounded-md">
@@ -142,7 +141,7 @@ export default function ProjectPal() {
                   <input
                     type="text"
                     id="university"
-                    name="university"
+                    // name="university"
                     placeholder="university Name"
                     {...formik.getFieldProps("university")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
@@ -165,7 +164,7 @@ export default function ProjectPal() {
                   <input
                     type="text"
                     id="firstName"
-                    name="firstName"
+                    // name="firstName"
                     placeholder="First Name"
                     {...formik.getFieldProps("firstName")}
                     className="border-[1.5px] w-full text-[16px] rounded-md text-black bg-white px-3 py-1 mt-1"
@@ -186,7 +185,7 @@ export default function ProjectPal() {
                   <input
                     type="text"
                     id="lastName"
-                    name="lastName"
+                    // name="lastName"
                     placeholder="Last Name"
                     {...formik.getFieldProps("lastName")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
@@ -210,7 +209,7 @@ export default function ProjectPal() {
                   <input
                     type="text"
                     id="level"
-                    name="level"
+                    // name="level"
                     placeholder="Software Design"
                     {...formik.getFieldProps("level")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
@@ -231,7 +230,7 @@ export default function ProjectPal() {
                   <input
                     type="text"
                     id="semester"
-                    name="semester"
+                    // name="semester"
                     placeholder="Project Manager"
                     {...formik.getFieldProps("semester")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
@@ -259,8 +258,8 @@ export default function ProjectPal() {
                   <input
                     type="text"
                     id="uniemail"
-                    name="sean.chinedu@lmu.edu.ng"
-                    placeholder="nerdbudsltd@gmail.com"
+                    // name=""
+                    placeholder="sean.chinedu@lmu.edu.ng"
                     {...formik.getFieldProps("uniemail")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
                   />
@@ -283,8 +282,8 @@ export default function ProjectPal() {
                   <input
                     type="text"
                     id="reg"
-                    name="sean.chinedu@lmu.edu.ng"
-                    placeholder="nerdbudsltd@gmail.com"
+                    // name="sean.chinedu@lmu.edu.ng"
+                    placeholder="84A23S"
                     {...formik.getFieldProps("reg")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
                   />
@@ -306,7 +305,7 @@ export default function ProjectPal() {
                 <input
                   type={show ? "text" : "password"}
                   id="password"
-                  name="password"
+                  // name="password"
                   placeholder="Password"
                   {...formik.getFieldProps("password")}
                   className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"

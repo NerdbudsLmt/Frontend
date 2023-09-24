@@ -12,7 +12,7 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <section className="">
-            <Nav />
+      <Nav />
       {/* header section */}
       <header className="py-10">
         <div className="flex flex-col items-center space-y-5 mb-16 md:mb-20">

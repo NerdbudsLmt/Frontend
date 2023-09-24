@@ -67,7 +67,6 @@ export default function Company() {
             alt="Vercel Logo"
             width={600}
             height={600}
-            priority
           />
         </div>
         <div className="basis-[55%]">
@@ -91,7 +90,7 @@ export default function Company() {
                 <input
                   type="text"
                   id="firstName"
-                  name="firstName"
+                  // name="firstName"
                   placeholder="First Name"
                   {...formik.getFieldProps("firstName")}
                   className="border-[1.5px] w-full text-[16px] rounded-md text-black bg-white px-3 py-1 mt-1"
@@ -112,7 +111,7 @@ export default function Company() {
                 <input
                   type="text"
                   id="lastName"
-                  name="lastName"
+                  // name="lastName"
                   placeholder="Last Name"
                   {...formik.getFieldProps("lastName")}
                   className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
@@ -136,7 +135,7 @@ export default function Company() {
                 <input
                   type="text"
                   id="business"
-                  name="business"
+                  // name="business"
                   placeholder="Nerdbud Ltd"
                   {...formik.getFieldProps("business")}
                   className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
@@ -160,7 +159,7 @@ export default function Company() {
                 <input
                   type="text"
                   id="industry"
-                  name="industry"
+                  // name="industry"
                   placeholder="Software Design"
                   {...formik.getFieldProps("industry")}
                   className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
@@ -185,7 +184,7 @@ export default function Company() {
                 <input
                   type="text"
                   id="email"
-                  name="email"
+                  // name="email"
                   placeholder="nerdbudsltd@gmail.com"
                   {...formik.getFieldProps("email")}
                   className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
@@ -208,7 +207,7 @@ export default function Company() {
               <input
                 type={show ? "text" : "password"}
                 id="password"
-                name="password"
+                // name="password"
                 placeholder="Password"
                 {...formik.getFieldProps("password")}
                 className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
