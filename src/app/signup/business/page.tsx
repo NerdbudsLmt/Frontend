@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { BsEyeSlashFill, BsEyeFill, BsChevronLeft } from "react-icons/bs";
-import { FcGoogle } from 'react-icons/fc'
+import { FcGoogle } from "react-icons/fc";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
@@ -57,9 +57,9 @@ export default function Company() {
 
   return (
     <div className="my-6">
-        <Link href="/signup" className=" ">
-          <BsChevronLeft size={30} className="" />
-        </Link>
+      <Link href="/signup" className=" ">
+        <BsChevronLeft size={30} className="" />
+      </Link>
       <div className="flex gap-8 mb-4">
         <div className=" basis-[40%] ">
           <Image
@@ -75,8 +75,8 @@ export default function Company() {
             <span className="text-app-porange">Enterpreneurs👋</span>
           </h1>
           <p className="text-gray-400 my-2">
-          We give your  <span className="text-app-porange">business </span>{" "}
-          an edge over others. 
+            We give your <span className="text-app-porange">business </span> an
+            edge over others.
           </p>
           <form className="my-4" onSubmit={formik.handleSubmit}>
             <div className="flex justify-between gap-4">
@@ -149,28 +149,28 @@ export default function Company() {
             </div>
 
             {/* <div className="flex justify-between gap-4"> */}
-              <div className="my-3">
-                <label
-                  htmlFor="industry"
-                  className="block text-gray-300 text-[16px]"
-                >
-                  Industry
-                </label>
-                <input
-                  type="text"
-                  id="industry"
-                  // name="industry"
-                  placeholder="Software Design"
-                  {...formik.getFieldProps("industry")}
-                  className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
-                />
-                {formik.touched.industry && formik.errors.industry ? (
-                  <div className="text-[red] text-[14px] italic">
-                    {formik.errors.industry}
-                  </div>
-                ) : null}
-              </div>
-              
+            <div className="my-3">
+              <label
+                htmlFor="industry"
+                className="block text-gray-300 text-[16px]"
+              >
+                Industry
+              </label>
+              <input
+                type="text"
+                id="industry"
+                // name="industry"
+                placeholder="Software Design"
+                {...formik.getFieldProps("industry")}
+                className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
+              />
+              {formik.touched.industry && formik.errors.industry ? (
+                <div className="text-[red] text-[14px] italic">
+                  {formik.errors.industry}
+                </div>
+              ) : null}
+            </div>
+
             {/* </div> */}
 
             <div className="">
@@ -248,12 +248,12 @@ export default function Company() {
             <span className="text-app-porange underline"> Privacy Policy.</span>{" "}
           </p>
           <button
-              className="bg-[#265D80] flex items-center justify-center mt-6 gap-4 text-white py-2 px-5 w-full rounded-full"
-              // type="submit"
-            >
-              <FcGoogle />
-                       Sign up with Google
-            </button>
+            className="bg-[#265D80] flex items-center justify-center mt-6 gap-4 text-white py-2 px-5 w-full rounded-full"
+            // type="submit"
+          >
+            <FcGoogle />
+            Sign up with Google
+          </button>
         </div>
       </div>
     </div>
