@@ -88,7 +88,7 @@ const Nav = () => {
           <div>
             <Link
               href="/"
-              className="border-2 border-neutral-900 dark:border-white text-neutral-900 dark:text-white py-2 px-3 rounded-md"
+              className="border-2 border-white text-white py-2 px-3 rounded-md"
             >
               Login
             </Link>
@@ -132,7 +132,7 @@ const Nav = () => {
               animate={"visible"}
               exit={"hidden"}
               variants={mobileNavVariants}
-              className={`bg-white dark:bg-app-pblue border-2 border-neutral-700/20 dark:border-white/10
+              className={`bg-app-pblue border-2 border-white/10
                             h-full w-[95%] mx-auto p-6 flex flex-col justify-center space-y-6 
                             rounded-md overflow-hidden shadow-xl`}
             >

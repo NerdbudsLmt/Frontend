@@ -1,6 +1,6 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
-// import UIProvider from "@/context/UIProvider";
+import UIProvider from "@/context/UIProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,11 +17,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {/* <UIProvider> */}
+        <UIProvider>
           <div className="mx-auto w-[97%] tablet:w-[95%] max-w-[1380px]">
             {children}
           </div>
-        {/* </UIProvider> */}
+        </UIProvider>
       </body>
     </html>
   );

@@ -33,7 +33,7 @@ export const Offer = () => {
           <p className="text-app-sblue text-[20px] font-[500]">
             Open For Business.
           </p>
-          <p className="text-[32px] font-[600] my-2  text-neutral-900 dark:text-white">
+          <p className="text-[32px] font-[600] my-2  text-white">
             What we offer
           </p>
           <p className="text-app-sblue text-[16px] font-[500] w-full tablet:w-[80%]  laptop:w-[550px]">
@@ -55,10 +55,10 @@ export const Offer = () => {
                 />
                 <div className="ml-1.5">
 
-                  <p className="font-[500] my-2 text-[17px] text-neutral-900 dark:text-white">
+                  <p className="font-[500] my-2 text-[17px] text-white">
                     {item.title}
                   </p>
-                  <p className="text-[12px] md:text-[15px]  text-neutral-900 dark:text-white">
+                  <p className="text-[12px] md:text-[15px]  text-white">
 
                     {item.desc}
                   </p>
@@ -77,10 +77,10 @@ export const Offer = () => {
               </p>
               <div className="">
                 <div>
-                  <h1 className="text-4xl laptop:text-5xl font-bold text-neutral-900 dark:text-white">
+                  <h1 className="text-4xl laptop:text-5xl font-bold text-white">
                     <span className="text-app-sblue">Help Us </span>to
                   </h1>
-                  <h1 className="text-4xl laptop:text-5xl font-bold text-neutral-900 dark:text-white">
+                  <h1 className="text-4xl laptop:text-5xl font-bold text-white">
                     {" "}
                     <span className="text-app-porange">Help You</span>
                     <span className="text-app-sblue">.</span>
