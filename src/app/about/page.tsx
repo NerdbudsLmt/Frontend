@@ -6,10 +6,13 @@ import { BiMobileAlt } from "react-icons/bi";
 import { MdEmail } from 'react-icons/md'
 import { AiFillInstagram, AiOutlineTwitter, AiFillLinkedin } from 'react-icons/ai'
 import { BsFacebook } from 'react-icons/bs'
+import Footer from "@/components/Footer";
+import Nav from "@/components/Nav/Nav";
 
 export default function Home() {
   return (
     <section>
+      <Nav />
       <header className="pt-10">
         <div className="flex flex-col items-center space-y-5 mb-16">
           <div>
@@ -310,6 +313,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <Footer />
     </section>
   );
 }

@@ -2,10 +2,11 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { BsEyeSlashFill, BsEyeFill } from "react-icons/bs";
+import { BsEyeSlashFill, BsEyeFill, BsChevronLeft } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import Link from "next/link";
 
 /**
  * Represents the values of the Company form.
@@ -69,6 +70,9 @@ export default function ProjectPal() {
   return (
     <div>
       <div className="my-6">
+        <Link href="/signup">
+          <BsChevronLeft size={30} className="my-5" />
+        </Link>
         <div className="flex gap-8 mb-4">
           <div className=" basis-[40%] ">
             <Image
@@ -109,11 +113,10 @@ export default function ProjectPal() {
                   </div>
                 </div>
                 <p className="w-[100%] tablet_l:w-[40%] text-sm">
-                &ldquo; Project Pal made my final year a success! Expert guidance and
-                  coding support were game-changers!&rdquo;
+                  &ldquo; Project Pal made my final year a success! Expert
+                  guidance and coding support were game-changers!&rdquo;
                 </p>
               </div>
-
             </div>
           </div>
           <div className="basis-[55%]">

@@ -11,10 +11,13 @@ import {
   AiFillLinkedin,
 } from "react-icons/ai";
 import { BsFacebook, BsTelephone } from "react-icons/bs";
+import Nav from "@/components/Nav/Nav";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
     <section>
+      <Nav />
       <header className="pt-10">
         <div className="flex flex-col items-center space-y-5 mb-16">
           <div>
@@ -151,6 +154,7 @@ export default function Home() {
               </button>
         </form>
       </div>
+      <Footer />
     </section>
   );
 }

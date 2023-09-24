@@ -7,11 +7,14 @@ import { BsArrowRight } from "react-icons/bs";
 import { BiMobileAlt } from "react-icons/bi";
 import { Web } from "@/components/Portfolio/Web";
 import { Mobile } from "@/components/Portfolio/Mobile";
+import Nav from "@/components/Nav/Nav";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   const [isWeb, setIsWeb] = useState<boolean>(true);
   return (
     <section>
+      <Nav />
       <header className="pt-10">
         <div className="flex flex-col items-center space-y-5 mb-16">
           <div>
@@ -125,6 +128,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <Footer />
     </section>
   );
 }

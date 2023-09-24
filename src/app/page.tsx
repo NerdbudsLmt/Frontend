@@ -6,10 +6,13 @@ import { Choose } from "@/components/Home/Choose";
 import { BsArrowRight } from "react-icons/bs";
 import { MdRocketLaunch } from "react-icons/md";
 import { GiArcheryTarget } from "react-icons/gi";
+import Nav from "@/components/Nav/Nav";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
     <section className="">
+            <Nav />
       {/* header section */}
       <header className="py-10">
         <div className="flex flex-col items-center space-y-5 mb-16 md:mb-20">
@@ -127,6 +130,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <Footer />
     </section>
   );
 }

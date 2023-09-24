@@ -2,11 +2,13 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { BsArrowRight } from "react-icons/bs";
+import Nav from "@/components/Nav/Nav";
 
 export default function Home() {
   return (
     <div className="">
-      <header className="pt-2">
+      <Nav />
+      <header className="pt-4">
         <div className="flex flex-col items-center mb-4">
           <div>
             <h1 className="text-3xl tablet:text-4xl w-[98%]  tablet:w-[400px] font-bold text-center text-app-sblue">
