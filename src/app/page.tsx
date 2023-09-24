@@ -36,7 +36,7 @@ export default function Home() {
             </h1>
           </div>
           <div className="text-center">
-            <p className="w-[85%] tablet_l:w-[520px] text-[18px] mx-auto text-center mb-8">
+            <p className="w-[85%] text-white tablet_l:w-[520px] text-[18px] mx-auto text-center mb-8">
               {`"Experience innovation at its finest with us. We craft exceptional software solutions that redefine excellence and elevate your business."`}
             </p>
             <Link
@@ -115,7 +115,7 @@ export default function Home() {
             </h1>
           </div>
           <div className="flex flex-col items-center">
-            <p className="w-8/12 mx-auto text-center mb-5">
+            <p className="w-8/12 mx-auto text-white text-center mb-5">
               {`"Experience innovation at its finest with us. We craft exceptional software solutions that redefine excellence and elevate your business."`}
             </p>
             <Link
