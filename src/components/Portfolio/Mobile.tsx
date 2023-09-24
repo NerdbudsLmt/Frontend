@@ -1,5 +1,5 @@
 import React from "react";
-import { Work } from "@/components/Pricing/Work";
+import { Work } from "@/components/Portfolio/Work";
 
 export const Mobile = () => {
   return (

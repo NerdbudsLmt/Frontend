@@ -5,18 +5,21 @@ import Link from "next/link";
 import Image from "next/image";
 import { BsArrowRight } from "react-icons/bs";
 import { BiMobileAlt } from "react-icons/bi";
-import { Web } from "@/components/Pricing/Web";
-import { Mobile } from "@/components/Pricing/Mobile";
+import { Web } from "@/components/Portfolio/Web";
+import { Mobile } from "@/components/Portfolio/Mobile";
+import Nav from "@/components/Nav/Nav";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   const [isWeb, setIsWeb] = useState<boolean>(true);
   return (
     <section>
+      <Nav />
       <header className="pt-10">
         <div className="flex flex-col items-center space-y-5 mb-16">
           <div>
             <Link
-              href="/"
+              href="/pricing"
               className="flex items-center space-x-2 border-2 border-app-sblue text-app-sblue py-1 px-10 rounded-full"
             >
               <>
@@ -115,10 +118,7 @@ export default function Home() {
                 us today and elevate your business with our software expertise.
               </p>
               <Link
-                href="/"
-                // style={{
-                //   background: "#",
-                // }}
+                href="/contact"
                 className="flex gap-3 px-5 py-2 mt-3 w-fit bg-[#151719] text-[14px] laptop:text[16px]  rounded-3xl"
               >
                 Contact us
@@ -127,42 +127,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-        {/* <div
-          key={img}
-          className="py-6 px-6 flex flex-col-reverse laptop:flex-row laptop:gap-[1%] gap-5 justify-center rounded-3xl mt-8 h-fit"
-          style={{
-            background: bg,
-          }}
-        >
-          <Image
-            className="grow w-[90%] mx-auto laptop:w-[47%]"
-            src={img}
-            alt="web"
-            width={786}
-            height={545}
-          />
-          <div className=" grow w-[90%] mx-auto laptop:w-[47%] my-auto ">
-            <div>
-              <p className="text-[20px] tablet_l:text-[24px] laptop_L:text-[30px] font-bold leading[24px] laptop_l:leading-[48px]">
-                {title}
-              </p>
-              <p className="mt-4 mb-5 text-[14px] laptop:text[16px] ">
-                {content}
-              </p>
-              <Link
-                href="/"
-                style={{
-                  background: btn,
-                }}
-                className="px-5 py-2 text-[14px] laptop:text[16px]  rounded-3xl"
-              >
-                Learn more
-              </Link>
-            </div>
-          </div>
-        </div> */}
       </div>
+      <Footer />
     </section>
   );
 }

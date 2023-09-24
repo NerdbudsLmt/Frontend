@@ -87,7 +87,7 @@ export const Offer = () => {
                   </h1>
                 </div>
                 <Link
-                  href="/"
+                  href="/pricing"
                   className="border-app-sblue flex gap-2 items-center bg-app-sblue border-2 w-fit mt-6 text-white py-3 px-4 rounded-full"
                 >
                   Get Started
@@ -100,8 +100,8 @@ export const Offer = () => {
           <div className="relative h-[350px] md:h-auto w-full md:basis-[29%] bg-[url('/images/money.svg')] bg-center bg-cover bg-no-repeat rounded-md overflow-hidden">
             <div className="h-full w-full flex flex-col justify-between space-y-28 py-3">
               <div className="">
-                <Link
-                  href="/"
+                <div
+                  
                   className="text-yellow text-[14px] mx-auto flex gap-2 items-center border-2 w-fit py-1 px-4 rounded-full"
                 >
                   Brand Building & Management
@@ -113,11 +113,11 @@ export const Offer = () => {
                     height={15}
                     //   priority
                   />
-                </Link>
+                </div>
                 <p className="mt-3 text-yellow text-2xl font-[600] text-center w-fit mx-auto">Mastering brands with precision.</p>
               </div>
               <Link
-                href="/"
+                href="/pricing"
                 className="border-yellow text-yellow text-[14px] mx-auto flex gap-2 items-center border-2 w-fit py-2 px-4 rounded-full"
               >
                 Get Started

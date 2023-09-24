@@ -56,7 +56,7 @@ const Nav = () => {
   // const { height } = useDimensions(containerRef);
 
   return (
-    <nav className="py-4 w-[95%] mx-auto">
+    <nav className="py-4 mx-auto w-[97%] tablet:w-[95%] max-w-[1380px]">
       <div className="relative flex justify-between items-center">
         <div className="z-20 basis-full md:basis-auto flex items-center justify-between">
           <Link href="/">
@@ -85,20 +85,6 @@ const Nav = () => {
           ))}
         </div>
         <div className="hidden md:flex justify-between items-center space-x-3">
-          <button
-            onClick={(e) => {
-              setTheme("light");
-            }}
-          >
-            Light
-          </button>
-          <button
-            onClick={(e) => {
-              setTheme("dark");
-            }}
-          >
-            Dark
-          </button>
           <div>
             <Link
               href="/"
@@ -109,14 +95,13 @@ const Nav = () => {
           </div>
           <div>
             <Link
-              href="/"
+              href="/signup"
               className="bg-app-porange border-2 border-app-porange text-white py-2 px-3 rounded-md"
             >
               Sign Up
             </Link>
           </div>
         </div>
-
         {/* TODO: try to resolve issue with z-position */}
         {/* <motion.nav
                     className={`absolute top-14 left-0 h-[90vh] w-full z-30`}
