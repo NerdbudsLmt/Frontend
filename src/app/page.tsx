@@ -28,10 +28,10 @@ export default function Home() {
             </Link>
           </div>
           <div>
-            <h1 className="text-7xl font-bold text-center text-neutral-900 dark:text-white">
+            <h1 className="text-7xl font-bold text-center text-white">
               You <span className="text-app-sblue">Dream.</span>
             </h1>
-            <h1 className="text-7xl font-bold text-center text-neutral-900 dark:text-white">
+            <h1 className="text-7xl font-bold text-center text-white">
               We <span className="text-app-porange">Build.</span>
             </h1>
           </div>
@@ -64,7 +64,7 @@ export default function Home() {
           <p className="text-app-sblue text-[20px] font-[500]">
             The drive and determination.
           </p>
-          <p className="text-[32px] font-[600] my-2 text-neutral-900 dark:text-white">
+          <p className="text-[32px] font-[600] my-2 text-white">
             Our Mission
           </p>
           <p className="text-app-sblue text-[16px] font-[500] w-full tablet:w-[80%]  laptop:w-[550px]">
