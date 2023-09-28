@@ -1,9 +1,9 @@
 "use client";
 
 
-import Email from "@/components/forget-password/email";
-import Otp from "@/components/forget-password/otp";
-import SetPassword from "@/components/forget-password/setPassword";
+import Email from "@/components/forget-password/Email";
+import Otp from "@/components/forget-password/Otp";
+import SetPassword from "@/components/forget-password/SetPassword";
 import Succces from "@/components/forget-password/succces";
 import React, { useState } from "react";
 
