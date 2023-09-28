@@ -1,4 +1,6 @@
 "use client";
+
+
 import Email from "@/components/forget-password/email";
 import Otp from "@/components/forget-password/otp";
 import SetPassword from "@/components/forget-password/setPassword";
@@ -9,13 +11,13 @@ export default function ForgotPassword() {
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const handleNextPage = () => {
-    if (currentPage < 9) {
+    if (currentPage < 4) {
       setCurrentPage((prevPage) => prevPage + 1);
     }
   };
 
     // Check if the current page is the last page of the form
-    const isLastPage = currentPage === 8;
+    const isLastPage = currentPage === 4;
 
      /**
    * Function to render the current page of the application form based on the current page number.
@@ -42,7 +44,7 @@ export default function ForgotPassword() {
       <button
         onClick={handleNextPage}
       >
-        next
+        proceed
       </button>
       {/* {currentPage > 2 && currentPage < 9 && (
         // <div className="w-[98%] flex justify-end mt-5">

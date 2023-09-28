@@ -14,14 +14,13 @@ import Link from "next/link";
  */
 
 interface CompanyFormValues {
-  business: string;
-  industry: string;
-}
-
+    email: string;
+    password: string;
+  }
 // Define validation schema using Yup
 const validationSchema = Yup.object().shape({
-  business: Yup.string().required("Business Name is required"),
-  industry: Yup.string().required("Industry Name is required"),
+  email: Yup.string().email("Invalid email").required("Email is required"),
+  password: Yup.string().required("Password is required"),
 });
 
 export default function Login() {
@@ -30,8 +29,8 @@ export default function Login() {
   // Initialize Formik for managing form state and validation.
   const formik = useFormik<CompanyFormValues>({
     initialValues: {
-      business: "",
-      industry: "",
+      email: "",
+      password: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -68,51 +67,65 @@ export default function Login() {
           <form className="my-4" onSubmit={formik.handleSubmit}>
            
             <div className="">
+             
+            <div className="">
               <div className="my-3">
                 <label
-                  htmlFor="business"
+                  htmlFor="email"
                   className="block text-gray-300 text-[16px]"
                 >
-                  Business Name
+                  Email
                 </label>
                 <input
                   type="text"
-                  id="business"
-                  // name="business"
-                  placeholder="Nerdbud Ltd"
-                  {...formik.getFieldProps("business")}
+                  id="email"
+                  // name="email"
+                  placeholder="nerdbudsltd@gmail.com"
+                  {...formik.getFieldProps("email")}
                   className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
                 />
-                {formik.touched.business && formik.errors.business ? (
+                {formik.touched.email && formik.errors.email ? (
                   <div className="text-[red] text-[14px] italic">
-                    {formik.errors.business}
+                    {formik.errors.email}
                   </div>
                 ) : null}
               </div>
             </div>
+            </div>
 
             {/* <div className="flex justify-between gap-4"> */}
-            <div className="my-3">
+            <div className="my-3 relative">
               <label
-                htmlFor="industry"
-                className="block text-gray-300 text-[16px]"
+                htmlFor="password"
+                className="block font-semibold text-[16px]"
               >
-                Industry
+                Password
               </label>
               <input
-                type="text"
-                id="industry"
-                // name="industry"
-                placeholder="Software Design"
-                {...formik.getFieldProps("industry")}
+                type={show ? "text" : "password"}
+                id="password"
+                // name="password"
+                placeholder="Password"
+                {...formik.getFieldProps("password")}
                 className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
               />
-              {formik.touched.industry && formik.errors.industry ? (
+              <div
+                className="absolute top-9 right-4"
+                onClick={() => setShow(!show)}
+              >
+                {show ? (
+                  <BsEyeFill className="text-black" />
+                ) : (
+                  <BsEyeSlashFill className="text-black" />
+                )}
+              </div>
+              {formik.touched.password && formik.errors.password ? (
                 <div className="text-[red] text-[14px] italic">
-                  {formik.errors.industry}
+                  {formik.errors.password}
                 </div>
               ) : null}
             </div>
+
 
             {/* </div> */}
 
