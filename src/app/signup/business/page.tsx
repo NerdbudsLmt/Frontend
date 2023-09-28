@@ -247,13 +247,16 @@ export default function Company() {
             and acknowledge that you have read our{" "}
             <span className="text-app-porange underline"> Privacy Policy.</span>{" "}
           </p>
+          <Link href='/signup/google-business'>
           <button
             className="bg-[#265D80] flex items-center justify-center mt-6 gap-4 text-white py-2 px-5 w-full rounded-full"
             // type="submit"
           >
+           
             <FcGoogle />
             Sign up with Google
           </button>
+          </Link>
         </div>
       </div>
     </div>

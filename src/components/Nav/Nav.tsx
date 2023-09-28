@@ -87,7 +87,7 @@ const Nav = () => {
         <div className="hidden md:flex justify-between items-center space-x-3">
           <div>
             <Link
-              href="/"
+              href="/login"
               className="border-2 border-white text-white py-2 px-3 rounded-md"
             >
               Login
@@ -103,30 +103,13 @@ const Nav = () => {
           </div>
         </div>
         {/* TODO: try to resolve issue with z-position */}
-        {/* <motion.nav
-                    className={`absolute top-14 left-0 h-[90vh] w-full z-30`}
-                    initial={false}
-                    animate={navOpen ? "open" : "closed"}
-                    exit={"closed"}
-                    custom={height}
-                    ref={containerRef}
-                >
-                    <motion.div
-                        animate={navOpen ? "open" : "closed"} 
-                        className={`h-full w-full mx-auto p-6 
-                            bg-white dark:bg-app-pblue border-2 border-neutral-700/20 dark:border-white/10
-                            flex flex-col justify-center space-y-6 
-                            rounded-md overflow-hidden shadow-xl`}
-                        variants={sidebar} 
-                    >
-                        <Navigation isOpen={navOpen} closeNav={() => setNavOpen(false)} />
-                    </motion.div>
-                </motion.nav> */}
       </div>
       {/* mobile nav for now */}
       <AnimatePresence>
+
         {navOpen && (
-          <div className={"fixed top-[10vh] left-0 z-10 h-[90vh] w-full pb-4"}>
+          <div className={" fixed top-[10vh] left-0 z-10 h-[90vh] w-full pb-4"}>
+        {/* <div className="h-full w-full"> */}
             <motion.div
               initial={"hidden"}
               animate={"visible"}
@@ -139,15 +122,34 @@ const Nav = () => {
               {links?.map((link, index) => (
                 <MobileNavLink
                   key={index}
-                  className="text-[2rem] sm:text-[3.2rem] uppercase cursor-pointer font-semibold"
+                  className="text-[1.5rem] sm:text-[1.5rem] uppercase cursor-pointer font-semibold"
                   onClick={() => setNavOpen(false)}
                   isOpen={navOpen}
                   {...link}
                 />
               ))}
+         <div className="flex flex-col gap-8 px-5 ">
+          <div>
+            <Link
+              href="/login"
+              className="border-2 border-white text-white py-2 px-3 rounded-md"
+            >
+              Login
+            </Link>
+          </div>
+          <div>
+            <Link
+              href="/signup"
+              className="bg-app-porange border-2 border-app-porange text-white py-2 px-3 rounded-md"
+            >
+              Sign Up
+            </Link>
+          </div>
+        </div>
             </motion.div>
           </div>
         )}
+        {/* </div> */}
       </AnimatePresence>
     </nav>
   );

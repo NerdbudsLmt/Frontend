@@ -79,6 +79,7 @@ export default function ProjectPal() {
               src="/images/studentlog.svg"
               alt="Vercel Logo"
               width={600}
+              quality={100}
               height={600}
             />
 
@@ -102,7 +103,7 @@ export default function ProjectPal() {
                     src="/images/sean.svg"
                     className=" rounded-full"
                     alt="Vercel Logo"
-                    width={60}
+                    width={50}
                     height={50}
                     priority
                   />
