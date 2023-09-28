@@ -10,10 +10,10 @@ import Link from "next/link";
 
 /**
  * Represents the values of the Company form.
- * @interface CompanyFormValues
+ * @interface PasswordFormValues
  */
 
-interface CompanyFormValues {
+interface PasswordFormValues {
   NewPassword: string;
   ComfirmPassword: string;
   }
@@ -27,7 +27,7 @@ export default function SetPassword() {
   const [show, setShow] = useState<boolean>(true);
 
   // Initialize Formik for managing form state and validation.
-  const formik = useFormik<CompanyFormValues>({
+  const formik = useFormik<PasswordFormValues>({
     initialValues: {
       NewPassword: "",
       ComfirmPassword: "",
@@ -41,9 +41,9 @@ export default function SetPassword() {
 
   return (
     <div className="my-6 mx-auto w-[90%] max-w-[900px] ">
-      <Link href="/signup" className=" ">
+      {/* <Link href="/signup" className=" ">
         <BsChevronLeft size={30} className="" />
-      </Link>
+      </Link> */}
       <div className="flex flex-row-reverse gap-8 my-4 ">
         <div className=" basis-[65%] h-[500px] rounded-lg overflow-hidden">
           <Image
