@@ -31,7 +31,7 @@ export const Tools = () => {
         <p className="text-app-sblue text-[20px] font-[500]">
           Software for Change.
         </p>
-        <p className="text-[32px] font-[600] my-2  text-neutral-900 dark:text-white">
+        <p className="text-[32px] font-[600] my-2  text-white">
           Our Tools
         </p>
         <p className="text-app-sblue text-[16px] font-[500] w-full tablet:w-[80%]  laptop:w-[550px]">

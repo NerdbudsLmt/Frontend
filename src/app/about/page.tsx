@@ -11,7 +11,7 @@ import Nav from "@/components/Nav/Nav";
 
 export default function Home() {
   return (
-    <section>
+    <section className="text-white">
       <Nav />
       <header className="pt-10">
         <div className="flex flex-col items-center space-y-5 mb-16">

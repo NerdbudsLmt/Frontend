@@ -26,7 +26,7 @@
 } */
 
 body {
-  @apply bg-white dark:bg-app-pblue;
+  @apply bg-app-pblue;
   overflow-x: hidden;
 }
 

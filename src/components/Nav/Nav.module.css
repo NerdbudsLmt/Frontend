@@ -5,7 +5,7 @@
 .navToggler::before, 
 .navToggler::after {
     content: "";
-    @apply h-[0.2rem] w-full bg-neutral-900 dark:bg-white left-0 transition-transform ease-in duration-300;
+    @apply h-[0.2rem] w-full bg-white left-0 transition-transform ease-in duration-300;
 }
   
 .navToggler::before {
