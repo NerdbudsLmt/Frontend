@@ -1,237 +1,372 @@
-'use client'
+"use client";
 
-import Link from "next/link";
-import Image from "next/image";
-import {
-  IconButton,
-  Avatar,
-  Box,
-  CloseButton,
-  Flex,
-  HStack,
-  VStack,
-  Icon,
-  useColorModeValue,
-  Text,
-  Drawer,
-  DrawerContent,
-  useDisclosure,
-  BoxProps,
-  FlexProps,
-  Menu,
-  MenuButton,
-  MenuDivider,
-  MenuItem,
-  MenuList,
-} from '@chakra-ui/react'
-import {
-  FiHome,
-  FiTrendingUp,
-  FiCompass,
-  FiStar,
-  FiSettings,
-  FiMenu,
-  FiBell,
-  FiChevronDown,
-} from 'react-icons/fi'
-import { RxDashboard } from 'react-icons/rx'
-import { MdPayment, MdOutlineDesktopWindows } from 'react-icons/md'
-import { IconType } from 'react-icons'
+// import Link from "next/link";
+// import Image from "next/image";
+// import {
+//   IconButton,
+//   Avatar,
+//   Box,
+//   CloseButton,
+//   Flex,
+//   HStack,
+//   VStack,
+//   Icon,
+//   useColorModeValue,
+//   Text,
+//   Drawer,
+//   DrawerContent,
+//   useDisclosure,
+//   BoxProps,
+//   FlexProps,
+//   Menu,
+//   MenuButton,
+//   MenuDivider,
+//   MenuItem,
+//   MenuList,
+// } from "@chakra-ui/react";
+// import {
+//   FiHome,
+//   FiSettings,
+//   FiMenu,
+//   FiBell,
+//   FiChevronDown,
+// } from "react-icons/fi";
+// import { RxDashboard } from "react-icons/rx";
+// import {
+//   MdPayment,
+//   MdOutlineDesktopWindows,
+//   MdOutlineKeyboardArrowRight,
+// } from "react-icons/md";
+// import { IconType } from "react-icons";
+// import { PiCalendarBlankBold, PiEnvelopeSimple } from "react-icons/pi";
 
-interface LinkItemProps {
-  name: string
-  icon: IconType
-}
+// type NestedLinkItemProps = {
+//   name: string;
+//   link: string;
+// };
 
-interface NavItemProps extends FlexProps {
-  icon: IconType
-  children: React.ReactNode
-}
+// export type LinkItemProps = {
+//   name: string;
+//   link: string;
+//   icon: IconType;
+//   nestedIcon?: IconType;
+//   links?: NestedLinkItemProps[];
+// };
 
-interface MobileProps extends FlexProps {
-  onOpen: () => void
-}
+// // interface NavItemProps extends FlexProps {
+// //   icon: IconType;
+// //   nestedIcon?: IconType;
+// //   children: React.ReactNode;
+// // }
 
-interface SidebarProps extends BoxProps {
-  onClose: () => void
-}
+// interface MobileProps extends FlexProps {
+//   onOpen: () => void;
+// }
 
-const LinkItems: Array<LinkItemProps> = [
-  { name: 'Dashboard', icon: FiHome },
-  { name: 'Projects', icon: RxDashboard },
-  { name: 'Payments', icon: MdPayment },
-  { name: 'Support', icon: MdOutlineDesktopWindows },
-  { name: 'Settings', icon: FiSettings },
-]
+// interface SidebarProps extends BoxProps {
+//   onClose: () => void;
+// }
 
-const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
+// const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
+//   return (
+//     <Box
+//       transition="3s ease"
+//       bg="#132E40"
+//       borderRight="1px"
+//       borderRightColor={useColorModeValue("gray.200", "gray.700")}
+//       w={{ base: "full", md: 60 }}
+//       pos="fixed"
+//       h="full"
+//       color="white"
+//       {...rest}
+//     >
+//       <Flex
+//         h="20"
+//         alignItems="center"
+//         mb="6"
+//         mx="6"
+//         justifyContent="space-between"
+//       >
+//         <Link href="/" className="flex gap-4">
+//           <Image
+//             src="/images/nav-logo.png"
+//             alt="Vercel Logo"
+//             width={33}
+//             height={33}
+//             priority
+//           />
+//           <Text fontSize="3xl" fontWeight="bold">
+//             Nerdbuds
+//           </Text>
+//         </Link>
+//         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
+//       </Flex>
+//       {/* {LinkItems.map((link) => (
+//         <NavItem key={link.name} nestedIcon={link.nestedIcon} icon={link.icon}>
+//           {link.name}
+//         </NavItem>
+//       ))} */}
+//       <NavItem />
+//     </Box>
+//   );
+// };
+
+// const NavItem = () => {
+//   return (
+//     <Box
+//       // as="a"
+//       // href="#"
+//       style={{ textDecoration: "none" }}
+//       _focus={{ boxShadow: "none" }}
+//     >
+//       <Link href="#">
+//         <Flex
+//           align="center"
+//           p="4"
+//           mx="2"
+//           my="4"
+//           color="white"
+//           borderRadius="lg"
+//           role="group"
+//           cursor="pointer"
+//           _hover={{
+//             bg: "#F9D262",
+//             color: "black",
+//           }}
+//         >
+//           <Flex align="center" gap={3}>
+//             <FiHome />
+//             Dashboard
+//           </Flex>
+//         </Flex>
+//       </Link>
+//       <Link href="#">
+//         <Menu>
+//           <MenuButton
+//             py={2}
+//             transition="all 0.3s"
+//             _focus={{ boxShadow: "none" }}
+//             _hover={{
+//               bg: "#F9D262",
+//               color: "black",
+//             }}
+//             color="white"
+//             borderRadius="lg"
+//             role="group"
+//             mx="2"
+//             cursor="pointer"
+//           >
+//             <HStack>
+//               <Flex align="center" p="2" mx="2">
+//                 <Flex align="center" gap={3}>
+//                   <RxDashboard />
+//                   Projects
+//                 </Flex>
+//                 <MdOutlineKeyboardArrowRight className="ml-14" size={30} />
+//               </Flex>
+//             </HStack>
+//           </MenuButton>
+//           <MenuList bg={"#F9D262"} color="black">
+//             <MenuItem
+//               as="a"
+//               href="#"
+//               bg="#FFE393"
+//               _hover={{
+//                 bg: "#132E40",
+//                 color: "white",
+//               }}
+//               py="2"
+//             >
+//               Create a Project
+//             </MenuItem>
+//             <MenuItem
+//               as="a"
+//               href="#"
+//               bg="#FFE393"
+//               _hover={{
+//                 bg: "#132E40",
+//                 color: "white",
+//               }}
+//               py="2"
+//             >
+//               Existing Project
+//             </MenuItem>
+//             <MenuItem
+//               as="a"
+//               href="#"
+//               bg="#FFE393"
+//               _hover={{
+//                 bg: "#132E40",
+//                 color: "white",
+//               }}
+//               py="2"
+//             >
+//               Project in progress
+//             </MenuItem>
+//             <MenuItem
+//               as="a"
+//               href="#"
+//               bg="#FFE393"
+//               _hover={{
+//                 bg: "#132E40",
+//                 color: "white",
+//               }}
+//               py="2"
+//             >
+//               Finished Projects
+//             </MenuItem>
+//           </MenuList>
+//         </Menu>
+//       </Link>
+//       <Link href="#">
+//         <Flex
+//           align="center"
+//           p="4"
+//           mx="2"
+//           my="4"
+//           color="white"
+//           borderRadius="lg"
+//           role="group"
+//           cursor="pointer"
+//           _hover={{
+//             bg: "#F9D262",
+//             color: "black",
+//           }}
+//         >
+//           <Flex align="center" gap={3}>
+//             <MdPayment />
+//             Payment
+//           </Flex>
+//         </Flex>
+//       </Link>
+//       <Link href="#">
+//         <Flex
+//           align="center"
+//           p="4"
+//           mx="2"
+//           my="4"
+//           color="white"
+//           borderRadius="lg"
+//           role="group"
+//           cursor="pointer"
+//           _hover={{
+//             bg: "#F9D262",
+//             color: "black",
+//           }}
+//         >
+//           <Flex align="center" gap={3}>
+//             <MdOutlineDesktopWindows />
+//             Support
+//           </Flex>
+//         </Flex>
+//       </Link>
+//       <Link href="#">
+//         <Flex
+//           align="center"
+//           p="4"
+//           mx="2"
+//           my="4"
+//           color="white"
+//           borderRadius="lg"
+//           role="group"
+//           cursor="pointer"
+//           _hover={{
+//             bg: "#F9D262",
+//             color: "black",
+//           }}
+//         >
+//           <Flex align="center" gap={3}>
+//             <FiSettings />
+//             Settings
+//           </Flex>
+//         </Flex>
+//       </Link>
+//     </Box>
+//   );
+// };
+
+// const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
+//   return (
+//     <Flex
+//       ml={{ base: 0, md: 60 }}
+//       px={{ base: 4, md: 4 }}
+//       height="20"
+//       alignItems="center"
+//       bg="white"
+//       borderBottomWidth="1px"
+//       borderBottomColor={useColorModeValue("gray.200", "gray.700")}
+//       justifyContent={{ base: "space-between", md: "space-between" }}
+//       {...rest}
+//     >
+//       <IconButton
+//         display={{ base: "flex", md: "none" }}
+//         onClick={onOpen}
+//         variant="outline"
+//         aria-label="open menu"
+//         icon={<FiMenu />}
+//       />
+//       <div>
+//         <a
+//           href="#team"
+//           className="flex items-center mx-5 font-semibold space-x-2 border-2 border-app-pblue text-app-pblue py-1 px-5 rounded-full"
+//         >
+//           <>
+//             <span>Monday, 10th July 2023</span>
+//             <PiCalendarBlankBold className="text-xl" />
+//           </>
+//         </a>
+//       </div>
+      
+//     <div className="flex gap-4 items-center">
+//       <div className="flex gap-4 text-xl items-center font-semibold  ">
+//        <PiEnvelopeSimple />
+//         <FiBell />
+//         <div className="bg-app-pblue h-9 w-[2px] rounded-sm"></div>
+//       </div>
+//       <p className="py-2 px-4 bg-[#F5F4F4] rounded-md">
+//       Welcome Nerdbuds!
+//       </p>
+//     </div>
+//     </Flex>
+//   );
+// };
+
+// const SidebarWithHeader = () => {
+//   const { isOpen, onOpen, onClose } = useDisclosure();
+
+//   return (
+//     <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
+//       <SidebarContent
+//         onClose={() => onClose}
+//         display={{ base: "none", md: "block" }}
+//       />
+//       <Drawer
+//         isOpen={isOpen}
+//         placement="left"
+//         onClose={onClose}
+//         returnFocusOnClose={false}
+//         onOverlayClick={onClose}
+//         size="full"
+//       >
+//         <DrawerContent>
+//           <SidebarContent onClose={onClose} />
+//         </DrawerContent>
+//       </Drawer>
+//       {/* mobilenav */}
+//       <MobileNav onOpen={onOpen} />
+//       <Box bg="white" ml={{ base: 0, md: 60 }} p="4">
+//         {/* Content */}
+//       </Box>
+//     </Box>
+//   );
+// };
+
+// export default SidebarWithHeader;
+
+import React from 'react'
+
+export default function page() {
   return (
-    <Box
-      transition="3s ease"
-      bg='#132E40'
-      borderRight="1px"
-      borderRightColor={useColorModeValue('gray.200', 'gray.700')}
-      w={{ base: 'full', md: 60 }}
-      pos="fixed"
-      h="full"
-      color='white'
-      {...rest}>
-      <Flex h="20" alignItems="center" mb='6' mx="8" justifyContent="space-between">
-      <Link href="/" className="flex gap-4">
-        <Image
-          src="/images/nav-logo.png"
-          alt="Vercel Logo"
-          width={33}
-          height={33}
-          priority
-        />
-        <Text fontSize="3xl" fontWeight="bold">
-          Nerdbuds
-        </Text>
-      </Link>
-        <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
-      </Flex>
-      {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon}>
-          {link.name}
-        </NavItem>
-      ))}
-    </Box>
+    <div>page</div>
   )
 }
-
-const NavItem = ({ icon, children, ...rest }: NavItemProps) => {
-  return (
-    <Box
-      as="a"
-      href="#"
-      style={{ textDecoration: 'none' }}
-      _focus={{ boxShadow: 'none' }}>
-      <Flex
-        align="center"
-        p="4"
-        mx="4"
-        my='4'
-        color='white'
-        borderRadius="lg"
-        role="group"
-        cursor="pointer"
-        _hover={{
-          bg: '#F9D262',
-          color: 'black',
-        }}
-        {...rest}>
-        {icon && (
-          <Icon
-            mr="4"
-            fontSize="16"
-            _groupHover={{
-              color: 'black',
-            }}
-            as={icon}
-          />
-        )}
-        {children}
-      </Flex>
-    </Box>
-  )
-}
-
-const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
-  return (
-    <Flex
-      ml={{ base: 0, md: 60 }}
-      px={{ base: 4, md: 4 }}
-      height="20"
-      alignItems="center"
-      bg='white'
-      borderBottomWidth="1px"
-      borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
-      justifyContent={{ base: 'space-between', md: 'flex-end' }}
-      {...rest}>
-      <IconButton
-        display={{ base: 'flex', md: 'none' }}
-        onClick={onOpen}
-        variant="outline"
-        aria-label="open menu"
-        icon={<FiMenu />}
-      />
-
-      <Text
-        display={{ base: 'flex', md: 'none' }}
-        fontSize="2xl"
-        fontFamily="monospace"
-        fontWeight="bold">
-        Logo
-      </Text>
-
-      <HStack spacing={{ base: '0', md: '6' }}>
-        <IconButton size="lg" variant="ghost" aria-label="open menu" icon={<FiBell />} />
-        <Flex alignItems={'center'}>
-          <Menu>
-            <MenuButton py={2} transition="all 0.3s" _focus={{ boxShadow: 'none' }}>
-              <HStack>
-                <Avatar
-                  size={'sm'}
-                  src={
-                    'https://images.unsplash.com/photo-1619946794135-5bc917a27793?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
-                  }
-                />
-                <VStack
-                  display={{ base: 'none', md: 'flex' }}
-                  alignItems="flex-start"
-                  spacing="1px"
-                  ml="2">
-                  <Text fontSize="sm">Justina Clark</Text>
-                  <Text fontSize="xs" color="gray.600">
-                    Admin
-                  </Text>
-                </VStack>
-                <Box display={{ base: 'none', md: 'flex' }}>
-                  <FiChevronDown />
-                </Box>
-              </HStack>
-            </MenuButton>
-            <MenuList
-              bg={useColorModeValue('white', 'gray.900')}
-              borderColor={useColorModeValue('gray.200', 'gray.700')}>
-              <MenuItem>Profile</MenuItem>
-              <MenuItem>Settings</MenuItem>
-              <MenuItem>Billing</MenuItem>
-              <MenuDivider />
-              <MenuItem>Sign out</MenuItem>
-            </MenuList>
-          </Menu>
-        </Flex>
-      </HStack>
-    </Flex>
-  )
-}
-
-const SidebarWithHeader = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-
-  return (
-    <Box minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
-      <SidebarContent onClose={() => onClose} display={{ base: 'none', md: 'block' }} />
-      <Drawer
-        isOpen={isOpen}
-        placement="left"
-        onClose={onClose}
-        returnFocusOnClose={false}
-        onOverlayClick={onClose}
-        size="full">
-        <DrawerContent>
-          <SidebarContent onClose={onClose} />
-        </DrawerContent>
-      </Drawer>
-      {/* mobilenav */}
-      <MobileNav onOpen={onOpen} />
-      <Box ml={{ base: 0, md: 60 }} p="4">
-        {/* Content */}
-      </Box>
-    </Box>
-  )
-}
-
-export default SidebarWithHeader
