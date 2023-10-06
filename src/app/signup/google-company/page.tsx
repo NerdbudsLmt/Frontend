@@ -44,12 +44,12 @@ export default function CompanyG() {
   });
 
   return (
-    <div className="my-6">
+    <div className="my-6 mx-auto text-white w-[97%] tablet:w-[95%] max-w-[1380px]">
       <Link href="/signup">
         <BsChevronLeft size={30} className="my-5" />
       </Link>
       <div className="flex gap-8 mb-4">
-        <div className=" basis-[40%] ">
+        <div className="hidden laptop:block basis-[40%] ">
           <Image
             src="/images/scompany.svg"
             alt="Vercel Logo"
@@ -57,7 +57,7 @@ export default function CompanyG() {
             height={600}
           />
         </div>
-        <div className="basis-[55%] my-auto">
+        <div className="grow basis-[55%] my-auto">
           <h1 className="text-4xl font-bold text-app-sblue">
             Join <span className="text-app-porange">us </span>
             <span className="text-app-porange">today 👋</span>

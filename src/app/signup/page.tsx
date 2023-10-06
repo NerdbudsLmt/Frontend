@@ -6,7 +6,7 @@ import Nav from "@/components/Nav/Nav";
 
 export default function Home() {
   return (
-    <div className="">
+    <div className="mx-auto text-white w-[97%] tablet:w-[95%] max-w-[1380px]">
       <Nav />
       <header className="pt-4">
         <div className="flex flex-col items-center mb-4">

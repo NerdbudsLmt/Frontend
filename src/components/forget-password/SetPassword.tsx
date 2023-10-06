@@ -8,14 +8,14 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
 
-/**
- * Represents the values of the Company form.
- * @interface PasswordFormValues
- */
 
 interface PasswordFormValues {
   NewPassword: string;
   ComfirmPassword: string;
+  }
+
+  interface NextPageProps {
+    nextPage: () => void; // Assuming nextPage is a function that takes no arguments and returns void
   }
 // Define validation schema using Yup
 const validationSchema = Yup.object().shape({
@@ -23,7 +23,8 @@ const validationSchema = Yup.object().shape({
   ComfirmPassword: Yup.string().required("Password is required"),
 });
 
-export default function SetPassword() {
+const SetPassword: React.FC<NextPageProps> = ({ nextPage }) => {
+
   const [show, setShow] = useState<boolean>(true);
 
   // Initialize Formik for managing form state and validation.
@@ -35,27 +36,21 @@ export default function SetPassword() {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       // Handle form submission here
+      nextPage()
       console.log(values);
     },
   });
 
   return (
-    <div className="my-6 mx-auto w-[90%] max-w-[900px] ">
+    <div className="my-6 mx-auto w-full ">
       {/* <Link href="/signup" className=" ">
         <BsChevronLeft size={30} className="" />
       </Link> */}
       <div className="flex flex-row-reverse gap-8 my-4 ">
-        <div className=" basis-[65%] h-[500px] rounded-lg overflow-hidden">
-          <Image
-            src="/images/businessload.svg"
-            alt="Vercel Logo"
-            className="h-[800px] w-full relative -top-16 "
-            width={600}
-            height={500}
-            quality={100}
-          />
+        <div className="fp3 hidden laptop:block grow basis-[65%] h-[600px] rounded-lg overflow-hidden">
+          
         </div>
-        <div className="basis-[45%] my-auto">
+        <div className="grow-[2] basis-[45%] my-auto">
           <h1 className="text-4xl font-bold text-app-sblue">
              Set new
             <span className="text-app-porange"> password</span>
@@ -150,6 +145,14 @@ export default function SetPassword() {
           
         </div>
       </div>
+        <div className="flex gap-3 mt-12 justify-center">
+          <div className="w-[20%] max-w-[150px] h-[8px] rounded-lg bg-white"></div>
+          <div className="w-[20%] max-w-[150px] h-[8px] rounded-lg bg-white"></div>
+          <div className="w-[20%] max-w-[150px] h-[8px] rounded-lg bg-app-sblue"></div>
+          <div className="w-[20%] max-w-[150px] h-[8px] rounded-lg bg-white"></div>
+        </div>
     </div>
   );
 }
+
+export default SetPassword;

@@ -11,7 +11,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <section className="">
+    <section className="mx-auto text-white w-[97%] tablet:w-[95%] max-w-[1380px]">
       <Nav />
       {/* header section */}
       <header className="py-10">
