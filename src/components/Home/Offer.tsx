@@ -33,7 +33,7 @@ export const Offer = () => {
           <p className="text-app-sblue text-[20px] font-[500]">
             Open For Business.
           </p>
-          <p className="text-[32px] font-[600] my-2  text-neutral-900 dark:text-white">
+          <p className="text-[32px] font-[600] my-2  text-white">
             What we offer
           </p>
           <p className="text-app-sblue text-[16px] font-[500] w-full tablet:w-[80%]  laptop:w-[550px]">
@@ -55,10 +55,10 @@ export const Offer = () => {
                 />
                 <div className="ml-1.5">
 
-                  <p className="font-[500] my-2 text-[17px] text-neutral-900 dark:text-white">
+                  <p className="font-[500] my-2 text-[17px] text-white">
                     {item.title}
                   </p>
-                  <p className="text-[12px] md:text-[15px]  text-neutral-900 dark:text-white">
+                  <p className="text-[12px] md:text-[15px]  text-white">
 
                     {item.desc}
                   </p>
@@ -77,17 +77,17 @@ export const Offer = () => {
               </p>
               <div className="">
                 <div>
-                  <h1 className="text-4xl laptop:text-5xl font-bold text-neutral-900 dark:text-white">
+                  <h1 className="text-4xl laptop:text-5xl font-bold text-white">
                     <span className="text-app-sblue">Help Us </span>to
                   </h1>
-                  <h1 className="text-4xl laptop:text-5xl font-bold text-neutral-900 dark:text-white">
+                  <h1 className="text-4xl laptop:text-5xl font-bold text-white">
                     {" "}
                     <span className="text-app-porange">Help You</span>
                     <span className="text-app-sblue">.</span>
                   </h1>
                 </div>
                 <Link
-                  href="/"
+                  href="/pricing"
                   className="border-app-sblue flex gap-2 items-center bg-app-sblue border-2 w-fit mt-6 text-white py-3 px-4 rounded-full"
                 >
                   Get Started
@@ -100,8 +100,8 @@ export const Offer = () => {
           <div className="relative h-[350px] md:h-auto w-full md:basis-[29%] bg-[url('/images/money.svg')] bg-center bg-cover bg-no-repeat rounded-md overflow-hidden">
             <div className="h-full w-full flex flex-col justify-between space-y-28 py-3">
               <div className="">
-                <Link
-                  href="/"
+                <div
+                  
                   className="text-yellow text-[14px] mx-auto flex gap-2 items-center border-2 w-fit py-1 px-4 rounded-full"
                 >
                   Brand Building & Management
@@ -113,11 +113,11 @@ export const Offer = () => {
                     height={15}
                     //   priority
                   />
-                </Link>
+                </div>
                 <p className="mt-3 text-yellow text-2xl font-[600] text-center w-fit mx-auto">Mastering brands with precision.</p>
               </div>
               <Link
-                href="/"
+                href="/pricing"
                 className="border-yellow text-yellow text-[14px] mx-auto flex gap-2 items-center border-2 w-fit py-2 px-4 rounded-full"
               >
                 Get Started

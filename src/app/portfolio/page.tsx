@@ -7,16 +7,19 @@ import { BsArrowRight } from "react-icons/bs";
 import { BiMobileAlt } from "react-icons/bi";
 import { Web } from "@/components/Portfolio/Web";
 import { Mobile } from "@/components/Portfolio/Mobile";
+import Nav from "@/components/Nav/Nav";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   const [isWeb, setIsWeb] = useState<boolean>(true);
   return (
-    <section>
+    <section className="mx-auto text-white w-[97%] tablet:w-[95%] max-w-[1380px]">
+      <Nav />
       <header className="pt-10">
         <div className="flex flex-col items-center space-y-5 mb-16">
           <div>
             <Link
-              href="/"
+              href="/pricing"
               className="flex items-center space-x-2 border-2 border-app-sblue text-app-sblue py-1 px-10 rounded-full"
             >
               <>
@@ -115,7 +118,7 @@ export default function Home() {
                 us today and elevate your business with our software expertise.
               </p>
               <Link
-                href="/"
+                href="/contact"
                 className="flex gap-3 px-5 py-2 mt-3 w-fit bg-[#151719] text-[14px] laptop:text[16px]  rounded-3xl"
               >
                 Contact us
@@ -125,6 +128,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <Footer />
     </section>
   );
 }

@@ -6,16 +6,19 @@ import { Choose } from "@/components/Home/Choose";
 import { BsArrowRight } from "react-icons/bs";
 import { MdRocketLaunch } from "react-icons/md";
 import { GiArcheryTarget } from "react-icons/gi";
+import Nav from "@/components/Nav/Nav";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <section className="">
+    <section className="mx-auto text-white w-[97%] tablet:w-[95%] max-w-[1380px]">
+      <Nav />
       {/* header section */}
       <header className="py-10">
         <div className="flex flex-col items-center space-y-5 mb-16 md:mb-20">
           <div>
             <Link
-              href="/"
+              href="/pricing"
               className="flex items-center space-x-2 border-2 border-app-sblue text-app-sblue py-1 px-10 rounded-full"
             >
               <>
@@ -25,19 +28,19 @@ export default function Home() {
             </Link>
           </div>
           <div>
-            <h1 className="text-7xl font-bold text-center text-neutral-900 dark:text-white">
+            <h1 className="text-7xl font-bold text-center text-white">
               You <span className="text-app-sblue">Dream.</span>
             </h1>
-            <h1 className="text-7xl font-bold text-center text-neutral-900 dark:text-white">
+            <h1 className="text-7xl font-bold text-center text-white">
               We <span className="text-app-porange">Build.</span>
             </h1>
           </div>
           <div className="text-center">
-            <p className="w-[85%] tablet_l:w-[520px] text-[18px] mx-auto text-center mb-8">
+            <p className="w-[85%] text-white tablet_l:w-[520px] text-[18px] mx-auto text-center mb-8">
               {`"Experience innovation at its finest with us. We craft exceptional software solutions that redefine excellence and elevate your business."`}
             </p>
             <Link
-              href="/"
+              href="/signup"
               className="bg-app-sblue border-2 border-app-sblue text-white py-3 px-4 rounded-full"
             >
               Get Started
@@ -61,7 +64,7 @@ export default function Home() {
           <p className="text-app-sblue text-[20px] font-[500]">
             The drive and determination.
           </p>
-          <p className="text-[32px] font-[600] my-2 text-neutral-900 dark:text-white">
+          <p className="text-[32px] font-[600] my-2 text-white">
             Our Mission
           </p>
           <p className="text-app-sblue text-[16px] font-[500] w-full tablet:w-[80%]  laptop:w-[550px]">
@@ -112,11 +115,11 @@ export default function Home() {
             </h1>
           </div>
           <div className="flex flex-col items-center">
-            <p className="w-8/12 mx-auto text-center mb-5">
+            <p className="w-8/12 mx-auto text-white text-center mb-5">
               {`"Experience innovation at its finest with us. We craft exceptional software solutions that redefine excellence and elevate your business."`}
             </p>
             <Link
-              href="/"
+              href="/pricing"
               className="flex items-center space-x-2 border-2 border-app-sblue bg-app-sblue text-white py-1 px-3 rounded-full"
             >
               <>
@@ -127,6 +130,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <Footer />
     </section>
   );
 }

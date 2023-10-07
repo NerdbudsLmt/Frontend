@@ -6,8 +6,9 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth
   /* font-family: 'Mulish', sans-serif !important; */
-  @apply tracking-normal;
+  /* @apply tracking-normal; */
 }
 
 /* :root {
@@ -25,7 +26,7 @@
 } */
 
 body {
-  @apply bg-white dark:bg-app-pblue;
+  @apply bg-app-pblue;
   overflow-x: hidden;
 }
 
@@ -38,4 +39,48 @@ body {
 
 .yellow_gradient {
   background: linear-gradient(180deg, #C79B1E 0%, rgba(255, 227, 147, 0) 100%);
+}
+
+.bg-sign {
+  background: rgba(255, 255, 255, 0.20);
+}
+
+
+.login {
+  background-image: url('../../public/images/businessload.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-height: 900px;
+  background-position: center;
+}
+
+
+.fp1 {
+  background-image: url('../../public/images/fp1.svg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  max-height: 900px;
+  background-position: center;
+}
+
+.fp2 {
+  background-image: url('../../public/images/fp2.svg');
+  max-height: 900px;
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.fp3 {
+  background-image: url('../../public/images/fp3.svg');
+  background-size: 100%;
+  max-height: 900px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.fp4 {
+  background-image: url('../../public/images/fp4.svg');
+  max-height: 900px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
 }

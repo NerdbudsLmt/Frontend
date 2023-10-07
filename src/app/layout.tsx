@@ -1,8 +1,6 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
-import UIProvider from "@/context/UIProvider";
-import Nav from "@/components/Nav/Nav";
-import Footer from "@/components/Footer";
+import { Providers } from "./Providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,13 +17,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <UIProvider>
-          <div className="mx-auto w-[97%] tablet:w-[95%] max-w-[1100px]">
-            <Nav />
+        <Providers>
+          <div className="">
             {children}
           </div>
-          <Footer />
-        </UIProvider>
+        </Providers>
       </body>
     </html>
   );

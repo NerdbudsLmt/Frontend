@@ -1,27 +1,30 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { BsArrowRight } from "react-icons/bs";
+import { BsArrowRight, BsArrowDownShort } from "react-icons/bs";
 import { BiMobileAlt } from "react-icons/bi";
 import { MdEmail } from 'react-icons/md'
 import { AiFillInstagram, AiOutlineTwitter, AiFillLinkedin } from 'react-icons/ai'
 import { BsFacebook } from 'react-icons/bs'
+import Footer from "@/components/Footer";
+import Nav from "@/components/Nav/Nav";
 
 export default function Home() {
   return (
-    <section>
+    <section className="mx-auto text-white w-[97%] tablet:w-[95%] max-w-[1380px]">
+      <Nav />
       <header className="pt-10">
         <div className="flex flex-col items-center space-y-5 mb-16">
           <div>
-            <Link
-              href="/"
+            <a
+              href="#team"
               className="flex items-center space-x-2 border-2 border-app-sblue text-app-sblue py-1 px-10 rounded-full"
             >
               <>
                 <span>See The Team</span>
-                <BsArrowRight className="text-lg" />
+                <BsArrowDownShort className="text-xl" />
               </>
-            </Link>
+            </a>
           </div>
           <div>
             <h1 className="text-8xl font-bold text-center text-app-sblue">
@@ -112,7 +115,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="mt-20 mb-10 pb-20 border-b-2 border-[#fff]">
+      <div id='team' className="mt-20 mb-10 pb-20 border-b-2 border-[#fff]">
         <p className="mb-8 text-center border-b-2 mx-auto w-fit border-[#fff] text-3xl font-bold  text-app-sblue">
           Meet
           <span className="text-[#fff]"> the</span>
@@ -288,7 +291,7 @@ export default function Home() {
         />
         <div className=" grow w-[90%] ml-auto laptop:w-[46%] my-auto ">
           <div className="w-full tablet_l:w-[85%]">
-            <p className="text-[20px] tablet_l:text-[1.75rem] laptop_L:text-[30px] font-bold leading[24px] laptop_l:leading-[48px]">
+            <p className="text-4xl font-bold leading[24px] laptop_l:leading-[48px]">
               Have a question? Our team is happy to assist you.
             </p>
             <p className="mt-4 mb-5 pb-5 text-[14px] laptop:text[16px] border-b-2  ">
@@ -297,7 +300,7 @@ export default function Home() {
             </p>
             <div className="flex justify-between items-center">
               <Link
-                href="/"
+                href="/contact"
                 className="flex items-center gap-3 px-5 py-2 mt-3 w-fit bg-app-sblue text-[14px] laptop:text[16px]  rounded-3xl"
               >
                 Contact us
@@ -310,6 +313,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <Footer />
     </section>
   );
 }

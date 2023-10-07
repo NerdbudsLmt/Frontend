@@ -8,15 +8,18 @@ import { BiMobileAlt } from "react-icons/bi";
 import { Web } from "@/components/Portfolio/Web";
 import { Mobile } from "@/components/Portfolio/Mobile";
 import Pakage from "@/components/Pricing/Pakage";
+import Nav from "@/components/Nav/Nav";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <section>
+    <section className="mx-auto text-white w-[97%] tablet:w-[95%] max-w-[1380px]">
+      <Nav />
       <header className="pt-10">
         <div className="flex flex-col items-center space-y-5 mb-16">
           <div>
             <Link
-              href="/"
+              href="/about"
               className="flex items-center space-x-2 border-2 border-app-sblue text-app-sblue py-1 px-10 rounded-full"
             >
               <>
@@ -53,7 +56,7 @@ export default function Home() {
               tailored software solutions. Don&apos;t miss out!
             </p>
             <Link
-              href="/"
+              href="/contact"
               className=" border-[#3F9BD5] bg-[#3F9BD5] text-white text-[14px] mx-auto flex gap-2 items-center border-2 w-fit mt-6 tablet_l:mt-0 py-2 px-6 rounded-full"
             >
               Contact sales
@@ -193,13 +196,14 @@ export default function Home() {
             </p>
           </div>
           <Link
-          href="/"
+          href="/signup"
           className="border-app-sblue bg-app-sblue text-white text-[14px] mx-auto flex gap-2 items-center border-2 mt-8 mb-0 w-fit py-2 px-5 rounded-full"
         >
           Get Started
           <BsArrowRight className="text-lg" />
         </Link>
       </div>
+      <Footer />
     </section>
   );
 }
