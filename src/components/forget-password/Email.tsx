@@ -15,47 +15,43 @@ import Link from "next/link";
 
 interface LoginFormValues {
     email: string;
-    password: string;
   }
+  interface NextPageProps {
+    nextPage: () => void; // Assuming nextPage is a function that takes no arguments and returns void
+  }
+  
 // Define validation schema using Yup
 const validationSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Email is required"),
-  password: Yup.string().required("Password is required"),
 });
 
-export default function Email() {
-  const [show, setShow] = useState<boolean>(true);
+const Email: React.FC<NextPageProps> = ({ nextPage }) => {
 
   // Initialize Formik for managing form state and validation.
   const formik = useFormik<LoginFormValues>({
     initialValues: {
-      email: "",
-      password: "",
+      email: ""
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
       // Handle form submission here
       console.log(values);
+      nextPage()
     },
   });
 
+  
+
   return (
-    <div className="my-6 mx-auto w-[90%] max-w-[900px] ">
+    <div className="my-6 mx-auto w-full ">
       {/* <Link href="/signup" className=" ">
         <BsChevronLeft size={30} className="" />
       </Link> */}
       <div className="flex flex-row-reverse gap-8 my-4 ">
-        <div className=" basis-[65%] h-[500px] rounded-lg overflow-hidden">
-          <Image
-            src="/images/businessload.svg"
-            alt="Vercel Logo"
-            className="h-[800px] w-full relative -top-16 "
-            width={600}
-            height={500}
-            quality={100}
-          />
+        <div className="fp1 hidden laptop:block grow basis-[65%] h-[600px] rounded-lg overflow-hidden">
+         
         </div>
-        <div className="basis-[45%] my-auto">
+        <div className="grow-[2] basis-[45%] my-auto">
           <h1 className="text-4xl font-bold text-app-sblue">
             Forget
             <span className="text-app-porange"> password</span>
@@ -97,6 +93,8 @@ export default function Email() {
             <button
               className="bg-app-sblue border-2 border-app-sblue text-white py-2 px-5 mt-3 rounded-full"
               type="submit"
+        // onClick={nextPage}
+
             >
               Reset password
             </button>
@@ -109,6 +107,14 @@ export default function Email() {
           
         </div>
       </div>
+      <div className="flex gap-3 mt-12 justify-center">
+        <div className="w-[20%] max-w-[150px] h-[8px] rounded-lg bg-app-sblue"></div>
+        <div className="w-[20%] max-w-[150px] h-[8px] rounded-lg bg-white"></div>
+        <div className="w-[20%] max-w-[150px] h-[8px] rounded-lg bg-white"></div>
+        <div className="w-[20%] max-w-[150px] h-[8px] rounded-lg bg-white"></div>
+      </div>
     </div>
   );
 }
+
+export default Email;

@@ -26,12 +26,12 @@ export default function ForgotPassword() {
   const renderCurrentPage = () => {
     switch (currentPage) {
       case 1:
-        return <Email />;
+        return <Email nextPage={handleNextPage} />;
       case 2:
-        return <Otp />;
+        return <Otp nextPage={handleNextPage} />;
         // return <Otp nextPage={handleNextPage} />;
       case 3:
-        return <SetPassword />;
+        return <SetPassword nextPage={handleNextPage} />;
       case 4:
       default:
         return <Succces  />;
@@ -39,6 +39,8 @@ export default function ForgotPassword() {
   };
 
   return (
+    <section className="mx-auto text-white w-[97%] tablet:w-[95%] max-w-[1380px]">
+
     <div className="flex flex-col justify-start h-screen mt-10 mb-10">
       <div className="w-[98%] ">{renderCurrentPage()}</div>
       <button
@@ -67,5 +69,7 @@ export default function ForgotPassword() {
       )} */}
      
     </div>
+    </section>
+
   )
 }
