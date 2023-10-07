@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import { useRouter } from 'next/navigation';
 import { BsEyeSlashFill, BsEyeFill, BsChevronLeft } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { useFormik } from "formik";
@@ -25,6 +26,7 @@ const validationSchema = Yup.object().shape({
 
 export default function Login() {
   const [show, setShow] = useState<boolean>(true);
+  const router = useRouter();
 
   // Initialize Formik for managing form state and validation.
   const formik = useFormik<CompanyFormValues>({
@@ -36,6 +38,7 @@ export default function Login() {
     onSubmit: (values) => {
       // Handle form submission here
       console.log(values);
+      router.push('/dashboard')
     },
   });
 
