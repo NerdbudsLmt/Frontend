@@ -9,15 +9,11 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
 
-/**
- * Represents the values of the Company form.
- * @interface CompanyFormValues
- */
-
 interface CompanyFormValues {
     email: string;
     password: string;
   }
+  
 // Define validation schema using Yup
 const validationSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Email is required"),
