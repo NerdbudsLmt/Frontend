@@ -1,372 +1,75 @@
-"use client";
+// "use client";
 
-// import Link from "next/link";
-// import Image from "next/image";
-// import {
-//   IconButton,
-//   Avatar,
-//   Box,
-//   CloseButton,
-//   Flex,
-//   HStack,
-//   VStack,
-//   Icon,
-//   useColorModeValue,
-//   Text,
-//   Drawer,
-//   DrawerContent,
-//   useDisclosure,
-//   BoxProps,
-//   FlexProps,
-//   Menu,
-//   MenuButton,
-//   MenuDivider,
-//   MenuItem,
-//   MenuList,
-// } from "@chakra-ui/react";
-// import {
-//   FiHome,
-//   FiSettings,
-//   FiMenu,
-//   FiBell,
-//   FiChevronDown,
-// } from "react-icons/fi";
-// import { RxDashboard } from "react-icons/rx";
-// import {
-//   MdPayment,
-//   MdOutlineDesktopWindows,
-//   MdOutlineKeyboardArrowRight,
-// } from "react-icons/md";
-// import { IconType } from "react-icons";
-// import { PiCalendarBlankBold, PiEnvelopeSimple } from "react-icons/pi";
+import Image from "next/image";
+import React from "react";
 
-// type NestedLinkItemProps = {
-//   name: string;
-//   link: string;
-// };
-
-// export type LinkItemProps = {
-//   name: string;
-//   link: string;
-//   icon: IconType;
-//   nestedIcon?: IconType;
-//   links?: NestedLinkItemProps[];
-// };
-
-// // interface NavItemProps extends FlexProps {
-// //   icon: IconType;
-// //   nestedIcon?: IconType;
-// //   children: React.ReactNode;
-// // }
-
-// interface MobileProps extends FlexProps {
-//   onOpen: () => void;
-// }
-
-// interface SidebarProps extends BoxProps {
-//   onClose: () => void;
-// }
-
-// const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
-//   return (
-//     <Box
-//       transition="3s ease"
-//       bg="#132E40"
-//       borderRight="1px"
-//       borderRightColor={useColorModeValue("gray.200", "gray.700")}
-//       w={{ base: "full", md: 60 }}
-//       pos="fixed"
-//       h="full"
-//       color="white"
-//       {...rest}
-//     >
-//       <Flex
-//         h="20"
-//         alignItems="center"
-//         mb="6"
-//         mx="6"
-//         justifyContent="space-between"
-//       >
-//         <Link href="/" className="flex gap-4">
-//           <Image
-//             src="/images/nav-logo.png"
-//             alt="Vercel Logo"
-//             width={33}
-//             height={33}
-//             priority
-//           />
-//           <Text fontSize="3xl" fontWeight="bold">
-//             Nerdbuds
-//           </Text>
-//         </Link>
-//         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
-//       </Flex>
-//       {/* {LinkItems.map((link) => (
-//         <NavItem key={link.name} nestedIcon={link.nestedIcon} icon={link.icon}>
-//           {link.name}
-//         </NavItem>
-//       ))} */}
-//       <NavItem />
-//     </Box>
-//   );
-// };
-
-// const NavItem = () => {
-//   return (
-//     <Box
-//       // as="a"
-//       // href="#"
-//       style={{ textDecoration: "none" }}
-//       _focus={{ boxShadow: "none" }}
-//     >
-//       <Link href="#">
-//         <Flex
-//           align="center"
-//           p="4"
-//           mx="2"
-//           my="4"
-//           color="white"
-//           borderRadius="lg"
-//           role="group"
-//           cursor="pointer"
-//           _hover={{
-//             bg: "#F9D262",
-//             color: "black",
-//           }}
-//         >
-//           <Flex align="center" gap={3}>
-//             <FiHome />
-//             Dashboard
-//           </Flex>
-//         </Flex>
-//       </Link>
-//       <Link href="#">
-//         <Menu>
-//           <MenuButton
-//             py={2}
-//             transition="all 0.3s"
-//             _focus={{ boxShadow: "none" }}
-//             _hover={{
-//               bg: "#F9D262",
-//               color: "black",
-//             }}
-//             color="white"
-//             borderRadius="lg"
-//             role="group"
-//             mx="2"
-//             cursor="pointer"
-//           >
-//             <HStack>
-//               <Flex align="center" p="2" mx="2">
-//                 <Flex align="center" gap={3}>
-//                   <RxDashboard />
-//                   Projects
-//                 </Flex>
-//                 <MdOutlineKeyboardArrowRight className="ml-14" size={30} />
-//               </Flex>
-//             </HStack>
-//           </MenuButton>
-//           <MenuList bg={"#F9D262"} color="black">
-//             <MenuItem
-//               as="a"
-//               href="#"
-//               bg="#FFE393"
-//               _hover={{
-//                 bg: "#132E40",
-//                 color: "white",
-//               }}
-//               py="2"
-//             >
-//               Create a Project
-//             </MenuItem>
-//             <MenuItem
-//               as="a"
-//               href="#"
-//               bg="#FFE393"
-//               _hover={{
-//                 bg: "#132E40",
-//                 color: "white",
-//               }}
-//               py="2"
-//             >
-//               Existing Project
-//             </MenuItem>
-//             <MenuItem
-//               as="a"
-//               href="#"
-//               bg="#FFE393"
-//               _hover={{
-//                 bg: "#132E40",
-//                 color: "white",
-//               }}
-//               py="2"
-//             >
-//               Project in progress
-//             </MenuItem>
-//             <MenuItem
-//               as="a"
-//               href="#"
-//               bg="#FFE393"
-//               _hover={{
-//                 bg: "#132E40",
-//                 color: "white",
-//               }}
-//               py="2"
-//             >
-//               Finished Projects
-//             </MenuItem>
-//           </MenuList>
-//         </Menu>
-//       </Link>
-//       <Link href="#">
-//         <Flex
-//           align="center"
-//           p="4"
-//           mx="2"
-//           my="4"
-//           color="white"
-//           borderRadius="lg"
-//           role="group"
-//           cursor="pointer"
-//           _hover={{
-//             bg: "#F9D262",
-//             color: "black",
-//           }}
-//         >
-//           <Flex align="center" gap={3}>
-//             <MdPayment />
-//             Payment
-//           </Flex>
-//         </Flex>
-//       </Link>
-//       <Link href="#">
-//         <Flex
-//           align="center"
-//           p="4"
-//           mx="2"
-//           my="4"
-//           color="white"
-//           borderRadius="lg"
-//           role="group"
-//           cursor="pointer"
-//           _hover={{
-//             bg: "#F9D262",
-//             color: "black",
-//           }}
-//         >
-//           <Flex align="center" gap={3}>
-//             <MdOutlineDesktopWindows />
-//             Support
-//           </Flex>
-//         </Flex>
-//       </Link>
-//       <Link href="#">
-//         <Flex
-//           align="center"
-//           p="4"
-//           mx="2"
-//           my="4"
-//           color="white"
-//           borderRadius="lg"
-//           role="group"
-//           cursor="pointer"
-//           _hover={{
-//             bg: "#F9D262",
-//             color: "black",
-//           }}
-//         >
-//           <Flex align="center" gap={3}>
-//             <FiSettings />
-//             Settings
-//           </Flex>
-//         </Flex>
-//       </Link>
-//     </Box>
-//   );
-// };
-
-// const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
-//   return (
-//     <Flex
-//       ml={{ base: 0, md: 60 }}
-//       px={{ base: 4, md: 4 }}
-//       height="20"
-//       alignItems="center"
-//       bg="white"
-//       borderBottomWidth="1px"
-//       borderBottomColor={useColorModeValue("gray.200", "gray.700")}
-//       justifyContent={{ base: "space-between", md: "space-between" }}
-//       {...rest}
-//     >
-//       <IconButton
-//         display={{ base: "flex", md: "none" }}
-//         onClick={onOpen}
-//         variant="outline"
-//         aria-label="open menu"
-//         icon={<FiMenu />}
-//       />
-//       <div>
-//         <a
-//           href="#team"
-//           className="flex items-center mx-5 font-semibold space-x-2 border-2 border-app-pblue text-app-pblue py-1 px-5 rounded-full"
-//         >
-//           <>
-//             <span>Monday, 10th July 2023</span>
-//             <PiCalendarBlankBold className="text-xl" />
-//           </>
-//         </a>
-//       </div>
-      
-//     <div className="flex gap-4 items-center">
-//       <div className="flex gap-4 text-xl items-center font-semibold  ">
-//        <PiEnvelopeSimple />
-//         <FiBell />
-//         <div className="bg-app-pblue h-9 w-[2px] rounded-sm"></div>
-//       </div>
-//       <p className="py-2 px-4 bg-[#F5F4F4] rounded-md">
-//       Welcome Nerdbuds!
-//       </p>
-//     </div>
-//     </Flex>
-//   );
-// };
-
-// const SidebarWithHeader = () => {
-//   const { isOpen, onOpen, onClose } = useDisclosure();
-
-//   return (
-//     <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
-//       <SidebarContent
-//         onClose={() => onClose}
-//         display={{ base: "none", md: "block" }}
-//       />
-//       <Drawer
-//         isOpen={isOpen}
-//         placement="left"
-//         onClose={onClose}
-//         returnFocusOnClose={false}
-//         onOverlayClick={onClose}
-//         size="full"
-//       >
-//         <DrawerContent>
-//           <SidebarContent onClose={onClose} />
-//         </DrawerContent>
-//       </Drawer>
-//       {/* mobilenav */}
-//       <MobileNav onOpen={onOpen} />
-//       <Box bg="white" ml={{ base: 0, md: 60 }} p="4">
-//         {/* Content */}
-//       </Box>
-//     </Box>
-//   );
-// };
-
-// export default SidebarWithHeader;
-
-import React from 'react'
-
-export default function page() {
+export default function Dashboard() {
   return (
-    <div>page</div>
-  )
+    <div>
+      <div className="text-[#265D80]  grid grid-cols-2 laptop:grid-cols-3 gap-5 xl:grid-cols-4">
+        <div className=" bg-[#F5F4F4] flex justify-center items-center pl-3 rounded-lg">
+          <div className="">
+            <div className="relative w-fit h-fit m-auto">
+              <p className="cur-date text-8xl font-bold ">10</p>
+              <sup className="absolute top-0 -right-3 cur-date text-xl font-bold">
+                th
+              </sup>
+            </div>
+            <p className="font-semibold text-[15px] w-fit mx-auto">July 2023</p>
+          </div>
+        </div>
+
+        <div className=" bg-[#F5F4F4] p-4  text-center rounded-lg">
+          <p className="text-lg font-bold underline ">Active Projects </p>
+          <div className="flex justify-between gap-3 mt-3 h-fit mx-auto">
+            <p className="bg-app-pblue px-3.5 py-1.5 text-white rounded-full border-1 border-app-pblue">
+              1
+            </p>
+            <p className=" px-3.5 py-1.5 rounded-full border-1 border-dotted border-2 border-app-pblue">
+              2
+            </p>
+            <p className=" px-3.5 py-1.5 rounded-full border-1 border-dotted border-2 border-app-pblue">
+              3
+            </p>
+          </div>
+          <ul className="text-left mt-4 pl-5 text-md list-disc" >
+            <li className="">Name: Project Assistant</li>
+            <li>Status: 97% Complete</li>
+            <li>Deadline: 10th August 2023</li>
+          </ul>
+        </div>
+
+        <div className=" bg-[#F5F4F4] p-4  text-center rounded-lg">
+          <p className="text-lg font-bold underline ">Overall Project Reports </p>
+          <div className="flex justify-between gap-3">
+            <ul className="text-left mt-4 font-semibold pl-5 text-md list-disc" >
+              <li className="text-[#2CB629]">3 running </li>
+              <li className="text-[#009CFF] my-1">10 finished</li>
+              <li className="text-[#D69E00]">1 pending</li>
+            </ul>
+            <div>
+
+            </div>
+          </div>
+        </div>
+
+        <div className=" bg-[#F5F4F4] text-center rounded-lg">
+        <p className="text-lg font-bold underline ">Card </p>
+
+          <div className="bank-card text-white px-4 py-3 w-[90%] mt-2 h- mx-auto">
+           <div className="flex opacity-50 justify-between gap-4">
+            <p>Current Balance</p>
+            <Image
+            src="/images/masterCard.svg"
+            alt="master"
+            width={33}
+            height={33}
+          />
+          
+           </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }

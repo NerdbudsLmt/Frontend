@@ -293,17 +293,13 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         aria-label="open menu"
         icon={<FiMenu />}
       />
-      <div>
-        <a
-          href="#team"
-          className="flex items-center mx-5 font-semibold space-x-2 border-2 border-app-pblue text-app-pblue py-1 px-5 rounded-full"
+        <div
+          // href="#team"
+          className="hidden tablet:flex items-center text-[.75rem] mx-0 font-semibold space-x-2 border-2 border-app-pblue text-app-pblue py-1 px-5 rounded-full"
         >
-          <>
             <span>Monday, 10th July 2023</span>
             <PiCalendarBlankBold className="text-xl" />
-          </>
-        </a>
-      </div>
+        </div>
       
     <div className="flex gap-4 items-center">
       <div className="flex gap-4 text-xl items-center font-semibold  ">
@@ -311,7 +307,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         <FiBell />
         <div className="bg-app-pblue h-9 w-[2px] rounded-sm"></div>
       </div>
-      <p className="py-2 px-4 bg-[#F5F4F4] rounded-md">
+      <p className="py-2 px-4 text-[.75rem] font-semibold bg-[#F5F4F4] rounded-md">
       Welcome Nerdbuds!
       </p>
     </div>
@@ -327,7 +323,7 @@ export default function DashboardLayout({
 
       const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
+    <Box minH="100vh" bg='white'>
       <SidebarContent
         onClose={() => onClose}
         display={{ base: "none", md: "block" }}
@@ -346,7 +342,7 @@ export default function DashboardLayout({
       </Drawer>
       {/* mobilenav */}
       <MobileNav onOpen={onOpen} />
-      <Box bg="white" ml={{ base: 0, md: 60 }} p="4">
+      <Box ml={{ base: 0, md: 60 }} p="4">
         {children}
       </Box>
     </Box>
