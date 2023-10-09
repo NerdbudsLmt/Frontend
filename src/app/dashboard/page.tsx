@@ -1,4 +1,3 @@
-// "use client";
 
 import Image from "next/image";
 import React from "react";
@@ -6,7 +5,7 @@ import React from "react";
 export default function Dashboard() {
   return (
     <div>
-      <div className="text-[#265D80]  grid grid-cols-2 laptop:grid-cols-3 gap-5 xl:grid-cols-4">
+      <div className="text-[#265D80]  grid grid-cols-2 laptop_l:grid-cols-3 gap-5 xl:grid-cols-4">
         <div className=" bg-[#F5F4F4] flex justify-center items-center pl-3 rounded-lg">
           <div className="">
             <div className="relative w-fit h-fit m-auto">
