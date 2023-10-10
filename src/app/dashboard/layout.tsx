@@ -277,7 +277,7 @@ const NavItem = () => {
         </Flex>
       </div>
 
-      <div className="flex gap-3 mt-[16rem] w-fit mx-auto items-center">
+      <div className="flex gap-3 mt-[10rem] w-fit mx-auto items-center">
         <div className="w-10 h-10 overflow-hidden rounded-full border-[2px] border-app-pblue">
           <Image 
             src="/images/john.svg" 

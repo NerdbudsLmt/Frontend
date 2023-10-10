@@ -51,7 +51,7 @@ export default function Create() {
   };
 
   return (
-    <div>
+    <div className="max-w-[800px]">
       <div className="flex gap-3 items-center">
         <p className="text-gray-500 font-semibold">Project</p>
         <div className="h-2 w-2 bg-black rounded-full" />
