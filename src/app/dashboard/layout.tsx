@@ -39,6 +39,7 @@ import {
 } from "react-icons/md";
 import { IconType } from "react-icons";
 import { PiCalendarBlankBold, PiEnvelopeSimple } from "react-icons/pi";
+import { BsThreeDotsVertical } from 'react-icons/bs'
 
 type NestedLinkItemProps = {
   name: string;
@@ -68,10 +69,10 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       transition="3s ease"
       bg="#132E40"
       borderRight="1px"
-      borderRightColor={useColorModeValue("gray.200", "gray.700")}
+      // borderRightColor={useColorModeValue("gray.200", "gray.700")}
       w={{ base: "full", md: 60 }}
       pos="fixed"
-      h="full"
+      h="100dvh"
       color="white"
       {...rest}
     >
@@ -103,10 +104,13 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
 
 const NavItem = () => {
   return (
-    <Box
+    <Flex
       style={{ textDecoration: "none" }}
       _focus={{ boxShadow: "none" }}
+      flexDirection={'column'}
+      justifyContent={'space-between'}
     >
+      <div>
         <Flex
           align="center"
           as="a"
@@ -271,7 +275,25 @@ const NavItem = () => {
             Settings
           </Flex>
         </Flex>
-    </Box>
+      </div>
+
+      <div className="flex gap-3 mt-[16rem] w-fit mx-auto items-center">
+        <div className="w-10 h-10 overflow-hidden rounded-full border-[2px] border-app-pblue">
+          <Image 
+            src="/images/john.svg" 
+            className=" rounded-full"
+            alt="web" 
+            width={50} 
+            height={50} 
+          />
+        </div>
+      <div>
+        <p className="text-yellow">Nerdbuds Ltd</p>
+        <p className="text-app-sblue text-sm">Company account</p>
+      </div>
+      <BsThreeDotsVertical  size={20}/>
+      </div>
+    </Flex>
   );
 };
 

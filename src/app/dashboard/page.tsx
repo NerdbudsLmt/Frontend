@@ -1,11 +1,12 @@
 
+import Projects from "@/components/Dashbord/Projects";
 import Image from "next/image";
 import React from "react";
 
 export default function Dashboard() {
   return (
     <div>
-      <div className="text-[#265D80]  grid grid-cols-2 laptop_l:grid-cols-3 gap-5 xl:grid-cols-4">
+      <div className="text-[#265D80]  grid tablet:grid-cols-2 laptop_l:grid-cols-3 gap-5 xl:grid-cols-4">
         <div className=" bg-[#F5F4F4] flex justify-center items-center pl-3 rounded-lg">
           <div className="">
             <div className="relative w-fit h-fit m-auto">
@@ -52,7 +53,7 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className=" bg-[#F5F4F4] text-center rounded-lg">
+        <div className=" bg-[#F5F4F4] p-4 text-center rounded-lg">
         <p className="text-lg font-bold underline ">Card </p>
 
           <div className="bank-card text-white px-4 py-3 w-[90%] mt-2 h- mx-auto">
@@ -64,11 +65,17 @@ export default function Dashboard() {
             width={33}
             height={33}
           />
-          
+           </div>
+           <p className="text-3xl my-3 text-left">N*******</p>
+           <div className="flex mt-4 mb-2 text-left justify-between">
+            <p className="text-[10px]">5294 2436 4780 2468</p>
+            <p className="text-[10px]">12/24</p>
            </div>
           </div>
         </div>
       </div>
+
+      <Projects />
     </div>
   );
 }
