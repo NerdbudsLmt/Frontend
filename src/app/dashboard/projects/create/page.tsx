@@ -169,7 +169,7 @@ export default function Create() {
             type="submit"
           className='flex gap-4 mt-8 items-center transition bg-[#205584] border-2 text-white border-[#205584] py-2 px-4 rounded-lg'      
           >
-            Button
+            Book Project
             <FiArrowRight size={20} />
           </button>
           </div>
