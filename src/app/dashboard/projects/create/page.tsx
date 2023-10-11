@@ -43,6 +43,7 @@ const validationSchema = Yup.object().shape({
   items: Yup.array().min(1, "Select at least one item"),
   dayOfWeek: Yup.string().required("Day of the week is required"),
   time: Yup.string().required("Time is required"),
+  meredian: Yup.string().required("Meredian is required"),
 });
 
 export default function Create() {
@@ -102,7 +103,7 @@ export default function Create() {
                 </div>
               ))}
             </div>
-            <ErrorMessage name="items" component="div" className="error" />
+            <ErrorMessage name="items" component="div" className="error text-red-500 italic text-sm" />
           </div>
 
           <div className="flex flex-col gap-2 border-2 border-[#DBD9D9] rounded-xl py-4 px-3">
@@ -127,7 +128,7 @@ export default function Create() {
                 <ErrorMessage
                   name="dayOfWeek"
                   component="div"
-                  className="error"
+                  className="error text-red-500 italic text-sm"
                 />
               </div>
             <div className="flex flex-col">
@@ -144,7 +145,7 @@ export default function Create() {
                   </option>
                 ))}
               </Field>
-              <ErrorMessage name="time" component="div" className="error" />
+              <ErrorMessage name="time" component="div" className="error text-red-500 italic text-sm" />
             </div>
 
             <div className="flex flex-col">
@@ -161,7 +162,7 @@ export default function Create() {
                   </option>
                 ))}
               </Field>
-              <ErrorMessage name="meredian" component="div" className="error" />
+              <ErrorMessage name="meredian" component="div" className="error text-red-500 italic text-sm" />
             </div>
             </div>
           </div>
