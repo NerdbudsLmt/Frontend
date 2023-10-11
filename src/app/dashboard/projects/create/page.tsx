@@ -109,18 +109,20 @@ export default function Create() {
               <p className="font-semibold mb-2">
                 When are you free to get on a call?
               </p>
-            <div className="flex gap-4 items-center">
+            <div className="flex flex-wrap gap-4 items-center">
               <div className="flex flex-col">
                 <label className="text-sm mb-2">Day of the week</label>
                 <Field
                   as="select"
                   name="dayOfWeek"
-                  className="bg-[#F5F4F4] min-w-[200px] w-[350px] p-3 rounded-xl"
+                  className="bg-[#F5F4F4] min-w-[90%] tablet:w-[350px] p-3 rounded-xl"
                 >
                   <option value="">Select</option>
                   <option value="Monday">Monday</option>
                   <option value="Tuesday">Tuesday</option>
-                  {/* ... (add options for other days) ... */}
+                  <option value="Tuesday">Wednessday</option>
+                  <option value="Tuesday">Thursday</option>
+                  <option value="Tuesday">Friday</option>
                 </Field>
                 <ErrorMessage
                   name="dayOfWeek"
