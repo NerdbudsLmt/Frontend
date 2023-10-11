@@ -1,5 +1,6 @@
 
 import Projects from "@/components/Dashbord/Projects";
+import QuickSet from "@/components/Dashbord/QuickSet";
 import Image from "next/image";
 import React from "react";
 
@@ -76,6 +77,7 @@ export default function Dashboard() {
       </div>
 
       <Projects />
+      <QuickSet />
     </div>
   );
 }

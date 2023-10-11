@@ -14,7 +14,7 @@ interface FormValues {
 }
 
 const itemsList: string[] = [
-  "Devops",
+  "Cloud Engineering",
   "UI/UX",
   "Security",
   "Consultation",
@@ -52,10 +52,10 @@ export default function Create() {
 
   return (
     <div className="max-w-[800px]">
-      <div className="flex gap-3 items-center">
-        <p className="text-gray-500 font-semibold">Project</p>
+      <div className="flex gap-2 mb-8 items-center">
+        <p className="text-gray-500 text-xl font-semibold">Project</p>
         <div className="h-2 w-2 bg-black rounded-full" />
-        <p className="font-semibold">Create a project</p>
+        <p className="font-semibold  text-2xl">Create a project</p>
       </div>
 
       <p className="font-bold text-2xl my-6">Create a project</p>
@@ -167,7 +167,7 @@ export default function Create() {
           <div>
             <button
             type="submit"
-          className='flex gap-4 mt-8 items-center transition bg-[#205584] border-2 text-white border-[#205584] py-2 px-4 rounded-lg'      
+          className='flex gap-3 mt-8 items-center transition bg-[#205584] border-2 text-white border-[#205584] py-2 px-4 rounded-lg'      
           >
             Book Project
             <FiArrowRight size={20} />
