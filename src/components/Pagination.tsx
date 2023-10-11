@@ -31,7 +31,7 @@ const Pagination: React.FC<PaginationProps> = ({
   return (
     <div className="flex py-6">
       <nav
-        className="mx-auto relative z-0 inline-flex gap-4 shadow-sm "
+        className="mx-auto relative z-0 inline-flex gap-4 "
         aria-label="Pagination"
       >
         <a
