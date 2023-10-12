@@ -13,6 +13,7 @@
     "@chakra-ui/react": "^2.8.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@nextui-org/react": "^2.1.13",
     "@types/next": "^9.0.0",
     "@types/node": "20.3.0",
     "@types/react": "18.2.11",
