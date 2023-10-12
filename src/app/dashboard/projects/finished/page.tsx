@@ -148,7 +148,9 @@ const Finished: React.FC = () => {
   // const paginate = (pageNumber: any) => setCurrentPage(pageNumber);
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
   const paginateFront = () => setCurrentPage(currentPage + 1);
-  const paginateBack = () => setCurrentPage(currentPage - 1);
+  const paginateBack = () =>{ 
+    setCurrentPage(currentPage - 1)
+  }
 
   return (
     <div className="max-w-[1000px] ">
