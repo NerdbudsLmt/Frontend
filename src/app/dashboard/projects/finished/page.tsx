@@ -188,11 +188,7 @@ const Finished: React.FC = () => {
         ))}
       </div>
 
-      {/* <Link href='#' className="flex gap-2 items-center bg-[#205584] text-white mt-8 w-fit py-3 px-4 rounded-lg">
-        See more
-        <MdOutlineKeyboardArrowDown />
-      </Link> */}
-      {/* <Pagination /> */}
+   
         <Pagination
         postsPerPage={postsPerPage} 
         totalPosts={projectList.length} 
