@@ -39,6 +39,7 @@ import {
 } from "react-icons/md";
 import { IconType } from "react-icons";
 import { PiCalendarBlankBold, PiEnvelopeSimple } from "react-icons/pi";
+import { BsThreeDotsVertical } from 'react-icons/bs'
 
 type NestedLinkItemProps = {
   name: string;
@@ -68,10 +69,10 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       transition="3s ease"
       bg="#132E40"
       borderRight="1px"
-      borderRightColor={useColorModeValue("gray.200", "gray.700")}
+      // borderRightColor={useColorModeValue("gray.200", "gray.700")}
       w={{ base: "full", md: 60 }}
       pos="fixed"
-      h="full"
+      h="100dvh"
       color="white"
       {...rest}
     >
@@ -103,10 +104,13 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
 
 const NavItem = () => {
   return (
-    <Box
+    <Flex
       style={{ textDecoration: "none" }}
       _focus={{ boxShadow: "none" }}
+      flexDirection={'column'}
+      justifyContent={'space-between'}
     >
+      <div>
         <Flex
           align="center"
           as="a"
@@ -271,7 +275,25 @@ const NavItem = () => {
             Settings
           </Flex>
         </Flex>
-    </Box>
+      </div>
+
+      <div className="flex gap-3 mt-[10rem] w-fit mx-auto items-center">
+        <div className="w-10 h-10 overflow-hidden rounded-full border-[2px] border-app-pblue">
+          <Image 
+            src="/images/john.svg" 
+            className=" rounded-full"
+            alt="web" 
+            width={50} 
+            height={50} 
+          />
+        </div>
+      <div>
+        <p className="text-yellow">Nerdbuds Ltd</p>
+        <p className="text-app-sblue text-sm">Company account</p>
+      </div>
+      <BsThreeDotsVertical  size={20}/>
+      </div>
+    </Flex>
   );
 };
 
@@ -293,17 +315,13 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         aria-label="open menu"
         icon={<FiMenu />}
       />
-      <div>
-        <a
-          href="#team"
-          className="flex items-center mx-5 font-semibold space-x-2 border-2 border-app-pblue text-app-pblue py-1 px-5 rounded-full"
+        <div
+          // href="#team"
+          className="hidden tablet:flex items-center text-[.75rem] mx-0 font-semibold space-x-2 border-2 border-app-pblue text-app-pblue py-1 px-5 rounded-full"
         >
-          <>
             <span>Monday, 10th July 2023</span>
             <PiCalendarBlankBold className="text-xl" />
-          </>
-        </a>
-      </div>
+        </div>
       
     <div className="flex gap-4 items-center">
       <div className="flex gap-4 text-xl items-center font-semibold  ">
@@ -311,7 +329,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         <FiBell />
         <div className="bg-app-pblue h-9 w-[2px] rounded-sm"></div>
       </div>
-      <p className="py-2 px-4 bg-[#F5F4F4] rounded-md">
+      <p className="py-2 px-4 text-[.75rem] font-semibold bg-[#F5F4F4] rounded-md">
       Welcome Nerdbuds!
       </p>
     </div>
@@ -327,7 +345,7 @@ export default function DashboardLayout({
 
       const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
+    <Box minH="100vh" bg='white'>
       <SidebarContent
         onClose={() => onClose}
         display={{ base: "none", md: "block" }}
@@ -346,7 +364,7 @@ export default function DashboardLayout({
       </Drawer>
       {/* mobilenav */}
       <MobileNav onOpen={onOpen} />
-      <Box bg="white" ml={{ base: 0, md: 60 }} p="4">
+      <Box ml={{ base: 0, md: 60 }} p="4">
         {children}
       </Box>
     </Box>
