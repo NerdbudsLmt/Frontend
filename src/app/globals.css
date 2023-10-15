@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  scroll-behavior: smooth
+  scroll-behavior: smooth;
   /* font-family: 'Mulish', sans-serif !important; */
   /* @apply tracking-normal; */
 }
@@ -31,32 +31,30 @@ body {
 }
 
 .blue_gradient {
-  background: linear-gradient(180deg, #3F9BD5 0%, rgba(63, 155, 213, 0) 100%);
+  background: linear-gradient(180deg, #3f9bd5 0%, rgba(63, 155, 213, 0) 100%);
 }
 .black_graident {
-  background: #2A3339;
+  background: #2a3339;
 }
 
 .yellow_gradient {
-  background: linear-gradient(180deg, #C79B1E 0%, rgba(255, 227, 147, 0) 100%);
+  background: linear-gradient(180deg, #c79b1e 0%, rgba(255, 227, 147, 0) 100%);
 }
 
 .bg-sign {
-  background: rgba(255, 255, 255, 0.20);
+  background: rgba(255, 255, 255, 0.2);
 }
 
-
 .login {
-  background-image: url('../../public/images/businessload.svg');
+  background-image: url("../../public/images/businessload.svg");
   background-repeat: no-repeat;
   background-size: cover;
   max-height: 900px;
   background-position: center;
 }
 
-
 .fp1 {
-  background-image: url('../../public/images/fp1.svg');
+  background-image: url("../../public/images/fp1.svg");
   background-size: 100%;
   background-repeat: no-repeat;
   max-height: 900px;
@@ -64,23 +62,35 @@ body {
 }
 
 .fp2 {
-  background-image: url('../../public/images/fp2.svg');
+  background-image: url("../../public/images/fp2.svg");
   max-height: 900px;
   background-size: 100%;
   background-position: center;
   background-repeat: no-repeat;
 }
 .fp3 {
-  background-image: url('../../public/images/fp3.svg');
+  background-image: url("../../public/images/fp3.svg");
   background-size: 100%;
   max-height: 900px;
   background-repeat: no-repeat;
   background-position: center;
 }
 .fp4 {
-  background-image: url('../../public/images/fp4.svg');
+  background-image: url("../../public/images/fp4.svg");
   max-height: 900px;
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.cur-date {
+  opacity: 0.4;
+  background: linear-gradient(180deg, #fff 0%, rgba(17, 63, 103, 0.76) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bank-card {
+  border-radius: 10px;
+  background: linear-gradient(168deg, #e42c66 -9.78%, #f55b46 107.04%);
 }
