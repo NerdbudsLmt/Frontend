@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-// import arrowdown from '../../../public/images/arrowdown.svg'
 
 type webProps = {
   title: string;
@@ -10,6 +9,7 @@ type webProps = {
   btn: string;
   name: string;
 };
+
 export const Work = ({ title, bg, content, img, btn, name }: webProps) => {
   return (
     <div className="mt-20 ">
