@@ -1,7 +1,6 @@
-import React from "react";
 import Image from "next/image";
-import arrowdown from '../../../public/images/arrowdown.svg'
 import Link from "next/link";
+// import arrowdown from '../../../public/images/arrowdown.svg'
 
 type webProps = {
   title: string;
@@ -20,11 +19,11 @@ export const Work = ({ title, bg, content, img, btn, name }: webProps) => {
         <>
           <span>{name}</span>
           <Image
-          src={arrowdown}
-          alt="web"
-          width={18}
-          height={18}
-        />
+            src={"/images/arrowdown.svg"}
+            alt="web"
+            width={18}
+            height={18}
+          />
         </>
       </div>
       <div

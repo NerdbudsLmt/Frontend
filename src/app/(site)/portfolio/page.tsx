@@ -1,20 +1,16 @@
 "use client";
-
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { BsArrowRight } from "react-icons/bs";
 import { BiMobileAlt } from "react-icons/bi";
-import { Web } from "@/components/Portfolio/Web";
-import { Mobile } from "@/components/Portfolio/Mobile";
-import Nav from "@/components/Nav/Nav";
-import Footer from "@/components/Footer";
+import { Web } from "./components/Web";
+import { Mobile } from "./components/Mobile";
 
-export default function Home() {
+export default function Portfolio() {
   const [isWeb, setIsWeb] = useState<boolean>(true);
   return (
-    <section className="mx-auto text-white w-[97%] tablet:w-[95%] max-w-[1380px]">
-      <Nav />
+    <>
       <header className="pt-10">
         <div className="flex flex-col items-center space-y-5 mb-16">
           <div>
@@ -128,7 +124,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Footer />
-    </section>
+    </>
   );
 }

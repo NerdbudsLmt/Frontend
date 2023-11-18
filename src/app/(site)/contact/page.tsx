@@ -1,23 +1,14 @@
-import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { BsArrowRight } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
 import { MdEmail } from "react-icons/md";
-import {
-  AiFillInstagram,
-  AiOutlineTwitter,
-  AiOutlineFileText,
-  AiFillLinkedin,
-} from "react-icons/ai";
+import { AiFillInstagram, AiOutlineTwitter, AiOutlineFileText, AiFillLinkedin } from "react-icons/ai";
 import { BsFacebook, BsTelephone } from "react-icons/bs";
-import Nav from "@/components/Nav/Nav";
-import Footer from "@/components/Footer";
 
-export default function Home() {
+export default function Contact() {
   return (
-    <section className="mx-auto text-white w-[97%] tablet:w-[95%] max-w-[1380px]">
-      <Nav />
+    <>
       <header className="pt-10">
         <div className="flex flex-col items-center space-y-5 mb-16">
           <div>
@@ -154,7 +145,6 @@ export default function Home() {
               </button>
         </form>
       </div>
-      <Footer />
-    </section>
+    </>
   );
 }

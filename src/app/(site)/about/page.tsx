@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { BsArrowRight, BsArrowDownShort } from "react-icons/bs";
@@ -6,13 +5,10 @@ import { BiMobileAlt } from "react-icons/bi";
 import { MdEmail } from 'react-icons/md'
 import { AiFillInstagram, AiOutlineTwitter, AiFillLinkedin } from 'react-icons/ai'
 import { BsFacebook } from 'react-icons/bs'
-import Footer from "@/components/Footer";
-import Nav from "@/components/Nav/Nav";
 
-export default function Home() {
+export default function About() {
   return (
-    <section className="mx-auto text-white w-[97%] tablet:w-[95%] max-w-[1380px]">
-      <Nav />
+    <>
       <header className="pt-10">
         <div className="flex flex-col items-center space-y-5 mb-16">
           <div>
@@ -313,7 +309,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Footer />
-    </section>
+    </>
   );
 }

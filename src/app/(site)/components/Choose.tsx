@@ -1,7 +1,6 @@
-import React from "react";
+import Link from "next/link";
 import Image from "next/image";
 import { BsArrowRight } from "react-icons/bs";
-import Link from "next/link";
 
 export const Choose = () => {
   return (
