@@ -1,5 +1,4 @@
-import React from "react";
-import { Work } from "@/components/Portfolio/Work";
+import { Work } from "./Work";
 
 export const Mobile = () => {
   return (

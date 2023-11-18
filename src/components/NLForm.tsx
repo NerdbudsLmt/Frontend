@@ -1,7 +1,7 @@
+// newsletter form
 "use client";
 import { useState } from "react";
 import { AiOutlineMail } from "react-icons/ai";
-
 
 const NLForm = () => {
     const [email, setEmail] = useState("");

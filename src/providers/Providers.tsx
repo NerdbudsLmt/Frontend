@@ -1,9 +1,7 @@
 'use client'
-
 import { CacheProvider } from '@chakra-ui/next-js'
 import { ChakraProvider } from '@chakra-ui/react'
 import { NextUIProvider } from '@nextui-org/react'
-import { ThemeProvider  as NextThemesProvider  } from 'next-themes'
 
 export function Providers({ 
     children 
