@@ -324,11 +324,11 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         </div>
       
     <div className="flex gap-4 items-center">
-      <div className="flex gap-4 text-xl items-center font-semibold  ">
+      <div className="flex gap-4 text-xl items-center font-semibold bg-[#F5F4F4] p-2 rounded-md ">
        <PiEnvelopeSimple />
-        <FiBell />
-        <div className="bg-app-pblue h-9 w-[2px] rounded-sm"></div>
+        {/* <FiBell /> */}
       </div>
+        <div className="bg-app-pblue h-9 w-[2px] rounded-sm"></div>
       <p className="py-2 px-4 text-[.75rem] font-semibold bg-[#F5F4F4] rounded-md">
       Welcome Nerdbuds!
       </p>
