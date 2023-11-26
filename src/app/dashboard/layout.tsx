@@ -40,6 +40,7 @@ import {
 import { IconType } from "react-icons";
 import { PiCalendarBlankBold, PiEnvelopeSimple } from "react-icons/pi";
 import { BsThreeDotsVertical } from 'react-icons/bs'
+import { Inbox } from "./component/Inbox";
 
 type NestedLinkItemProps = {
   name: string;
@@ -321,14 +322,15 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         >
             <span>Monday, 10th July 2023</span>
             <PiCalendarBlankBold className="text-xl" />
+
         </div>
       
     <div className="flex gap-4 items-center">
-      <div className="flex gap-4 text-xl items-center font-semibold  ">
-       <PiEnvelopeSimple />
-        <FiBell />
-        <div className="bg-app-pblue h-9 w-[2px] rounded-sm"></div>
+      <div className="flex gap-4 text-xl items-center font-semibold p-2 rounded-md ">
+       {/* <PiEnvelopeSimple /> */}
+       <Inbox />
       </div>
+        <div className="bg-app-pblue h-9 w-[2px] rounded-sm"></div>
       <p className="py-2 px-4 text-[.75rem] font-semibold bg-[#F5F4F4] rounded-md">
       Welcome Nerdbuds!
       </p>

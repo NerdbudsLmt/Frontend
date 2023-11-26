@@ -4,6 +4,7 @@ import React from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { FiArrowRight } from 'react-icons/fi'
+import { LuClock3 } from "react-icons/lu";
 
 interface FormValues {
   description: string;
@@ -106,73 +107,25 @@ export default function Create() {
             <ErrorMessage name="items" component="div" className="error text-red-500 italic text-sm" />
           </div>
 
-          <div className="flex flex-col gap-2 border-2 border-[#DBD9D9] rounded-xl py-4 px-3">
-              <p className="font-semibold mb-2">
-                When are you free to get on a call?
-              </p>
-            <div className="flex flex-wrap gap-4 items-center">
-              <div className="flex flex-col">
-                <label className="text-sm mb-2">Day of the week</label>
-                <Field
-                  as="select"
-                  name="dayOfWeek"
-                  className="bg-[#F5F4F4] min-w-[90%] tablet:w-[350px] p-3 rounded-xl"
-                >
-                  <option value="">Select</option>
-                  <option value="Monday">Monday</option>
-                  <option value="Tuesday">Tuesday</option>
-                  <option value="Tuesday">Wednessday</option>
-                  <option value="Tuesday">Thursday</option>
-                  <option value="Tuesday">Friday</option>
-                </Field>
-                <ErrorMessage
-                  name="dayOfWeek"
-                  component="div"
-                  className="error text-red-500 italic text-sm"
-                />
-              </div>
-            <div className="flex flex-col">
-              <label className="text-sm mb-2 ">Time</label>
-              <Field
-                as="select"
-                name="time"
-                className="bg-[#F5F4F4] max-w-[200px] p-3 rounded-xl"
-              >
-                <option value="">Time</option>
-                {timeOptions.map((time) => (
-                  <option key={time} value={time}>
-                    {time}
-                  </option>
-                ))}
-              </Field>
-              <ErrorMessage name="time" component="div" className="error text-red-500 italic text-sm" />
-            </div>
-
-            <div className="flex flex-col">
-              <label className="text-sm mb-2 ">meredian</label>
-              <Field
-                as="select"
-                name="meredian"
-                className="bg-[#F5F4F4] max-w-[200px] p-3 rounded-xl"
-              >
-                <option value="">Option</option>
-                {meredian.map((meredian) => (
-                  <option key={meredian} value={meredian}>
-                    {meredian}
-                  </option>
-                ))}
-              </Field>
-              <ErrorMessage name="meredian" component="div" className="error text-red-500 italic text-sm" />
-            </div>
-            </div>
+          <p className="my-4 text-[18px] ">Schedule a meeting through our Calendly to give us more information about what project you have in mind.</p>
+          <div>
+            <button
+            type="submit"
+          className='flex gap-3 items-center transition bg-[#3F9BD5] border-2 text-white py-3 px-4 rounded-lg'      
+          >
+            Schedule a meeting with Calendly
+            <LuClock3 size={20}  className="font-bold"/>
+          </button>
           </div>
+          <p className="my-4 text-[18px] ">Schedule a meeting with Calendly</p>
+          
 
           <div>
             <button
             type="submit"
-          className='flex gap-3 mt-8 items-center transition bg-[#205584] border-2 text-white border-[#205584] py-2 px-4 rounded-lg'      
+          className='flex gap-3 mt-4 items-center transition bg-[#205584] border-2 text-white border-[#205584] py-2 px-4 rounded-lg'      
           >
-            Book Project
+            Create Project
             <FiArrowRight size={20} />
           </button>
           </div>
