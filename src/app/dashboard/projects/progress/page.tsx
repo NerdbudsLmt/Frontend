@@ -24,176 +24,172 @@ interface projectList {
 }
 
 
+const projectList = [
+  {
+    title: "Tech Bot Project",
+    status: "Not completed",
+    date: "Thursday, 2nd July 2023",
+    time: "9:00AM",
+    percentage: "90%",
+    content:
+      "The double equals performs type coercion, meaning it converts the operands to the same type before making the comparison. The triple equals (===) performs a strict comparison without type coercion. Choose the appropriate one based on your use case. If you want to ensure both the value and the data type are the same, use  for comparison.",
+    id: 1,
+  },
+  {
+    title: "Tech Bot Project",
+    status: "Completed",
+    date: "Thursday, 2nd July 2023",
+    time: "9:00AM",
+    percentage: "100%",
+    content:
+      "The double equals performs type coercion, meaning it converts the operands to the same type before making the comparison. The triple equals (===) performs a strict comparison without type coercion. Choose the appropriate one based on your use case. If you want to ensure both the value and the data type are the same, use  for comparison.",
+    id: 2,
+  },
+  {
+    title: "Tech Bot Project",
+    status: "Not completed",
+    date: "Thursday, 2nd July 2023",
+    time: "9:00AM",
+    percentage: "40%",
+    content:
+      "The double equals performs type coercion, meaning it converts the operands to the same type before making the comparison. The triple equals (===) performs a strict comparison without type coercion. Choose the appropriate one based on your use case. If you want to ensure both the value and the data type are the same, use  for comparison.",
+    id: 3,
+  },
+  {
+    title: "Tech Bot Project",
+    status: "Not completed",
+    date: "Thursday, 2nd July 2023",
+    time: "9:00AM",
+    percentage: "10%",
+    content:
+      "The double equals performs type coercion, meaning it converts the operands to the same type before making the comparison. The triple equals (===) performs a strict comparison without type coercion. Choose the appropriate one based on your use case. If you want to ensure both the value and the data type are the same, use  for comparison.",
+    id: 4,
+  },
+  {
+    title: "Tech Bot Project",
+    status: "Not completed",
+    date: "Thursday, 2nd July 2023",
+    time: "9:00AM",
+    percentage: "90%",
+    content:
+      "The double equals performs type coercion, meaning it converts the operands to the same type before making the comparison. The triple equals (===) performs a strict comparison without type coercion. Choose the appropriate one based on your use case. If you want to ensure both the value and the data type are the same, use  for comparison.",
+    id: 5,
+  },
+  {
+    title: "Tech Bot Project",
+    status: "Completed",
+    date: "Thursday, 2nd July 2023",
+    time: "9:00AM",
+    percentage: "100%",
+    content:
+      "The double equals performs type coercion, meaning it converts the operands to the same type before making the comparison. The triple equals (===) performs a strict comparison without type coercion. Choose the appropriate one based on your use case. If you want to ensure both the value and the data type are the same, use  for comparison.",
+    id: 6,
+  },
+  {
+    title: "Tech Bot Project",
+    status: "Not completed",
+    date: "Thursday, 2nd July 2023",
+    time: "9:00AM",
+    percentage: "40%",
+    content:
+      "The double equals performs type coercion, meaning it converts the operands to the same type before making the comparison. The triple equals (===) performs a strict comparison without type coercion. Choose the appropriate one based on your use case. If you want to ensure both the value and the data type are the same, use  for comparison.",
+    id: 7,
+  },
+  {
+    title: "Tech Bot Project",
+    status: "Not completed",
+    date: "Thursday, 2nd July 2023",
+    time: "9:00AM",
+    percentage: "10%",
+    content:
+      "The double equals performs type coercion, meaning it converts the operands to the same type before making the comparison. The triple equals (===) performs a strict comparison without type coercion. Choose the appropriate one based on your use case. If you want to ensure both the value and the data type are the same, use  for comparison.",
+    id: 8,
+  },
+  {
+    title: "Tech Bot Project",
+    status: "Not completed",
+    date: "Thursday, 2nd July 2023",
+    time: "9:00AM",
+    percentage: "90%",
+    content:
+      "The double equals performs type coercion, meaning it converts the operands to the same type before making the comparison. The triple equals (===) performs a strict comparison without type coercion. Choose the appropriate one based on your use case. If you want to ensure both the value and the data type are the same, use  for comparison.",
+    id: 1,
+  },
+  {
+    title: "Tech Bot Project",
+    status: "Completed",
+    date: "Thursday, 2nd July 2023",
+    time: "9:00AM",
+    percentage: "100%",
+    content:
+      "The double equals performs type coercion, meaning it converts the operands to the same type before making the comparison. The triple equals (===) performs a strict comparison without type coercion. Choose the appropriate one based on your use case. If you want to ensure both the value and the data type are the same, use  for comparison.",
+    id: 2,
+  },
+  {
+    title: "Tech Bot Project",
+    status: "Not completed",
+    date: "Thursday, 2nd July 2023",
+    time: "9:00AM",
+    percentage: "40%",
+    content:
+      "The double equals performs type coercion, meaning it converts the operands to the same type before making the comparison. The triple equals (===) performs a strict comparison without type coercion. Choose the appropriate one based on your use case. If you want to ensure both the value and the data type are the same, use  for comparison.",
+    id: 3,
+  },
+  {
+    title: "Tech Bot Project",
+    status: "Not completed",
+    date: "Thursday, 2nd July 2023",
+    time: "9:00AM",
+    percentage: "10%",
+    content:
+      "The double equals performs type coercion, meaning it converts the operands to the same type before making the comparison. The triple equals (===) performs a strict comparison without type coercion. Choose the appropriate one based on your use case. If you want to ensure both the value and the data type are the same, use  for comparison.",
+    id: 4,
+  },
+  {
+    title: "Tech Bot Project",
+    status: "Not completed",
+    date: "Thursday, 2nd July 2023",
+    time: "9:00AM",
+    percentage: "90%",
+    content:
+      "The double equals performs type coercion, meaning it converts the operands to the same type before making the comparison. The triple equals (===) performs a strict comparison without type coercion. Choose the appropriate one based on your use case. If you want to ensure both the value and the data type are the same, use  for comparison.",
+    id: 5,
+  },
+  {
+    title: "Tech Bot Project",
+    status: "Completed",
+    date: "Thursday, 2nd July 2023",
+    time: "9:00AM",
+    percentage: "100%",
+    content:
+      "The double equals performs type coercion, meaning it converts the operands to the same type before making the comparison. The triple equals (===) performs a strict comparison without type coercion. Choose the appropriate one based on your use case. If you want to ensure both the value and the data type are the same, use  for comparison.",
+    id: 6,
+  },
+  {
+    title: "Tech Bot Project",
+    status: "Not completed",
+    date: "Thursday, 2nd July 2023",
+    time: "9:00AM",
+    percentage: "40%",
+    content:
+      "The double equals performs type coercion, meaning it converts the operands to the same type before making the comparison. The triple equals (===) performs a strict comparison without type coercion. Choose the appropriate one based on your use case. If you want to ensure both the value and the data type are the same, use  for comparison.",
+    id: 7,
+  },
+  {
+    title: "Tech Bot Project",
+    status: "Not completed",
+    date: "Thursday, 2nd July 2023",
+    time: "9:00AM",
+    percentage: "10%",
+    content:
+      "The double equals performs type coercion, meaning it converts the operands to the same type before making the comparison. The triple equals (===) performs a strict comparison without type coercion. Choose the appropriate one based on your use case. If you want to ensure both the value and the data type are the same, use  for comparison.",
+    id: 8,
+  },
+];
 export default function Progress() {
   const [filter, setFilter] = useState<string>("All");
-
-  const projectList = [
-    {
-      title: "Tech Bot Project",
-      status: "Not completed",
-      date: "Thursday, 2nd July 2023",
-      time: "9:00AM",
-      percentage: "90%",
-      content:
-        "The double equals performs type coercion, meaning it converts the operands to the same type before making the comparison. The triple equals (===) performs a strict comparison without type coercion. Choose the appropriate one based on your use case. If you want to ensure both the value and the data type are the same, use  for comparison.",
-      id: 1,
-    },
-    {
-      title: "Tech Bot Project",
-      status: "Completed",
-      date: "Thursday, 2nd July 2023",
-      time: "9:00AM",
-      percentage: "100%",
-      content:
-        "The double equals performs type coercion, meaning it converts the operands to the same type before making the comparison. The triple equals (===) performs a strict comparison without type coercion. Choose the appropriate one based on your use case. If you want to ensure both the value and the data type are the same, use  for comparison.",
-      id: 2,
-    },
-    {
-      title: "Tech Bot Project",
-      status: "Not completed",
-      date: "Thursday, 2nd July 2023",
-      time: "9:00AM",
-      percentage: "40%",
-      content:
-        "The double equals performs type coercion, meaning it converts the operands to the same type before making the comparison. The triple equals (===) performs a strict comparison without type coercion. Choose the appropriate one based on your use case. If you want to ensure both the value and the data type are the same, use  for comparison.",
-      id: 3,
-    },
-    {
-      title: "Tech Bot Project",
-      status: "Not completed",
-      date: "Thursday, 2nd July 2023",
-      time: "9:00AM",
-      percentage: "10%",
-      content:
-        "The double equals performs type coercion, meaning it converts the operands to the same type before making the comparison. The triple equals (===) performs a strict comparison without type coercion. Choose the appropriate one based on your use case. If you want to ensure both the value and the data type are the same, use  for comparison.",
-      id: 4,
-    },
-    {
-      title: "Tech Bot Project",
-      status: "Not completed",
-      date: "Thursday, 2nd July 2023",
-      time: "9:00AM",
-      percentage: "90%",
-      content:
-        "The double equals performs type coercion, meaning it converts the operands to the same type before making the comparison. The triple equals (===) performs a strict comparison without type coercion. Choose the appropriate one based on your use case. If you want to ensure both the value and the data type are the same, use  for comparison.",
-      id: 5,
-    },
-    {
-      title: "Tech Bot Project",
-      status: "Completed",
-      date: "Thursday, 2nd July 2023",
-      time: "9:00AM",
-      percentage: "100%",
-      content:
-        "The double equals performs type coercion, meaning it converts the operands to the same type before making the comparison. The triple equals (===) performs a strict comparison without type coercion. Choose the appropriate one based on your use case. If you want to ensure both the value and the data type are the same, use  for comparison.",
-      id: 6,
-    },
-    {
-      title: "Tech Bot Project",
-      status: "Not completed",
-      date: "Thursday, 2nd July 2023",
-      time: "9:00AM",
-      percentage: "40%",
-      content:
-        "The double equals performs type coercion, meaning it converts the operands to the same type before making the comparison. The triple equals (===) performs a strict comparison without type coercion. Choose the appropriate one based on your use case. If you want to ensure both the value and the data type are the same, use  for comparison.",
-      id: 7,
-    },
-    {
-      title: "Tech Bot Project",
-      status: "Not completed",
-      date: "Thursday, 2nd July 2023",
-      time: "9:00AM",
-      percentage: "10%",
-      content:
-        "The double equals performs type coercion, meaning it converts the operands to the same type before making the comparison. The triple equals (===) performs a strict comparison without type coercion. Choose the appropriate one based on your use case. If you want to ensure both the value and the data type are the same, use  for comparison.",
-      id: 8,
-    },
-    {
-      title: "Tech Bot Project",
-      status: "Not completed",
-      date: "Thursday, 2nd July 2023",
-      time: "9:00AM",
-      percentage: "90%",
-      content:
-        "The double equals performs type coercion, meaning it converts the operands to the same type before making the comparison. The triple equals (===) performs a strict comparison without type coercion. Choose the appropriate one based on your use case. If you want to ensure both the value and the data type are the same, use  for comparison.",
-      id: 1,
-    },
-    {
-      title: "Tech Bot Project",
-      status: "Completed",
-      date: "Thursday, 2nd July 2023",
-      time: "9:00AM",
-      percentage: "100%",
-      content:
-        "The double equals performs type coercion, meaning it converts the operands to the same type before making the comparison. The triple equals (===) performs a strict comparison without type coercion. Choose the appropriate one based on your use case. If you want to ensure both the value and the data type are the same, use  for comparison.",
-      id: 2,
-    },
-    {
-      title: "Tech Bot Project",
-      status: "Not completed",
-      date: "Thursday, 2nd July 2023",
-      time: "9:00AM",
-      percentage: "40%",
-      content:
-        "The double equals performs type coercion, meaning it converts the operands to the same type before making the comparison. The triple equals (===) performs a strict comparison without type coercion. Choose the appropriate one based on your use case. If you want to ensure both the value and the data type are the same, use  for comparison.",
-      id: 3,
-    },
-    {
-      title: "Tech Bot Project",
-      status: "Not completed",
-      date: "Thursday, 2nd July 2023",
-      time: "9:00AM",
-      percentage: "10%",
-      content:
-        "The double equals performs type coercion, meaning it converts the operands to the same type before making the comparison. The triple equals (===) performs a strict comparison without type coercion. Choose the appropriate one based on your use case. If you want to ensure both the value and the data type are the same, use  for comparison.",
-      id: 4,
-    },
-    {
-      title: "Tech Bot Project",
-      status: "Not completed",
-      date: "Thursday, 2nd July 2023",
-      time: "9:00AM",
-      percentage: "90%",
-      content:
-        "The double equals performs type coercion, meaning it converts the operands to the same type before making the comparison. The triple equals (===) performs a strict comparison without type coercion. Choose the appropriate one based on your use case. If you want to ensure both the value and the data type are the same, use  for comparison.",
-      id: 5,
-    },
-    {
-      title: "Tech Bot Project",
-      status: "Completed",
-      date: "Thursday, 2nd July 2023",
-      time: "9:00AM",
-      percentage: "100%",
-      content:
-        "The double equals performs type coercion, meaning it converts the operands to the same type before making the comparison. The triple equals (===) performs a strict comparison without type coercion. Choose the appropriate one based on your use case. If you want to ensure both the value and the data type are the same, use  for comparison.",
-      id: 6,
-    },
-    {
-      title: "Tech Bot Project",
-      status: "Not completed",
-      date: "Thursday, 2nd July 2023",
-      time: "9:00AM",
-      percentage: "40%",
-      content:
-        "The double equals performs type coercion, meaning it converts the operands to the same type before making the comparison. The triple equals (===) performs a strict comparison without type coercion. Choose the appropriate one based on your use case. If you want to ensure both the value and the data type are the same, use  for comparison.",
-      id: 7,
-    },
-    {
-      title: "Tech Bot Project",
-      status: "Not completed",
-      date: "Thursday, 2nd July 2023",
-      time: "9:00AM",
-      percentage: "10%",
-      content:
-        "The double equals performs type coercion, meaning it converts the operands to the same type before making the comparison. The triple equals (===) performs a strict comparison without type coercion. Choose the appropriate one based on your use case. If you want to ensure both the value and the data type are the same, use  for comparison.",
-      id: 8,
-    },
-  ];
-
-  
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(6);
-
 
   const uniqueStatuses = [...new Set<string>(projectList.map((project) => project.status))];
 
@@ -205,18 +201,15 @@ export default function Progress() {
   });
 
   // Get current posts
-
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = filteredProjects.slice(indexOfFirstPost, indexOfLastPost);
 
-  //Change page
-  // const paginate = (pageNumber: any) => setCurrentPage(pageNumber);
+  // Change page
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
   const paginateFront = () => setCurrentPage(currentPage + 1);
-  const paginateBack = () =>{ 
-    setCurrentPage(currentPage - 1)
-  }
+  const paginateBack = () => setCurrentPage(currentPage - 1);
+
    // Extract unique statuses from projectList
  
 
@@ -237,30 +230,7 @@ export default function Progress() {
           <MenuButton className="bg-app-pblue text-white hover:bg-opacity-90" as={Button} rightIcon={<BsSliders2Vertical />}>
             filter
           </MenuButton>
-          {/* <MenuList>
-            <MenuItem
-              onClick={() => setFilter("Completed")}
-            
-              // className={`${
-              //   filter === "Completed" ? "bg-blue-500" : "bg-gray-500"
-              // } text-white font-semibold py-2 px-4 rounded-lg mr-3`}
-            >
-              <button
-              >
-                Completed
-              </button>
-            </MenuItem>
-            <MenuItem>
-              <button
-                onClick={() => setFilter("Not completed")}
-                className={`${
-                  filter === "Not completed" ? "bg-blue-500" : "bg-gray-500"
-                } text-white font-semibold py-2 px-4 rounded-lg`}
-              >
-                Not Completed
-              </button>
-            </MenuItem>
-          </MenuList> */}
+          
            <MenuList>
           {/* Dynamically generate menu items based on unique statuses */}
           <MenuItem onClick={() => setFilter("All")}>All</MenuItem>
@@ -272,18 +242,19 @@ export default function Progress() {
         </MenuList>
         </Menu>
       </div>
+      
       <div className="flex flex-col gap-8">
         {currentPosts.map((item) => (
           <ProjectProgress key={item.id} item={item} />
         ))}
       </div>
       <Pagination
-        postsPerPage={postsPerPage} 
-        totalPosts={filteredProjects.length} 
+        postsPerPage={postsPerPage}
+        totalPosts={filteredProjects.length}
         currentPage={currentPage}
         paginateBack={paginateBack}
         paginateFront={paginateFront}
-        paginate={paginate} 
+        paginate={paginate}
       />
     </div>
   );

@@ -179,10 +179,10 @@ const Finished: React.FC = () => {
             </div>
             <div className="flex gap-3 flex-wrap ">
                           
-              <button className="flex gap-2 items-center bg-[#C8C8C8] py-2 px-2 rounded-lg">
+              <Link href={`/dashboard/projects/finished/${item.id}`} className="flex gap-2 items-center bg-[#C8C8C8] py-2 px-2 rounded-lg">
                 Submit review online
                 {/* <MdOutlineKeyboardArrowDown /> */}
-              </button>
+              </Link>
             </div>
           </div>
         ))}
