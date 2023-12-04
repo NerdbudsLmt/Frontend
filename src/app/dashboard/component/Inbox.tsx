@@ -6,7 +6,6 @@ export const Inbox = () => {
   return (
     <div>
        <HiOutlineChatBubbleLeftEllipsis size={25}/>
-        
     </div>
   )
 }
