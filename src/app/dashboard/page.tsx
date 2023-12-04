@@ -1,11 +1,20 @@
 "use client";
-
+ 
 import Projects from "@/components/Dashbord/Projects";
 import QuickSet from "@/components/Dashbord/QuickSet";
-// import Chart from "chart.js/auto";
-// import {Chart, ArcElement, Tooltip, Legend, Title} from 'chart.js';
+import {Chart as ChartJS, 
+  ArcElement, 
+  Tooltip, 
+  Legend, 
+  Title
+} from 'chart.js';
 import { Doughnut } from "react-chartjs-2";
-import React, { useEffect, useRef } from "react";
+
+ChartJS.register(
+  ArcElement,
+  Tooltip, 
+  Legend
+)
 
 // Chart.register(ArcElement, Tooltip, Legend, Title);
 // Chart.defaults.plugins.tooltip.backgroundColor = 'rgb(0, 0, 156)';
@@ -14,19 +23,25 @@ import React, { useEffect, useRef } from "react";
 // Chart.defaults.plugins.legend.title.text = '60 of 100 Done';
 // // Chart.defaults.plugins.legend.title.font = 'Helvetica Neue';
 
-const data = {
-  labels: ["Mon", "Tue", "Wed", "Thurs", "Fri"],
+
+
+
+export default function Dashboard() {
+  const data = {
+  // labels: ["Mon", "Tue", "Wed"],
   datasets: [
     {
-      label: "Attendance for Week 1",
-      data: [25, 24, 25, 25, 3],
-      borderColor: ["rgba(255,206,86,0.2)"],
+      // label: "Attendance",
+      data: [25, 24, 25],
+      borderColor: [
+        "#2CB629",
+        "rgba(232,211,6,1)",
+        "rgba(54,162,235,1)",
+      ],
       backgroundColor: [
         "#2CB629",
         "rgba(232,211,6,1)",
         "rgba(54,162,235,1)",
-        "rgba(255,159,64,1)",
-        "rgba(153,102,255,1)",
       ],
       pointBackgroundColor: "rgba(255,206,86,0.2)",
     },
@@ -53,7 +68,7 @@ const options = {
     },
   },
 };
-export default function Dashboard() {
+
   return (
     <div>
       <div className="text-[#265D80]  flex flex-wrap gap-4 justify-between items-start">
@@ -83,14 +98,23 @@ export default function Dashboard() {
           <p className="text-lg font-bold underline ">
             Overall Project Reports{" "}
           </p>
-          <div className="flex justify-between gap-1">
+          <div className="flex justify- gap-1">
             <ul className="text-left mt-4 font-semibold pl-5 w-[170px] text-md list-disc">
               <li className="text-[#2CB629]">3 running </li>
               <li className="text-[#009CFF] my-2">10 finished</li>
               <li className="text-[#D69E00]">1 pending</li>
             </ul>
-            <div className=" w-full">
-              {/* <Doughnut data={data} options={options} /> */}
+            {/* <div > */}
+            <div className="relative flex  w-[120px] h-[120px]">
+              <Doughnut
+                data={data}
+                options={options}
+              >
+              </Doughnut>
+              <div className="absolute font-bold w-[120px] h-[130px] flex justify-center items-center">
+              <p className="">30%</p>
+
+              </div>
             </div>
           </div>
         </div>
