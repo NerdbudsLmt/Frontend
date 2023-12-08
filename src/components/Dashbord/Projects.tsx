@@ -75,7 +75,7 @@ export default function Projects() {
             <button
           className='flex gap-2 items-center text-app-pblue transition bg-yellow border-2 border-yellow mt-2 py-2 px-4 rounded-full'      
           >
-            Schedule meeting 
+            Schedule meeting
             <FiClock size={20} />
           </button>
           </div>

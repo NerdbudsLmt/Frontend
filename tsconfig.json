@@ -35,6 +35,6 @@
     ".next/types/**/*.ts",
     "src/app/signup",
     "node_modules/@chakra-ui/react" // Include Chakra UI package for type checking
-  ],
+, "src/components/Dashbord/Projects.tsx"  ],
   "exclude": ["node_modules"]
 }
