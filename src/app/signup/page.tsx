@@ -51,7 +51,7 @@ export default function Home() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <div className="mx-auto text-white w-[97%] tablet:w-[95%] max-w-[1380px]">
+    <div className="mx-auto text-white w-[97%] tablet:w-[95%] max-w-[1380px] min-h-[100dvh]">
       <Nav />
       <header className="pt-4">
         <div className="flex flex-col items-center mb-4">
@@ -102,7 +102,7 @@ export default function Home() {
                 >
                   <ModalCloseButton />
                   <ModalBody>
-                    <PreSignupForm />
+                    <PreSignupForm link={item.link} />
                   </ModalBody>
                  
                 </ModalContent>

@@ -12,7 +12,11 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required("Password is required"),
 });
 
-export default function PreSignupForm() {
+interface PreSignupFormProps {
+    link: string; // Explicitly define the type of the link prop
+  }
+
+export default function PreSignupForm({ link }: PreSignupFormProps) {
   const [show, setShow] = useState<boolean>(true);
 
   // Initialize Formik for managing form state and validation.
@@ -26,7 +30,7 @@ export default function PreSignupForm() {
       // Save form values to sessionStorage
       sessionStorage.setItem('formValues', JSON.stringify(values));
       // Redirect to another page
-    //   window.location.href = '/another-page';
+      window.location.href = link;
     },
   });
 

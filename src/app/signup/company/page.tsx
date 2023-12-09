@@ -54,7 +54,7 @@ export default function Company() {
   });
 
   return (
-    <div className="py-6 mx-auto text-white w-[97%] tablet:w-[95%] max-w-[1380px]">
+    <div className="py-6 mx-auto text-white w-[97%] tablet:w-[95%] max-w-[1380px] min-h-[100dvh]">
       <Link href="/signup">
         <BsChevronLeft size={30} className="my-5" />
       </Link>
