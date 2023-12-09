@@ -18,9 +18,7 @@ interface CompanyFormValues {
   lastName: string;
   business: string;
   industry: string;
-  position: string;
-  email: string;
-  password: string;
+  phone: string;
 }
 
 // Define validation schema using Yup
@@ -29,9 +27,8 @@ const validationSchema = Yup.object().shape({
   lastName: Yup.string().required("Last Name is required"),
   business: Yup.string().required("Business Name is required"),
   industry: Yup.string().required("Industry Name is required"),
-  position: Yup.string().required("Position Name is required"),
-  email: Yup.string().email("Invalid email").required("Email is required"),
-  password: Yup.string().required("Password is required"),
+  phone: Yup.string().required("Phone Number is required"),
+
 });
 
 export default function Company() {
@@ -44,9 +41,8 @@ export default function Company() {
       lastName: "",
       business: "",
       industry: "",
-      position: "",
-      email: "",
-      password: "",
+      phone: "",
+     
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -56,7 +52,7 @@ export default function Company() {
   });
 
   return (
-    <div className="my-6 mx-auto text-white w-[97%] tablet:w-[95%] max-w-[1380px]">
+    <div className="py-6 mx-auto text-white w-[97%] tablet:w-[95%] max-w-[1380px] min-h-[100dvh]">
       <Link href="/signup" className=" ">
         <BsChevronLeft size={30} className="" />
       </Link>
@@ -176,58 +172,28 @@ export default function Company() {
             <div className="">
               <div className="my-3">
                 <label
-                  htmlFor="email"
+                  htmlFor="phone"
                   className="block text-gray-300 text-[16px]"
                 >
-                  Email
+                  Phone Number
                 </label>
                 <input
                   type="text"
-                  id="email"
-                  // name="email"
-                  placeholder="nerdbudsltd@gmail.com"
-                  {...formik.getFieldProps("email")}
+                  id="phone"
+                  // name="phone"
+                  placeholder="Phone Number"
+                  {...formik.getFieldProps("phone")}
                   className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
                 />
-                {formik.touched.email && formik.errors.email ? (
+                {formik.touched.phone && formik.errors.phone ? (
                   <div className="text-[red] text-[14px] italic">
-                    {formik.errors.email}
+                    {formik.errors.phone}
                   </div>
                 ) : null}
               </div>
             </div>
 
-            <div className="my-3 relative">
-              <label
-                htmlFor="password"
-                className="block font-semibold text-[16px]"
-              >
-                Password
-              </label>
-              <input
-                type={show ? "text" : "password"}
-                id="password"
-                // name="password"
-                placeholder="Password"
-                {...formik.getFieldProps("password")}
-                className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
-              />
-              <div
-                className="absolute top-9 right-4"
-                onClick={() => setShow(!show)}
-              >
-                {show ? (
-                  <BsEyeFill className="text-black" />
-                ) : (
-                  <BsEyeSlashFill className="text-black" />
-                )}
-              </div>
-              {formik.touched.password && formik.errors.password ? (
-                <div className="text-[red] text-[14px] italic">
-                  {formik.errors.password}
-                </div>
-              ) : null}
-            </div>
+           
 
             <button
               className="bg-app-sblue border-2 border-app-sblue text-white py-2 px-5 mt-3 rounded-full"
@@ -241,7 +207,7 @@ export default function Company() {
             Do have an account?{" "}
             <span className="text-app-porange"> Log in </span>
           </p>
-          <p className="w-[450px]">
+          {/* <p className="w-[450px]">
             By continuing you agree to Nerdbuds{" "}
             <span className="text-app-sblue underline"> Terms of Service </span>{" "}
             and acknowledge that you have read our{" "}
@@ -256,7 +222,7 @@ export default function Company() {
             <FcGoogle />
             Sign up with Google
           </button>
-          </Link>
+          </Link> */}
         </div>
       </div>
     </div>

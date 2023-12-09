@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useRef, useMemo } from "react";
-import { useTheme } from "next-themes";
+// import { useTheme } from "next-themes";
 import cn from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 import { useDimensions } from "@/hooks/useDimensions";
@@ -51,7 +51,7 @@ const mobileNavVariants = {
 
 const Nav = () => {
   // const containerRef = useRef(null);
-  const { setTheme } = useTheme();
+  // const { setTheme } = useTheme();
   const [navOpen, setNavOpen] = useState<boolean>(false);
   // const { height } = useDimensions(containerRef);
 
