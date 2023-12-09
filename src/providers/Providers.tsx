@@ -11,14 +11,14 @@ export function Providers({
   return (
     <CacheProvider>
       <ChakraProvider>
-        <NextUIProvider>
+        {/* <NextUIProvider> */}
           {/* <NextThemesProvider 
             attribute='class'
             defaultTheme='dark'
           > */}
             {children}
           {/* </NextThemesProvider> */}
-        </NextUIProvider>
+        {/* </NextUIProvider> */}
       </ChakraProvider>
     </CacheProvider>
   )

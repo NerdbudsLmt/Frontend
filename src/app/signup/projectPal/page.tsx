@@ -18,7 +18,7 @@ interface CompanyFormValues {
   lastName: string;
   university: string;
   level: string;
-  semester: string;
+  phone: string;
   uniemail: string;
   reg: string;
   password: string;
@@ -31,7 +31,7 @@ const validationSchema = Yup.object().shape({
   lastName: Yup.string().required("Last Name is required"),
   university: Yup.string().required("university Name is required"),
   level: Yup.string().required("level Name is required"),
-  semester: Yup.string().required("Position Name is required"),
+  phone: Yup.string().required("Position Name is required"),
   uniemail: Yup.string().email("Invalid email").required("Email is required"),
   reg: Yup.string().required("reg number is required"),
   password: Yup.string().required("Password is required"),
@@ -54,7 +54,7 @@ export default function ProjectPal() {
       lastName: "",
       university: "",
       level: "",
-      semester: "",
+      phone: "",
       uniemail: "",
       reg: "",
       password: "",
@@ -69,12 +69,12 @@ export default function ProjectPal() {
 
   return (
     <div>
-      <div className="my-6 mx-auto text-white w-[97%] tablet:w-[95%] max-w-[1380px]">
+      <div className="py-6 mx-auto text-white w-[97%] tablet:w-[95%] max-w-[1380px]">
         <Link href="/signup">
           <BsChevronLeft size={30} className="my-5" />
         </Link>
         <div className="flex gap-8 mb-4">
-          <div className="ccbasis-[40%] ">
+          <div className="basis-[40%] ">
             <Image
               src="/images/studentlog.svg"
               alt="Vercel Logo"
@@ -223,22 +223,22 @@ export default function ProjectPal() {
                 </div>
                 <div className="my-3">
                   <label
-                    htmlFor="semester"
+                    htmlFor="phone"
                     className="block text-gray-300 text-[16px]"
                   >
-                    Semester
+                    Phone Number (Optonal)
                   </label>
                   <input
                     type="text"
-                    id="semester"
-                    // name="semester"
-                    placeholder="Project Manager"
-                    {...formik.getFieldProps("semester")}
+                    id="phone"
+                    // name="phone"
+                    placeholder="Phone Number"
+                    {...formik.getFieldProps("phone")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
                   />
-                  {formik.touched.semester && formik.errors.semester ? (
+                  {formik.touched.phone && formik.errors.phone ? (
                     <div className="text-[red] text-[14px] italic">
-                      {formik.errors.semester}
+                      {formik.errors.phone}
                     </div>
                   ) : null}
                 </div>
@@ -374,7 +374,7 @@ export default function ProjectPal() {
               Do have an account?{" "}
               <span className="text-app-porange"> Log in </span>
             </p>
-            <p className="w-[450px]">
+            {/* <p className="w-[450px]">
               By continuing you agree to Nerdbuds{" "}
               <span className="text-app-sblue underline">
                 {" "}
@@ -392,7 +392,7 @@ export default function ProjectPal() {
             >
               <FcGoogle />
               Sign up with Google
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
