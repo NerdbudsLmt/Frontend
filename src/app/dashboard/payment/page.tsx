@@ -5,8 +5,9 @@ import PaymentMethods from "./paymethod/page"; // Corrected import and capitaliz
 export default function Page() {
   return (
     <div>
-      <Payment />
-      {/* <PaymentMethods /> */}
+      <div>
+        <Payment />
+      </div>
     </div>
   );
 }
