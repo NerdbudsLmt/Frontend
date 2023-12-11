@@ -11,8 +11,8 @@ interface Project {
 }
 
 const Finished: React.FC = () => {
-  
-  const projectList: Project[] = [
+
+    const projectList: Project[] = [
     {
       title: "Project Assistant",
       status: "Finished",
@@ -139,13 +139,11 @@ const Finished: React.FC = () => {
   const [postsPerPage] = useState(6);
 
   // Get current posts
-
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = projectList.slice(indexOfFirstPost, indexOfLastPost);
 
   //Change page
-  // const paginate = (pageNumber: any) => setCurrentPage(pageNumber);
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
   const paginateFront = () => setCurrentPage(currentPage + 1);
   const paginateBack = () =>{ 

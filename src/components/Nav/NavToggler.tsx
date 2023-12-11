@@ -1,15 +1,16 @@
-import { useTheme } from "next-themes";
+// import { useTheme } from "next-themes";
 import { motion } from "framer-motion";
 
 
 const Path = (props: any) => {
-    const { theme } = useTheme();
+    // const { theme } = useTheme();
     // console.log("theme:", theme);
 
     return   (<motion.path
         fill="transparent"
         strokeWidth="3"
-        stroke={`${(theme === "light" || theme === "") ? "#171717" : "#f5f5f5"}`}
+        stroke= "#f5f5f5"
+        // stroke={`${(theme === "light" || theme === "") ? "#171717" : "#f5f5f5"}`}
         strokeLinecap="round"
         {...props}
     />)

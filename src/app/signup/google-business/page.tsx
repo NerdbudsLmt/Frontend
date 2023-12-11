@@ -41,7 +41,7 @@ export default function BusinessG() {
   });
 
   return (
-    <div className="my-6 mx-auto text-white w-[97%] tablet:w-[95%] max-w-[1380px]">
+    <div className="my-6 mx-auto text-white w-[97%] tablet:w-[95%] max-w-[1380px] min-h-[100dvh]">
       <Link href="/signup" className=" ">
         <BsChevronLeft size={30} className="" />
       </Link>
