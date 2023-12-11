@@ -14,8 +14,12 @@ export const Inbox = () => {
   }
   return (
     <div>
-      <HiOutlineChatBubbleLeftEllipsis size={25} onClick={openModal} />
-      <InboxModal isOpen={isModalOpen} closeModal={closeModal} />
+      <HiOutlineChatBubbleLeftEllipsis
+        size={25}
+        onClick={openModal}
+        style={{ cursor: 'pointer' }}
+      />
+      <InboxModal isOpen={isModalOpen} onClose={closeModal} />
     </div>
   )
 }
