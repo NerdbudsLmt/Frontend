@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState, useRef, useMemo } from "react";
 // import { useTheme } from "next-themes";
 import cn from "clsx";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useDimensions } from "@/hooks/useDimensions";
 import NavLink from "@/components/Nav/NavLink";
@@ -50,6 +51,7 @@ const mobileNavVariants = {
 };
 
 const Nav = () => {
+  const { data: session } = useSession();
   // const containerRef = useRef(null);
   // const { setTheme } = useTheme();
   const [navOpen, setNavOpen] = useState<boolean>(false);
@@ -94,6 +96,21 @@ const Nav = () => {
             </Link>
           </div>
           <div>
+          {session?.user ? (
+          <>
+            {/* <p className="text-sky-600"> {session.user?.response?.full_name}</p> */}
+            {/* <p className="text-sky-600"> {session.user?.response?.user_type}</p> */}
+            <button className="text-red-500" onClick={() => signOut()}>
+              Sign Out
+            </button>
+          </>
+        ) : (
+          <>
+          <button className="text-green-600" onClick={() => signIn()}>
+            Sign In
+          </button>
+          </>
+        )}
             <Link
               href="/signup"
               className="bg-app-porange border-2 border-app-porange text-white py-2 px-3 rounded-md"

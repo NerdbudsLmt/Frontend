@@ -1,116 +1,170 @@
-'use client'
+"use client";
 
-import React from "react";
-import Link from "next/link";
+import React, { useState } from "react";
 import Image from "next/image";
-import { BsArrowRight } from "react-icons/bs";
+import { useRouter } from 'next/navigation';
+import { BsEyeSlashFill, BsEyeFill, BsChevronLeft } from "react-icons/bs";
+import { FcGoogle } from "react-icons/fc";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import Link from "next/link";
 import Nav from "@/components/Nav/Nav";
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  Button,
-  useDisclosure,
-} from "@chakra-ui/react";
-import PreSignupForm from "@/components/PreSignupForm";
 
-const data = [
-  {
-    link: "/signup/company",
-    imageSrc: "/images/company.svg",
-    title: "For ",
-    subtitle: "Companies",
-    description:
-      "We help companies with their branding and other services such as creation of products. A company account will give you access to these services and so much more.",
-  },
-  {
-    link: "/signup/projectPal",
-    imageSrc: "/images/student.svg",
-    title: "For ",
-    subtitle: "Students",
+interface CompanyFormValues {
+    email: string;
+    password: string;
+  }
+  
+// Define validation schema using Yup
+const validationSchema = Yup.object().shape({
+  email: Yup.string().email("Invalid email").required("Email is required"),
+  password: Yup.string().required("Password is required"),
+});
 
-    description:
-      "Investing in the youth is one of our drive so this account is for students who want to bring their idea to life. Don’t feel left out. Let us help you with your dreams.",
-  },
-  {
-    link: "/signup/business",
-    imageSrc: "/images/buisness.svg",
-    title: "For ",
-    subtitle: "Individuals",
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-    description:
-      "Starting a business can be scary and tasking. Let us help make the process easier for you while making you profit at the same time.",
-  },
-];
+export default function Login() {
+  const [show, setShow] = useState<boolean>(true);
+  const router = useRouter();
 
-export default function Home() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  // Initialize Formik for managing form state and validation.
+  const formik = useFormik<CompanyFormValues>({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      try {
+        // Save form data to localStorage
+        localStorage.setItem("signupData", JSON.stringify(values));
+    
+        // Navigate to the next page
+        router.push('/signup/user-type');
+      } catch (error) {
+        console.error("Error occurred:", error);
+      }
+    },
+   
+  });
 
   return (
-    <div className="mx-auto text-white w-[97%] tablet:w-[95%] max-w-[1380px] min-h-[100dvh]">
+    <main className="mx-auto text-white w-[97%] tablet:w-[95%] max-w-[1380px]">
       <Nav />
-      <header className="pt-4">
-        <div className="flex flex-col items-center mb-4">
-          <div>
-            <h1 className="text-3xl tablet:text-4xl w-[98%]  tablet:w-[400px] font-bold text-center text-app-sblue">
-              What type of <span className="text-app-porange">account</span> do
-              you need?
+
+      <div className="py-6 mx-auto w-[100%] ">
+       
+        <div className="flex  gap-8 my-4">
+          <div className="login fp1 hidden laptop:block grow laptop:basis-[65%] h-[90dvh] rounded-lg overflow-hidden">
+          
+          </div>
+          <div className="min-h-[100dvh]  laptop:grow-[2] w-[97%] m-auto laptop:basis-[45%] laptop:my-auto">
+            <h1 className="text-4xl font-bold text-app-sblue">
+              Hello
+              <span className="text-app-porange"> there</span>👋
             </h1>
+            <p className="text-gray-400 my-2">
+            Let’s get you <span className="text-app-porange"> started! </span>
+            </p>
+            <form className="my-4" onSubmit={formik.handleSubmit}>
+            
+              <div className="">
+              
+              <div className="">
+                <div className="my-3">
+                  <label
+                    htmlFor="email"
+                    className="block text-gray-300 text-[16px]"
+                  >
+                    Email
+                  </label>
+                  <input
+                    type="text"
+                    id="email"
+                    // name="email"
+                    placeholder="nerdbudsltd@gmail.com"
+                    {...formik.getFieldProps("email")}
+                    className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
+                  />
+                  {formik.touched.email && formik.errors.email ? (
+                    <div className="text-[red] text-[14px] italic">
+                      {formik.errors.email}
+                    </div>
+                  ) : null}
+                </div>
+              </div>
+              </div>
+
+              {/* <div className="flex justify-between gap-4"> */}
+              <div className="my-3 relative">
+                <label
+                  htmlFor="password"
+                  className="block font-semibold text-[16px]"
+                >
+                  Password
+                </label>
+                <input
+                  type={show ? "text" : "password"}
+                  id="password"
+                  // name="password"
+                  placeholder="Password"
+                  {...formik.getFieldProps("password")}
+                  className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
+                />
+                <div
+                  className="absolute top-9 right-4"
+                  onClick={() => setShow(!show)}
+                >
+                  {show ? (
+                    <BsEyeFill className="text-black" />
+                  ) : (
+                    <BsEyeSlashFill className="text-black" />
+                  )}
+                </div>
+                {formik.touched.password && formik.errors.password ? (
+                  <div className="text-[red] text-[14px] italic">
+                    {formik.errors.password}
+                  </div>
+                ) : null}
+              </div>
+
+
+              {/* </div> */}
+
+              
+
+              <button
+                className="bg-app-sblue border-2 border-app-sblue text-white py-2 px-5 mt-3 rounded-full"
+                type="submit"
+              >
+                Proceed
+              </button>
+            </form>
+
+            <p className="text-sm text-gray-400 mt-2 mb-5">
+              Do have an account?{" "}
+              <span className="text-app-porange">Log in </span>
+            </p>
+            <p className="text-sm text-gray-400 mt-2 mb-5">
+              Can&apos;t log in?{" "}
+              <Link href='/forget-password' className="text-app-sblue underline"> Forget password </Link>
+            </p>
+          
+
+            <Link href='/signup/google-company'>
+            <button
+              className="bg-[#265D80] flex items-center justify-center mt-6 gap-4 text-white py-2 px-5 w-full rounded-full"
+              // type="submit"
+            >
+            
+              <FcGoogle />
+              Sign up with Google
+            </button>
+            </Link>
+            
           </div>
         </div>
-      </header>
-      <div className="py-10 bg-app-pblue">
-        <div className="flex justify-around gap-y-12 gap-x-3 flex-wrap">
-          {data.map((item, index) => (
-            <div
-              key={index}
-              // href={item.link}
-              onClick={onOpen}
-              className="relative w-[85%] tablet_l:max-w-[272px] rounded-3xl cursor-pointer"
-            >
-              <Image
-                src={item.imageSrc}
-                className="min-h-fit h-fit max-h-[400px]"
-                alt="Vercel Logo"
-                width={400}
-                height={400}
-                priority
-              />
-              <div className="bg-sign mt-6 p-4 rounded-md">
-                <h1 className="text-3xl font-bold text-app-sblue">
-                  {item.title}
-                  <span className="text-app-porange"> {item.subtitle}</span>
-                </h1>
-                <p className="text-[17px] mt-2">{item.description}</p>
-              </div>
-             
-              <Modal
-                isCentered
-                onClose={onClose}
-                isOpen={isOpen}
-                size={'xl'}
-                motionPreset="slideInBottom"
-                >
-                <ModalOverlay />
-                <ModalContent
-                className='bg-app-pblue'
-                
-                >
-                  <ModalCloseButton />
-                  <ModalBody>
-                    <PreSignupForm link={item.link} />
-                  </ModalBody>
-                 
-                </ModalContent>
-              </Modal>
-            </div>
-          ))}
-        </div>
       </div>
-    </div>
+    </main>
   );
 }
