@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState, useRef, useMemo } from "react";
 // import { useTheme } from "next-themes";
 import cn from "clsx";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useDimensions } from "@/hooks/useDimensions";
 import NavLink from "@/components/Nav/NavLink";
@@ -50,6 +51,7 @@ const mobileNavVariants = {
 };
 
 const Nav = () => {
+  const { data: session } = useSession();
   // const containerRef = useRef(null);
   // const { setTheme } = useTheme();
   const [navOpen, setNavOpen] = useState<boolean>(false);
@@ -85,31 +87,48 @@ const Nav = () => {
           ))}
         </div>
         <div className="hidden md:flex justify-between items-center space-x-3">
-          <div>
-            <Link
-              href="/login"
-              className="border-2 border-white text-white py-2 px-3 rounded-md"
-            >
-              Login
-            </Link>
-          </div>
-          <div>
-            <Link
-              href="/signup"
-              className="bg-app-porange border-2 border-app-porange text-white py-2 px-3 rounded-md"
-            >
-              Sign Up
-            </Link>
-          </div>
+          {session?.user ? (
+            <>
+              {/* <p className="text-sky-600"> {session.user?.response?.full_name}</p> */}
+              {/* <p className="text-sky-600"> {session.user?.response?.user_type}</p> */}
+              <div>
+                <button
+                  className="border-2 border-app-porange text-white py-2 px-3 rounded-md"
+                  onClick={() => signOut()}
+                >
+                  Sign Out
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              <div>
+                <Link
+                  href="/login"
+                  className="border-2 border-white text-white py-2 px-3 rounded-md"
+                >
+                  Login
+                </Link>
+              </div>
+
+              <div>
+                <button
+                  className="bg-app-porange border-2 border-app-porange text-white py-2 px-3 rounded-md"
+                  onClick={() => signIn()}
+                >
+                  Sign In
+                </button>
+              </div>
+            </>
+          )}
         </div>
         {/* TODO: try to resolve issue with z-position */}
       </div>
       {/* mobile nav for now */}
       <AnimatePresence>
-
         {navOpen && (
           <div className={" fixed top-[10vh] left-0 z-10 h-[90vh] w-full pb-4"}>
-        {/* <div className="h-full w-full"> */}
+            {/* <div className="h-full w-full"> */}
             <motion.div
               initial={"hidden"}
               animate={"visible"}
@@ -128,24 +147,24 @@ const Nav = () => {
                   {...link}
                 />
               ))}
-         <div className="flex flex-col gap-8 px-5 ">
-          <div>
-            <Link
-              href="/login"
-              className="border-2 border-white text-white py-2 px-3 rounded-md"
-            >
-              Login
-            </Link>
-          </div>
-          <div>
-            <Link
-              href="/signup"
-              className="bg-app-porange border-2 border-app-porange text-white py-2 px-3 rounded-md"
-            >
-              Sign Up
-            </Link>
-          </div>
-        </div>
+              <div className="flex flex-col gap-8 px-5 ">
+                <div>
+                  <Link
+                    href="/login"
+                    className="border-2 border-white text-white py-2 px-3 rounded-md"
+                  >
+                    Login
+                  </Link>
+                </div>
+                <div>
+                  <Link
+                    href="/signup"
+                    className="bg-app-porange border-2 border-app-porange text-white py-2 px-3 rounded-md"
+                  >
+                    Sign Up
+                  </Link>
+                </div>
+              </div>
             </motion.div>
           </div>
         )}
