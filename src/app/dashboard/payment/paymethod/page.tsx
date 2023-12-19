@@ -12,7 +12,7 @@ export default function PaymentMethods() {
 
   return (
     <div>
-      <p className="text-3xl ml-1 inline">
+      <p className="text-3xl text-gray-500  ml-1 inline">
         payments <img className="inline" src="/Dot.png" alt="" />
       </p>
       <p className="ml-3 text-3xl inline font-semibold">Payment Methods</p>
