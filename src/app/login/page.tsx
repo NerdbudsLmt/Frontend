@@ -2,12 +2,14 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { BsEyeSlashFill, BsEyeFill, BsChevronLeft } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
+import Nav from "@/components/Nav/Nav";
 
 interface CompanyFormValues {
     email: string;
@@ -31,25 +33,31 @@ export default function Login() {
       password: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      // Handle form submission here
-      console.log(values);
-      router.push('/dashboard')
+    onSubmit: async (values) => {
+      const response = await signIn('credentials', {
+        email: values.email,
+        password: values.password,
+        redirect: true,
+        callbackUrl: '/dashboard',
+      });
     },
   });
 
   return (
     <main className="mx-auto text-white w-[97%] tablet:w-[95%] max-w-[1380px]">
+      <Nav />
 
-      <div className="my-6 mx-auto w-[100%] ">
-        <Link href="/signup" className=" ">
+      <div className="py-6 mx-auto w-[100%] ">
+        {/* <Link href="/signup" className=" ">
           <BsChevronLeft size={30} className="" />
-        </Link>
+        </Link> */}
         <div className="flex flex-row-reverse gap-8 my-4">
           <div className="login fp1 hidden laptop:block grow basis-[65%] h-[90dvh] rounded-lg overflow-hidden">
           
           </div>
-          <div className=" grow-[2] basis-[45%] my-auto">
+          {/* <div className=" grow-[2] basis-[45%] my-auto"> */}
+          <div className="min-h-[100dvh]  laptop:grow-[2] w-[97%] m-auto laptop:basis-[45%] laptop:my-auto">
+
             <h1 className="text-4xl font-bold text-app-sblue">
               Welcome
               <span className="text-app-porange"> back</span>
@@ -135,7 +143,7 @@ export default function Login() {
 
             <p className="text-sm text-gray-400 mt-2 mb-5">
               Do have an account?{" "}
-              <span className="text-app-porange"> Log in </span>
+              <span className="text-app-porange">Sign up </span>
             </p>
             <p className="text-sm text-gray-400 mt-2 mb-5">
               Can&apos;t log in?{" "}

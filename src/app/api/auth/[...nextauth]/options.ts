@@ -20,7 +20,7 @@ export const options: NextAuthOptions = {
                 // This is where you need to retrieve user data 
                 // to verify with credentials
                 // Docs: https://next-auth.js.org/configuration/providers/credentials
-                const res = await fetch(`${apiUrl}/users/login`, {
+                const res = await fetch(`${apiUrl}/auth/form/login`, {
                     method: 'POST',
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
@@ -44,24 +44,24 @@ export const options: NextAuthOptions = {
     ],
     secret: process.env.NEXTAUTH_SECRET,
     pages: {
-      signIn: '/sign-in'
+      signIn: '/login'
     },
     callbacks: {
       async jwt({ token, user }: any) {
-        if (user && user.response) {
-            token.id = user.response.id;
-            token.email = user.response.email;
-            token.user_type = user.response.user_type;
-            token.full_name = user.response.full_name;
+        if (user && user.data) {
+            token.accessToken = user.data.accessToken;
+            // token.email = user.data.email;
+            token.userType = user.data.user.userType;
+            // token.full_name = user.data.full_name;
         }
         return token;
     },
     async session({ session, token }: any) {
-        if (token && token.user_type) {
-            session.user.id = token.id;
-            session.user.email = token.email;
-            session.user.user_type = token.user_type;
-            session.user.full_name = token.full_name;
+        if (token && token.userType) {
+            session.user.token = token.accessToken;
+            // session.user.email = token.email;
+            session.user.userType = token.userType;
+            // session.user.full_name = token.full_name;
         }
         return session;
     },
