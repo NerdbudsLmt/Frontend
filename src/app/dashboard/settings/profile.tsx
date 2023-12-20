@@ -35,7 +35,7 @@ const Profile = () => {
                 <FaRegUserCircle color="#757575" />
               </InputLeftElement>
               <Input
-                width={"355px"}
+                width={{ base: "full", md: "355px" }}
                 rounded={"lg"}
                 placeholder="Sean"
                 focusBorderColor="#3F9BD5"
@@ -48,7 +48,7 @@ const Profile = () => {
                 <FaRegUserCircle color="#757575" />
               </InputLeftElement>
               <Input
-                width={"355px"}
+                width={{ base: "full", md: "355px" }}
                 rounded={"lg"}
                 placeholder="Chinedu"
                 focusBorderColor="#3F9BD5"
@@ -62,14 +62,14 @@ const Profile = () => {
                   <MdAlternateEmail color="#757575" />
                 </InputLeftElement>
                 <Input
-                  width={"355px"}
+                  width={{ base: "full", md: "355px" }}
                   rounded={"lg"}
                   placeholder="seanchinedu@gmail.com"
                   focusBorderColor="#3F9BD5"
                 />
               </InputGroup>
             </FormControl>
-            <button className="text-white bg-[#3F9BD5] inline-flex rounded-[10px] px-[24px] py-[10px] h-[45px]">
+            <button className="text-white bg-[#3F9BD5]  rounded-[10px] px-[24px] py-[10px] h-[45px] md:inline-flex hidden">
               Edit
             </button>
           </HStack>
@@ -80,7 +80,7 @@ const Profile = () => {
                 <Image src={"/svgs/Bank-r.svg"} alt={"dashboard"} />
               </InputLeftElement>
               <Input
-                width={"355px"}
+                width={{ base: "full", md: "355px" }}
                 rounded={"lg"}
                 placeholder="Techbuds"
                 focusBorderColor="#3F9BD5"
@@ -98,14 +98,14 @@ const Profile = () => {
                   <Image src={"/svgs/Dashboard.svg"} alt={"dashboard"} />
                 </InputLeftElement>
                 <Input
-                  width={"355px"}
+                  width={{ base: "full", md: "355px" }}
                   rounded={"lg"}
                   placeholder="Sean"
                   focusBorderColor="#3F9BD5"
                 />
               </InputGroup>
             </FormControl>
-            <button className="text-white bg-[#3F9BD5] inline-flex rounded-[10px] px-[24px] py-[10px] h-[45px]">
+            <button className="text-white bg-[#3F9BD5] md:inline-flex hidden rounded-[10px] px-[24px] py-[10px] h-[45px]">
               Edit
             </button>
           </HStack>
