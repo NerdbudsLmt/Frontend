@@ -1,73 +1,19 @@
-"use client";
- 
+
+import { DoughnutChart } from "@/components/Dashbord/DoughnutChart";
 import Projects from "@/components/Dashbord/Projects";
 import QuickSet from "@/components/Dashbord/QuickSet";
-import {Chart as ChartJS, 
-  ArcElement, 
-  Tooltip, 
-  Legend, 
-  Title
-} from 'chart.js';
-import { Doughnut } from "react-chartjs-2";
 
-ChartJS.register(
-  ArcElement,
-  Tooltip, 
-  Legend
-)
-
-// Chart.register(ArcElement, Tooltip, Legend, Title);
-// Chart.defaults.plugins.tooltip.backgroundColor = 'rgb(0, 0, 156)';
-// Chart.defaults.plugins.legend.position = 'right';
-// Chart.defaults.plugins.legend.title.display = true;
-// Chart.defaults.plugins.legend.title.text = '60 of 100 Done';
-// // Chart.defaults.plugins.legend.title.font = 'Helvetica Neue';
+import { options } from "../api/auth/[...nextauth]/options"
+import { getServerSession } from "next-auth/next"
+import { redirect } from "next/navigation"
 
 
+export default async function Dashboard() {
+  const session = await getServerSession(options)
+  if (!session) {
+      redirect('/login')
+  }
 
-
-export default function Dashboard() {
-  const data = {
-  // labels: ["Mon", "Tue", "Wed"],
-  datasets: [
-    {
-      // label: "Attendance",
-      data: [25, 24, 25],
-      borderColor: [
-        "#2CB629",
-        "rgba(232,211,6,1)",
-        "rgba(54,162,235,1)",
-      ],
-      backgroundColor: [
-        "#2CB629",
-        "rgba(232,211,6,1)",
-        "rgba(54,162,235,1)",
-      ],
-      pointBackgroundColor: "rgba(255,206,86,0.2)",
-    },
-  ],
-};
-
-const options = {
-  plugins: {
-    title: {
-      display: true,
-      text: "Doughnut Chart",
-      color: "blue",
-      font: {
-        size: 34,
-      },
-      padding: {
-        top: 30,
-        bottom: 30,
-      },
-      responsive: true,
-      animation: {
-        animateScale: true,
-      },
-    },
-  },
-};
 
   return (
     <div>
@@ -104,18 +50,8 @@ const options = {
               <li className="text-[#009CFF] my-2">10 finished</li>
               <li className="text-[#D69E00]">1 pending</li>
             </ul>
-            {/* <div > */}
-            <div className="relative flex  w-[120px] h-[120px]">
-              <Doughnut
-                data={data}
-                options={options}
-              >
-              </Doughnut>
-              <div className="absolute font-bold w-[120px] h-[130px] flex justify-center items-center">
-              <p className="">30%</p>
-
-              </div>
-            </div>
+         
+            <DoughnutChart />
           </div>
         </div>
       </div>
