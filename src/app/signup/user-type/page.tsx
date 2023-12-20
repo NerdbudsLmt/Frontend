@@ -21,7 +21,7 @@ import PreSignupForm from "@/components/PreSignupForm";
 
 const data = [
   {
-    userType: "Company",
+    userType: "company",
     imageSrc: "/images/company.svg",
     title: "For",
     subtitle: "Companies",
@@ -29,7 +29,7 @@ const data = [
       "We help companies with their branding and other services such as creation of products. A company account will give you access to these services and so much more.",
   },
   {
-    userType: "Student",
+    userType: "student",
     imageSrc: "/images/student.svg",
     title: "For ",
     subtitle: "Students",
@@ -38,7 +38,7 @@ const data = [
       "Investing in the youth is one of our drive so this account is for students who want to bring their idea to life. Don’t feel left out. Let us help you with your dreams.",
   },
   {
-    userType: "Business",
+    userType: "business",
     imageSrc: "/images/buisness.svg",
     title: "For ",
     subtitle: "Individuals",
@@ -57,11 +57,13 @@ export default function Home() {
 
   const handleFormSubmit = async (userType: string) => {
     // Retrieve formData from localStorage
+    const capitalizedUserType = userType.charAt(0).toUpperCase() + userType.slice(1).toLowerCase();
+   console.log(capitalizedUserType)
     const storedData = localStorage.getItem("signupData");
     const parsedData = storedData ? JSON.parse(storedData) : {};
     
     // Include the 'userType' value in the request body
-    const requestData = { ...parsedData, userType };
+    const requestData = { ...parsedData, userType: capitalizedUserType };
     console.log(requestData)
 
     try {
