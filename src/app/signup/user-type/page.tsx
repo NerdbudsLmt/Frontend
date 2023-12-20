@@ -83,6 +83,9 @@ export default function Home() {
         const data = await response.json();
         console.log("Data sent successfully:", data);
         localStorage.removeItem("signupData");
+        localStorage.setItem("token", JSON.stringify(data.data.accessToken));
+        console.log(data.data.accessToken)
+
         router.push(`/signup/${userType}`);
       } else {
         const errorData = await response.json(); // Assuming your server returns JSON for error responses

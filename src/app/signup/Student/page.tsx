@@ -7,6 +7,9 @@ import { FcGoogle } from "react-icons/fc";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
+import { useRouter } from 'next/navigation';
+
+
 
 /**
  * Represents the values of the Company form.
@@ -14,28 +17,30 @@ import Link from "next/link";
  */
 
 interface CompanyFormValues {
-  firstName: string;
-  lastName: string;
-  university: string;
+  firstname: string;
+  username: string;
+  lastname: string;
+  universityName: string;
   level: string;
-  phone: string;
-  uniemail: string;
-  reg: string;
-  password: string;
-  picture: string | null;
+  universityEmail: string;
+  universityRegNo: string;
+  semester: string;
+  proofOfIdentification: string | null;
 }
 
 // Define validation schema using Yup
 const validationSchema = Yup.object().shape({
-  firstName: Yup.string().required("First Name is required"),
-  lastName: Yup.string().required("Last Name is required"),
-  university: Yup.string().required("university Name is required"),
+  firstname: Yup.string().required("First Name is required"),
+  username: Yup.string().required("Username is required"),
+  lastname: Yup.string().required("Last Name is required"),
+  universityName: Yup.string().required("universityName Name is required"),
   level: Yup.string().required("level Name is required"),
-  phone: Yup.string().required("Position Name is required"),
-  uniemail: Yup.string().email("Invalid email").required("Email is required"),
-  reg: Yup.string().required("reg number is required"),
-  password: Yup.string().required("Password is required"),
-  picture: Yup.mixed()
+  universityEmail: Yup.string()
+    .email("Invalid email")
+    .required("Email is required"),
+  universityRegNo: Yup.string().required("universityRegNo number is required"),
+  semester: Yup.string().required("semester is required"),
+  proofOfIdentification: Yup.mixed()
     .test("fileSize", "File size must be less than 1MB", (value) =>
       value ? (value as File).size <= 1024000 : true
     )
@@ -46,24 +51,54 @@ const validationSchema = Yup.object().shape({
 
 export default function ProjectPal() {
   const [show, setShow] = useState<boolean>(true);
+  const router = useRouter();
+
 
   // Initialize Formik for managing form state and validation.
   const formik = useFormik<CompanyFormValues>({
     initialValues: {
-      firstName: "",
-      lastName: "",
-      university: "",
+      firstname: "",
+      lastname: "",
+      username: "",
+      universityName: "",
       level: "",
-      phone: "",
-      uniemail: "",
-      reg: "",
-      password: "",
-      picture: null,
+      universityEmail: "",
+      universityRegNo: "",
+      semester: "",
+      proofOfIdentification: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      // Handle form submission here
-      console.log(values);
+    onSubmit: async (values) => {
+      try {
+        const token = localStorage.getItem("token"); 
+
+        const parsedToken = token?.replace(/"/g, '') || null;
+    
+        console.log(parsedToken);
+
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+        const response = await fetch(`${apiUrl}/users/student`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${parsedToken}`,
+          },
+          body: JSON.stringify(values),
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log("Success:", data);
+      router.push('/signup/user-type');
+
+        } else {
+          const errorData = await response.json();
+          console.error("Error:", errorData);
+        }
+      } catch (error) {
+        console.error("Error:", (error as Error).message);
+      }
     },
   });
 
@@ -74,7 +109,7 @@ export default function ProjectPal() {
           <BsChevronLeft size={30} className="my-5" />
         </Link>
         <div className="flex gap-8 mb-4">
-          <div className="basis-[40%] ">
+          <div className="hidden sm:block basis-[40%] ">
             <Image
               src="/images/studentlog.svg"
               alt="Vercel Logo"
@@ -134,22 +169,23 @@ export default function ProjectPal() {
               <div className="">
                 <div className="my-3">
                   <label
-                    htmlFor="university"
+                    htmlFor="universityName"
                     className="block text-gray-300 text-[16px]"
                   >
                     University Name
                   </label>
                   <input
                     type="text"
-                    id="university"
-                    // name="university"
-                    placeholder="university Name"
-                    {...formik.getFieldProps("university")}
+                    id="universityName"
+                    // name="universityName"
+                    placeholder="Universiy Name"
+                    {...formik.getFieldProps("universityName")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
                   />
-                  {formik.touched.university && formik.errors.university ? (
+                  {formik.touched.universityName &&
+                  formik.errors.universityName ? (
                     <div className="text-[red] text-[14px] italic">
-                      {formik.errors.university}
+                      {formik.errors.universityName}
                     </div>
                   ) : null}
                 </div>
@@ -157,43 +193,43 @@ export default function ProjectPal() {
               <div className="flex justify-between gap-4">
                 <div className="my-3">
                   <label
-                    htmlFor="firstName"
+                    htmlFor="firstname"
                     className="block text-gray-300 text-[16px]"
                   >
                     First Name
                   </label>
                   <input
                     type="text"
-                    id="firstName"
-                    // name="firstName"
+                    id="firstname"
+                    // name="firstname"
                     placeholder="First Name"
-                    {...formik.getFieldProps("firstName")}
+                    {...formik.getFieldProps("firstname")}
                     className="border-[1.5px] w-full text-[16px] rounded-md text-black bg-white px-3 py-1 mt-1"
                   />
-                  {formik.touched.firstName && formik.errors.firstName ? (
+                  {formik.touched.firstname && formik.errors.firstname ? (
                     <div className="text-[red] text-[14px] italic">
-                      {formik.errors.firstName}
+                      {formik.errors.firstname}
                     </div>
                   ) : null}
                 </div>
                 <div className="my-3">
                   <label
-                    htmlFor="lastName"
+                    htmlFor="lastname"
                     className="block text-gray-300 text-[16px]"
                   >
                     Last Name
                   </label>
                   <input
                     type="text"
-                    id="lastName"
-                    // name="lastName"
+                    id="lastname"
+                    // name="lastname"
                     placeholder="Last Name"
-                    {...formik.getFieldProps("lastName")}
+                    {...formik.getFieldProps("lastname")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
                   />
-                  {formik.touched.lastName && formik.errors.lastName ? (
+                  {formik.touched.lastname && formik.errors.lastname ? (
                     <div className="text-[red] text-[14px] italic">
-                      {formik.errors.lastName}
+                      {formik.errors.lastname}
                     </div>
                   ) : null}
                 </div>
@@ -223,22 +259,22 @@ export default function ProjectPal() {
                 </div>
                 <div className="my-3">
                   <label
-                    htmlFor="phone"
+                    htmlFor="username"
                     className="block text-gray-300 text-[16px]"
                   >
-                    Phone Number (Optonal)
+                    User Name
                   </label>
                   <input
                     type="text"
-                    id="phone"
-                    // name="phone"
-                    placeholder="Phone Number"
-                    {...formik.getFieldProps("phone")}
+                    id="username"
+                    // name="username"
+                    placeholder="username"
+                    {...formik.getFieldProps("username")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
                   />
-                  {formik.touched.phone && formik.errors.phone ? (
+                  {formik.touched.username && formik.errors.username ? (
                     <div className="text-[red] text-[14px] italic">
-                      {formik.errors.phone}
+                      {formik.errors.username}
                     </div>
                   ) : null}
                 </div>
@@ -251,22 +287,23 @@ export default function ProjectPal() {
               <div className="">
                 <div className="my-3">
                   <label
-                    htmlFor="uniemail"
+                    htmlFor="universityEmail"
                     className="block text-gray-300 text-[16px]"
                   >
-                    University Email
+                    Universiy Email
                   </label>
                   <input
-                    type="text"
-                    id="uniemail"
+                    type="email"
+                    id="universityEmail"
                     // name=""
                     placeholder="sean.chinedu@lmu.edu.ng"
-                    {...formik.getFieldProps("uniemail")}
+                    {...formik.getFieldProps("universityEmail")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
                   />
-                  {formik.touched.uniemail && formik.errors.uniemail ? (
+                  {formik.touched.universityEmail &&
+                  formik.errors.universityEmail ? (
                     <div className="text-[red] text-[14px] italic">
-                      {formik.errors.uniemail}
+                      {formik.errors.universityEmail}
                     </div>
                   ) : null}
                 </div>
@@ -275,22 +312,47 @@ export default function ProjectPal() {
               <div className="">
                 <div className="my-3">
                   <label
-                    htmlFor="reg"
+                    htmlFor="universityRegNo"
                     className="block text-gray-300 text-[16px]"
                   >
-                    University Reg No
+                    Universiy Reg No
                   </label>
                   <input
                     type="text"
-                    id="reg"
+                    id="universityRegNo"
                     // name="sean.chinedu@lmu.edu.ng"
                     placeholder="84A23S"
-                    {...formik.getFieldProps("reg")}
+                    {...formik.getFieldProps("universityRegNo")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
                   />
-                  {formik.touched.reg && formik.errors.reg ? (
+                  {formik.touched.universityRegNo &&
+                  formik.errors.universityRegNo ? (
                     <div className="text-[red] text-[14px] italic">
-                      {formik.errors.reg}
+                      {formik.errors.universityRegNo}
+                    </div>
+                  ) : null}
+                </div>
+              </div>
+
+              <div className="">
+                <div className="my-3">
+                  <label
+                    htmlFor="semester"
+                    className="block text-gray-300 text-[16px]"
+                  >
+                    Semester
+                  </label>
+                  <input
+                    type="text"
+                    id="semester"
+                    // name="sean.chinedu@lmu.edu.ng"
+                    placeholder="semester"
+                    {...formik.getFieldProps("semester")}
+                    className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
+                  />
+                  {formik.touched.semester && formik.errors.semester ? (
+                    <div className="text-[red] text-[14px] italic">
+                      {formik.errors.semester}
                     </div>
                   ) : null}
                 </div>
@@ -298,42 +360,10 @@ export default function ProjectPal() {
 
               <div className="my-3 relative">
                 <label
-                  htmlFor="password"
-                  className="block font-semibold text-[16px]"
-                >
-                  Password
-                </label>
-                <input
-                  type={show ? "text" : "password"}
-                  id="password"
-                  // name="password"
-                  placeholder="Password"
-                  {...formik.getFieldProps("password")}
-                  className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
-                />
-                <div
-                  className="absolute top-9 right-4"
-                  onClick={() => setShow(!show)}
-                >
-                  {show ? (
-                    <BsEyeFill className="text-black" />
-                  ) : (
-                    <BsEyeSlashFill className="text-black" />
-                  )}
-                </div>
-                {formik.touched.password && formik.errors.password ? (
-                  <div className="text-[red] text-[14px] italic">
-                    {formik.errors.password}
-                  </div>
-                ) : null}
-              </div>
-
-              <div className="my-3 relative">
-                <label
-                  htmlFor="picture"
+                  htmlFor="proofOfIdentification"
                   className="block text-gray-300 text-[16px]"
                 >
-                  Proof of Identification
+                  Upload ID Card
                 </label>
                 <Image
                   src="/images/upload.svg"
@@ -344,20 +374,20 @@ export default function ProjectPal() {
                 />
                 <input
                   type="file"
-                  id="picture"
-                  name="picture"
+                  id="proofOfIdentification"
+                  name="proofOfIdentification"
                   accept="image/*"
                   onChange={(event) => {
                     const selectedFile = event.currentTarget.files
                       ? event.currentTarget.files[0]
                       : null;
-                    formik.setFieldValue("picture", selectedFile);
+                    formik.setFieldValue("proofOfIdentification", selectedFile);
                   }}
                   className="border-[1.5px] absolute top-7 bg-white opacity-0 z-10 w-[200px] h-[170px] text-[16px] rounded-md text-black px-3 py-1 mt-1"
                 />
-                {formik.touched.picture && formik.errors.picture ? (
+                {formik.touched.proofOfIdentification && formik.errors.proofOfIdentification ? (
                   <div className="text-[red] text-[14px] italic">
-                    {formik.errors.picture}
+                    {formik.errors.proofOfIdentification}
                   </div>
                 ) : null}
               </div>
