@@ -2,8 +2,8 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { BsEyeSlashFill, BsEyeFill, BsChevronLeft } from "react-icons/bs";
-import { FcGoogle } from "react-icons/fc";
+import { BsChevronLeft } from "react-icons/bs";
+
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
