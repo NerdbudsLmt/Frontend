@@ -51,6 +51,8 @@ const validationSchema = Yup.object().shape({
 
 export default function ProjectPal() {
   const [show, setShow] = useState<boolean>(true);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+
   const router = useRouter();
 
 
@@ -358,7 +360,7 @@ export default function ProjectPal() {
                 </div>
               </div>
 
-              <div className="my-3 relative">
+              {/* <div className="my-3 relative">
                 <label
                   htmlFor="proofOfIdentification"
                   className="block text-gray-300 text-[16px]"
@@ -390,7 +392,60 @@ export default function ProjectPal() {
                     {formik.errors.proofOfIdentification}
                   </div>
                 ) : null}
-              </div>
+              </div> */}
+              <div className="my-3 relative">
+   <label
+      htmlFor="proofOfIdentification"
+      className="block text-gray-300 text-[16px]"
+   >
+      Upload ID Card
+   </label>
+   {imagePreview && (
+      <Image
+         src={imagePreview}
+         alt="Image Preview"
+         width={200}
+         height={200}
+         className="relative rounded-xl mb-2"
+      />
+   )}
+   <Image
+      src="/images/upload.svg"
+      alt="Upload Icon"
+      width={200}
+      height={200}
+      priority
+   />
+   <input
+      type="file"
+      id="proofOfIdentification"
+      name="proofOfIdentification"
+      accept="image/*"
+      onChange={(event) => {
+         const selectedFile = event.currentTarget.files
+            ? event.currentTarget.files[0]
+            : null;
+         formik.setFieldValue("proofOfIdentification", selectedFile);
+         
+         // Image preview
+         if (selectedFile) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+               setImagePreview(reader.result as string);
+            };
+            reader.readAsDataURL(selectedFile);
+         } else {
+            setImagePreview(null);
+         }
+      }}
+      className="border-[1.5px] absolute top-7 bg-white opacity-0 z-10 w-[200px] h-[170px] text-[16px] rounded-md text-black px-3 py-1 mt-1"
+   />
+   {formik.touched.proofOfIdentification && formik.errors.proofOfIdentification ? (
+      <div className="text-[red] text-[14px] italic">
+         {formik.errors.proofOfIdentification}
+      </div>
+   ) : null}
+</div>
 
               <button
                 className="bg-app-sblue border-2 border-app-sblue text-white py-2 px-5 mt-3 rounded-full"
@@ -399,30 +454,7 @@ export default function ProjectPal() {
                 Create account
               </button>
             </form>
-
-            <p className="text-sm text-gray-400 mt-2 mb-5">
-              Do have an account?{" "}
-              <span className="text-app-porange"> Log in </span>
-            </p>
-            {/* <p className="w-[450px]">
-              By continuing you agree to Nerdbuds{" "}
-              <span className="text-app-sblue underline">
-                {" "}
-                Terms of Service{" "}
-              </span>{" "}
-              and acknowledge that you have read our{" "}
-              <span className="text-app-porange underline">
-                {" "}
-                Privacy Policy.
-              </span>{" "}
-            </p>
-            <button
-              className="bg-[#265D80] flex items-center justify-center mt-6 gap-4 text-white py-2 px-5 w-full rounded-full"
-              // type="submit"
-            >
-              <FcGoogle />
-              Sign up with Google
-            </button> */}
+            
           </div>
         </div>
       </div>
