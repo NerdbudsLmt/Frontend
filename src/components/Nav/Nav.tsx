@@ -103,21 +103,23 @@ const Nav = () => {
           ) : (
             <>
               <div>
-                <Link
-                  href="/login"
-                  className="border-2 border-white text-white py-2 px-3 rounded-md"
-                >
-                  Login
-                </Link>
-              </div>
-
-              <div>
+              
                 <button
                   className="bg-app-porange border-2 border-app-porange text-white py-2 px-3 rounded-md"
                   onClick={() => signIn()}
                 >
-                  Sign In
+                  Login
                 </button>
+              </div>
+
+              <div>
+               
+                <Link
+                  href="/signup"
+                  className="border-2 border-white text-white py-2 px-3 rounded-md"
+                >
+                  Sign up
+                </Link>
               </div>
             </>
           )}

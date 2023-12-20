@@ -143,7 +143,7 @@ export default function Login() {
 
             <p className="text-sm text-gray-400 mt-2 mb-5">
               Do have an account?{" "}
-              <span className="text-app-porange">Sign up </span>
+              <Link href='/signup' className="underline text-app-porange">Sign up </Link>
             </p>
             <p className="text-sm text-gray-400 mt-2 mb-5">
               Can&apos;t log in?{" "}

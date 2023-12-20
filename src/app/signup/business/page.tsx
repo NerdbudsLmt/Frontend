@@ -7,6 +7,8 @@ import { FcGoogle } from "react-icons/fc";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
+import { useRouter } from 'next/navigation';
+
 
 /**
  * Represents the values of the Company form.
@@ -14,40 +16,70 @@ import Link from "next/link";
  */
 
 interface CompanyFormValues {
-  firstName: string;
-  lastName: string;
-  business: string;
-  industry: string;
-  phone: string;
+  firstname: string;
+  lastname: string;
+  businessName: string;
+  businessIndustry: string;
+  username: string;
 }
 
 // Define validation schema using Yup
 const validationSchema = Yup.object().shape({
-  firstName: Yup.string().required("First Name is required"),
-  lastName: Yup.string().required("Last Name is required"),
-  business: Yup.string().required("Business Name is required"),
-  industry: Yup.string().required("Industry Name is required"),
-  phone: Yup.string().required("Phone Number is required"),
+  firstname: Yup.string().required("First Name is required"),
+  lastname: Yup.string().required("Last Name is required"),
+  businessName: Yup.string().required("Business Name is required"),
+  businessIndustry: Yup.string().required("Industry Name is required"),
+  username: Yup.string().required("Username Number is required"),
 
 });
 
 export default function Company() {
   const [show, setShow] = useState<boolean>(true);
+  const router = useRouter();
 
   // Initialize Formik for managing form state and validation.
   const formik = useFormik<CompanyFormValues>({
     initialValues: {
-      firstName: "",
-      lastName: "",
-      business: "",
-      industry: "",
-      phone: "",
+      firstname: "",
+      lastname: "",
+      businessName: "",
+      businessIndustry: "",
+      username: "",
      
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      // Handle form submission here
-      console.log(values);
+    onSubmit: async (values) => {
+      try {
+        const token = localStorage.getItem("token"); 
+
+        const parsedToken = token?.replace(/"/g, '') || null;
+    
+        console.log(parsedToken);
+
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+        const response = await fetch(`${apiUrl}/users/business`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${parsedToken}`,
+          },
+          body: JSON.stringify(values),
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log("Success:", data);
+          router.push('/login');
+
+
+        } else {
+          const errorData = await response.json();
+          console.error("Error:", errorData);
+        }
+      } catch (error) {
+        console.error("Error:", (error as Error).message);
+      }
     },
   });
 
@@ -78,43 +110,43 @@ export default function Company() {
             <div className="flex justify-between gap-4">
               <div className="my-3">
                 <label
-                  htmlFor="firstName"
+                  htmlFor="firstname"
                   className="block text-gray-300 text-[16px]"
                 >
                   First Name
                 </label>
                 <input
                   type="text"
-                  id="firstName"
-                  // name="firstName"
+                  id="firstname"
+                  // name="firstname"
                   placeholder="First Name"
-                  {...formik.getFieldProps("firstName")}
+                  {...formik.getFieldProps("firstname")}
                   className="border-[1.5px] w-full text-[16px] rounded-md text-black bg-white px-3 py-1 mt-1"
                 />
-                {formik.touched.firstName && formik.errors.firstName ? (
+                {formik.touched.firstname && formik.errors.firstname ? (
                   <div className="text-[red] text-[14px] italic">
-                    {formik.errors.firstName}
+                    {formik.errors.firstname}
                   </div>
                 ) : null}
               </div>
               <div className="my-3">
                 <label
-                  htmlFor="lastName"
+                  htmlFor="lastname"
                   className="block text-gray-300 text-[16px]"
                 >
                   Last Name
                 </label>
                 <input
                   type="text"
-                  id="lastName"
-                  // name="lastName"
+                  id="lastname"
+                  // name="lastname"
                   placeholder="Last Name"
-                  {...formik.getFieldProps("lastName")}
+                  {...formik.getFieldProps("lastname")}
                   className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
                 />
-                {formik.touched.lastName && formik.errors.lastName ? (
+                {formik.touched.lastname && formik.errors.lastname ? (
                   <div className="text-[red] text-[14px] italic">
-                    {formik.errors.lastName}
+                    {formik.errors.lastname}
                   </div>
                 ) : null}
               </div>
@@ -123,22 +155,22 @@ export default function Company() {
             <div className="">
               <div className="my-3">
                 <label
-                  htmlFor="business"
+                  htmlFor="businessName"
                   className="block text-gray-300 text-[16px]"
                 >
                   Business Name
                 </label>
                 <input
                   type="text"
-                  id="business"
-                  // name="business"
+                  id="businessName"
+                  // name="businessName"
                   placeholder="Nerdbud Ltd"
-                  {...formik.getFieldProps("business")}
+                  {...formik.getFieldProps("businessName")}
                   className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
                 />
-                {formik.touched.business && formik.errors.business ? (
+                {formik.touched.businessName && formik.errors.businessName ? (
                   <div className="text-[red] text-[14px] italic">
-                    {formik.errors.business}
+                    {formik.errors.businessName}
                   </div>
                 ) : null}
               </div>
@@ -147,22 +179,22 @@ export default function Company() {
             {/* <div className="flex justify-between gap-4"> */}
             <div className="my-3">
               <label
-                htmlFor="industry"
+                htmlFor="businessIndustry"
                 className="block text-gray-300 text-[16px]"
               >
                 Industry
               </label>
               <input
                 type="text"
-                id="industry"
-                // name="industry"
+                id="businessIndustry"
+                // name="businessIndustry"
                 placeholder="Software Design"
-                {...formik.getFieldProps("industry")}
+                {...formik.getFieldProps("businessIndustry")}
                 className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
               />
-              {formik.touched.industry && formik.errors.industry ? (
+              {formik.touched.businessIndustry && formik.errors.businessIndustry ? (
                 <div className="text-[red] text-[14px] italic">
-                  {formik.errors.industry}
+                  {formik.errors.businessIndustry}
                 </div>
               ) : null}
             </div>
@@ -172,22 +204,22 @@ export default function Company() {
             <div className="">
               <div className="my-3">
                 <label
-                  htmlFor="phone"
+                  htmlFor="username"
                   className="block text-gray-300 text-[16px]"
                 >
-                  Phone Number
+                  User Name
                 </label>
                 <input
                   type="text"
-                  id="phone"
-                  // name="phone"
-                  placeholder="Phone Number"
-                  {...formik.getFieldProps("phone")}
+                  id="username"
+                  // name="username"
+                  placeholder="Username"
+                  {...formik.getFieldProps("username")}
                   className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
                 />
-                {formik.touched.phone && formik.errors.phone ? (
+                {formik.touched.username && formik.errors.username ? (
                   <div className="text-[red] text-[14px] italic">
-                    {formik.errors.phone}
+                    {formik.errors.username}
                   </div>
                 ) : null}
               </div>
