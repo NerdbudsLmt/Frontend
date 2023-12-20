@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import Pagination from "@/components/Pagination";
 import Link from "next/link";
@@ -11,8 +11,7 @@ interface Project {
 }
 
 const Finished: React.FC = () => {
-
-    const projectList: Project[] = [
+  const projectList: Project[] = [
     {
       title: "Project Assistant",
       status: "Finished",
@@ -146,9 +145,9 @@ const Finished: React.FC = () => {
   //Change page
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
   const paginateFront = () => setCurrentPage(currentPage + 1);
-  const paginateBack = () =>{ 
-    setCurrentPage(currentPage - 1)
-  }
+  const paginateBack = () => {
+    setCurrentPage(currentPage - 1);
+  };
 
   return (
     <div className="max-w-[1000px] ">
@@ -165,19 +164,19 @@ const Finished: React.FC = () => {
             className="flex items-center justify-between flex-wrap rounded-lg py-2 px-4 gap-4 my-5 bg-[#F5F4F4]"
           >
             <div className="flex items-center gap-4">
-            <p className="text-[18px]">{item.id}.</p>
+              <p className="text-[18px]">{item.id}.</p>
               <p className="text-[18px] border-r-2 border-black pr-4">
                 {item.title}
               </p>
-              <p
-                className= "text-[14px] font-semibold text-[#5583C3]"
-              >
+              <p className="text-[14px] font-semibold text-[#5583C3]">
                 {item.status}
               </p>
             </div>
             <div className="flex gap-3 flex-wrap ">
-                          
-              <Link href={`/dashboard/projects/finished/${item.id}`} className="flex gap-2 items-center bg-[#C8C8C8] py-2 px-2 rounded-lg">
+              <Link
+                href={`/dashboard/projects/finished/${item.id}`}
+                className="flex gap-2 items-center bg-[#C8C8C8] py-2 px-2 rounded-lg"
+              >
                 Submit review online
                 {/* <MdOutlineKeyboardArrowDown /> */}
               </Link>
@@ -186,14 +185,13 @@ const Finished: React.FC = () => {
         ))}
       </div>
 
-   
-        <Pagination
-        postsPerPage={postsPerPage} 
-        totalPosts={projectList.length} 
+      <Pagination
+        postsPerPage={postsPerPage}
+        totalPosts={projectList.length}
         currentPage={currentPage}
         paginateBack={paginateBack}
         paginateFront={paginateFront}
-        paginate={paginate} 
+        paginate={paginate}
       />
     </div>
   );
