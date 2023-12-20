@@ -7,6 +7,7 @@ import {
   Text,
   HStack,
   InputGroup,
+  useToast,
 } from "@chakra-ui/react";
 import React from "react";
 import { CiLock } from "react-icons/ci";
@@ -23,11 +24,12 @@ interface UpdatePasswordData {
 const Password: React.FC = () => {
   const { data: session } = useSession();
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const toast = useToast();
 
   const validationSchema = Yup.object().shape({
     oldPassword: Yup.string().required("required"),
     newPassword: Yup.string()
-      .min(6, "New password must be at least 6 characters long")
+      .min(8, "New password must be at least 8 characters long")
       .required("required"),
     confirmNewPassword: Yup.string()
       .oneOf([Yup.ref("newPassword")], "Passwords must match")
@@ -47,7 +49,7 @@ const Password: React.FC = () => {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${session?.user?.refreshToken}`,
+            Authorization: `Bearer ${session?.user?.token || ""}`,
           },
           body: JSON.stringify({
             oldPassword: values.oldPassword,
@@ -58,8 +60,23 @@ const Password: React.FC = () => {
         const data = await response.json();
 
         if (response.ok) {
-          console.log("Password updated successfully");
+          toast({
+            title: "Password Updated Sucessfully",
+            description: data.message,
+            status: "success",
+            duration: 5000,
+            isClosable: true,
+            position: "top-right",
+          });
         } else {
+          toast({
+            title: "Password Update Failed",
+            description: data.message,
+            status: "error",
+            duration: 5000,
+            isClosable: true,
+            position: "top-right",
+          });
           console.error("Password update failed:", data.error);
         }
       } catch (error) {
