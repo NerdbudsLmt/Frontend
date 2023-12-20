@@ -14,13 +14,14 @@ import { BsBell, BsKey } from "react-icons/bs";
 import { FaRegUserCircle } from "react-icons/fa";
 import Password from "./password";
 import { Notification } from "./notification";
+import Profile from "./profile";
 
 const Settings = () => {
   const [currentPage, setCurrentPage] = useState("profile");
 
   return (
     <div>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center md:gap-2 gap-1">
         <h2 className="text-[#676767] md:text-[30px] text-[20px] font-[600]">
           settings
         </h2>
@@ -31,10 +32,10 @@ const Settings = () => {
           {currentPage === "notification" && "Notification"}
         </h3>
       </div>
-      <div className="flex gap-[5rem] mt-4">
+      <div className="flex sm:flex-row flex-col gap-[5rem] mt-4">
         <Box
           bg="#F5F4F4"
-          width="272px"
+          width={{ base: "full", md: "272px" }}
           height="243px"
           borderRadius="10px"
           p={3}
@@ -74,27 +75,7 @@ const Settings = () => {
             </span>
           </div>
         </Box>
-        {currentPage === "profile" && (
-          <Box
-            bg="#F5F4F4"
-            height="512px"
-            width="498px"
-            rounded="10px"
-            padding={6}
-          >
-            <Text fontSize="32px" color="#363939" fontWeight={600}>
-              Profile
-            </Text>
-            <FormControl>
-              <InputGroup>
-                <InputLeftAddon>
-                  <FaRegUserCircle />
-                </InputLeftAddon>
-                <Input placeholder="Sean" />
-              </InputGroup>
-            </FormControl>
-          </Box>
-        )}
+        {currentPage === "profile" && <Profile />}
         {currentPage === "password" && <Password />}
         {currentPage === "notification" && <Notification />}
       </div>
