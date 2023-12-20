@@ -22,7 +22,7 @@ interface UpdatePasswordData {
 }
 
 const Password: React.FC = () => {
-  const { data: session } = useSession();
+  const { data: session }: any = useSession();
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const toast = useToast();
 
@@ -49,7 +49,7 @@ const Password: React.FC = () => {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${session?.user?.token || ""}`,
+            Authorization: `Bearer ${session?.user?.token}`,
           },
           body: JSON.stringify({
             oldPassword: values.oldPassword,
@@ -61,10 +61,10 @@ const Password: React.FC = () => {
 
         if (response.ok) {
           toast({
-            title: "Password Updated Sucessfully",
-            description: data.message,
+            title: "Update Success",
+            description: "Password Updated Sucessfully",
             status: "success",
-            duration: 5000,
+            duration: 3000,
             isClosable: true,
             position: "top-right",
           });
@@ -73,7 +73,7 @@ const Password: React.FC = () => {
             title: "Password Update Failed",
             description: data.message,
             status: "error",
-            duration: 5000,
+            duration: 3000,
             isClosable: true,
             position: "top-right",
           });
