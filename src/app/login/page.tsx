@@ -38,7 +38,7 @@ export default function Login() {
         email: values.email,
         password: values.password,
         redirect: true,
-        callbackUrl: '/dashboard',
+        callbackUrl: '/',
       });
     },
   });
