@@ -6,7 +6,7 @@ export default withAuth(
         console.log(request.nextUrl.pathname)
         console.log(request.nextauth.token)
 
-        if (request.nextUrl.pathname.startsWith("/dashboard")
+        if (request.nextUrl.pathname.startsWith("/")
             && request.nextauth.token?.userType !== "Company"
             && request.nextauth.token?.userType !== "Student"
                 && request.nextauth.token?.userType !== "Business"
