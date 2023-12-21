@@ -3,10 +3,10 @@ import { NextResponse } from "next/server"
 
 export default withAuth(
     function middleware(request: NextRequestWithAuth) {
-        console.log(request.nextUrl.pathname)
-        console.log(request.nextauth.token)
+        // console.log(request.nextUrl.pathname)
+        // console.log(request.nextauth.token)
 
-        if (request.nextUrl.pathname.startsWith("/dashboard")
+        if (request.nextUrl.pathname.startsWith("/")
             && request.nextauth.token?.userType !== "Company"
             && request.nextauth.token?.userType !== "Student"
                 && request.nextauth.token?.userType !== "Business"
