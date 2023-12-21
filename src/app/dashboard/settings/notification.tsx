@@ -5,11 +5,21 @@ export const Notification = () => {
   return (
     <div>
       {" "}
-      <Box bg="#F5F4F4" height="auto" width="498px" rounded="10px" padding={6}>
+      <Box
+        bg="#F5F4F4"
+        height="auto"
+        width={{ base: "100%", md: "498px" }}
+        rounded="10px"
+        padding={6}
+      >
         <Text fontSize="32px" color="#363939" fontWeight={600}>
           Notification
         </Text>
-        <VStack spacing={4} width={"344px"}>
+        <VStack
+          alignItems={"flex-start"}
+          spacing={4}
+          width={{ base: "100%", md: "344px" }}
+        >
           <HStack alignItems={"flex-start"}>
             <Checkbox />
             <VStack
@@ -50,7 +60,7 @@ export const Notification = () => {
         </VStack>
         <div className="mt-5">
           <HStack>
-            <button className="bg-[#3F9BD5] text-white py-[10px] px-[21px] rounded-[10px]">
+            <button className="bg-[#3F9BD5] text-white md:py-[10px] md:px-[21px] py-[10px] px-[14px] text-[15px] rounded-[10px]">
               Save Changes
             </button>
             <button className="bg-[#B1AFAF] text-white py-[10px] px-[24px]  rounded-[10px] ">
