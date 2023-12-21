@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Box,
   FormControl,
@@ -8,8 +9,9 @@ import {
   HStack,
   InputGroup,
   useToast,
+  Spinner,
 } from "@chakra-ui/react";
-import React from "react";
+
 import { CiLock } from "react-icons/ci";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -25,6 +27,7 @@ const Password: React.FC = () => {
   const { data: session }: any = useSession();
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const toast = useToast();
+  const [isLoading, setIsLoading] = useState(false);
 
   const validationSchema = Yup.object().shape({
     oldPassword: Yup.string().required("required"),
@@ -45,7 +48,8 @@ const Password: React.FC = () => {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       try {
-        const response = await fetch(`${apiUrl}/users/password`, {
+        setIsLoading(true);
+        const res = await fetch(`${apiUrl}/users/password`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
@@ -56,10 +60,8 @@ const Password: React.FC = () => {
             newPassword: values.newPassword,
           }),
         });
-
-        const data = await response.json();
-
-        if (response.ok) {
+        const data = await res.json();
+        if (res.ok) {
           toast({
             title: "Update Success",
             description: "Password Updated Sucessfully",
@@ -68,6 +70,7 @@ const Password: React.FC = () => {
             isClosable: true,
             position: "top-right",
           });
+          setIsLoading(false);
         } else {
           toast({
             title: "Password Update Failed",
@@ -78,9 +81,11 @@ const Password: React.FC = () => {
             position: "top-right",
           });
           console.error("Password update failed:", data.error);
+          setIsLoading(false);
         }
       } catch (error) {
         console.error("An error occurred:", error);
+        setIsLoading(false);
       }
     },
   });
@@ -90,7 +95,7 @@ const Password: React.FC = () => {
       <Box
         bg="#F5F4F4"
         height="auto"
-        width={{ base: "full", sm: "498px" }}
+        width={{ base: "full", md: "full", lg: "498px" }}
         rounded="10px"
         padding={6}
       >
@@ -161,11 +166,12 @@ const Password: React.FC = () => {
           <div className="mt-5">
             <HStack>
               <button
-                className="bg-[#3F9BD5] text-white md:py-[10px] md:px-[21px] py-[10px] px-[14px] text-[15px] rounded-[10px]"
+                className="bg-[#3F9BD5] w-[148px] text-white md:py-[10px] md:px-[21px] py-[10px] px-[14px] text-[15px] rounded-[10px]"
                 type="submit"
                 // disabled={!formik.isValid}
+                disabled={isLoading}
               >
-                Save Changes
+                {isLoading ? <Spinner /> : " Save Changes"}
               </button>
               <button
                 type="button"
