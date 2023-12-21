@@ -6,16 +6,16 @@ export default withAuth(
         console.log(request.nextUrl.pathname)
         console.log(request.nextauth.token)
 
-        if (request.nextUrl.pathname.startsWith("/")
-            && request.nextauth.token?.userType !== "Company"
-            && request.nextauth.token?.userType !== "Student"
-                && request.nextauth.token?.userType !== "Business"
+        // if (request.nextUrl.pathname.startsWith("/")
+        //     && request.nextauth.token?.userType !== "Company"
+        //     && request.nextauth.token?.userType !== "Student"
+        //         && request.nextauth.token?.userType !== "Business"
                
-            ) {
-            return NextResponse.rewrite(
-                new URL("/not-found", request.url)
-            )
-        }
+        //     ) {
+        //     return NextResponse.rewrite(
+        //         new URL("/not-found", request.url)
+        //     )
+        // }
 
     },
     {
