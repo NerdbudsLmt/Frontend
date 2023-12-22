@@ -62,7 +62,7 @@ export default function Company() {
 
         const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-        const response = await fetch(`${apiUrl}/users/Company`, {
+        const response = await fetch(`${apiUrl}/users/company`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
