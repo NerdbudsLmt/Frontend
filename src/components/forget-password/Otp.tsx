@@ -8,13 +8,14 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
 
-
 interface CompanyFormValues {
   otpNumber: string;
 }
 
 interface NextPageProps {
-  nextPage: () => void; // Assuming nextPage is a function that takes no arguments and returns void
+  handleNext: () => void; // Assuming nextPage is a function that takes no arguments and returns void
+  steps: number;
+  step: number;
 }
 // Define validation schema using Yup
 
@@ -24,7 +25,7 @@ const validationSchema = Yup.object().shape({
     .required("OTP Number is required"),
 });
 
-const Otp: React.FC<NextPageProps> = ({ nextPage }) => {
+const Otp: React.FC<NextPageProps> = ({ handleNext, steps, step }) => {
   // Initialize Formik for managing form state and validation.
   const formik = useFormik<CompanyFormValues>({
     initialValues: {
@@ -33,7 +34,7 @@ const Otp: React.FC<NextPageProps> = ({ nextPage }) => {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       // Handle form submission here
-      nextPage()
+      handleNext();
       console.log(values);
     },
   });
@@ -95,14 +96,8 @@ const Otp: React.FC<NextPageProps> = ({ nextPage }) => {
           </p>
         </div>
       </div>
-        <div className="flex gap-3 mt-12 justify-center">
-          <div className="w-[20%] max-w-[150px] h-[8px] rounded-lg bg-white"></div>
-          <div className="w-[20%] max-w-[150px] h-[8px] rounded-lg bg-app-sblue"></div>
-          <div className="w-[20%] max-w-[150px] h-[8px] rounded-lg bg-white"></div>
-          <div className="w-[20%] max-w-[150px] h-[8px] rounded-lg bg-white"></div>
-        </div>
     </div>
   );
-}
+};
 
 export default Otp;
