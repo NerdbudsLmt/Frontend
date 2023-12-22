@@ -7,10 +7,10 @@ export default withAuth(
         // console.log(request.nextauth.token)
 
         if (request.nextUrl.pathname.startsWith("/dashboard")
-            // && request.nextauth.token?.userType !== "Company"
-            // && request.nextauth.token?.userType !== "Student"
-                // && request.nextauth.token?.userType !== "Business"
-                && request.nextauth.token?.userType !== ""
+            && request.nextauth.token?.userType !== "Company"
+            && request.nextauth.token?.userType !== "Student"
+                && request.nextauth.token?.userType !== "Business"
+                // && request.nextauth.token?.userType !== ""
                
             ) {
             return NextResponse.rewrite(

@@ -44,7 +44,7 @@ export default function Login() {
   });
 
   return (
-    <main className="mx-auto text-white w-[97%] tablet:w-[95%] max-w-[1380px]">
+    <main className="mx-auto min-h-[100dvh] text-white w-[97%] tablet:w-[95%] max-w-[1380px]">
       <Nav />
 
       <div className="py-6 mx-auto w-[100%] ">
