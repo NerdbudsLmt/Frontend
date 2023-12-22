@@ -40,13 +40,13 @@ const validationSchema = Yup.object().shape({
     .required("Email is required"),
   universityRegNo: Yup.string().required("universityRegNo number is required"),
   semester: Yup.string().required("semester is required"),
-  proofOfIdentification: Yup.mixed()
-    .test("fileSize", "File size must be less than 1MB", (value) =>
-      value ? (value as File).size <= 1024000 : true
-    )
-    .test("fileType", "Only image files are allowed", (value) =>
-      value ? (value as File).type.startsWith("image/") : true
-    ),
+  proofOfIdentification: Yup.mixed().required("Image is required")
+  .test("fileSize", "File size must be less than 1MB", (value) =>
+    value ? (value as File).size <= 1024000 : true
+  )
+  .test("fileType", "Only image files are allowed", (value) =>
+    value ? (value as File).type.startsWith("image/") : true
+  ),
 });
 
 export default function ProjectPal() {
@@ -67,7 +67,7 @@ export default function ProjectPal() {
       universityEmail: "",
       universityRegNo: "",
       semester: "",
-      proofOfIdentification: "",
+      proofOfIdentification: null,
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
@@ -80,13 +80,18 @@ export default function ProjectPal() {
 
         const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
+        const formData = new FormData();
+        // Iterate through form values and append them to formData
+        Object.entries(values).forEach(([key, value]) => {
+          formData.append(key, value);
+        });
+
         const response = await fetch(`${apiUrl}/users/student`, {
           method: "PUT",
           headers: {
-            "Content-Type": "application/json",
             Authorization: `Bearer ${parsedToken}`,
           },
-          body: JSON.stringify(values),
+          body: formData,
         });
 
         if (response.ok) {
@@ -420,7 +425,7 @@ export default function ProjectPal() {
       type="file"
       id="proofOfIdentification"
       name="proofOfIdentification"
-      accept="image/*"
+      // accept="image/*"
       onChange={(event) => {
          const selectedFile = event.currentTarget.files
             ? event.currentTarget.files[0]
