@@ -7,7 +7,7 @@ export default function NotFound() {
             <p className="text-3xl max-w-2xl text-center">You are logged in, but you do not have the
                 required access level to view this page.
             </p>
-            <Link href="/" className="text-3xl underline">Return to Home Page</Link>
+            {/* <Link href="/" className="text-3xl underline">Return to Home Page</Link> */}
         </section>
     )
 }

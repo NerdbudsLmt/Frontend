@@ -18,14 +18,7 @@ export default withAuth(
         //     // )
         // }
 
-        // if (request.nextUrl.pathname.startsWith("/")
-        //     && request.nextauth.token?.userType !== "Student"
-        //     && request.nextauth.token?.userType !== "Business"
-        // ) {
-        //     return NextResponse.rewrite(
-        //         new URL("/not-found", request.url)
-        //     )
-        // }
+        
     },
     {
         callbacks: {
