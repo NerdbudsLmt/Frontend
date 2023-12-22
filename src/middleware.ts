@@ -46,7 +46,7 @@
 export { default } from "next-auth/middleware"
 
 export const config = { matcher: [
-    // "/dashboard", 
+    "/dashboard", 
         "/dashboard/projects", 
         "/dashboard/projects/create", 
         "/dashboard/projects/existing", 

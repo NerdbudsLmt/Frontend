@@ -3,17 +3,17 @@ import { DoughnutChart } from "@/components/Dashbord/DoughnutChart";
 import Projects from "@/components/Dashbord/Projects";
 import QuickSet from "@/components/Dashbord/QuickSet";
 
-// import { options } from "../api/auth/[...nextauth]/options"
-// import { getServerSession } from "next-auth/next"
-// import { redirect } from "next/navigation"
+import { options } from "../api/auth/[...nextauth]/options"
+import { getServerSession } from "next-auth/next"
+import { redirect } from "next/navigation"
 
 
 export default async function Dashboard() {
-  // const session = await getServerSession(options)
+  const session = await getServerSession(options)
 
-  // if (!session) {
-  //     redirect('/api/auth/signin?callbackUrl=/server')
-  // }
+  if (!session) {
+      redirect('/api/auth/signin?callbackUrl=/server')
+  }
 
   return (
     <div>
