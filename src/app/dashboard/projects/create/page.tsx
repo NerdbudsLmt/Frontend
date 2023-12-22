@@ -8,7 +8,6 @@ import { LuClock3 } from "react-icons/lu";
 import { useSession } from "next-auth/react";
 import { useToast } from "@chakra-ui/react";
 
-
 interface FormValues {
   description: string;
   items: string[];
@@ -51,8 +50,6 @@ const validationSchema = Yup.object().shape({
 });
 
 const Create = () => {
-
-  
   const handleSubmit = (values: FormValues) => {
     console.log(values); // Log form values to console
   };
@@ -199,6 +196,6 @@ const Create = () => {
       </Formik>
     </div>
   );
-}
+};
 
-export default Create
+export default Create;
