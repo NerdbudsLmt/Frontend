@@ -7,6 +7,7 @@ import { FcGoogle } from "react-icons/fc";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
+import useCustomToast from "../Toast";
 
 interface CompanyFormValues {
   otpNumber: string;
@@ -26,16 +27,38 @@ const validationSchema = Yup.object().shape({
 });
 
 const Otp: React.FC<NextPageProps> = ({ handleNext, steps, step }) => {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const toast = useCustomToast();
   // Initialize Formik for managing form state and validation.
   const formik = useFormik<CompanyFormValues>({
     initialValues: {
-      otpNumber: "", // Update to use otpNumber
+      otpNumber: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      // Handle form submission here
-      handleNext();
-      console.log(values);
+    onSubmit: async (values) => {
+      try {
+        const res: any = await fetch(
+          `${apiUrl}/auth/resetpassword/verify-token?otp=${values.otpNumber}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        const data = await res.json();
+        if (res.status === "success") {
+          toast("Success", "success", true, 2000, data.message, "top-right");
+          handleNext();
+          console.log("yoo");
+        } else {
+          toast("Error", "error", true, 2000, data.message, "top-right");
+          console.log("tyoo");
+        }
+      } catch (error: any) {
+        toast("Error", "error", true, 2000, error.message, "top-right");
+      }
     },
   });
 
@@ -89,9 +112,8 @@ const Otp: React.FC<NextPageProps> = ({ handleNext, steps, step }) => {
 
           <p className="text-sm text-gray-400 mt-2 mb-5">
             Didn&apos;t recieve the email?{" "}
-            <span className="text-app-porange underline">
-              {" "}
-              Click to resend{" "}
+            <span className="text-app-porange underline cursor-pointer">
+              Click to resend
             </span>
           </p>
         </div>

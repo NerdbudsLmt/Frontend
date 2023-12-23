@@ -4,7 +4,8 @@ import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
-import { StepIndicator } from "@chakra-ui/react";
+import { StepIndicator, useToast } from "@chakra-ui/react";
+import useCustomToast from "../Toast";
 
 /**
  * Represents the values of the Company form.
@@ -26,16 +27,46 @@ const validationSchema = Yup.object().shape({
 });
 
 const Email: React.FC<NextPageProps> = ({ handleNext, steps, step }) => {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const toast = useCustomToast();
   // Initialize Formik for managing form state and validation.
   const formik = useFormik<LoginFormValues>({
     initialValues: {
       email: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      // Handle form submission here
-      console.log(values);
-      handleNext();
+    onSubmit: async (values) => {
+      try {
+        const res: any = await fetch(
+          `${apiUrl}/auth/resetpassword/send-token`,
+          {
+            method: "post",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: values.email,
+            }),
+          }
+        );
+        const data = await res.json();
+        if (res.status === 200) {
+          toast(
+            "Reset Link Sent",
+            "success",
+            true,
+            2000,
+            data.data.message,
+            "top-right"
+          );
+          handleNext();
+          // setIsLoading(false);
+        } else {
+          toast("Error", "error", true, 2000, data.message, "top-right");
+        }
+      } catch (error: any) {
+        toast("Error", "error", true, 2000, error.message, "top-right");
+      }
     },
   });
 

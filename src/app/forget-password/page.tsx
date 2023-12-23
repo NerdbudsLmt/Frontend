@@ -10,8 +10,8 @@ export default function ForgotPassword() {
       <div className={"flex"}>
         <ForgotPasswordStepper />
         <div className="w-[50%] h-full sm:block hidden fixed right-0">
-          <Image
-            src={""}
+          {/* <Image
+            src={"/images/man.svg"}
             alt="rightpane-banner"
             fill
             priority
@@ -21,7 +21,7 @@ export default function ForgotPassword() {
               objectFit: "cover",
               width: "100%",
             }}
-          />
+          /> */}
         </div>
       </div>
     </section>
