@@ -48,13 +48,18 @@ const Otp: React.FC<NextPageProps> = ({ handleNext, steps, step }) => {
         );
 
         const data = await res.json();
-        if (res.status === "success") {
-          toast("Success", "success", true, 2000, data.message, "top-right");
+        if (res.status === 200) {
+          toast(
+            "Success",
+            "success",
+            true,
+            2000,
+            data.data.message,
+            "top-right"
+          );
           handleNext();
-          console.log("yoo");
         } else {
           toast("Error", "error", true, 2000, data.message, "top-right");
-          console.log("tyoo");
         }
       } catch (error: any) {
         toast("Error", "error", true, 2000, error.message, "top-right");
