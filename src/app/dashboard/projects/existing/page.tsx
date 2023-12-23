@@ -5,6 +5,9 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { RiDeleteBinLine } from "react-icons/ri";
+import { useLayoutEffect } from "react";
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation"
 
 interface Project {
   title: string;
@@ -63,6 +66,14 @@ const Existing: React.FC = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(5);
+  const { data: session }: any = useSession();
+
+  useLayoutEffect(() => {  
+  if(!session) {
+    redirect('/login')
+  }
+  }, [session])
+
 
   // Get current posts
 

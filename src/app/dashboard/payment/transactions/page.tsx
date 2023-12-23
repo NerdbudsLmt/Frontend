@@ -2,7 +2,10 @@
 
 import Pagination from "@/components/Pagination";
 import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
+import { useState, useLayoutEffect } from "react";
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation"
 
 interface transactions {
   title: string;
@@ -13,6 +16,14 @@ interface transactions {
 }
 
 const Finished: React.FC = () => {
+  const { data: session }: any = useSession();
+
+  useLayoutEffect(() => {  
+  if(!session) {
+    redirect('/login')
+  }
+  }, [session])
+
   const transactionList: transactions[] = [
     {
       title: "Project Assistant",
