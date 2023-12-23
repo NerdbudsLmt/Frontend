@@ -47,6 +47,9 @@ const SetPassword: React.FC<NextPageProps> = ({ handleNext, steps, step }) => {
           `${apiUrl}/auth/resetpassword/change-password`,
           {
             method: "post",
+            headers: {
+              "Content-Type": "application/json",
+            },
             body: JSON.stringify({
               otp: otp,
               newPassword: values.NewPassword,
