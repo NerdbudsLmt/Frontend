@@ -57,6 +57,7 @@ const Otp: React.FC<NextPageProps> = ({ handleNext, steps, step }) => {
             data.data.message,
             "top-right"
           );
+          sessionStorage.setItem("otp", JSON.parse(`${values.otpNumber}`));
           handleNext();
         } else {
           toast("Error", "error", true, 2000, data.message, "top-right");
@@ -95,7 +96,7 @@ const Otp: React.FC<NextPageProps> = ({ handleNext, steps, step }) => {
                     id="otpNumber"
                     placeholder="Enter OTP Number"
                     {...formik.getFieldProps("otpNumber")} // Update field props to use otpNumber
-                    className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
+                    className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 outline-none"
                   />
 
                   {formik.touched.otpNumber && formik.errors.otpNumber ? (

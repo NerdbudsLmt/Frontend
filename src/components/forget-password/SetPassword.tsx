@@ -7,6 +7,7 @@ import { FcGoogle } from "react-icons/fc";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
+import useCustomToast from "../Toast";
 
 interface PasswordFormValues {
   NewPassword: string;
@@ -20,24 +21,56 @@ interface NextPageProps {
 }
 // Define validation schema using Yup
 const validationSchema = Yup.object().shape({
-  NewPassword: Yup.string().required("Password is required"),
-  ComfirmPassword: Yup.string().required("Password is required"),
+  NewPassword: Yup.string()
+    .min(8, "Password must be at least 8 characters long")
+    .required("Password is required"),
+  ComfirmPassword: Yup.string()
+    .oneOf([Yup.ref("NewPassword")], "Password must match")
+    .required("Password is required"),
 });
 
 const SetPassword: React.FC<NextPageProps> = ({ handleNext, steps, step }) => {
-  const [show, setShow] = useState<boolean>(true);
-
-  // Initialize Formik for managing form state and validation.
+  const [show, setShow] = useState<boolean>(false);
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const toast = useCustomToast();
+  const otp = sessionStorage.getItem("otp");
   const formik = useFormik<PasswordFormValues>({
     initialValues: {
       NewPassword: "",
       ComfirmPassword: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      // Handle form submission here
-      handleNext();
-      console.log(values);
+
+    onSubmit: async (values) => {
+      try {
+        const res: any = await fetch(
+          `${apiUrl}/auth/resetpassword/change-password`,
+          {
+            method: "post",
+            body: JSON.stringify({
+              otp: otp,
+              newPassword: values.NewPassword,
+            }),
+          }
+        );
+        const data = await res.json();
+        if (res.status === 200) {
+          toast(
+            "Success",
+            "success",
+            true,
+            2000,
+            data.data.message,
+            "top-right"
+          );
+          handleNext();
+          sessionStorage.removeItem("otp");
+        } else {
+          toast("Error", "error", true, 2000, data.message, "top-right");
+        }
+      } catch (error: any) {
+        toast("Error", "error", true, 2000, error.message, "top-right");
+      }
     },
   });
 
@@ -69,10 +102,9 @@ const SetPassword: React.FC<NextPageProps> = ({ handleNext, steps, step }) => {
                   <input
                     type={show ? "text" : "password"}
                     id="NewPassword"
-                    // name="password"
                     placeholder="NewPassword"
                     {...formik.getFieldProps("NewPassword")}
-                    className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
+                    className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 "
                   />
                   <div
                     className="absolute top-9 right-4"
@@ -93,7 +125,6 @@ const SetPassword: React.FC<NextPageProps> = ({ handleNext, steps, step }) => {
               </div>
             </div>
 
-            {/* <div className="flex justify-between gap-4"> */}
             <div className="my-3 relative">
               <label
                 htmlFor="ComfirmPassword"
@@ -104,10 +135,9 @@ const SetPassword: React.FC<NextPageProps> = ({ handleNext, steps, step }) => {
               <input
                 type={show ? "text" : "password"}
                 id="ComfirmPassword"
-                // name="password"
                 placeholder="ComfirmPassword"
                 {...formik.getFieldProps("ComfirmPassword")}
-                className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
+                className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2"
               />
               <div
                 className="absolute top-9 right-4"
@@ -130,7 +160,7 @@ const SetPassword: React.FC<NextPageProps> = ({ handleNext, steps, step }) => {
             {/* </div> */}
 
             <button
-              className="bg-app-sblue border-2 border-app-sblue text-white py-2 px-5 mt-3 rounded-full"
+              className="bg-app-sblue border-2 border-app-sblue text-white py-2 px-6 mt-3 rounded-full"
               type="submit"
             >
               Proceed
