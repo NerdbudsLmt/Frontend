@@ -1,8 +1,17 @@
 import Image from "next/image";
 import React from "react";
 import { LuClock3 } from "react-icons/lu";
+import { options } from "../../api/auth/[...nextauth]/options"
+import { getServerSession } from "next-auth/next"
+import { redirect } from "next/navigation"
 
-export default function Support() {
+export default async function Support() {
+  const session = await getServerSession(options)
+
+  if (!session) {
+      redirect('/api/auth/signin?callbackUrl=/server')
+  }
+
   return (
     <div>
       <span className="flex items-center gap-2">

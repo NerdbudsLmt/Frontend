@@ -7,14 +7,16 @@ import { FcGoogle } from "react-icons/fc";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
-
+import useCustomToast from "../Toast";
 
 interface CompanyFormValues {
   otpNumber: string;
 }
 
 interface NextPageProps {
-  nextPage: () => void; // Assuming nextPage is a function that takes no arguments and returns void
+  handleNext: () => void; // Assuming nextPage is a function that takes no arguments and returns void
+  steps: number;
+  step: number;
 }
 // Define validation schema using Yup
 
@@ -24,17 +26,45 @@ const validationSchema = Yup.object().shape({
     .required("OTP Number is required"),
 });
 
-const Otp: React.FC<NextPageProps> = ({ nextPage }) => {
+const Otp: React.FC<NextPageProps> = ({ handleNext, steps, step }) => {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const toast = useCustomToast();
   // Initialize Formik for managing form state and validation.
   const formik = useFormik<CompanyFormValues>({
     initialValues: {
-      otpNumber: "", // Update to use otpNumber
+      otpNumber: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      // Handle form submission here
-      nextPage()
-      console.log(values);
+    onSubmit: async (values) => {
+      try {
+        const res: any = await fetch(
+          `${apiUrl}/auth/resetpassword/verify-token?otp=${values.otpNumber}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        const data = await res.json();
+        if (res.status === 200) {
+          toast(
+            "Success",
+            "success",
+            true,
+            2000,
+            data.data.message,
+            "top-right"
+          );
+          sessionStorage.setItem("otp", JSON.parse(`${values.otpNumber}`));
+          handleNext();
+        } else {
+          toast("Error", "error", true, 2000, data.message, "top-right");
+        }
+      } catch (error: any) {
+        toast("Error", "error", true, 2000, error.message, "top-right");
+      }
     },
   });
 
@@ -66,7 +96,7 @@ const Otp: React.FC<NextPageProps> = ({ nextPage }) => {
                     id="otpNumber"
                     placeholder="Enter OTP Number"
                     {...formik.getFieldProps("otpNumber")} // Update field props to use otpNumber
-                    className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
+                    className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 outline-none"
                   />
 
                   {formik.touched.otpNumber && formik.errors.otpNumber ? (
@@ -88,21 +118,14 @@ const Otp: React.FC<NextPageProps> = ({ nextPage }) => {
 
           <p className="text-sm text-gray-400 mt-2 mb-5">
             Didn&apos;t recieve the email?{" "}
-            <span className="text-app-porange underline">
-              {" "}
-              Click to resend{" "}
+            <span className="text-app-porange underline cursor-pointer">
+              Click to resend
             </span>
           </p>
         </div>
       </div>
-        <div className="flex gap-3 mt-12 justify-center">
-          <div className="w-[20%] max-w-[150px] h-[8px] rounded-lg bg-white"></div>
-          <div className="w-[20%] max-w-[150px] h-[8px] rounded-lg bg-app-sblue"></div>
-          <div className="w-[20%] max-w-[150px] h-[8px] rounded-lg bg-white"></div>
-          <div className="w-[20%] max-w-[150px] h-[8px] rounded-lg bg-white"></div>
-        </div>
     </div>
   );
-}
+};
 
 export default Otp;

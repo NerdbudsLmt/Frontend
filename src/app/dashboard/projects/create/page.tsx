@@ -1,6 +1,9 @@
 "use client";
 
 import React, { useEffect } from "react";
+import { useState, useLayoutEffect } from "react";
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation"
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { FiArrowRight } from "react-icons/fi";
@@ -50,6 +53,18 @@ const validationSchema = Yup.object().shape({
 });
 
 const Create = () => {
+<<<<<<< HEAD
+=======
+  const { data: session }: any = useSession();
+
+  useLayoutEffect(() => {  
+  if(!session) {
+    redirect('/login')
+  }
+  }, [session])
+
+  
+>>>>>>> origin/main
   const handleSubmit = (values: FormValues) => {
     console.log(values); // Log form values to console
   };
