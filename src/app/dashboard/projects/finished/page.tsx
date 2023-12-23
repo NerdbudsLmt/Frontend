@@ -3,6 +3,9 @@
 import Pagination from "@/components/Pagination";
 import Link from "next/link";
 import React, { useState } from "react";
+import { useLayoutEffect } from "react";
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation"
 
 interface Project {
   title: string;
@@ -133,6 +136,14 @@ const Finished: React.FC = () => {
       id: 24,
     },
   ];
+
+  const { data: session }: any = useSession();
+
+  useLayoutEffect(() => {  
+  if(!session) {
+    redirect('/login')
+  }
+  }, [session])
 
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(6);
