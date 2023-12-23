@@ -1,10 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useLayoutEffect } from "react";
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation"
 import Link from "next/link";
+
 
 export default function PaymentMethods() {
   const [activeTab, setActiveTab] = useState("Paystack");
+  const { data: session }: any = useSession();
+
+  useLayoutEffect(() => {  
+  if(!session) {
+    redirect('/login')
+  }
+  }, [session])
 
   const openTab = (tabName: string) => {
     setActiveTab(tabName);

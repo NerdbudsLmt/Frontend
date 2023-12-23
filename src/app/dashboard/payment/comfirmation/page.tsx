@@ -1,7 +1,17 @@
 import Link from "next/link";
 import React from "react";
+import { options } from "../../../api/auth/[...nextauth]/options"
+import { getServerSession } from "next-auth/next"
+import { redirect } from "next/navigation"
 
-export default function PaymentComfirmation() {
+
+export default async function PaymentComfirmation() {
+  const session = await getServerSession(options)
+
+  if (!session) {
+      redirect('/api/auth/signin?callbackUrl=/server')
+  }
+
   return (
     <div>
       <p className="text-3xl text-gray-500  ml-1 inline ">
