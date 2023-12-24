@@ -78,7 +78,7 @@ export default function Home() {
       });
       
 
-      console.log("Response Status:", response.status);
+      // console.log("Response Status:", response.status);
 
 
       if (response.ok) {
@@ -86,7 +86,7 @@ export default function Home() {
         console.log("Data sent successfully:", data);
         localStorage.removeItem("signupData");
         localStorage.setItem("token", JSON.stringify(data.data.accessToken));
-        console.log(data.data.accessToken)
+        // console.log(data.data.accessToken)
 
         router.push(`/signup/${userType}`);
       } else {

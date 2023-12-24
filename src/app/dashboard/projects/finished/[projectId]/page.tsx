@@ -1,9 +1,7 @@
 'use client'
 
 import React, { useState } from "react";
-import { useLayoutEffect } from "react";
-import { useSession } from "next-auth/react";
-import { redirect } from "next/navigation"
+
 
 export default function ProjectReviewForm({
   params,
@@ -11,14 +9,7 @@ export default function ProjectReviewForm({
   params: { projectId: string };
 }) {
   const [reviewContent, setReviewContent] = useState("");
-  const { data: session }: any = useSession();
-
-  useLayoutEffect(() => {  
-  if(!session) {
-    redirect('/login')
-  }
-  }, [session])
-
+ 
   const id = params.projectId;
 
   const handleSubmit = (event: React.FormEvent) => {
