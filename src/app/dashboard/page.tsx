@@ -14,6 +14,8 @@ export default async function Dashboard() {
       redirect('/api/auth/signin?callbackUrl=/server')
   }
 
+  console.log(session?.user?.accessToken)
+
   return (
     <div>
       <div className="text-[#265D80]  flex flex-wrap gap-4 justify-between items-start">

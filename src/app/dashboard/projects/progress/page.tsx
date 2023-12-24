@@ -194,8 +194,8 @@ export default function Progress() {
   const { data: session }: any = useSession();
 
   useLayoutEffect(() => {  
-  if(!session) {
-    redirect('/login')
+    if(!session?.user.accessToken) {
+      redirect('/api/auth/signin?callbackUrl=/server')
   }
   }, [session])
   
