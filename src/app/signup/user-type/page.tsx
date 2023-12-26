@@ -1,8 +1,8 @@
-'use client'
+"use client";
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
 import Nav from "@/components/Nav/Nav";
@@ -18,6 +18,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import PreSignupForm from "@/components/PreSignupForm";
+import useCustomToast from "@/components/Toast";
 
 const data = [
   {
@@ -48,57 +49,51 @@ const data = [
   },
 ];
 
-
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export default function Home() {
   const router = useRouter();
-  const [formData, setFormData] = useState<any>();
+  const toast = useCustomToast();
 
   const handleFormSubmit = async (userType: string) => {
     // Retrieve formData from localStorage
-    const capitalizedUserType = userType.charAt(0).toUpperCase() + userType.slice(1).toLowerCase();
-   console.log(capitalizedUserType)
+    const capitalizedUserType =
+      userType.charAt(0).toUpperCase() + userType.slice(1).toLowerCase();
+    console.log(capitalizedUserType);
     const storedData = localStorage.getItem("signupData");
     const parsedData = storedData ? JSON.parse(storedData) : {};
-    
+
     // Include the 'userType' value in the request body
     const requestData = { ...parsedData, userType: capitalizedUserType };
-    console.log(requestData)
-
     try {
       // Send formData to the backend API endpoint
-      const response = await fetch(`${apiUrl}/auth/form/register`, {
-        // const response = await fetch('/auth/form/register', {
+      const res: any = await fetch(`${apiUrl}/auth/form/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(requestData),
       });
-      
 
-      // console.log("Response Status:", response.status);
-
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log("Data sent successfully:", data);
+      if (res.status === 201) {
+        const data = await res.json();
         localStorage.removeItem("signupData");
         localStorage.setItem("token", JSON.stringify(data.data.accessToken));
-        // console.log(data.data.accessToken)
-
+        toast("Success", "success", true, 2000, data.data.message, "top-right");
         router.push(`/signup/${userType}`);
       } else {
-        const errorData = await response.json(); // Assuming your server returns JSON for error responses
-        console.error("Error occurred while sending data to the backend:", errorData.message);
+        const errData = await res.json();
+        toast("Error", "error", true, 2000, errData.message, "top-right");
+        console.error(
+          "Error occurred while sending data to the backend:",
+          errData.message
+        );
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error occurred during fetch:", error);
+      toast("Error", "error", true, 2000, error, "top-right");
     }
   };
-
-
 
   return (
     <div className="mx-auto text-white w-[97%] tablet:w-[95%] max-w-[1380px] min-h-[100dvh]">
@@ -137,8 +132,6 @@ export default function Home() {
                 </h1>
                 <p className="text-[17px] mt-2">{item.description}</p>
               </div>
-             
-              
             </div>
           ))}
         </div>
