@@ -2,14 +2,12 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { BsEyeSlashFill, BsEyeFill, BsChevronLeft } from "react-icons/bs";
-import { FcGoogle } from "react-icons/fc";
+import { BsChevronLeft } from "react-icons/bs";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
-import { useRouter } from 'next/navigation';
-
-
+import { useRouter } from "next/navigation";
+import useCustomToast from "@/components/Toast";
 
 /**
  * Represents the values of the Company form.
@@ -23,7 +21,6 @@ interface CompanyFormValues {
   companyIndustry: string;
   companyPosition: string;
   username: string;
-  
 }
 
 // Define validation schema using Yup
@@ -37,9 +34,8 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function Company() {
-  const [show, setShow] = useState<boolean>(true);
   const router = useRouter();
-
+  const toast = useCustomToast();
 
   // Initialize Formik for managing form state and validation.
   const formik = useFormik<CompanyFormValues>({
@@ -54,15 +50,15 @@ export default function Company() {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       try {
-        const token = localStorage.getItem("token"); 
+        const token = localStorage.getItem("token");
 
-        const parsedToken = token?.replace(/"/g, '') || null;
-    
+        const parsedToken = token?.replace(/"/g, "") || null;
+
         console.log(parsedToken);
 
         const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-        const response = await fetch(`${apiUrl}/users/company`, {
+        const res: any = await fetch(`${apiUrl}/users/company`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -70,19 +66,25 @@ export default function Company() {
           },
           body: JSON.stringify(values),
         });
-
-        if (response.ok) {
-          const data = await response.json();
-          console.log("Success:", data);
-          router.push('/login');
-
-
+        const data = await res.json();
+        if (res.status === 200) {
+          toast(
+            "Success",
+            "success",
+            true,
+            2000,
+            data.data.message,
+            "top-right"
+          );
+          router.push("/login");
         } else {
-          const errorData = await response.json();
-          console.error("Error:", errorData);
+          toast("Error", "error", true, 2000, data.message, "top-right");
+          console.log("errr 2");
         }
-      } catch (error) {
+      } catch (error: any) {
+        toast("Error", "error", true, 2000, error, "top-right");
         console.error("Error:", (error as Error).message);
+        console.log("errr 5");
       }
     },
   });
@@ -196,7 +198,8 @@ export default function Company() {
                   {...formik.getFieldProps("companyIndustry")}
                   className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
                 />
-                {formik.touched.companyIndustry && formik.errors.companyIndustry ? (
+                {formik.touched.companyIndustry &&
+                formik.errors.companyIndustry ? (
                   <div className="text-[red] text-[14px] italic">
                     {formik.errors.companyIndustry}
                   </div>
@@ -217,7 +220,8 @@ export default function Company() {
                   {...formik.getFieldProps("companyPosition")}
                   className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
                 />
-                {formik.touched.companyPosition && formik.errors.companyPosition ? (
+                {formik.touched.companyPosition &&
+                formik.errors.companyPosition ? (
                   <div className="text-[red] text-[14px] italic">
                     {formik.errors.companyPosition}
                   </div>
@@ -248,8 +252,6 @@ export default function Company() {
                 ) : null}
               </div>
             </div>
-
-         
 
             <button
               className="bg-app-sblue border-2 border-app-sblue text-white py-2 px-5 mt-3 rounded-full"
