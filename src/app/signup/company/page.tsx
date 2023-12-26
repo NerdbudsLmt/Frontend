@@ -76,7 +76,6 @@ export default function Company() {
             data.data.message,
             "top-right"
           );
-          console.log("Success:", data);
           router.push("/login");
         } else {
           toast("Error", "error", true, 2000, data.message, "top-right");

@@ -2,13 +2,12 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { BsEyeSlashFill, BsEyeFill, BsChevronLeft } from "react-icons/bs";
-import { FcGoogle } from "react-icons/fc";
+import { BsChevronLeft } from "react-icons/bs";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
-import { useRouter } from 'next/navigation';
-
+import { useRouter } from "next/navigation";
+import useCustomToast from "@/components/Toast";
 
 /**
  * Represents the values of the Company form.
@@ -30,11 +29,10 @@ const validationSchema = Yup.object().shape({
   businessName: Yup.string().required("Business Name is required"),
   businessIndustry: Yup.string().required("Industry Name is required"),
   username: Yup.string().required("Username Number is required"),
-
 });
 
 export default function Company() {
-  const [show, setShow] = useState<boolean>(true);
+  const toast = useCustomToast();
   const router = useRouter();
 
   // Initialize Formik for managing form state and validation.
@@ -45,20 +43,19 @@ export default function Company() {
       businessName: "",
       businessIndustry: "",
       username: "",
-     
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       try {
-        const token = localStorage.getItem("token"); 
+        const token = localStorage.getItem("token");
 
-        const parsedToken = token?.replace(/"/g, '') || null;
-    
+        const parsedToken = token?.replace(/"/g, "") || null;
+
         console.log(parsedToken);
 
         const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-        const response = await fetch(`${apiUrl}/users/business`, {
+        const res = await fetch(`${apiUrl}/users/business`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -66,19 +63,23 @@ export default function Company() {
           },
           body: JSON.stringify(values),
         });
-
-        if (response.ok) {
-          const data = await response.json();
-          console.log("Success:", data);
-          router.push('/login');
-
-
+        const data = await res.json();
+        if (res.status === 200) {
+          toast(
+            "Success",
+            "success",
+            true,
+            2000,
+            data.data.message,
+            "top-right"
+          );
+          router.push("/login");
         } else {
-          const errorData = await response.json();
-          console.error("Error:", errorData);
+          toast("Error", "error", true, 2000, data.message, "top-right");
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error("Error:", (error as Error).message);
+        toast("Error", "error", true, 2000, error, "top-right");
       }
     },
   });
@@ -192,7 +193,8 @@ export default function Company() {
                 {...formik.getFieldProps("businessIndustry")}
                 className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
               />
-              {formik.touched.businessIndustry && formik.errors.businessIndustry ? (
+              {formik.touched.businessIndustry &&
+              formik.errors.businessIndustry ? (
                 <div className="text-[red] text-[14px] italic">
                   {formik.errors.businessIndustry}
                 </div>
@@ -224,8 +226,6 @@ export default function Company() {
                 ) : null}
               </div>
             </div>
-
-           
 
             <button
               className="bg-app-sblue border-2 border-app-sblue text-white py-2 px-5 mt-3 rounded-full"
