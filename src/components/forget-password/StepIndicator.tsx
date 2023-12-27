@@ -1,21 +1,13 @@
 import React from "react";
 
-interface StepIndicatorProps {
-  steps: number;
-  step: number;
-}
-
-export const StepIndicator: React.FC<StepIndicatorProps> = ({
-  steps,
-  step,
-}) => {
+const StepIndicator = ({ steps, step }: any) => {
   return (
     <div className={"flex"}>
       {[...Array(steps)].map((_, index) => (
         <div
           key={index}
           style={{
-            width: "25%",
+            width: "100px",
             height: 8,
             borderRadius: "10px",
             backgroundColor:
@@ -23,8 +15,9 @@ export const StepIndicator: React.FC<StepIndicatorProps> = ({
             marginRight: "5px",
             transition: "background-color 0.3s ease-in-out",
           }}
-        />
+        ></div>
       ))}
     </div>
   );
 };
+export default StepIndicator;

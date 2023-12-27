@@ -1,17 +1,10 @@
-"use client";
+// "use client";
 
 import ProjectProgress from "@/components/Dashbord/ProjectProgress";
 import React, { useState } from "react";
 import { BsSliders2Vertical } from "react-icons/bs";
-import {
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  Button
-} from "@chakra-ui/react";
+import { Menu, MenuButton, MenuList, MenuItem, Button } from "@chakra-ui/react";
 import Pagination from "@/components/Pagination";
-
 
 interface projectList {
   title: string;
@@ -22,7 +15,6 @@ interface projectList {
   id: number;
   percentage: string;
 }
-
 
 const projectList = [
   {
@@ -187,14 +179,13 @@ const projectList = [
   },
 ];
 export default function ProProgress() {
-  
-
-  
   const [filter, setFilter] = useState<string>("All");
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(6);
 
-  const uniqueStatuses = [...new Set<string>(projectList.map((project) => project.status))];
+  const uniqueStatuses = [
+    ...new Set<string>(projectList.map((project) => project.status)),
+  ];
 
   const filteredProjects = projectList.filter((project) => {
     if (filter === "All") {
@@ -206,15 +197,17 @@ export default function ProProgress() {
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = filteredProjects.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPosts = filteredProjects.slice(
+    indexOfFirstPost,
+    indexOfLastPost
+  );
 
   // Change page
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
   const paginateFront = () => setCurrentPage(currentPage + 1);
   const paginateBack = () => setCurrentPage(currentPage - 1);
 
-   // Extract unique statuses from projectList
- 
+  // Extract unique statuses from projectList
 
   return (
     <div className="max-w-[900px] ">
@@ -228,24 +221,28 @@ export default function ProProgress() {
           Numbers of project in progress{" "}
           <span className="text-[#676767]">“{projectList.length}”</span>
         </p>
-        
+
         <Menu>
-          <MenuButton className="bg-app-pblue text-white hover:bg-opacity-90" as={Button} rightIcon={<BsSliders2Vertical />}>
+          <MenuButton
+            className="bg-app-pblue text-white hover:bg-opacity-90"
+            as={Button}
+            rightIcon={<BsSliders2Vertical />}
+          >
             filter
           </MenuButton>
-          
-           <MenuList>
-          {/* Dynamically generate menu items based on unique statuses */}
-          <MenuItem onClick={() => setFilter("All")}>All</MenuItem>
-          {uniqueStatuses.map((status) => (
-            <MenuItem key={status} onClick={() => setFilter(status)}>
-              {status}
-            </MenuItem>
-          ))}
-        </MenuList>
+
+          <MenuList>
+            {/* Dynamically generate menu items based on unique statuses */}
+            <MenuItem onClick={() => setFilter("All")}>All</MenuItem>
+            {uniqueStatuses.map((status) => (
+              <MenuItem key={status} onClick={() => setFilter(status)}>
+                {status}
+              </MenuItem>
+            ))}
+          </MenuList>
         </Menu>
       </div>
-      
+
       <div className="flex flex-col gap-8">
         {currentPosts.map((item) => (
           <ProjectProgress key={item.id} item={item} />

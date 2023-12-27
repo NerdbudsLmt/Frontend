@@ -2,16 +2,15 @@ import { DoughnutChart } from "@/components/Dashbord/DoughnutChart";
 import Projects from "@/components/Dashbord/Projects";
 import QuickSet from "@/components/Dashbord/QuickSet";
 
-import { options } from "../api/auth/[...nextauth]/options"
-import { getServerSession } from "next-auth/next"
-import { redirect } from "next/navigation"
-
+import { options } from "../api/auth/[...nextauth]/options";
+import { getServerSession } from "next-auth/next";
+import { redirect } from "next/navigation";
 
 export default async function Dashboard() {
-  const session = await getServerSession(options)
+  const session = await getServerSession(options);
 
   if (!session) {
-      redirect('/api/auth/signin?callbackUrl=/server')
+    redirect("/api/auth/signin?callbackUrl=/server");
   }
 
   return (
@@ -49,7 +48,7 @@ export default async function Dashboard() {
               <li className="text-[#009CFF] my-2">10 finished</li>
               <li className="text-[#D69E00]">1 pending</li>
             </ul>
-         
+
             <DoughnutChart />
           </div>
         </div>

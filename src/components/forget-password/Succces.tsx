@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import StepIndicator from "./StepIndicator";
 
 interface NextPageProps {
   steps: number;
@@ -29,11 +30,8 @@ const Success: React.FC<NextPageProps> = ({ steps, step }) => {
           </Link>
         </div>
       </div>
-      <div className="flex gap-3 mt-12 justify-center">
-        <div className="w-[20%] max-w-[150px] h-[8px] rounded-lg bg-white"></div>
-        <div className="w-[20%] max-w-[150px] h-[8px] rounded-lg bg-white"></div>
-        <div className="w-[20%] max-w-[150px] h-[8px] rounded-lg bg-white"></div>
-        <div className="w-[20%] max-w-[150px] h-[8px] rounded-lg bg-app-sblue"></div>
+      <div className="">
+        <StepIndicator steps={steps} step={step} />
       </div>
     </div>
   );

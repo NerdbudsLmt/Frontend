@@ -1,5 +1,8 @@
+"use client";
 import React from "react";
 import { BiSolidMessageDetail } from "react-icons/bi";
+// @ts-ignore
+import TawkMessengerReact from "@tawk.to/tawk-messenger-react";
 import { BsPerson } from "react-icons/bs";
 
 export default function QuickSet() {
@@ -20,9 +23,9 @@ export default function QuickSet() {
     {
       title: "Ecobank Plc",
       name: "Nerdburds Ltd",
-      number: '0998712345',
+      number: "0998712345",
       id: 1,
-    }
+    },
   ];
 
   return (
@@ -60,25 +63,36 @@ export default function QuickSet() {
       </div>
 
       <div className="col-span-1 tablet:col-span-2 laptop_l:col-span-3 bg-[#F5F4F4] p-3 rounded-lg">
-        <p className="text-lg font-bold underline text-center ">Bank Transfer Details </p>
-        
+        <p className="text-lg font-bold underline text-center ">
+          Bank Transfer Details{" "}
+        </p>
+
         <div className="mt-4 text-white list-decimal  text-md">
           {bankName?.map((item) => (
-            <div
-              key={item.id}
-              className=" py-2 px-3 my-2"
-            >
-              <p className=" text-app-pblue font-semibold"><span className="text-app-sblue">Bank Name: </span>{item.title}.</p>
-                <p className=" text-app-pblue font-semibold my-2"><span className="text-app-sblue">Account Name: </span>{item.name}</p>
-                <p className=" text-app-pblue font-semibold"><span className="text-app-sblue">Account Number: </span>{item.number}</p>
-             
+            <div key={item.id} className=" py-2 px-3 my-2">
+              <p className=" text-app-pblue font-semibold">
+                <span className="text-app-sblue">Bank Name: </span>
+                {item.title}.
+              </p>
+              <p className=" text-app-pblue font-semibold my-2">
+                <span className="text-app-sblue">Account Name: </span>
+                {item.name}
+              </p>
+              <p className=" text-app-pblue font-semibold">
+                <span className="text-app-sblue">Account Number: </span>
+                {item.number}
+              </p>
             </div>
           ))}
         </div>
       </div>
-        <div className="fixed bottom-4 shadow-xl right-3 mt-auto mx-auto bg-[#F5F4F4] p-5 rounded-full">
-            <BiSolidMessageDetail size={40}/>
-        </div>
+      {/* <div className="fixed bottom-4 shadow-xl right-3 mt-auto mx-auto bg-[#F5F4F4] p-5 rounded-full">
+        <BiSolidMessageDetail size={40} />
+      </div> */}
+      <TawkMessengerReact
+        propertyId="658beb0670c9f2407f83a50e"
+        widgetId="1hil8s5jb"
+      />
     </div>
   );
 }
