@@ -4,8 +4,9 @@ import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
-import { StepIndicator, useToast } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
 import useCustomToast from "../Toast";
+import StepIndicator from "./StepIndicator";
 
 /**
  * Represents the values of the Company form.
@@ -16,7 +17,7 @@ interface LoginFormValues {
   email: string;
 }
 interface NextPageProps {
-  handleNext: () => void; // Assuming nextPage is a function that takes no arguments and returns void
+  handleNext: () => void;
   steps: number;
   step: number;
 }
@@ -73,7 +74,7 @@ const Email: React.FC<NextPageProps> = ({ handleNext, steps, step }) => {
   return (
     <div className="my-6 mx-auto w-full ">
       <div className="flex flex-row-reverse gap-8 my-4 ">
-        <div className="fp1 hidden laptop:block grow basis-[65%] h-[600px] rounded-lg overflow-hidden"></div>
+        <div className="hidden laptop:block grow basis-[65%] h-[600px] rounded-lg overflow-hidden"></div>
         <div className="grow-[2] basis-[45%] my-auto">
           <h1 className="text-4xl font-bold text-app-sblue">
             Forget
@@ -129,7 +130,7 @@ const Email: React.FC<NextPageProps> = ({ handleNext, steps, step }) => {
         </div>
       </div>
       <div className="">
-        {/* <StepIndicator steps={steps} step={step} /> */}
+        <StepIndicator steps={steps} step={step} />
       </div>
     </div>
   );
