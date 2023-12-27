@@ -48,7 +48,7 @@ const validationSchema = Yup.object().shape({
   meredian: Yup.string().required("Meredian is required"),
 });
 
-const  CreateProject = () => {
+const CreateProject = () => {
 
   
   const handleSubmit = (values: FormValues) => {
