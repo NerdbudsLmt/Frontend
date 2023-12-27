@@ -7,9 +7,8 @@ import { BsChevronLeft } from "react-icons/bs";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
-import { useRouter } from 'next/navigation';
-
-
+import { useRouter } from "next/navigation";
+import useCustomToast from "@/components/Toast";
 
 /**
  * Represents the values of the Company form.
@@ -40,21 +39,21 @@ const validationSchema = Yup.object().shape({
     .required("Email is required"),
   universityRegNo: Yup.string().required("universityRegNo number is required"),
   semester: Yup.string().required("semester is required"),
-  proofOfIdentification: Yup.mixed().required("Image is required")
-  .test("fileSize", "File size must be less than 1MB", (value) =>
-    value ? (value as File).size <= 1024000 : true
-  )
-  .test("fileType", "Only image files are allowed", (value) =>
-    value ? (value as File).type.startsWith("image/") : true
-  ),
+  proofOfIdentification: Yup.mixed()
+    .required("Image is required")
+    .test("fileSize", "File size must be less than 1MB", (value) =>
+      value ? (value as File).size <= 1024000 : true
+    )
+    .test("fileType", "Only image files are allowed", (value) =>
+      value ? (value as File).type.startsWith("image/") : true
+    ),
 });
 
 export default function ProjectPal() {
-  const [show, setShow] = useState<boolean>(true);
+  const toast = useCustomToast();
   const [imagePreview, setImagePreview] = useState<string | null>(null);
 
   const router = useRouter();
-
 
   // Initialize Formik for managing form state and validation.
   const formik = useFormik<CompanyFormValues>({
@@ -72,10 +71,10 @@ export default function ProjectPal() {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       try {
-        const token = localStorage.getItem("token"); 
+        const token = localStorage.getItem("token");
 
-        const parsedToken = token?.replace(/"/g, '') || null;
-    
+        const parsedToken = token?.replace(/"/g, "") || null;
+
         console.log(parsedToken);
 
         const apiUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -86,7 +85,7 @@ export default function ProjectPal() {
           formData.append(key, value);
         });
 
-        const response = await fetch(`${apiUrl}/users/student`, {
+        const res = await fetch(`${apiUrl}/users/student`, {
           method: "PUT",
           headers: {
             Authorization: `Bearer ${parsedToken}`,
@@ -94,17 +93,25 @@ export default function ProjectPal() {
           body: formData,
         });
 
-        if (response.ok) {
-          const data = await response.json();
+        if (res.status === 200) {
+          const data = await res.json();
+          toast(
+            "Success",
+            "success",
+            true,
+            2000,
+            data.data.message,
+            "top-right"
+          );
           console.log("Success:", data);
-      router.push('/signup/user-type');
-
+          router.push("/signup/user-type");
         } else {
-          const errorData = await response.json();
-          console.error("Error:", errorData);
+          const data = await res.json();
+          toast("Error", "error", true, 2000, data.message, "top-right");
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error("Error:", (error as Error).message);
+        toast("Error", "error", true, 2000, error, "top-right");
       }
     },
   });
@@ -254,7 +261,7 @@ export default function ProjectPal() {
                     type="text"
                     id="level"
                     // name="level"
-                    placeholder="Software Design"
+                    placeholder="200L"
                     {...formik.getFieldProps("level")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
                   />
@@ -399,58 +406,59 @@ export default function ProjectPal() {
                 ) : null}
               </div> */}
               <div className="my-3 relative">
-   <label
-      htmlFor="proofOfIdentification"
-      className="block text-gray-300 text-[16px]"
-   >
-      Upload ID Card
-   </label>
-   {imagePreview && (
-      <Image
-         src={imagePreview}
-         alt="Image Preview"
-         width={200}
-         height={200}
-         className="relative rounded-xl mb-2"
-      />
-   )}
-   <Image
-      src="/images/upload.svg"
-      alt="Upload Icon"
-      width={200}
-      height={200}
-      priority
-   />
-   <input
-      type="file"
-      id="proofOfIdentification"
-      name="proofOfIdentification"
-      // accept="image/*"
-      onChange={(event) => {
-         const selectedFile = event.currentTarget.files
-            ? event.currentTarget.files[0]
-            : null;
-         formik.setFieldValue("proofOfIdentification", selectedFile);
-         
-         // Image preview
-         if (selectedFile) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-               setImagePreview(reader.result as string);
-            };
-            reader.readAsDataURL(selectedFile);
-         } else {
-            setImagePreview(null);
-         }
-      }}
-      className="border-[1.5px] absolute top-7 bg-white opacity-0 z-10 w-[200px] h-[170px] text-[16px] rounded-md text-black px-3 py-1 mt-1"
-   />
-   {formik.touched.proofOfIdentification && formik.errors.proofOfIdentification ? (
-      <div className="text-[red] text-[14px] italic">
-         {formik.errors.proofOfIdentification}
-      </div>
-   ) : null}
-</div>
+                <label
+                  htmlFor="proofOfIdentification"
+                  className="block text-gray-300 text-[16px]"
+                >
+                  Upload ID Card
+                </label>
+                {imagePreview && (
+                  <Image
+                    src={imagePreview}
+                    alt="Image Preview"
+                    width={200}
+                    height={200}
+                    className="relative rounded-xl mb-2"
+                  />
+                )}
+                <Image
+                  src="/images/upload.svg"
+                  alt="Upload Icon"
+                  width={200}
+                  height={200}
+                  priority
+                />
+                <input
+                  type="file"
+                  id="proofOfIdentification"
+                  name="proofOfIdentification"
+                  // accept="image/*"
+                  onChange={(event) => {
+                    const selectedFile = event.currentTarget.files
+                      ? event.currentTarget.files[0]
+                      : null;
+                    formik.setFieldValue("proofOfIdentification", selectedFile);
+
+                    // Image preview
+                    if (selectedFile) {
+                      const reader = new FileReader();
+                      reader.onloadend = () => {
+                        setImagePreview(reader.result as string);
+                      };
+                      reader.readAsDataURL(selectedFile);
+                    } else {
+                      setImagePreview(null);
+                    }
+                  }}
+                  className="border-[1.5px] absolute top-7 bg-white opacity-0 z-10 w-[200px] h-[170px] text-[16px] rounded-md text-black px-3 py-1 mt-1"
+                />
+                {formik.touched.proofOfIdentification &&
+                formik.errors.proofOfIdentification ? (
+                  <div className="text-[red] text-[14px] italic">
+                    {formik.errors.proofOfIdentification}
+                  </div>
+                ) : null}
+              </div>
 
               <button
                 className="bg-app-sblue border-2 border-app-sblue text-white py-2 px-5 mt-3 rounded-full"
@@ -459,7 +467,6 @@ export default function ProjectPal() {
                 Create account
               </button>
             </form>
-            
           </div>
         </div>
       </div>
