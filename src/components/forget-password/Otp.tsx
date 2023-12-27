@@ -8,6 +8,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
 import useCustomToast from "../Toast";
+import StepIndicator from "./StepIndicator";
 
 interface CompanyFormValues {
   otpNumber: string;
@@ -123,6 +124,9 @@ const Otp: React.FC<NextPageProps> = ({ handleNext, steps, step }) => {
             </span>
           </p>
         </div>
+      </div>
+      <div className="">
+        <StepIndicator steps={steps} step={step} />
       </div>
     </div>
   );

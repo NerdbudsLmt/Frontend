@@ -8,6 +8,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
 import useCustomToast from "../Toast";
+import StepIndicator from "./StepIndicator";
 
 interface PasswordFormValues {
   NewPassword: string;
@@ -170,6 +171,9 @@ const SetPassword: React.FC<NextPageProps> = ({ handleNext, steps, step }) => {
             </button>
           </form>
         </div>
+      </div>
+      <div className="">
+        <StepIndicator steps={steps} step={step} />
       </div>
     </div>
   );
