@@ -81,7 +81,7 @@ const FinishedProject: React.FC = () => {
       </div>
 
       {projects.length === 0 ? (
-        <p>No finished projects to display. Tell me what to write!</p>
+        <p>No finished projects to display.</p>
       ) : (
         <div className='mt-10 text-white list-decimal text-md'>
           {currentPosts.map((project) => (
@@ -111,32 +111,6 @@ const FinishedProject: React.FC = () => {
         </div>
       )}
 
-      {/* <div className='mt-10 text-white list-decimal text-md'>
-        {currentPosts.map((project) => (
-          <div
-            key={project._id}
-            className='flex items-center justify-between flex-wrap rounded-lg py-2 px-4 gap-4 my-5 bg-[#F5F4F4]'
-          >
-            <div className='flex items-center gap-4'>
-              <p className='text-[18px]'>{project._id}.</p>
-              <p className='text-[18px] border-r-2 border-black pr-4'>
-                {project.projectName}
-              </p>
-              <p className='text-[14px] font-semibold text-[#5583C3]'>
-                Finished
-              </p>
-            </div>
-            <div className='flex gap-3 flex-wrap '>
-              <Link
-                href={`/dashboard/projects/finished/${project._id}`}
-                className='flex gap-2 items-center bg-[#C8C8C8] py-2 px-2 rounded-lg'
-              >
-                Submit review online
-              </Link>
-            </div>
-          </div>
-        ))}
-      </div> */}
 
       <Pagination
         postsPerPage={postsPerPage}
