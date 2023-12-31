@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import React from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
@@ -49,9 +49,9 @@ const validationSchema = Yup.object().shape({
   meredian: Yup.string().required("Meredian is required"),
 });
 
-
 export default function CreateProject() {
   const { data: session }: any = useSession();
+  // console.log(session)
   const toast = useToast();
   const handleSubmit = (values: FormValues) => {
     console.log(values); // Log form values to console
@@ -199,3 +199,4 @@ export default function CreateProject() {
     </div>
   );
 }
+

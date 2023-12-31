@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth/next"
 import { redirect } from "next/navigation"
 import { options } from "..//../../api/auth/[...nextauth]/options"
 import CreateProject from "./components/Create";
+import { useProjects } from '../context/ProjectContext'
 
 
 
