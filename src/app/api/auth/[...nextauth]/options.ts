@@ -47,19 +47,16 @@ export const options: NextAuthOptions = {
     async jwt({ token, user }: any) {
       if (user && user.data) {
         token.accessToken = user.data.accessToken;
-        // token.email = user.data.email;
         token.userType = user.data.user.userType;
-        // token.full_name = user.data.full_name;
       }
       return token;
     },
     async session({ session, token }: any) {
-      if (token && token.userType) {
+      if (token.accessToken && token.userType) {
         session.user.accessToken = token.accessToken;
-        // session.user.email = token.email;
         session.user.userType = token.userType;
-        // session.user.full_name = token.full_name;
       }
+      // console.log(session)
       return session;
     },
   },
