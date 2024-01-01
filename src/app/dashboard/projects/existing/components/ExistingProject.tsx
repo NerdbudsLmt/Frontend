@@ -7,15 +7,16 @@ import { RiDeleteBinLine } from 'react-icons/ri'
 import { useSession } from 'next-auth/react'
 
 interface Project {
-  title: string
-  status: 'Active' | 'Not Active' | 'Finished'
+  projectName: string
+  paymentStatus: boolean
   id: number
 }
 
 
 const ExistingProject: React.FC = () => {
   const { data: session } = useSession()
-  const [projects, setProjects] = useState<Project[]>([])
+  const [loading, setLoading] = useState(false);
+  const [project, setProject] = useState<Project[]>([])
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage] = useState(5)
 
@@ -42,8 +43,14 @@ const ExistingProject: React.FC = () => {
         console.log('API Response:', response)
 
         if (response.ok) {
+          setLoading(true)
+
           const data = await response.json()
-          setProjects(data.projects)
+          setProject(data?.data?.projects)
+          console.log(data)
+          console.log(data.data.projects)
+        setLoading(false)
+
         } else {
           console.error('Failed to fetch user projects')
         }
@@ -58,7 +65,7 @@ const ExistingProject: React.FC = () => {
 
   const indexOfLastPost = currentPage * postsPerPage
   const indexOfFirstPost = indexOfLastPost - postsPerPage
-  const currentPosts = projects?.slice(indexOfFirstPost, indexOfLastPost)
+  const currentPosts = project?.slice(indexOfFirstPost, indexOfLastPost)
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber)
   const paginateFront = () => setCurrentPage(currentPage + 1)
@@ -71,11 +78,15 @@ const ExistingProject: React.FC = () => {
         <div className='h-2 w-2 bg-black rounded-full' />
         <p className='font-semibold  text-2xl'>Existing project</p>
       </div>
-      {projects?.length === 0 ? (
-        <p>No project Available</p>
+      {project?.length === 0 ? (
+        <p className="text-app-pblue py-4 text-center text-lg font-bold">Loading...</p> 
       ) : (
         <>
           <div className='mt-10  text-white list-decimal  text-md'>
+          {loading ?
+            <p className="text-app-pblue py-4 text-center text-lg font-bold">No project available</p> 
+            :
+          <> 
             {currentPosts?.map((item) => (
               <div
                 key={item.id}
@@ -84,16 +95,16 @@ const ExistingProject: React.FC = () => {
                 {/* <p className="text-[18px]">{item.id}</p> */}
                 <div className='flex items-center gap-4'>
                   <p className='text-[18px] border-r-2 border-black pr-4'>
-                    {item.title}
+                    {item.projectName}
                   </p>
                   <p
                     className={
-                      item.status === 'Active'
+                      item.paymentStatus === true
                         ? 'text-[14px] font-semibold text-[#5583C3]'
                         : 'text-[14px] font-semibold text-gray-400'
                     }
                   >
-                    {item.status}
+                    {item.paymentStatus === true ? 'Active' : 'Not Active'}
                   </p>
                 </div>
                 <div className='flex gap-3 flex-wrap '>
@@ -101,7 +112,7 @@ const ExistingProject: React.FC = () => {
                     Request delete
                     <RiDeleteBinLine />
                   </button>
-                  {item.status === 'Not Active' && (
+                  {item.paymentStatus === true && (
                     <button className='flex gap-2 items-center bg-[#5583C3] text-white py-2 px-3 rounded-lg'>
                       Activate
                     </button>
@@ -113,11 +124,13 @@ const ExistingProject: React.FC = () => {
                 </div>
               </div>
             ))}
+             </>
+          }
           </div>
 
           <Pagination
             postsPerPage={postsPerPage}
-            totalPosts={projects?.length}
+            totalPosts={project?.length}
             currentPage={currentPage}
             paginateBack={paginateBack}
             paginateFront={paginateFront}

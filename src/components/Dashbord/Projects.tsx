@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useToast } from "@chakra-ui/react";
 import axios from 'axios';
+import Link from "next/link";
 
 
 const project = [
@@ -44,43 +45,58 @@ const meeting = [
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
+interface Project {
+  projectName: string
+  paymentStatus: boolean
+  _id: number
+}
 
 export default function Projects() {
   const { data: session } = useSession();
-  const [loading, setLoading] = useState(true);
-  const [projects, setProjects] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [projects, setProjects] = useState<Project[]>([])
   const [error, setError] = useState<string | null>(null);
   const toast = useToast();
 
-  const token = session?.user?.accessToken;
-  console.log(token)
+  useEffect(() => {
+    const fetchUserProjects = async () => {
+      try {
+        const accessToken = session?.user?.accessToken ?? ''
+        console.log(accessToken)
+        if (!accessToken) {
+          console.error('Access token not available')
+          return
+        }
 
-  const fetchData = async () => {
-    try {
-      const res = await fetch(`${apiUrl}/projects/userProjects`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+        const url = 'https://nerdbuds.onrender.com/api/v1/projects/userProjects'
 
-      if (res.ok) {
-        const data = await res.json();
-        setProjects(data);
-        console.log(data.data.project);
-      } else {
-        const errData = await res.json();
-        setError(errData.error);
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+            // 'Content-Type': 'application/json',
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+
+        console.log('API Response:', response)
+        if (response.ok) {
+          setLoading(true)
+          const data = await response.json()
+          console.log(data)
+          setProjects(data?.data?.projects)
+        setLoading(false)
+
+        } else {
+          console.error('Failed to fetch user projects')
+        }
+      } catch (error) {
+        console.error('An error occurred:', error)
       }
-    } catch (error) {
-      console.error("Error occurred during fetch:", error);
-      // setError(error.message);
-    } finally {
-      setLoading(false);
     }
-  };
+    // setLoading(false)
 
-  // Call the fetchData function when the component renders
-  fetchData();
+    fetchUserProjects()
+  }, [session])
 
 
   return (
@@ -89,8 +105,19 @@ export default function Projects() {
         <div className=" bg-[#F5F4F4] p-4 rounded-lg">
           <p className="text-lg font-bold">Projects </p>
 
-          <ul className="mt-4  text-white list-decimal  text-md">
-            {/* {projects?.data?.projects?.map((item) => (
+         {/* {loading ? */}
+         {projects?.length === 0 ? 
+         (
+          <p className="text-app-pblue py-4 text-center text-lg font-bold">Loading...</p> 
+          )
+          :
+          (
+
+         <ul className="mt-4  text-white list-decimal  text-md">
+           {loading ?
+            <p className="text-app-pblue py-4 text-center text-lg font-bold">No project available</p> 
+            :
+          <>  {projects?.map((item) => (
               <li
                 key={item._id}
                 className="flex items-center rounded-lg py-3 px-3 gap-4 my-3 bg-app-pblue"
@@ -99,21 +126,26 @@ export default function Projects() {
                 <p className="text-[18px] border-r-2 pr-4">{item.projectName}</p>
                 <p
                   className={
-                    item.status === "false"
+                    item.paymentStatus === true
                       ? "text-[12px] text-green-600"
                       : "text-[12px] text-yellow"
                   }
                 >
-                  {item.status ? 'Finished'  : 'In Progress'}
+                  {item.paymentStatus === true ? 'Finished'  : 'In Progress'}
                 </p>
               </li>
-            ))} */}
+            ))}
+            </>
+          }
           </ul>
+          )
+          }
 
-          <button className="flex gap-2 items-center transition text-app-pblue bg-yellow border-2 border-yellow py-2 px-4 rounded-full">
+
+          <Link href='/dashboard/projects/create' className="flex gap-2 items-center transition text-app-pblue bg-yellow border-2 border-yellow py-2 px-4 w-fit rounded-full">
             <FiPlus size={20} />
             Create new project
-          </button>
+          </Link>
         </div>
 
         <div className=" bg-[#F5F4F4] p-4 rounded-lg">
