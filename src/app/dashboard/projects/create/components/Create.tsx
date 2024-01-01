@@ -61,7 +61,7 @@ export default function CreateProject() {
     const url = "https://nerdbuds.onrender.com/api/v1/projects";
     // const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-    console.log("Access Token:", session?.user?.accessToken);
+    // console.log("Access Token:", session?.user?.accessToken);
 
     const requestData = {
       projectName: "IT",

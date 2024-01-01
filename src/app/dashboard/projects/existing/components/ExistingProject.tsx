@@ -87,7 +87,6 @@ const ExistingProject: React.FC = () => {
         <div className="h-2 w-2 bg-black rounded-full" />
         <p className="font-semibold  text-2xl">Existing project</p>
       </div>
-
       <div className="mt-10  text-white list-decimal  text-md">
         {currentPosts.map((item) => (
           <div
