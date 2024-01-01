@@ -12,9 +12,7 @@ import { useSession } from "next-auth/react";
 
 export default function QuickSet() {
   const { data: session } = useSession();
-  // console.log(session?.user?.user?.userType)
-  // console.log(session?.user?.userType)
-  // const user = session?.user?.userType ?? "";
+
 
   const transaction = [
     {
