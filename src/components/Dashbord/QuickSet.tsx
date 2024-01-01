@@ -1,5 +1,6 @@
 "use client";
-import React, {useEffect} from "react";
+
+import React from "react";
 import { BiSolidMessageDetail } from "react-icons/bi";
 // @ts-ignore
 import TawkMessengerReact from "@tawk.to/tawk-messenger-react";
@@ -9,13 +10,11 @@ import { useSession } from "next-auth/react";
 
 
 
-
 export default function QuickSet() {
   const { data: session } = useSession();
-  // console.log(session?.user)
-  const user = session?.user?.userType ?? "";
-
-
+  // console.log(session?.user?.user?.userType)
+  // console.log(session?.user?.userType)
+  // const user = session?.user?.userType ?? "";
 
   const transaction = [
     {
@@ -42,22 +41,31 @@ export default function QuickSet() {
   return (
     <div className="grid text-app-pblue grid-col-1  tablet:grid-col-4 laptop_l:grid-cols-8 gap-4">
       <div className="col-span-1  laptop_l:col-span-2 bg-[#F5F4F4] p-4 rounded-lg">
-        <p className="text-lg font-bold underline w-[80%] mx-auto">Quick Settings </p>
+        <p className="text-lg font-bold underline w-[80%] mx-auto">
+          Quick Settings{" "}
+        </p>
         <div className="flex  justify-between gap-3 mt-3 h-fit w-[80%] mx-auto text-lg font-semibold text-[#265D80]">
           Show side board
         </div>
-        <p className="text-[#265D80] font-semibold text-lg w-[80%] mx-auto mt-1">Account type: </p>
-        <p className="text-[#132E40] w-[80%] mx-auto text-md font-semibold">{user} account</p>
+
+        <p className="text-[#265D80] font-semibold text-lg w-[80%] mx-auto mt-1">
+          Account type:{" "}
+        </p>
+        {session?.user && (
+          <p className="text-[#132E40] w-[80%] mx-auto text-md font-semibold">
+            {/* {session?.user.user.userType} account */}
+            {session?.user?.user?.userType} account
+          </p>
+        )}
 
         <div className=" w-[80%] mx-auto">
           <Link
-              href="/dashboard/projects/create"
-              className=" flex gap-2 items-center transition text-app-pblue bg-yellow border-2 border-yellow py-2 px-4 w-fit rounded-full"
-            >
+            href="/dashboard/projects/create"
+            className=" flex gap-2 items-center transition text-app-pblue bg-yellow border-2 border-yellow py-2 px-4 w-fit rounded-full"
+          >
             Edit profile
             <BsPerson size={20} />
           </Link>
-
         </div>
       </div>
 
