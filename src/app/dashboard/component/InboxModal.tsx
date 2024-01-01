@@ -153,7 +153,7 @@ const InboxModal: React.FC<InboxModalProps> = ({ isOpen, onClose }) => {
     <>
       <div
         style={{
-          width: '320px',
+          width: '437px',
           position: 'absolute',
           top: '55px',
           right: '0%',
@@ -182,7 +182,7 @@ const InboxModal: React.FC<InboxModalProps> = ({ isOpen, onClose }) => {
         <div>
           <div className='flex items-start mb-6'>
             <Image
-              src='/images/Bitmap.svg'
+              src='/images/Avatar.png'
               alt='Description of the image'
               width={45}
               height={45}
@@ -191,21 +191,26 @@ const InboxModal: React.FC<InboxModalProps> = ({ isOpen, onClose }) => {
             <div className='flex flex-col justify-between'>
               <span className='flex justify-between items-start mb-1'>
                 <h2 className='text-lightBlue text-lg font-medium'>Nerdbuds</h2>
-                <p className='text-lightBlue text-sm font-medium'>8:00AM</p>
               </span>
               <p className='text-sm font-medium'>
                 There has been a change in your project. Head over to your
                 active projects to view.
               </p>
-              <button className='text-sm bg-lightYellow p-2 rounded-full mt-2 font-medium py-2 px-3'>
+              {/* <button className='text-sm bg-lightYellow p-2 rounded-full mt-2 font-medium py-2 px-3 inline-flex'>
                 Acknowledge
+              </button> */}
+              <button className='text-sm mt-2 font-medium inline-flex'>
+                <span className='text-darkBlue bg-lightYellow p-2 rounded-full'>
+                  Acknowledge
+                </span>
               </button>
             </div>
+            <p className='text-lightBlue text-sm font-medium'>8:00AM</p>
           </div>
           {/*  */}
           <div className='flex items-start mb-6'>
             <Image
-              src='/images/Bitmap.svg'
+              src='/images/Avatar.png'
               alt='Description of the image'
               width={45}
               height={45}
@@ -214,20 +219,22 @@ const InboxModal: React.FC<InboxModalProps> = ({ isOpen, onClose }) => {
             <div className='flex flex-col justify-between'>
               <span className='flex justify-between items-start mb-1'>
                 <h2 className='text-lightBlue text-lg font-medium'>Nerdbuds</h2>
-                <p className='text-lightBlue text-sm font-medium'>7:00PM</p>
               </span>
               <p className='text-sm font-medium'>
                 Your email has been successfully changed.
               </p>
-              <button className='text-sm bg-lightYellow p-2 rounded-full mt-2 font-medium py-2 px-3'>
-                Acknowledge
+              <button className='text-sm mt-2 font-medium inline-flex'>
+                <span className='text-darkBlue bg-lightYellow p-2 rounded-full'>
+                  Acknowledge
+                </span>
               </button>
             </div>
+            <p className='text-lightBlue text-sm font-medium'>7:00PM</p>
           </div>
           {/*  */}
           <div className='flex items-start mb-6'>
             <Image
-              src='/images/Bitmap.svg'
+              src='/images/Avatar.png'
               alt='Description of the image'
               width={45}
               height={45}
@@ -236,16 +243,18 @@ const InboxModal: React.FC<InboxModalProps> = ({ isOpen, onClose }) => {
             <div className='flex flex-col justify-between'>
               <span className='flex justify-between items-start mb-1'>
                 <h2 className='text-lightBlue text-lg font-medium'>Nerdbuds</h2>
-                <p className='text-lightBlue text-sm font-medium'>8:00PM</p>
               </span>
               <p className='text-sm font-medium'>
                 There has been a change in your project. Head over to your
                 active projects to view.
               </p>
-              <button className='text-sm bg-lightYellow p-2 rounded-full mt-2 font-medium py-2 px-3'>
-                Acknowledge
+              <button className='text-sm mt-2 font-medium inline-flex'>
+                <span className='text-darkBlue bg-lightYellow p-2 rounded-full'>
+                  Acknowledge
+                </span>
               </button>
             </div>
+            <p className='text-lightBlue text-sm font-medium'>8:00PM</p>
           </div>
         </div>
       </div>

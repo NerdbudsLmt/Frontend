@@ -22,6 +22,9 @@ module.exports = {
         'app-pblue': '#132E40', // secondary
         'app-sblue': '#3F9BD5', // secondary
         'yellow': '#FFE393',
+        'lightYellow': '#F9D262',
+        'lightBlue': '#5583C3',
+        'darkBlue': '#132E40'
         
       },
       screens: {
