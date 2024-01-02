@@ -58,7 +58,7 @@ export default function QuickSet() {
 
         <div className=" w-[80%] mx-auto">
           <Link
-            href="/dashboard/projects/create"
+            href="/dashboard/settings"
             className=" flex gap-2 items-center transition text-app-pblue bg-yellow border-2 border-yellow py-2 px-4 w-fit rounded-full"
           >
             Edit profile
