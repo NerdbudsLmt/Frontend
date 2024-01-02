@@ -9,7 +9,7 @@ import { useSession } from 'next-auth/react'
 interface Project {
   projectName: string
   paymentStatus: boolean
-  id: number
+  _id: number
 }
 
 
@@ -47,8 +47,8 @@ const ExistingProject: React.FC = () => {
 
           const data = await response.json()
           setProject(data?.data?.projects)
-          console.log(data)
-          console.log(data.data.projects)
+          // console.log(data)
+          // console.log(data.data.projects)
         setLoading(false)
 
         } else {
@@ -78,18 +78,20 @@ const ExistingProject: React.FC = () => {
         <div className='h-2 w-2 bg-black rounded-full' />
         <p className='font-semibold  text-2xl'>Existing project</p>
       </div>
-      {project?.length === 0 ? (
+                
+       {project?.length === 0 ? (
         <p className="text-app-pblue py-4 text-center text-lg font-bold">Loading...</p> 
       ) : (
         <>
           <div className='mt-10  text-white list-decimal  text-md'>
+          
           {loading ?
             <p className="text-app-pblue py-4 text-center text-lg font-bold">No project available</p> 
             :
           <> 
             {currentPosts?.map((item) => (
               <div
-                key={item.id}
+                key={item._id}
                 className='flex items-center justify-between flex-wrap rounded-lg py-2 px-4 gap-4 my-5 bg-[#F5F4F4]'
               >
                 {/* <p className="text-[18px]">{item.id}</p> */}
