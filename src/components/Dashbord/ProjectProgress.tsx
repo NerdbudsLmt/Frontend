@@ -9,13 +9,12 @@ import {
 } from "@nextui-org/react";
 
 interface ProjectList {
-  title: string;
-  date: string;
-  time: string;
-  content: string;
+  projectName: string;
+  description: string;
   status: string;
   id: number;
-  percentage: string;
+  completedDate: string;
+  projectPercentage: string;
 }
 
 interface ProjectProgressProps {
@@ -23,28 +22,62 @@ interface ProjectProgressProps {
 }
 
 const ProjectProgress: React.FC<ProjectProgressProps> = ({ item }) => {
-  const percentage = parseInt(item.percentage, 10);
+  const projectPercentage = parseInt(item.projectPercentage, 10);
+  const {
+    projectName,
+    description,
+    status,
+    id,
+    completedDate: deadlineDate,
+    projectPercentage: percentage,
+  } = item;
+  const formatDate = (dateString: string) => {
+    const options: Intl.DateTimeFormatOptions = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      timeZone: "UTC",
+      hour12: true,
+    };
+
+    const formattedDate = new Intl.DateTimeFormat("en-US", options).format(
+      new Date(dateString)
+    );
+    return formattedDate;
+  };
 
   return (
     <div className=" border-2 border-[#B1AFAF] rounded-lg py-4 px-4 tablet:px-8">
       <div className="flex gap-4 flex-wrap justify-between">
-        <p className="font-bold text-2xl">{item.title}</p>
+        <p className="font-bold text-2xl">{projectName}</p>
         <Link href="#" className="underline font-semibold  text-gray-500">
           View more
         </Link>
       </div>
       <div className="flex flex-col tablet:flex-row gap-5 flex-wrap justify-between">
         <div className="basis-2/4">
-          <p className="my-3 font-semibold">{item.content.slice(0, 100)}...</p>
-          <p className="font-bold text-lg">Deadline {item.status}</p>
-          <div className="flex justify-between text-sm text-gray-600 font-semibold rounded-lg my-2 bg-[#F5F4F4] py-2 px-3">
-            <p>{item.date}</p>
-            <p>{item.time}</p>
-          </div>
+          <p className="my-3 font-semibold">
+            {item.description.slice(0, 100)}...
+          </p>
+
+          <p className="font-bold text-lg">
+            Deadline |{" "}
+            <span className="text-[#676767] font-medium">
+              {(status && status) || "To Be Reviewed"}
+            </span>
+          </p>
+          {deadlineDate && (
+            <div className="flex justify-between text-sm text-gray-600 font-semibold rounded-lg my-2 bg-[#F5F4F4] py-2 px-3">
+              <p>{formatDate(deadlineDate)}</p>
+            </div>
+          )}
         </div>
         <div className="basis-1/4 flex flex-col items-center tablet:items-end">
           <Card
-            aria-label={`Project progress ${item.percentage}%`}
+            aria-label={`Project progress ${percentage}%`}
             className="w-[120px] h-[120px] my-auto border-none bg-[#F5F4F4] rounded-full"
           >
             <CardBody className="justify-center items-center pb-0">
@@ -52,15 +85,15 @@ const ProjectProgress: React.FC<ProjectProgressProps> = ({ item }) => {
                 classNames={{
                   track: "stroke-white/10",
                   svg: `w-20 h-20 my-auto mb-5 drop-shadow-md ${
-                    item.percentage === "100%"
+                    percentage === "100%"
                       ? "text-green-400"
-                      : percentage >= 50
+                      : projectPercentage >= 50
                       ? "text-app-sblue"
                       : "text-red-500"
                   }`,
                   value: "text-xl font-semibold mb-5 text-black",
                 }}
-                value={percentage}
+                value={projectPercentage}
                 strokeWidth={4}
                 showValueLabel={true}
               />
