@@ -238,7 +238,7 @@ function ProjectPal() {
         </div>
       </section>
       <div className='mt-20'>
-        <div className='flex justify-between mx-10px gap-50 mb-20px'>
+        <div className='flex gap-20 mx-20 mb-20px '>
           <div className='grid grid-cols-2 gap-4'>
             <Image
               src='/images/group4.png'
@@ -269,22 +269,19 @@ function ProjectPal() {
               priority
             />
           </div>
-          {/* <h1 className='text-7xl font-bold text-center text-app-porange w-1/2 flex items-center'>
-            Why Should You Use
-            <span className='text-white'> Project Pal</span>
-          </h1> */}
-          <div className='flex items-center justify-center'>
+          
+          <div className='flex items-center justify-center w-[35%]'>
             <h1 className='text-7xl font-bold text-app-porange '>
               Why Should You Use
               <span className='text-white'> Project Pal</span>
             </h1>
           </div>
         </div>
-        <div className='flex justify-between items-center'>
-          <h1 className=' font-bold text-5xl text-center text-app-porange w-[35%]'>
+        <div className='mx-20 flex justify-between items-center'>
+          <h1 className=' font-bold text-5xl text-app-porange w-[35%] text-left' >
             Hear from fellow students
           </h1>
-          <p className='text-xl w-1/3 mt-10 mb-20'>
+          <p className='text-xl w-[50%] mt-10 mb-20'>
             Before launching we released Project Pal to few students to tests
             it’s efficiency. As expected they went above and beyond in their
             reviews due to how well they did in their final year projects. Here
