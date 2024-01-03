@@ -172,7 +172,7 @@ const SetPassword: React.FC<NextPageProps> = ({ handleNext, steps, step }) => {
           </form>
         </div>
       </div>
-      <div className="">
+      <div className="flex items-center justify-center w-[50%]">
         <StepIndicator steps={steps} step={step} />
       </div>
     </div>
