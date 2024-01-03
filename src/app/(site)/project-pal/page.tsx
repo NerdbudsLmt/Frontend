@@ -174,7 +174,7 @@ function ProjectPal() {
             src='/images/Rectangle 23785.png'
             alt='graduation'
             width={568}
-            height={300}
+            height={200}
             priority
           />
         </div>
@@ -238,7 +238,7 @@ function ProjectPal() {
         </div>
       </section>
       <div className='mt-20'>
-        <div className='flex justify-between mx-10px gap-50 mb-20px' >
+        <div className='flex justify-between mx-10px gap-50 mb-20px'>
           <div className='grid grid-cols-2 gap-4'>
             <Image
               src='/images/group4.png'
@@ -291,34 +291,66 @@ function ProjectPal() {
             are some of the reviews.
           </p>
         </div>
-        <div className="flex justify-center items-center">
-          <h1>Create a project</h1>
-          <span>
-            <h5>Briefly describe your project</h5>
-            <article>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit
-              amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-              veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-              ex ea commodo consequat.
-            </article>
-            <h5>What services do you need</h5>
-            <div></div>
-            <Link
-              href='/contact'
-              className='flex gap-3 px-5 py-2 mt-3 w-fit bg-[#FFFFFF] text-[14px] laptop:text[16px] text-app-pblue rounded-3xl font-bold'
-            >
-              Book a project
-            </Link>
-            <h4>
-              For assistance with booking a meeting reach out to
-              <span className='text-app-porange'> Customer Support.</span>
-            </h4>
-          </span>
-        </div>
+      </div>
+      <div className='mx-auto max-w-3xl p-4 rounded-lg'>
+        <h1 className='text-6xl font-bold mb-4 text-center'>Create a project</h1>
+        <span>
+          <h5 className='text-lg font-semibold mb-2'>
+            Briefly describe your project.
+          </h5>
+          <textarea
+            className='w-full bg-gray-300 p-4 mb-4 rounded-md text-customBlue'
+            placeholder='Enter a brief description of your project...'
+          ></textarea>
+          <h5 className='text-lg font-semibold mb-2'>
+            What services do you need?
+          </h5>
+          <div className='flex flex-wrap gap-4 bg-gray-300 p-4 mb-4 rounded-md'>
+            <label className='flex items-center '>
+              <input type='checkbox' className='mr-2' />
+              <span className='p-4 border rounded-full bg-white text-customBlue font-semibold'>
+                Cloud Engineering
+              </span>
+            </label>
+            <label className='flex items-center '>
+              <input type='checkbox' className='mr-2' />
+              <span className='p-4 border rounded-full bg-white text-customBlue font-semibold '>
+                UI/UX
+              </span>
+            </label>
+            <label className='flex items-center '>
+              <input type='checkbox' className='mr-2' />
+              <span className='p-4 border rounded-full bg-white text-customBlue font-semibold'>
+                Security
+              </span>
+            </label>
+            <label className='flex items-center '>
+              <input type='checkbox' className='mr-2' />
+              <span className='p-4 border rounded-full bg-white text-customBlue font-semibold'>
+                Consultation
+              </span>
+            </label>
+            <label className='flex items-center '>
+              <input type='checkbox' className='mr-2' />
+              <span className='p-4 border rounded-full bg-white text-customBlue font-semibold'>
+                Branding
+              </span>
+            </label>
+
+            {/* Add more services as needed */}
+          </div>
+          <Link
+            href='/contact'
+            className='flex gap-3 px-5 py-2 mt-3 w-fit bg-white text-[18px] laptop:text-[16px] text-customBlue rounded-3xl font-bold mb-2'
+          >
+            Book a project
+          </Link>
+          <h4 className='text-lg'>
+            For assistance with booking a meeting reach out to 
+            <span className='text-app-porange underline'> Customer Support.
+            </span>
+          </h4>
+        </span>
       </div>
     </>
   )
