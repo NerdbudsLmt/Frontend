@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import NLForm from "@/components/NLForm";
 import { FaLinkedin, FaTwitterSquare } from "react-icons/fa";
 import { AiFillInstagram, AiFillFacebook } from "react-icons/ai";
@@ -26,7 +27,12 @@ const Footer = () => {
         </div>
         <div className="py-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-5 md:gap-y-4 lg:gap-y-4 xl:gap-y-0">
           <div>
-            <img src="images/footer logo.png" alt="" />
+            <Image
+              src="/images/footer logo.png"
+              alt=""
+              width={170}
+              height={170}
+            />
           </div>
           <div className="flex flex-col space-y-2">
             <p className="text-[#3F9BD5] text-lg font-bold">Products</p>

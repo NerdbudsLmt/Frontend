@@ -76,7 +76,7 @@ export default function Home() {
           with unparalleled precision and innovation, nurturing the startup of
           your dreams.
         </p>
-        <Link href="/signup">
+        <Link href="/about">
           <button className="bg-app-sblue border-2 border-app-sblue text-white py-2 px-4 rounded-full transition-transform hover:scale-110 my-8">
             Learn more about us <BsArrowRight className="text-lg inline" />
           </button>
@@ -129,15 +129,18 @@ export default function Home() {
       <div className="flex justify-between my-16">
         <div className="w-1/3 p-4">
           <p>
-            "As a company there are different projects that may not be possible
-            to get done due to various factors. But one can always delegate
-            projects to Nerdbuds and trust them to deliver"
+            &quot;As a company there are different projects that may not be
+            possible to get done due to various factors. But one can always
+            delegate projects to Nerdbuds and trust them to deliver&quot;
           </p>
           <div className="mt-5 flex items-center">
-            <img
-              src="images/profile 1.png"
+            <Image
+              src="/images/profile 1.png"
               alt="Profile 1"
               className="w-12 h-12 rounded-full mr-2 inline"
+              width={50}
+              height={50}
+              priority
             />
             <div>
               <span className="text-[#3F9BD5] inline-block">
@@ -149,15 +152,17 @@ export default function Home() {
         </div>
         <div className="w-1/3  p-4">
           <p>
-            "My final year saw my best result in my project and performance.
-            Project Pal is the best thing that a final year student can rely on
-            for maximum success, take it from a graduate."
+            &quot;My final year saw my best result in my project and
+            performance. Project Pal is the best thing that a final year student
+            can rely on for maximum success, take it from a graduate.&quot;
           </p>
           <div className="mt-5 flex items-center">
-            <img
-              src="images/profile 2.png"
+            <Image
+              src="/images/profile 2.png"
               alt="Profile 2"
               className="w-12 h-12 rounded-full mr-2 inline"
+              width={50}
+              height={50}
             />
             <div>
               <span className="text-[#3F9BD5] inline-block">Rita Eze</span>
@@ -167,15 +172,17 @@ export default function Home() {
         </div>
         <div className="w-1/3  p-4">
           <p>
-            "Starting a business can be very tricky. There is a lot involved
-            which can seem overwhelming but thanks to Nerdbuds I was able to get
-            my business up and running within a week."
+            &quot;Starting a business can be very tricky. There is a lot
+            involved which can seem overwhelming but thanks to Nerdbuds I was
+            able to get my business up and running within a week.&quot;
           </p>
           <div className="mt-5 flex items-center">
-            <img
-              src="images/profile 3.png"
+            <Image
+              src="/images/profile 3.png"
               alt="Profile 3"
               className="w-12 h-12 rounded-full mr-2 inline"
+              width={50}
+              height={50}
             />
             <div>
               <span className="text-[#3F9BD5] inline-block">Anita Bassey</span>
