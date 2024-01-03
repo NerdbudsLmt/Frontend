@@ -26,14 +26,12 @@ const lang = [
 
 export const Tools = () => {
   return (
-    <div className="my-10 md:my-24 lg:my-28">
+    <div className="my-10 md:my-24 lg:my-8">
       <div>
         <p className="text-app-sblue text-[20px] font-[500]">
           Software for Change.
         </p>
-        <p className="text-[32px] font-[600] my-2  text-white">
-          Our Tools
-        </p>
+        <p className="text-[32px] font-[600] my-2  text-white">Our Tools</p>
         <p className="text-app-sblue text-[16px] font-[500] w-full tablet:w-[80%]  laptop:w-[550px]">
           Empowering Innovation with React JS and C++. Unleash your potential
           with our cutting-edge programming tools and expertise.
