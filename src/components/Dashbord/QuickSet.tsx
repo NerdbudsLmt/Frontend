@@ -1,11 +1,19 @@
 "use client";
+
 import React from "react";
 import { BiSolidMessageDetail } from "react-icons/bi";
 // @ts-ignore
 import TawkMessengerReact from "@tawk.to/tawk-messenger-react";
 import { BsPerson } from "react-icons/bs";
+import Link from "next/link";
+import { useSession } from "next-auth/react";
+
+
 
 export default function QuickSet() {
+  const { data: session } = useSession();
+
+
   const transaction = [
     {
       title: "Project Assistant",
@@ -30,21 +38,36 @@ export default function QuickSet() {
 
   return (
     <div className="grid text-app-pblue grid-col-1  tablet:grid-col-4 laptop_l:grid-cols-8 gap-4">
-      <div className="col-span-1  laptop_l:col-span-2 bg-[#F5F4F4] p-4  text-center rounded-lg">
-        <p className="text-lg font-bold underline ">Quick Settings </p>
-        <div className="flex w-fit justify-between gap-3 mt-3 h-fit mx-auto">
+      <div className="col-span-1  laptop_l:col-span-2 bg-[#F5F4F4] p-4 rounded-lg">
+        <p className="text-lg font-bold underline w-[80%] mx-auto">
+          Quick Settings{" "}
+        </p>
+        <div className="flex  justify-between gap-3 mt-3 h-fit w-[80%] mx-auto text-lg font-semibold text-[#265D80]">
           Show side board
         </div>
-        <p>Account type</p>
-        <p>Company account</p>
 
-        <button className="flex gap-2 items-center mx-auto text-app-pblue transition bg-yellow border-2 border-yellow mt-2 py-2 px-4 rounded-full">
-          Edit profile
-          <BsPerson size={20} />
-        </button>
+        <p className="text-[#265D80] font-semibold text-lg w-[80%] mx-auto mt-1">
+          Account type:{" "}
+        </p>
+        {session?.user && (
+          <p className="text-[#132E40] w-[80%] mx-auto text-md font-semibold">
+            {/* {session?.user.user.userType} account */}
+            {session?.user?.user?.userType} account
+          </p>
+        )}
+
+        <div className=" w-[80%] mx-auto">
+          <Link
+            href="/dashboard/settings"
+            className=" flex gap-2 items-center transition text-app-pblue bg-yellow border-2 border-yellow py-2 px-4 w-fit rounded-full"
+          >
+            Edit profile
+            <BsPerson size={20} />
+          </Link>
+        </div>
       </div>
 
-      <div className="col-span-1 laptop_l:col-span-2 bg-[#F5F4F4] p-3 rounded-lg">
+      {/* <div className="col-span-1 laptop_l:col-span-2 bg-[#F5F4F4] p-3 rounded-lg">
         <p className="text-lg text-center font-bold underline ">Transactions</p>
         <div className="mt-4 text-white list-decimal  text-md">
           {transaction?.map((item) => (
@@ -60,7 +83,7 @@ export default function QuickSet() {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
 
       <div className="col-span-1 tablet:col-span-2 laptop_l:col-span-3 bg-[#F5F4F4] p-3 rounded-lg">
         <p className="text-lg font-bold underline text-center ">

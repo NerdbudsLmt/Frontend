@@ -1,7 +1,7 @@
 'use client'
-// hooks/useCrud.ts
 import { useState, useEffect } from 'react';
 import { useSession } from "next-auth/react";
+import { useToast } from "@chakra-ui/react";
 
 
 interface UseCrudOptions<T> {
@@ -22,17 +22,15 @@ interface UseCrudResult<T> {
 function useCrud<T>({ baseUrl, initialData = [] }: UseCrudOptions<T>): UseCrudResult<T> {
   const [data, setData] = useState<T[]>(initialData);
   const [loading, setLoading] = useState<boolean>(false);
-  const [refresh, setRefresh] = useState<boolean>(true);
+  // const [refresh, setRefresh] = useState<boolean>(true);
   const [error, setError] = useState<Error | null>(null);
+  const toast = useToast();
 
 
   const { data: session }: any = useSession();
   const token = session?.user?.accessToken
   console.log(token)
-//   const token = () => {
-//     // Retrieve authToken from localStorage
-//     return localStorage.getItem('authToken');
-//   };
+
 
   const fetchData = async () => {
     try {
@@ -62,10 +60,29 @@ function useCrud<T>({ baseUrl, initialData = [] }: UseCrudOptions<T>): UseCrudRe
         },
         body: JSON.stringify(item),
       });
-      if (!response.ok) {
+      if (response.ok) {
+        const responseData = await response.json();
+        toast({
+          title: "Project created ",
+          description: responseData.message,
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+          position: "top-right",
+        });
+        fetchData();
+        console.log(responseData);
+      } else {
+        toast({
+          title: "UNABLE TO CREATE NEW PROJECT, PLS CONTACT THE SUPPORT TEAM",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+          position: "top-right",
+        });
         throw new Error('Failed to create item');
+        console.log("Create project error");
       }
-      fetchData();
     } catch (error) {
       setError(error as Error);
     }
@@ -109,7 +126,7 @@ function useCrud<T>({ baseUrl, initialData = [] }: UseCrudOptions<T>): UseCrudRe
 
   useEffect(() => {
     fetchData();
-  }, [baseUrl, refresh]);
+  }, [baseUrl]);
 
   return {
     data,
