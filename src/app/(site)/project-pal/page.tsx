@@ -1,18 +1,45 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { BsArrowDown, BsArrowLeft, BsArrowRight } from "react-icons/bs";
-import { BiUser } from "react-icons/bi";
-import { MdEmail } from "react-icons/md";
-import {
-  AiFillInstagram,
-  AiOutlineTwitter,
-  AiOutlineFileText,
-  AiFillLinkedin,
-} from "react-icons/ai";
-import { BsFacebook, BsTelephone } from "react-icons/bs";
+import { BsArrowDown } from "react-icons/bs";
+// import { BiUser } from "react-icons/bi";
+// import { MdEmail } from "react-icons/md";
+// import {
+//   AiFillInstagram,
+//   AiOutlineTwitter,
+//   AiOutlineFileText,
+//   AiFillLinkedin,
+// } from "react-icons/ai";
+// import { BsFacebook, BsTelephone } from "react-icons/bs";
 
 function ProjectPal() {
+  const [projectDescription, setProjectDescription] = useState("");
+
+  const handleProjectSubmit = async () => {
+    try {
+      const url = "https://nerdbuds.onrender.com/api/v1/projects";
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          description: projectDescription,
+        }),
+      });
+
+      if (response.ok) {
+        console.log("success dfrshbfr");
+      } else {
+        console.error("Failed srfgbxfrhdt");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
   return (
     <>
       <header className="pt-10">
@@ -81,15 +108,13 @@ function ProjectPal() {
       </div> */}
       <main className="flex justify-between mb-48">
         <div className="flex flex-col items-center">
-          <div className="p-25 bg-[#344C5B] rounded-[25px]">
-            <Image
-              src="/images/Group 34.svg"
-              alt="hand"
-              width={106}
-              height={106}
-              priority
-            />
-          </div>
+          <Image
+            src="/images/Group 34.svg"
+            alt="hand"
+            width={106}
+            height={106}
+            priority
+          />
           <div className="text-center">
             <h1 className="text-2xl my-2">Book a project</h1>
             <p className="text-base">
@@ -297,6 +322,29 @@ function ProjectPal() {
             reviews due to how well they did in their final year projects. Here
             are some of the reviews.
           </p>
+        </div>
+        <div className="flex justify-between mx-20 mb-20">
+          <Image
+            src="/images/Group 100888.png"
+            alt="comments"
+            width={271}
+            height={256}
+            priority
+          />
+          <Image
+            src="/images/Group 100890.png"
+            alt="comments"
+            width={271}
+            height={256}
+            priority
+          />
+          <Image
+            src="/images/Group 100892.png"
+            alt="comments"
+            width={271}
+            height={256}
+            priority
+          />
         </div>
       </div>
       <div className="mx-auto max-w-3xl p-4 rounded-lg">
