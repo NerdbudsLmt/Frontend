@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { BsArrowDown, BsArrowLeft, BsArrowRight } from 'react-icons/bs'
+import { BsArrowDown } from 'react-icons/bs'
 // import { BiUser } from 'react-icons/bi'
 // import { MdEmail } from 'react-icons/md'
 // import {
