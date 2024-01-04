@@ -68,8 +68,6 @@ const handleProjectSubmit = async () => {
           </div>
         </div>
       </header>
-      {/* NEW UPDATES */}
-
       <main className='flex justify-between mb-48'>
         <div className='flex flex-col items-center'>
           <Image
@@ -118,13 +116,15 @@ const handleProjectSubmit = async () => {
           priority
         />
         <div className='flex flex-col items-center'>
-          <Image
-            src='/images/Subtract.svg'
-            alt='hand'
-            width={36}
-            height={36}
-            priority
-          />
+          <div className='p-[25px] bg-[#344C5B] rounded-[25px]'>
+            <Image
+              src='/images/Send_fill.svg'
+              alt='hand'
+              width={56}
+              height={56}
+              priority
+            />
+          </div>
           <div className='text-center'>
             <h1 className='text-2xl my-2'>Delivery</h1>
             <p>
@@ -165,7 +165,7 @@ const handleProjectSubmit = async () => {
             src='/images/Rectangle 23785.png'
             alt='graduation'
             width={568}
-            height={200}
+            height={680}
             priority
           />
           <div className='absolute bottom-0 left-0 w-full bg-[#E6EFF6] p-3'>
