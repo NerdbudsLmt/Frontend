@@ -1,18 +1,44 @@
-import React from 'react'
+'use client'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { BsArrowDown, BsArrowLeft, BsArrowRight } from 'react-icons/bs'
-import { BiUser } from 'react-icons/bi'
-import { MdEmail } from 'react-icons/md'
-import {
-  AiFillInstagram,
-  AiOutlineTwitter,
-  AiOutlineFileText,
-  AiFillLinkedin,
-} from 'react-icons/ai'
-import { BsFacebook, BsTelephone } from 'react-icons/bs'
+// import { BiUser } from 'react-icons/bi'
+// import { MdEmail } from 'react-icons/md'
+// import {
+//   AiFillInstagram,
+//   AiOutlineTwitter,
+//   AiOutlineFileText,
+//   AiFillLinkedin,
+// } from 'react-icons/ai'
+// import { BsFacebook, BsTelephone } from 'react-icons/bs'
 
 function ProjectPal() {
+const [projectDescription, setProjectDescription] = useState('')
+
+const handleProjectSubmit = async () => {
+  try {
+    const url = 'https://nerdbuds.onrender.com/api/v1/projects'
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        description: projectDescription,
+      }),
+    })
+
+    if (response.ok) {
+      console.log('success dfrshbfr')
+    } else {
+      console.error('Failed srfgbxfrhdt')
+    }
+  } catch (error) {
+    console.error('Error:', error)
+  }
+}
+
   return (
     <>
       <header className='pt-10'>
@@ -42,43 +68,7 @@ function ProjectPal() {
         </div>
       </header>
       {/* NEW UPDATES */}
-      {/* <div className='flex justify-between mx-20'>
-        <Image
-          src='/images/Group 34.svg'
-          alt='hand'
-          width={106}
-          height={106}
-          priority
-        />
-        <Image
-          src='/images/Vector 7.png'
-          alt='hand'
-          width={318}
-          height={83}
-          priority
-        />
-        <Image
-          src='/images/Group 35.svg'
-          alt='hand'
-          width={106}
-          height={106}
-          priority
-        />
-        <Image
-          src='/images/Vector 7.png'
-          alt='hand'
-          width={318}
-          height={83}
-          priority
-        />
-        <Image
-          src='/images/Subtract.svg'
-          alt='hand'
-          width={36}
-          height={36}
-          priority
-        />
-      </div> */}
+
       <main className='flex justify-between mb-48'>
         <div className='flex flex-col items-center'>
           <Image
@@ -288,7 +278,31 @@ function ProjectPal() {
             are some of the reviews.
           </p>
         </div>
+        <div className='flex justify-between mx-20 mb-20'>
+          <Image
+            src='/images/Group 100888.png'
+            alt='comments'
+            width={271}
+            height={256}
+            priority
+          />
+          <Image
+            src='/images/Group 100890.png'
+            alt='comments'
+            width={271}
+            height={256}
+            priority
+          />
+          <Image
+            src='/images/Group 100892.png'
+            alt='comments'
+            width={271}
+            height={256}
+            priority
+          />
+        </div>
       </div>
+
       <div className='mx-auto max-w-3xl p-4 rounded-lg'>
         <h1 className='text-6xl font-bold mb-4 text-center'>
           Create a project
@@ -300,6 +314,8 @@ function ProjectPal() {
           <textarea
             className='w-full bg-gray-300 p-4 mb-4 rounded-md text-customBlue'
             placeholder='Enter a brief description of your project...'
+            value={projectDescription}
+            onChange={(e) => setProjectDescription(e.target.value)}
           ></textarea>
           <h5 className='text-lg font-semibold mb-2'>
             What services do you need?
@@ -308,7 +324,9 @@ function ProjectPal() {
             <label className='flex items-center '>
               <span className='p-4 border rounded-full bg-white flex items-center'>
                 <input type='checkbox' className='mr-2' />
-                <span className='text-customBlue font-semibold'>Cloud Engineering</span>
+                <span className='text-customBlue font-semibold'>
+                  Cloud Engineering
+                </span>
               </span>
             </label>
 
@@ -335,18 +353,17 @@ function ProjectPal() {
               </span>
             </label>
 
-            
             <label className='flex items-center '>
               <span className='p-4 border rounded-full bg-white flex items-center'>
                 <input type='checkbox' className='mr-2' />
                 <span className='text-customBlue font-semibold'>Branding</span>
               </span>
             </label>
-
           </div>
           <Link
             href='/contact'
             className='flex gap-3 px-5 py-2 mt-3 w-fit bg-white text-[18px] laptop:text-[16px] text-customBlue rounded-3xl font-bold mb-2'
+            onClick={handleProjectSubmit}
           >
             Book a project
           </Link>
