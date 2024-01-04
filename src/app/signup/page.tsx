@@ -141,10 +141,10 @@ export default function Login() {
               </button>
             </form>
 
-            <p className="text-sm text-gray-400 mt-2 mb-5">
+            <div className="text-sm text-gray-400 mt-2 mb-5">
               Do have an account?{" "}
-              <span className="text-app-porange">Log in </span>
-            </p>
+              <Link href='/login' className="underline text-app-porange">Log in </Link>
+            </div>
             <p className="text-sm text-gray-400 mt-2 mb-5">
               Can&apos;t log in?{" "}
               <Link href='/forget-password' className="text-app-sblue underline"> Forget password </Link>

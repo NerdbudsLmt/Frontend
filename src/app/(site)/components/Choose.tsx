@@ -9,22 +9,18 @@ export const Choose = () => {
         <p className="text-app-sblue text-[20px] font-[500]">
           How we can help?
         </p>
-        <p className="text-[32px] font-[600] my-2 text-white">
-          Why choose us?
-        </p>
+        <p className="text-[32px] font-[600] my-2 text-white">Why choose us?</p>
         <p className="text-app-sblue text-[16px] font-[500] w-full tablet:w-[80%]  laptop:w-[550px]">
           Experience seamless technology integration with our cutting-edge
           software for unparalleled user satisfaction.
         </p>
       </div>
-      
+
       <div className="mt-5 md:mt-14 flex justify-between flex-col tablet_l:flex-row">
         <div className="relative w-full tablet_l:w-[45%] h-[300px] bg-center bg-auto bg-no-repeat bg-[url('/images/building.svg')] rounded-3xl">
           <div className="absolute h-full w-full flex flex-col justify-between">
             <div className="pt-5 pb-2">
-              <div
-                className="border-white text-white text-[14px] mx-auto flex gap-2 items-center border-2 w-fit py-1 px-4 rounded-full"
-              >
+              <div className="border-white text-white text-[14px] mx-auto flex gap-2 items-center border-2 w-fit py-1 px-4 rounded-full">
                 Design and Implementation
                 <Image
                   src="/images/star.svg"
@@ -35,14 +31,14 @@ export const Choose = () => {
                 />
               </div>
               <p className="text-white text-2xl font-[600] text-center w-fit mx-auto">
-              For Companies
+                For Companies
               </p>
             </div>
             <Link
               href="/pricing"
-              className="border-white text-white text-[14px] mx-auto flex gap-2 items-center border-2 mb-6 w-fit mt-1 py-1 px-4 rounded-full"
+              className="border-white text-white text-[14px] mx-auto flex gap-2 items-center border-2 mb-6 w-fit mt-1 py-1 px-4 rounded-full transition-transform hover:scale-110"
             >
-             Learn more 
+              Learn more
               <BsArrowRight className="text-lg" />
             </Link>
           </div>
@@ -51,9 +47,7 @@ export const Choose = () => {
         <div className="relative w-full tablet_l:w-[45%] h-[300px] bg-center bg-auto bg-no-repeat bg-[url('/images/lady.svg')] rounded-3xl">
           <div className="absolute h-full w-full flex flex-col justify-between">
             <div className="pt-5 pb-2">
-              <div
-                className="border-white text-white text-[14px] mx-auto flex gap-2 items-center border-2 w-fit py-1 px-4 rounded-full"
-              >
+              <div className="border-white text-white text-[14px] mx-auto flex gap-2 items-center border-2 w-fit py-1 px-4 rounded-full">
                 Simplicity for Everyone
                 <Image
                   src="/images/user.svg"
@@ -64,14 +58,14 @@ export const Choose = () => {
                 />
               </div>
               <p className="text-white text-2xl font-[600] text-center w-fit mx-auto">
-              For Individuals
+                For Individuals
               </p>
             </div>
             <Link
               href="/pricing"
-              className="border-white text-white text-[14px] mx-auto flex gap-2 items-center border-2 mb-6 w-fit mt-1 py-1 px-4 rounded-full"
+              className="border-white text-white text-[14px] mx-auto flex gap-2 items-center border-2 mb-6 w-fit mt-1 py-1 px-4 rounded-full transition-transform hover:scale-110"
             >
-             Learn more 
+              Learn more
               <BsArrowRight className="text-lg" />
             </Link>
           </div>

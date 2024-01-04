@@ -125,7 +125,7 @@ const Otp: React.FC<NextPageProps> = ({ handleNext, steps, step }) => {
           </p>
         </div>
       </div>
-      <div className="">
+      <div className="flex items-center justify-center w-[50%]">
         <StepIndicator steps={steps} step={step} />
       </div>
     </div>

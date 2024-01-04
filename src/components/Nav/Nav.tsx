@@ -103,9 +103,8 @@ const Nav = () => {
           ) : (
             <>
               <div>
-              
                 <button
-                  className="bg-app-porange border-2 border-app-porange text-white py-2 px-3 rounded-md"
+                  className="border-1 border-white text-white py-2 px-3 rounded-md transition-transform hover:scale-110"
                   onClick={() => signIn()}
                 >
                   Login
@@ -113,12 +112,15 @@ const Nav = () => {
               </div>
 
               <div>
-               
-                <Link
-                  href="/signup"
-                  className="border-2 border-white text-white py-2 px-3 rounded-md"
-                >
-                  Sign up
+                <Link href="/signup">
+                  <button
+                    className="bg-app-porange border-2 border-app-porange
+                    text-white py-2 px-3 rounded-md transition-transform
+                    hover:scale-110"
+                  >
+                    {" "}
+                    Sign up
+                  </button>
                 </Link>
               </div>
             </>

@@ -1,42 +1,61 @@
 "use client";
- 
 
-import {Chart as ChartJS, 
-  ArcElement, 
-  Tooltip, 
-  Legend, 
-  Title
-} from 'chart.js';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 
-ChartJS.register(
-  ArcElement,
-  Tooltip, 
-  Legend
-)
-export const DoughnutChart = () => {
+ChartJS.register(ArcElement, Tooltip, Legend);
+
+interface DoughnutChartProps {
+  running: number;
+  finished: number;
+  pending: number;
+}
+
+const DoughnutChart: React.FC<DoughnutChartProps> = ({
+  running,
+  finished,
+  pending,
+}: DoughnutChartProps) => {
+  const total = running + finished + pending;
+  const runningPercentage = parseFloat(((running / total) * 100).toFixed(2));
+  const finishedPercentage = parseFloat(((finished / total) * 100).toFixed(2));
+  const pendingPercentage = parseFloat(((pending / total) * 100).toFixed(2));
 
   const data = {
-    // labels: ["Mon", "Tue", "Wed"],
     datasets: [
       {
-        // label: "Attendance",
-        data: [25, 24, 25],
-        borderColor: [
-          "#2CB629",
-          "rgba(232,211,6,1)",
-          "rgba(54,162,235,1)",
-        ],
-        backgroundColor: [
-          "#2CB629",
-          "rgba(232,211,6,1)",
-          "rgba(54,162,235,1)",
-        ],
+        // data: [0, 100, 10],
+        data: [runningPercentage, finishedPercentage, pendingPercentage],
+        borderColor: ["#2CB629", "#009CFF", "#D69E00"],
+        backgroundColor: ["#2CB629", "#009CFF", "#D69E00"],
         pointBackgroundColor: "rgba(255,206,86,0.2)",
       },
     ],
   };
-  
+
+  const data2 = {
+    datasets: [
+      {
+        // data: [0, 100, 10],
+        data: [runningPercentage, finishedPercentage],
+        borderColor: ["#2CB629", "#009CFF"],
+        backgroundColor: ["#2CB629", "#009CFF"],
+        pointBackgroundColor: "rgba(255,206,86,0.2)",
+      },
+    ],
+  };
+  const data3 = {
+    datasets: [
+      {
+        // data: [0, 100, 10],
+        data: [ finishedPercentage],
+        borderColor: [ "#009CFF"],
+        backgroundColor: [ "#009CFF"],
+        pointBackgroundColor: "rgba(255,206,86,0.2)",
+      },
+    ],
+  };
+
   const options = {
     plugins: {
       title: {
@@ -47,29 +66,47 @@ export const DoughnutChart = () => {
           size: 34,
         },
         padding: {
-          top: 30,
-          bottom: 30,
+          top: 0,
+          bottom: 10,
         },
         responsive: true,
         animation: {
-          animateScale: true,
+          animateScale: false,
+          // animateScale: true,
         },
       },
     },
   };
   return (
-    <div>
-        <div className="relative flex  w-[120px] h-[120px]">
-              <Doughnut
-                data={data}
-                options={options}
-              >
-              </Doughnut>
-              <div className="absolute font-bold w-[120px] h-[130px] flex justify-center items-center">
-              <p className="">30%</p>
+    <div className="flex flex-wrap justify-center gap-3">
+      <div className="relative flex w-[120px] h-[120px]">
+        <Doughnut data={data2} options={options}></Doughnut>
+        <div className="absolute font-semibold text-[12px] w-[120px] h-[130px] flex flex-col justify-center items-center">
+          <p className="">{running} {running >= 2 ? 'tasks' : 'task'}</p>
+          <p className="">running</p>
+        </div>
+      </div>
 
-              </div>
-            </div>
+      <div className="relative flex  w-[120px] h-[120px]">
+        <Doughnut data={data3} options={options}></Doughnut>
+        <div className="absolute font-semibold text-[12px] w-[120px] h-[130px] flex flex-col justify-center items-center">
+        <p className="">{finishedPercentage}%</p>
+          <p className="text-center">Completed</p>
+        </div>
+      </div>
+
+      <div className="relative flex  w-[120px] h-[120px]">
+        <Doughnut data={data} options={options}></Doughnut>
+        <div className="absolute font-semibold text-[12px] w-[120px] h-[130px] flex flex-col justify-center items-center">
+          
+          <p className="">{pending} {pending >= 2 ? 'tasks' : 'task'}</p>
+          <p className="">pending</p>
+        </div>
+      </div>
+
+    
     </div>
-  )
-}
+  );
+};
+
+export default DoughnutChart;

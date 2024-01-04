@@ -74,7 +74,7 @@ const Email: React.FC<NextPageProps> = ({ handleNext, steps, step }) => {
   return (
     <div className="my-6 mx-auto w-full ">
       <div className="flex flex-row-reverse gap-8 my-4 ">
-        <div className="hidden laptop:block grow basis-[65%] h-[600px] rounded-lg overflow-hidden"></div>
+        <div className="hidden laptop:block grow basis-[65%] h-[100vh] rounded-lg overflow-hidden"></div>
         <div className="grow-[2] basis-[45%] my-auto">
           <h1 className="text-4xl font-bold text-app-sblue">
             Forget
@@ -129,7 +129,7 @@ const Email: React.FC<NextPageProps> = ({ handleNext, steps, step }) => {
           </p>
         </div>
       </div>
-      <div className="">
+      <div className="flex items-center justify-center w-[50%]">
         <StepIndicator steps={steps} step={step} />
       </div>
     </div>
