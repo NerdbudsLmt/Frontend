@@ -144,16 +144,16 @@ function ProjectPal() {
         </div>
       </main>
       <section className=' bg-[#D9E5EF] pt-10 pl-10 pr-10 pb-20'>
-        <div className='flex justify-between'>
-          <div>
-            <h1 className='text-app-sblue text-5xl font-semibold mb-3'>
+        <div className='flex justify-between items-center gap-10 relative'>
+          <div className='h-fit'>
+            <h1 className='text-[#205584] text-5xl font-semibold mb-3'>
               The Ultimate Final Year Student Package
             </h1>
-            <p className='text-lg  text-[#363939]'>
+            <p className='text-lg text-[#363939] '>
               The last year of school can be very demanding with students having
               to get everything right from courses to projects. Not all are up
-              to this tasks and that’s where we come in. <br />
-              <span className=' text-customBlue'>Let Us Help!</span>
+              to these tasks, and that’s where we come in. <br />
+              <span className='text-customBlue'>Let Us Help!</span>
             </p>
             <span className='flex gap-4'>
               <Link
@@ -177,63 +177,63 @@ function ProjectPal() {
             height={200}
             priority
           />
-        </div>
-        <div className='bg-[#E6EFF6] p-3 '>
-          <span className='flex gap-1 '>
-            <Image
-              src='/images/MapPinLine-d.svg'
-              alt='graduation'
-              width={20}
-              height={22}
-              priority
-            />
-            <h4 className='text-customBlue text-6 font-semibold'>
-              Project Pal University Availability
-            </h4>
-          </span>
-          <div className='flex justify-between '>
-            <div className='flex justify-between gap-10'>
-              <span>
-                <h2 className='text-customBlue text-lg font-medium '>
-                  Landmark University
-                </h2>
-                <p className='text-base text-[#363939]'>Kwara</p>
-              </span>
-              <p className='w-0.5 h-12 bg-[#486284]'></p>
+          <div className='absolute bottom-0 left-0 w-full bg-[#E6EFF6] p-3'>
+            <span className='flex gap-1'>
+              <Image
+                src='/images/MapPinLine-d.svg'
+                alt='graduation'
+                width={20}
+                height={22}
+                priority
+              />
+              <h4 className='text-customBlue text-6 font-semibold'>
+                Project Pal University Availability
+              </h4>
+            </span>
+            <div className='flex justify-between '>
+              <div className='flex justify-between gap-10'>
+                <span>
+                  <h2 className='text-customBlue text-lg font-medium '>
+                    Landmark University
+                  </h2>
+                  <p className='text-base text-[#363939]'>Kwara</p>
+                </span>
+                <p className='w-0.5 h-12 bg-[#486284]'></p>
+              </div>
+              <div className='flex justify-between gap-10'>
+                <span>
+                  <h2 className='text-customBlue text-lg font-medium '>
+                    Covenant University
+                  </h2>
+                  <p className='text-base text-[#363939]'>Ogun</p>
+                </span>
+                <p className='w-0.5 h-12 bg-[#486284]'></p>
+              </div>
+              <div className='flex justify-between gap-10'>
+                <span>
+                  <h2 className='text-customBlue text-lg font-medium '>
+                    Babcock University
+                  </h2>
+                  <p className='text-base text-[#363939]'>Lagos</p>
+                </span>
+                <p className='w-0.5 h-12 bg-[#486284]'></p>
+              </div>
+              <div className='flex justify-between gap-10'>
+                <span>
+                  <h2 className='text-customBlue text-lg font-medium '>
+                    Leeds University
+                  </h2>
+                  <p className='text-base text-[#363939]'>Ibadan</p>
+                </span>
+                <p className='w-0.5 h-12 bg-[#486284]'></p>
+              </div>
+              <Link
+                href='/contact'
+                className='flex gap-3 px-5 py-2 mt-3 w-fit bg-[#CBD3DE] text-[18px] laptop:text[16px] text-customBlue rounded-3xl font-bold'
+              >
+                and so much more
+              </Link>
             </div>
-            <div className='flex justify-between gap-10'>
-              <span>
-                <h2 className='text-customBlue text-lg font-medium '>
-                  Covenant University
-                </h2>
-                <p className='text-base text-[#363939]'>Ogun</p>
-              </span>
-              <p className='w-0.5 h-12 bg-[#486284]'></p>
-            </div>
-            <div className='flex justify-between gap-10'>
-              <span>
-                <h2 className='text-customBlue text-lg font-medium '>
-                  Babcock University
-                </h2>
-                <p className='text-base text-[#363939]'>Lagos</p>
-              </span>
-              <p className='w-0.5 h-12 bg-[#486284]'></p>
-            </div>
-            <div className='flex justify-between gap-10'>
-              <span>
-                <h2 className='text-customBlue text-lg font-medium '>
-                  Leeds University
-                </h2>
-                <p className='text-base text-[#363939]'>Ibadan</p>
-              </span>
-              <p className='w-0.5 h-12 bg-[#486284]'></p>
-            </div>
-            <Link
-              href='/contact'
-              className='flex gap-3 px-5 py-2 mt-3 w-fit bg-[#CBD3DE] text-[18px] laptop:text[16px] text-customBlue rounded-3xl font-bold'
-            >
-              and so much more
-            </Link>
           </div>
         </div>
       </section>
@@ -269,7 +269,7 @@ function ProjectPal() {
               priority
             />
           </div>
-          
+
           <div className='flex items-center justify-center w-[35%]'>
             <h1 className='text-7xl font-bold text-app-porange '>
               Why Should You Use
@@ -278,7 +278,7 @@ function ProjectPal() {
           </div>
         </div>
         <div className='mx-20 flex justify-between items-center'>
-          <h1 className=' font-bold text-5xl text-app-porange w-[35%] text-left' >
+          <h1 className=' font-bold text-5xl text-app-porange w-[35%] text-left'>
             Hear from fellow students
           </h1>
           <p className='text-xl w-[50%] mt-10 mb-20'>
@@ -290,7 +290,9 @@ function ProjectPal() {
         </div>
       </div>
       <div className='mx-auto max-w-3xl p-4 rounded-lg'>
-        <h1 className='text-6xl font-bold mb-4 text-center'>Create a project</h1>
+        <h1 className='text-6xl font-bold mb-4 text-center'>
+          Create a project
+        </h1>
         <span>
           <h5 className='text-lg font-semibold mb-2'>
             Briefly describe your project.
@@ -304,37 +306,43 @@ function ProjectPal() {
           </h5>
           <div className='flex flex-wrap gap-4 bg-gray-300 p-4 mb-4 rounded-md'>
             <label className='flex items-center '>
-              <input type='checkbox' className='mr-2' />
-              <span className='p-4 border rounded-full bg-white text-customBlue font-semibold'>
-                Cloud Engineering
-              </span>
-            </label>
-            <label className='flex items-center '>
-              <input type='checkbox' className='mr-2' />
-              <span className='p-4 border rounded-full bg-white text-customBlue font-semibold '>
-                UI/UX
-              </span>
-            </label>
-            <label className='flex items-center '>
-              <input type='checkbox' className='mr-2' />
-              <span className='p-4 border rounded-full bg-white text-customBlue font-semibold'>
-                Security
-              </span>
-            </label>
-            <label className='flex items-center '>
-              <input type='checkbox' className='mr-2' />
-              <span className='p-4 border rounded-full bg-white text-customBlue font-semibold'>
-                Consultation
-              </span>
-            </label>
-            <label className='flex items-center '>
-              <input type='checkbox' className='mr-2' />
-              <span className='p-4 border rounded-full bg-white text-customBlue font-semibold'>
-                Branding
+              <span className='p-4 border rounded-full bg-white flex items-center'>
+                <input type='checkbox' className='mr-2' />
+                <span className='text-customBlue font-semibold'>Cloud Engineering</span>
               </span>
             </label>
 
-            {/* Add more services as needed */}
+            <label className='flex items-center '>
+              <span className='p-4 border rounded-full bg-white flex items-center'>
+                <input type='checkbox' className='mr-2' />
+                <span className='text-customBlue font-semibold'>UI/UX</span>
+              </span>
+            </label>
+
+            <label className='flex items-center '>
+              <span className='p-4 border rounded-full bg-white flex items-center'>
+                <input type='checkbox' className='mr-2' />
+                <span className='text-customBlue font-semibold'>Security</span>
+              </span>
+            </label>
+
+            <label className='flex items-center '>
+              <span className='p-4 border rounded-full bg-white flex items-center'>
+                <input type='checkbox' className='mr-2' />
+                <span className='text-customBlue font-semibold'>
+                  Consultation
+                </span>
+              </span>
+            </label>
+
+            
+            <label className='flex items-center '>
+              <span className='p-4 border rounded-full bg-white flex items-center'>
+                <input type='checkbox' className='mr-2' />
+                <span className='text-customBlue font-semibold'>Branding</span>
+              </span>
+            </label>
+
           </div>
           <Link
             href='/contact'
@@ -343,8 +351,10 @@ function ProjectPal() {
             Book a project
           </Link>
           <h4 className='text-lg'>
-            For assistance with booking a meeting reach out to 
-            <span className='text-app-porange underline'> Customer Support.
+            For assistance with booking a meeting reach out to
+            <span className='text-app-porange underline'>
+              {' '}
+              Customer Support.
             </span>
           </h4>
         </span>
