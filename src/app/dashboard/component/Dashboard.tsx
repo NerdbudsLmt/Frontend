@@ -48,7 +48,7 @@ export default function DashboardCom() {
           setLoading(true);
           const data = await response.json();
           const filteredProjects = data?.data?.projects.filter(
-            (project: { status: boolean }) => !project.status
+            (project: { status: boolean }) => project.status
           );
           setActiveProjects(filteredProjects);
 
