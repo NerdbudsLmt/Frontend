@@ -84,7 +84,7 @@ export default function Projects() {
         if (response.ok) {
           setLoading(true);
           const data = await response.json();
-          // console.log(data)
+          console.log(data.data);
           setProjects(data?.data?.projects);
           setLoading(false);
         } else {
@@ -98,24 +98,20 @@ export default function Projects() {
     fetchUserProjects();
   }, [session]);
 
-
-  
-
   return (
     <div className="my-7">
       <div className="text-[#265D80]  grid grid-cols-1 laptop_l:grid-cols-2 gap-5 ">
         <div className=" bg-[#F5F4F4] p-4 rounded-lg">
           <p className="text-lg font-bold">Projects </p>
-         
 
-          {/* {loading ? */}
-          {projects?.length === 0 ? (
+          {loading ? (
             <p className="text-app-pblue py-4 text-center text-lg font-bold">
               Loading...
             </p>
           ) : (
             <ul className="mt-4  text-white list-decimal  text-md">
-              {loading ? (
+              {projects?.length === 0 ? (
+                // {loading ? (
                 <p className="text-app-pblue py-4 text-center text-lg font-bold">
                   No project available
                 </p>
@@ -174,36 +170,36 @@ export default function Projects() {
                 <p className="text-[.8rem]">Host: {item.host}</p>
               </div>
             ))} */}
-              {projects?.length === 0 ? (
-            <p className="text-app-pblue py-4 text-center text-lg font-bold">
-              Loading...
-            </p>
-          ) : (
-            <ul className="mt-4  text-white list-decimal  text-md">
-              {loading ? (
-                <p className="text-app-pblue py-4 text-center text-lg font-bold">
-                  No project available
-                </p>
-              ) : (
-                <>
-                  {" "}
-                  {projects
-                    .slice(-3)
-                    .reverse()
-                    .map((item, index) => (
-                      <div
-                      key={item._id}
-                      className="rounded-lg py-3.5 px-3 my-2 bg-app-pblue"
-                    >
-                      <p className=" text-app-sblue">{item.projectName}</p>
-                      <p className="text-[.8rem] ">{item.callSchedule}</p>
-                      <p className="text-[.8rem]">Host: Nerdbuds Ltd</p>
-                    </div>
-                    ))}
-                </>
-              )}
-            </ul>
-          )}
+            {loading ? (
+              <p className="text-app-pblue py-4 text-center text-lg font-bold">
+                Loading...
+              </p>
+            ) : (
+              <ul className="mt-4  text-white list-decimal  text-md">
+                {projects?.length === 0 ? (
+                  <p className="text-app-pblue py-4 text-center text-lg font-bold">
+                    No project available
+                  </p>
+                ) : (
+                  <>
+                    {" "}
+                    {projects
+                      .slice(-3)
+                      .reverse()
+                      .map((item, index) => (
+                        <div
+                          key={item._id}
+                          className="rounded-lg py-3.5 px-3 my-2 bg-app-pblue"
+                        >
+                          <p className=" text-app-sblue">{item.projectName}</p>
+                          <p className="text-[.8rem] ">{item.callSchedule}</p>
+                          <p className="text-[.8rem]">Host: Nerdbuds Ltd</p>
+                        </div>
+                      ))}
+                  </>
+                )}
+              </ul>
+            )}
           </div>
 
           <Link
