@@ -23,6 +23,7 @@ const ExistingProject: React.FC = () => {
   useEffect(() => {
     const fetchUserProjects = async () => {
       try {
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL;
         const accessToken = session?.user?.accessToken ?? ''
 
         if (!accessToken) {
@@ -30,12 +31,11 @@ const ExistingProject: React.FC = () => {
           return
         }
 
-        const url = 'https://nerdbuds.onrender.com/api/v1/projects/userProjects'
+        const url = `${apiUrl}/projects/userProjects`
 
         const response = await fetch(url, {
           method: 'GET',
           headers: {
-            // 'Content-Type': 'application/json',
             Authorization: `Bearer ${accessToken}`,
           },
         })
@@ -47,8 +47,6 @@ const ExistingProject: React.FC = () => {
 
           const data = await response.json()
           setProject(data?.data?.projects)
-          // console.log(data)
-          // console.log(data.data.projects)
         setLoading(false)
 
         } else {
@@ -94,7 +92,7 @@ const ExistingProject: React.FC = () => {
                 key={item._id}
                 className='flex items-center justify-between flex-wrap rounded-lg py-2 px-4 gap-4 my-5 bg-[#F5F4F4]'
               >
-                {/* <p className="text-[18px]">{item.id}</p> */}
+              
                 <div className='flex items-center gap-4'>
                   <p className='text-[18px] border-r-2 border-black pr-4'>
                     {item.projectName}

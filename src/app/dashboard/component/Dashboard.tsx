@@ -20,6 +20,7 @@ interface Project {
   createdAt: string;
   completedDate: string;
 }
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export default function DashboardCom() {
   const { data: session } = useSession();
@@ -34,7 +35,7 @@ export default function DashboardCom() {
     const fetchActiveProjects = async () => {
       try {
         const accessToken = session?.user?.accessToken ?? "";
-        const url = `https://nerdbuds.onrender.com/api/v1/projects/activeuserProjects`;
+        const url = `${apiUrl}/projects/activeuserProjects`;
 
         const response = await fetch(url, {
           method: "GET",
@@ -76,21 +77,18 @@ export default function DashboardCom() {
         }
 
         const url =
-          "https://nerdbuds.onrender.com/api/v1/projects/userProjects";
+        `${apiUrl}/projects/userProjects`;
 
         const response = await fetch(url, {
           method: "GET",
           headers: {
-            // 'Content-Type': 'application/json',
             Authorization: `Bearer ${accessToken}`,
           },
         });
 
-        // console.log("API Response:", response);
         if (response.ok) {
           setLoading(true);
           const data = await response.json();
-          // console.log(data)
           setProjects(data?.data?.projects);
           setLoading(false);
         } else {
@@ -133,7 +131,6 @@ export default function DashboardCom() {
   const pending = countStatusAndPercentage.falseStatusCount;
 
   const handleProjectClick = (index: SetStateAction<number>) => {
-    // setSelectedProject(activeProjects[index]);
     setSelectedProjectIndex(index);
   };
 
