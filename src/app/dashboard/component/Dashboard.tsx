@@ -251,7 +251,7 @@ export default function DashboardCom() {
               <>
                 {projects.length === 0 ? (
                   <p className="text-app-pblue py-4 text-center text-lg font-bold">
-                    No active projects
+                    No projects. Create a project to see your report
                   </p>
                 ) : (
                   <>
