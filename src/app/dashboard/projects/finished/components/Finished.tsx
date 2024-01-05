@@ -26,6 +26,8 @@ const FinishedProject: React.FC = () => {
   useEffect(() => {
     const fetchUserProjects = async () => {
       try {
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+        
         const accessToken = session?.user?.accessToken ?? ''
 
         if (!accessToken) {
@@ -33,7 +35,7 @@ const FinishedProject: React.FC = () => {
           return
         }
 
-        const url = 'https://nerdbuds.onrender.com/api/v1/projects/userProjects'
+        const url = `${apiUrl}/projects/userProjects`
 
         const response = await fetch(url, {
           method: 'GET',
