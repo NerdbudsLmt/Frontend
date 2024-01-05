@@ -254,23 +254,25 @@ export default function DashboardCom() {
                     No active projects
                   </p>
                 ) : (
-                  <ul className="text-left mt-4 font-semibold pl-5 w-[170px] text-md list-disc">
-                    <li className="text-[#2CB629]">{running} running </li>
-                    <li className="text-[#009CFF] my-2">
-                      {" "}
-                      {finished} finished
-                    </li>
-                    <li className="text-[#D69E00]"> {pending} pending</li>
-                  </ul>
+                  <>
+                    <ul className="text-left mt-4 font-semibold pl-5 w-[170px] text-md list-disc">
+                      <li className="text-[#2CB629]">{running} running </li>
+                      <li className="text-[#009CFF] my-2">
+                        {" "}
+                        {finished} finished
+                      </li>
+                      <li className="text-[#D69E00]"> {pending} pending</li>
+                    </ul>
+
+                    <DoughnutChart
+                      running={running}
+                      finished={finished}
+                      pending={pending}
+                    />
+                  </>
                 )}
               </>
             )}
-
-            <DoughnutChart
-              running={running}
-              finished={finished}
-              pending={pending}
-            />
           </div>
         </div>
       </div>
