@@ -182,7 +182,6 @@ export default function DashboardCom() {
                     <p className="text-app-pblue py-4 text-center text-lg font-bold">
                       No active projects
                     </p>
-                  
                   </>
                 ) : (
                   <div className="flex justify-between">
@@ -244,11 +243,28 @@ export default function DashboardCom() {
             Overall Project Reports{" "}
           </p>
           <div className="flex flex-wrap justify-start gap-1">
-            <ul className="text-left mt-4 font-semibold pl-5 w-[170px] text-md list-disc">
-              <li className="text-[#2CB629]">{running} running </li>
-              <li className="text-[#009CFF] my-2"> {finished} finished</li>
-              <li className="text-[#D69E00]"> {pending} pending</li>
-            </ul>
+            {loading ? (
+              <p className="text-app-pblue py-4 text-center text-lg font-bold">
+                Loading...
+              </p>
+            ) : (
+              <>
+                {projects.length === 0 ? (
+                  <p className="text-app-pblue py-4 text-center text-lg font-bold">
+                    No active projects
+                  </p>
+                ) : (
+                  <ul className="text-left mt-4 font-semibold pl-5 w-[170px] text-md list-disc">
+                    <li className="text-[#2CB629]">{running} running </li>
+                    <li className="text-[#009CFF] my-2">
+                      {" "}
+                      {finished} finished
+                    </li>
+                    <li className="text-[#D69E00]"> {pending} pending</li>
+                  </ul>
+                )}
+              </>
+            )}
 
             <DoughnutChart
               running={running}
