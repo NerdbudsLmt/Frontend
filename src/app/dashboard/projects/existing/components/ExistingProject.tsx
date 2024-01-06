@@ -5,6 +5,12 @@ import React, { useState, useEffect } from 'react'
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md'
 import { RiDeleteBinLine } from 'react-icons/ri'
 import { useSession } from 'next-auth/react'
+import { BeatLoader } from 'react-spinners'
+import '..//..//styles/styles.css'
+
+
+
+
 
 interface Project {
   projectName: string
@@ -78,56 +84,67 @@ const ExistingProject: React.FC = () => {
         <div className='h-2 w-2 bg-black rounded-full' />
         <p className='font-semibold  text-2xl'>Existing project</p>
       </div>
-                
-       {project?.length === 0 ? (
-        <p className="text-app-pblue py-4 text-center text-lg font-bold">Loading...</p> 
+
+      {project?.length === 0 ? (
+        // <p className="text-app-pblue py-4 text-center text-lg font-bold">Loading...</p>
+        <div className='text-app-pblue py-4 text-center text-lg font-bold'>
+          {loading ? (
+            <>
+              {/* <BeatLoader color='#3F9BD5' css={override} size={10} /> */}
+              <p className='skeleton-loading'>Loading...</p>
+            </>
+          ) : (
+            'No project available'
+          )}
+        </div>
       ) : (
         <>
           <div className='mt-10  text-white list-decimal  text-md'>
-          
-          {loading ?
-            <p className="text-app-pblue py-4 text-center text-lg font-bold">No project available</p> 
-            :
-          <> 
-            {currentPosts?.map((item) => (
-              <div
-                key={item._id}
-                className='flex items-center justify-between flex-wrap rounded-lg py-2 px-4 gap-4 my-5 bg-[#F5F4F4]'
-              >
-                {/* <p className="text-[18px]">{item.id}</p> */}
-                <div className='flex items-center gap-4'>
-                  <p className='text-[18px] border-r-2 border-black pr-4'>
-                    {item.projectName}
-                  </p>
-                  <p
-                    className={
-                      item.paymentStatus === true
-                        ? 'text-[14px] font-semibold text-[#5583C3]'
-                        : 'text-[14px] font-semibold text-gray-400'
-                    }
+            {loading ? (
+              <p className='text-app-pblue py-4 text-center text-lg font-bold'>
+                No project available
+              </p>
+            ) : (
+              <>
+                {currentPosts?.map((item) => (
+                  <div
+                    key={item._id}
+                    className='flex items-center justify-between flex-wrap rounded-lg py-2 px-4 gap-4 my-5 bg-[#F5F4F4]'
                   >
-                    {item.paymentStatus === true ? 'Active' : 'Not Active'}
-                  </p>
-                </div>
-                <div className='flex gap-3 flex-wrap '>
-                  <button className='flex gap-2 items-center bg-[#DFDFDF] py-2 px-2 rounded-lg'>
-                    Request delete
-                    <RiDeleteBinLine />
-                  </button>
-                  {item.paymentStatus === true && (
-                    <button className='flex gap-2 items-center bg-[#5583C3] text-white py-2 px-3 rounded-lg'>
-                      Activate
-                    </button>
-                  )}
-                  <button className='flex gap-2 items-center bg-[#C8C8C8] py-2 px-2 rounded-lg'>
-                    See more
-                    <MdOutlineKeyboardArrowDown />
-                  </button>
-                </div>
-              </div>
-            ))}
-             </>
-          }
+                    {/* <p className="text-[18px]">{item.id}</p> */}
+                    <div className='flex items-center gap-4'>
+                      <p className='text-[18px] border-r-2 border-black pr-4'>
+                        {item.projectName}
+                      </p>
+                      <p
+                        className={
+                          item.paymentStatus === true
+                            ? 'text-[14px] font-semibold text-[#5583C3]'
+                            : 'text-[14px] font-semibold text-gray-400'
+                        }
+                      >
+                        {item.paymentStatus === true ? 'Active' : 'Not Active'}
+                      </p>
+                    </div>
+                    <div className='flex gap-3 flex-wrap '>
+                      <button className='flex gap-2 items-center bg-[#DFDFDF] py-2 px-2 rounded-lg'>
+                        Request delete
+                        <RiDeleteBinLine />
+                      </button>
+                      {item.paymentStatus === true && (
+                        <button className='flex gap-2 items-center bg-[#5583C3] text-white py-2 px-3 rounded-lg'>
+                          Activate
+                        </button>
+                      )}
+                      <button className='flex gap-2 items-center bg-[#C8C8C8] py-2 px-2 rounded-lg'>
+                        See more
+                        <MdOutlineKeyboardArrowDown />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </>
+            )}
           </div>
 
           <Pagination

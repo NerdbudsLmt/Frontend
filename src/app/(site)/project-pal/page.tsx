@@ -46,7 +46,7 @@ function ProjectPal() {
         <div className='flex flex-col items-center space-y-5 mb-16'>
           <div>
             <Link
-              href='/about'
+              href='/login'
               className='flex items-center space-x-2 border-2 border-app-sblue text-app-sblue py-1 px-10 rounded-full'
             >
               <>
@@ -158,14 +158,14 @@ function ProjectPal() {
             </p>
             <span className='flex gap-4 mt-3'>
               <Link
-                href='/contact'
-                className='flex gap-3 px-5 py-2 w-fit bg-[#FFFFFF] text-[14px] lg:text-[18px] text-customBlue rounded-3xl font-bold'
+                href='/signup'
+                className='flex gap-3 px-5 py-2 w-fit bg-[#FFFFFF] text-[14px] lg:text-[18px] text-customBlue rounded-3xl font-bold transition-transform hover:scale-110'
               >
                 Book a project
               </Link>
               <Link
                 href='/contact'
-                className='flex gap-3 px-5 py-2 w-fit bg-[#CBD3DE] text-[14px] lg:text-[18px] text-customBlue rounded-3xl font-bold'
+                className='flex gap-3 px-5 py-2 w-fit bg-[#CBD3DE] text-[14px] lg:text-[18px] text-customBlue rounded-3xl font-bold transition-transform hover:scale-110'
               >
                 Learn more
               </Link>
@@ -192,9 +192,9 @@ function ProjectPal() {
                 Project Pal University Availability
               </h4>
             </span>
-            
+
             <div className='grid grid-cols-1 sm:grid-cols-2 gap-6 lg:flex justify-between lg:gap-10'>
-              <div className='lg:flex gap-10'>
+              <div className='flex justify-between gap-10'>
                 <span>
                   <h2 className='text-customBlue text-lg lg:text-base font-medium '>
                     Landmark University
@@ -232,7 +232,7 @@ function ProjectPal() {
               </div>
               <Link
                 href='/contact'
-                className='flex gap-3 px-5 py-2 mt-3 w-fit bg-[#CBD3DE] text-[14px] lg:text-[16px] text-customBlue rounded-3xl font-bold'
+                className='flex gap-3 px-5 py-2 mt-3 w-fit bg-[#CBD3DE] text-[14px] lg:text-[16px] text-customBlue rounded-3xl font-bold transition-transform hover:scale-110'
               >
                 and so much more
               </Link>
@@ -242,35 +242,118 @@ function ProjectPal() {
       </section>
       <div className='mt-20'>
         <div className='flex flex-col lg:flex-row  mx-0 lg:mx-20 gap-20 mb-20px '>
-          <div className='grid grid-cols-2 gap-4'>
-            <Image
-              src='/images/group4.png'
-              alt='graduation'
-              width={282}
-              height={297}
-              priority
-            />
-            <Image
-              src='/images/group1.png'
-              alt='graduation'
-              width={282}
-              height={297}
-              priority
-            />
-            <Image
-              src='/images/group3.png'
-              alt='graduation'
-              width={282}
-              height={297}
-              priority
-            />
-            <Image
-              src='/images/group2.png'
-              alt='graduation'
-              width={282}
-              height={297}
-              priority
-            />
+          <div className='grid grid-cols-2 gap-4 '>
+            <div className='text-center'>
+              <div className='relative inline-block max-w-[30%] lg:max-w-none'>
+                <Image
+                  src='/images/efficiency.png'
+                  alt='comments'
+                  width={271}
+                  height={256}
+                  priority
+                  className='w-full h-full object-cover rounded-md'
+                />
+                <div className='absolute inset-0 flex flex-col justify-center items-start text-white px-4 py-2 rounded-md'>
+                  <h1 className='text-2xl lg:text-lg font-bold mb-2'>
+                    1. Efficiency
+                  </h1>
+                  <p className='text-left'>
+                    Our team of amazing programmers is available to deliver the
+                    exact requirements needed for any of your projects.
+                  </p>
+                  <Link
+                    href='/signup'
+                    className='flex gap-3 px-5 py-2 mt-3 w-fit bg-[#FFFFFF] text-[14px] lg:text-[18px] text-customBlue rounded-3xl font-bold transition-transform hover:scale-110'
+                  >
+                    Book a project
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <div className='text-center'>
+              <div className='relative inline-block max-w-[30%] lg:max-w-none'>
+                <Image
+                  src='/images/timeliness.png'
+                  alt='comments'
+                  width={271}
+                  height={256}
+                  priority
+                  className='w-full h-full object-cover rounded-md'
+                />
+                <div className='absolute inset-0 flex flex-col justify-center items-start text-white px-4 py-2 rounded-md'>
+                  <h1 className='text-2xl lg:text-lg font-bold mb-2'>
+                    2. Timeliness
+                  </h1>
+                  <p className='text-left'>
+                    Be rest assured that the time agreed for project delivery
+                    will be kept to. This means that all you can rest easy
+                    knowing we will deliver
+                  </p>
+                  <Link
+                    href='/signup'
+                    className='flex gap-3 px-5 py-2 mt-3 w-fit bg-[#FFFFFF] text-[14px] lg:text-[18px] text-customBlue rounded-3xl font-bold transition-transform hover:scale-110'
+                  >
+                    Book a project
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <div className='text-center'>
+              <div className='relative inline-block max-w-[30%] lg:max-w-none'>
+                <Image
+                  src='/images/versatile.png'
+                  alt='versatility'
+                  width={271}
+                  height={256}
+                  priority
+                  className='w-full h-full object-cover rounded-md'
+                />
+                <div className='absolute inset-0 flex flex-col justify-center items-start text-white px-4 py-2 rounded-md'>
+                  <h1 className='text-2xl lg:text-lg font-bold mb-2'>
+                    3. Versatility
+                  </h1>
+                  <p className='text-left'>
+                    We pride ourselves with the capacity to accomplish any
+                    project given to us. Whatever area you need we promise to
+                    fulfill.
+                  </p>
+                  <Link
+                    href='/signup'
+                    className='flex gap-3 px-5 py-2 mt-3 w-fit bg-[#FFFFFF] text-[14px] lg:text-[18px] text-customBlue rounded-3xl font-bold transition-transform hover:scale-110'
+                  >
+                    Book a project
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <div className='text-center'>
+              <div className='relative inline-block max-w-[30%] lg:max-w-none'>
+                <Image
+                  src='/images/quickedit.png'
+                  alt='quickedit'
+                  width={271}
+                  height={256}
+                  priority
+                  className='w-full h-full object-cover rounded-md'
+                />
+                <div className='absolute inset-0 flex flex-col justify-center items-start text-white px-4 py-2 rounded-md'>
+                  <h1 className='text-2xl lg:text-lg font-bold mb-2'>
+                    4. Quick Edit
+                  </h1>
+                  <p className='text-left'>
+                    Change is constant, to that effect we make it easy for you
+                    to innovate any project by adding or subtracting various
+                    elements.
+                  </p>
+                  <Link
+                    href='/signup'
+                    className='flex gap-3 px-5 py-2 mt-3 w-fit bg-[#FFFFFF] text-[14px] lg:text-[18px] text-customBlue rounded-3xl font-bold transition-transform hover:scale-110'
+                  >
+                    Book a project
+                  </Link>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div className='flex items-center justify-center lg:w-[50%] order-first lg:order-last'>
@@ -279,12 +362,6 @@ function ProjectPal() {
               <span className='text-white'> Project Pal</span>
             </h1>
           </div>
-          {/* <div className='flex items-center justify-center lg:w-[35%]'>
-            <h1 className='text-5xl lg:text-7xl font-bold text-app-porange '>
-              Why Should You Use
-              <span className='text-white'> Project Pal</span>
-            </h1>
-          </div> */}
         </div>
 
         <div className='mx-0 lg:mx-20 flex flex-col lg:flex-row justify-between items-center'>
@@ -382,8 +459,8 @@ function ProjectPal() {
             </label>
           </div>
           <Link
-            href='/contact'
-            className='flex gap-3 px-5 py-2 mt-3 w-fit bg-white text-[18px] laptop:text-[16px] text-customBlue rounded-3xl font-bold mb-2'
+            href='/signup'
+            className='flex gap-3 px-5 py-2 mt-3 w-fit bg-white text-[18px] laptop:text-[16px] text-customBlue rounded-3xl font-bold mb-2 transition-transform hover:scale-110'
           >
             Book a project
           </Link>
