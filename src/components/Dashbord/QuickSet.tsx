@@ -8,11 +8,8 @@ import { BsPerson } from "react-icons/bs";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 
-
-
 export default function QuickSet() {
   const { data: session } = useSession();
-
 
   const transaction = [
     {
@@ -112,10 +109,13 @@ export default function QuickSet() {
       {/* <div className="fixed bottom-4 shadow-xl right-3 mt-auto mx-auto bg-[#F5F4F4] p-5 rounded-full">
         <BiSolidMessageDetail size={40} />
       </div> */}
-      <TawkMessengerReact
-        propertyId="658beb0670c9f2407f83a50e"
-        widgetId="1hil8s5jb"
-      />
+
+      <div className="fixed bottom-4 right-3 ">
+        <TawkMessengerReact
+          propertyId="658beb0670c9f2407f83a50e"
+          widgetId="1hil8s5jb"
+        />
+      </div>
     </div>
   );
 }
