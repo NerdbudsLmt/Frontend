@@ -138,9 +138,9 @@ const ExistingProject: React.FC = () => {
                           View progress
                         </Link>
                       )}
-                      <button className="flex gap-2 text-sm items-center bg-[#5583C3] text-white py-2 px-3 rounded-lg">
+                      <Link href='/dashboard/payment' className="flex gap-2 text-sm items-center bg-[#5583C3] text-white py-2 px-3 rounded-lg">
                         Activate
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 ))}

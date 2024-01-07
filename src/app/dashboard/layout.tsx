@@ -103,6 +103,7 @@ const NavItem = () => {
       _focus={{ boxShadow: "none" }}
       flexDirection={"column"}
       justifyContent={"space-between"}
+      height={'85dvh'}
     >
       <div>
         <Flex
@@ -271,7 +272,7 @@ const NavItem = () => {
         </Flex>
       </div>
 
-      <div className="flex gap-3 mt-[10rem] w-fit mx-auto items-center">
+      <div className="flex gap-3 w-fit mx-auto items-center">
         <div className="w-10 h-10 overflow-hidden rounded-full border-[2px] border-app-pblue">
           <Image
             src="/images/john.svg"
