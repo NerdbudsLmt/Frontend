@@ -123,7 +123,7 @@ export default function ProProgress() {
               <ProjectProgress key={index} item={item} />
             ))}
           </div>
-
+            {projectList?.length >= 6 &&
           <Pagination
             postsPerPage={postsPerPage}
             totalPosts={filteredProjects.length}
@@ -132,6 +132,7 @@ export default function ProProgress() {
             paginateFront={paginateFront}
             paginate={paginate}
           />
+            }
         </>
       )}
     </div>

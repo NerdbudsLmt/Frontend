@@ -8,8 +8,12 @@ import { BsPerson } from "react-icons/bs";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 
+
 export default function QuickSet() {
   const { data: session } = useSession();
+  // const accountName = session?.user?.userType ?? "";
+  // const accountName = session?.user?.email ;
+  // console.log(accountName)
 
   const transaction = [
     {
@@ -48,8 +52,7 @@ export default function QuickSet() {
         </p>
         {session?.user && (
           <p className="text-[#132E40] w-[80%] mx-auto text-md font-semibold">
-            {/* {session?.user.user.userType} account */}
-            {session?.user?.user?.userType} account
+            {/* {accountName} */}
           </p>
         )}
 

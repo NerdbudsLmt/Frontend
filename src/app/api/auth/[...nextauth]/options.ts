@@ -47,7 +47,8 @@ export const options: NextAuthOptions = {
     async jwt({ token, user }: any) {
       if (user && user.data) {
         token.accessToken = user.data.accessToken;
-        token.userType = user.data.user.userType;
+        token.userType = user.data?.user?.userType;
+        token.email = user.data.user.email
       }
       return token;
     },
@@ -55,8 +56,9 @@ export const options: NextAuthOptions = {
       if (token.accessToken && token.userType) {
         session.user.accessToken = token.accessToken;
         session.user.userType = token.userType;
+        session.user.email = token.email;
       }
-      // console.log(session)
+      console.log(session)
       return session;
     },
   },

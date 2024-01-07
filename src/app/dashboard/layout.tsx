@@ -33,6 +33,8 @@ import { PiCalendarBlankBold } from "react-icons/pi";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { Inbox } from "./component/Inbox";
 import { useEffect, useState } from "react";
+import { signOut } from "next-auth/react";
+
 
 type NestedLinkItemProps = {
   name: string;
@@ -101,6 +103,7 @@ const NavItem = () => {
       _focus={{ boxShadow: "none" }}
       flexDirection={"column"}
       justifyContent={"space-between"}
+      height={'85dvh'}
     >
       <div>
         <Flex
@@ -269,7 +272,7 @@ const NavItem = () => {
         </Flex>
       </div>
 
-      <div className="flex gap-3 mt-[10rem] w-fit mx-auto items-center">
+      <div className="flex gap-3 w-fit mx-auto items-center">
         <div className="w-10 h-10 overflow-hidden rounded-full border-[2px] border-app-pblue">
           <Image
             src="/images/john.svg"
@@ -283,7 +286,16 @@ const NavItem = () => {
           <p className="text-yellow">Nerdbuds Ltd</p>
           <p className="text-app-sblue text-sm">Company account</p>
         </div>
-        <BsThreeDotsVertical size={20} />
+        <Image
+        onClick={() => signOut()}
+        src="/images/logout.svg"
+        alt="hand"
+        className="cursor-pointer"
+        width={25}
+        height={25}
+        priority
+      />
+
       </div>
     </Flex>
   );

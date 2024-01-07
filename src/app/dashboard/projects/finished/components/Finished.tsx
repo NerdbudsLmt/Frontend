@@ -110,6 +110,8 @@ const FinishedProject: React.FC = () => {
             ))}
           </div>
 
+
+          {projects?.length >= 6 &&
           <Pagination
             postsPerPage={postsPerPage}
             totalPosts={projects?.length}
@@ -118,6 +120,7 @@ const FinishedProject: React.FC = () => {
             paginateFront={paginateFront}
             paginate={paginate}
           />
+          } 
         </>
       )}
     </div>
