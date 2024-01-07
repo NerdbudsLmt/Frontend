@@ -13,8 +13,11 @@ export default function QuickSet() {
   const { data: session } = useSession();
   // const accountName = session?.user?.userType ?? "";
   // const accountName = session?.user?.email ;
-  // console.log(accountName)
-
+  const storedData = localStorage.getItem("data");
+  const parsedData = storedData ? JSON.parse(storedData) : {};
+  
+  // console.log(parsedData)
+  
   const transaction = [
     {
       title: "Project Assistant",
@@ -53,6 +56,7 @@ export default function QuickSet() {
         {session?.user && (
           <p className="text-[#132E40] w-[80%] mx-auto text-md font-semibold">
             {/* {accountName} */}
+            {parsedData?.userType}
           </p>
         )}
 
