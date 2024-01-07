@@ -77,14 +77,17 @@ const ExistingProject: React.FC = () => {
         <p className='font-semibold  text-2xl'>Existing project</p>
       </div>
                 
+      {/* {loading ? ( */}
        {project?.length === 0 ? (
-        <p className="text-app-pblue py-4 text-center text-lg font-bold"> No project available</p> 
+        <p className="text-app-pblue py-4 text-center text-lg font-bold">Loading...</p> 
       ) : (
         <>
           <div className='mt-10  text-white list-decimal  text-md'>
           
-          {loading ?
-            <p className="text-app-pblue py-4 text-center text-lg font-bold">Loading...</p> 
+       {/* {project?.length === 0 ?  */}
+ {loading ? 
+
+            <p className="text-app-pblue py-4 text-center text-lg font-bold">No project available</p> 
             :
           <> 
             {currentPosts?.map((item) => (

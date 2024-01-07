@@ -5,7 +5,7 @@ import { getServerSession } from "next-auth/next";
 export default async function AccountType() {
     const session = await getServerSession(options);
   
-    const accountName = session?.user.user ?? "";
+    const accountName = session?.user.user.userType ?? "";
     console.log(accountName)
     if (!session) {
     

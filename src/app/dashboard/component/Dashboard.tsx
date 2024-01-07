@@ -261,11 +261,11 @@ export default function DashboardCom() {
                       <li className="text-[#D69E00]"> {pending} pending</li>
                     </ul>
 
-                    <DoughnutChart
+                    {/* <DoughnutChart
                       running={running}
                       finished={finished}
                       pending={pending}
-                    />
+                    /> */}
                   </>
                 )}
               </>
