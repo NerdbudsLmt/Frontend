@@ -5,12 +5,7 @@ import React, { useState, useEffect } from 'react'
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md'
 import { RiDeleteBinLine } from 'react-icons/ri'
 import { useSession } from 'next-auth/react'
-import { BeatLoader } from 'react-spinners'
-import '..//..//styles/styles.css'
-
-
-
-
+import { Skeleton } from '@chakra-ui/react'
 
 interface Project {
   projectName: string
@@ -90,7 +85,14 @@ const ExistingProject: React.FC = () => {
         <div className='text-app-pblue py-4 text-center text-lg font-bold'>
           {loading ? (
             <>
-              {/* <BeatLoader color='#3F9BD5' css={override} size={10} /> */}
+              <Skeleton
+                startColor='gray.300'
+                endColor='gray.100'
+                height='20px'
+                width='80%'
+                mb='2'
+              />
+              
               <p className='skeleton-loading'>Loading...</p>
             </>
           ) : (

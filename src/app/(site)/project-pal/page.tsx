@@ -1,9 +1,9 @@
-"use client";
+'use client'
 
-import React, { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { BsArrowDown } from "react-icons/bs";
+import React, { useState } from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
+import { BsArrowDown } from 'react-icons/bs'
 // import { BiUser } from "react-icons/bi";
 // import { MdEmail } from "react-icons/md";
 // import {
@@ -15,30 +15,56 @@ import { BsArrowDown } from "react-icons/bs";
 // import { BsFacebook, BsTelephone } from "react-icons/bs";
 
 function ProjectPal() {
-  const [projectDescription, setProjectDescription] = useState("");
+  interface ProjectData {
+    description: string
+    services: string[] // Assuming services are strings, modify as needed
+  }
 
-  const handleProjectSubmit = async () => {
+  // const CreateProject = () => {
+  const [projectData, setProjectData] = useState<ProjectData>({
+    description: '',
+    services: [],
+  })
+
+  const handleCheckboxChange = (service: string) => {
+    const updatedServices = projectData.services.includes(service)
+      ? projectData.services.filter((s) => s !== service)
+      : [...projectData.services, service]
+
+    setProjectData({
+      ...projectData,
+      services: updatedServices,
+    })
+  }
+
+  const handleBookProject = async () => {
     try {
-      const url = "https://nerdbuds.onrender.com/api/v1/projects";
+      const url = 'https://nerdbuds.onrender.com/api/v1/projects'
+
       const response = await fetch(url, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          description: projectDescription,
-        }),
-      });
+        body: JSON.stringify(projectData),
+      })
 
       if (response.ok) {
-        console.log("success dfrshbfr");
+        const data = await response.json()
+        console.log('Project booked successfully:', data)
+
+        // Optionally, you can reset the form or navigate to another page
+        setProjectData({
+          description: '',
+          services: [],
+        })
       } else {
-        console.error("Failed srfgbxfrhdt");
+        console.error('Failed to book the project')
       }
     } catch (error) {
-      console.error("Error:", error);
+      console.error('An error occurred:', error)
     }
-  };
+  }
 
   return (
     <>
@@ -230,11 +256,21 @@ function ProjectPal() {
                 </span>
                 <p className='w-0.5 h-12 bg-[#486284]'></p>
               </div>
+             
               <Link
                 href='/contact'
                 className='flex gap-3 px-5 py-2 mt-3 w-fit bg-[#CBD3DE] text-[14px] lg:text-[16px] text-customBlue rounded-3xl font-bold transition-transform hover:scale-110'
               >
-                and so much more
+                <div className='flex items-center'>
+                  <span className='mr-3'>and so much more</span>
+                  <Image
+                    src='/images/Bank-r.svg'
+                    alt='comments'
+                    width={16}
+                    height={16}
+                    priority
+                  />
+                </div>
               </Link>
             </div>
           </div>
@@ -243,117 +279,34 @@ function ProjectPal() {
       <div className='mt-20'>
         <div className='flex flex-col lg:flex-row  mx-0 lg:mx-20 gap-20 mb-20px '>
           <div className='grid grid-cols-2 gap-4 '>
-            <div className='text-center'>
-              <div className='relative inline-block max-w-[30%] lg:max-w-none'>
-                <Image
-                  src='/images/efficiency.png'
-                  alt='comments'
-                  width={271}
-                  height={256}
-                  priority
-                  className='w-full h-full object-cover rounded-md'
-                />
-                <div className='absolute inset-0 flex flex-col justify-center items-start text-white px-4 py-2 rounded-md'>
-                  <h1 className='text-2xl lg:text-lg font-bold mb-2'>
-                    1. Efficiency
-                  </h1>
-                  <p className='text-left'>
-                    Our team of amazing programmers is available to deliver the
-                    exact requirements needed for any of your projects.
-                  </p>
-                  <Link
-                    href='/signup'
-                    className='flex gap-3 px-5 py-2 mt-3 w-fit bg-[#FFFFFF] text-[14px] lg:text-[18px] text-customBlue rounded-3xl font-bold transition-transform hover:scale-110'
-                  >
-                    Book a project
-                  </Link>
-                </div>
-              </div>
-            </div>
-            <div className='text-center'>
-              <div className='relative inline-block max-w-[30%] lg:max-w-none'>
-                <Image
-                  src='/images/timeliness.png'
-                  alt='comments'
-                  width={271}
-                  height={256}
-                  priority
-                  className='w-full h-full object-cover rounded-md'
-                />
-                <div className='absolute inset-0 flex flex-col justify-center items-start text-white px-4 py-2 rounded-md'>
-                  <h1 className='text-2xl lg:text-lg font-bold mb-2'>
-                    2. Timeliness
-                  </h1>
-                  <p className='text-left'>
-                    Be rest assured that the time agreed for project delivery
-                    will be kept to. This means that all you can rest easy
-                    knowing we will deliver
-                  </p>
-                  <Link
-                    href='/signup'
-                    className='flex gap-3 px-5 py-2 mt-3 w-fit bg-[#FFFFFF] text-[14px] lg:text-[18px] text-customBlue rounded-3xl font-bold transition-transform hover:scale-110'
-                  >
-                    Book a project
-                  </Link>
-                </div>
-              </div>
-            </div>
-            <div className='text-center'>
-              <div className='relative inline-block max-w-[30%] lg:max-w-none'>
-                <Image
-                  src='/images/versatile.png'
-                  alt='versatility'
-                  width={271}
-                  height={256}
-                  priority
-                  className='w-full h-full object-cover rounded-md'
-                />
-                <div className='absolute inset-0 flex flex-col justify-center items-start text-white px-4 py-2 rounded-md'>
-                  <h1 className='text-2xl lg:text-lg font-bold mb-2'>
-                    3. Versatility
-                  </h1>
-                  <p className='text-left'>
-                    We pride ourselves with the capacity to accomplish any
-                    project given to us. Whatever area you need we promise to
-                    fulfill.
-                  </p>
-                  <Link
-                    href='/signup'
-                    className='flex gap-3 px-5 py-2 mt-3 w-fit bg-[#FFFFFF] text-[14px] lg:text-[18px] text-customBlue rounded-3xl font-bold transition-transform hover:scale-110'
-                  >
-                    Book a project
-                  </Link>
-                </div>
-              </div>
-            </div>
-            <div className='text-center'>
-              <div className='relative inline-block max-w-[30%] lg:max-w-none'>
-                <Image
-                  src='/images/quickedit.png'
-                  alt='quickedit'
-                  width={271}
-                  height={256}
-                  priority
-                  className='w-full h-full object-cover rounded-md'
-                />
-                <div className='absolute inset-0 flex flex-col justify-center items-start text-white px-4 py-2 rounded-md'>
-                  <h1 className='text-2xl lg:text-lg font-bold mb-2'>
-                    4. Quick Edit
-                  </h1>
-                  <p className='text-left'>
-                    Change is constant, to that effect we make it easy for you
-                    to innovate any project by adding or subtracting various
-                    elements.
-                  </p>
-                  <Link
-                    href='/signup'
-                    className='flex gap-3 px-5 py-2 mt-3 w-fit bg-[#FFFFFF] text-[14px] lg:text-[18px] text-customBlue rounded-3xl font-bold transition-transform hover:scale-110'
-                  >
-                    Book a project
-                  </Link>
-                </div>
-              </div>
-            </div>
+            <Image
+              src='/images/efficiency.png'
+              alt='comments'
+              width={271}
+              height={256}
+              priority
+            />
+            <Image
+              src='/images/timeliness.png'
+              alt='comments'
+              width={271}
+              height={256}
+              priority
+            />
+            <Image
+              src='/images/versatility.png'
+              alt='comments'
+              width={271}
+              height={256}
+              priority
+            />
+            <Image
+              src='/images/quickedit.png'
+              alt='comments'
+              width={271}
+              height={256}
+              priority
+            />
           </div>
 
           <div className='flex items-center justify-center lg:w-[50%] order-first lg:order-last'>
@@ -414,6 +367,7 @@ function ProjectPal() {
           <textarea
             className='w-full bg-gray-300 p-4 mb-4 rounded-md text-customBlue'
             placeholder='Enter a brief description of your project...'
+            onClick={handleBookProject}
           ></textarea>
           <h5 className='text-lg font-semibold mb-2'>
             What services do you need?
@@ -459,7 +413,8 @@ function ProjectPal() {
             </label>
           </div>
           <Link
-            href='/signup'
+            href=''
+            onClick={handleBookProject}
             className='flex gap-3 px-5 py-2 mt-3 w-fit bg-white text-[18px] laptop:text-[16px] text-customBlue rounded-3xl font-bold mb-2 transition-transform hover:scale-110'
           >
             Book a project
@@ -477,4 +432,4 @@ function ProjectPal() {
   )
 }
 
-export default ProjectPal;
+export default ProjectPal

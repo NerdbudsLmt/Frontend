@@ -1,3 +1,6 @@
+"use client"
+
+
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from 'react'
@@ -46,6 +49,7 @@ export default function Contact() {
   //   }
   //   getContactForm()
   // }, [])
+
     const [formData, setFormData] = useState<ContactForm>({
       firstName: '',
       lastName: '',
@@ -75,17 +79,23 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       body: JSON.stringify(formData),
     })
 
+      console.log('Response from server:', response);
+
     if (response.ok) {
       const data = await response.json()
       console.log('Form submitted successfully:', data)
-      // Handle any success actions here
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phoneNumber: '',
+        message: '',
+      });
     } else {
       console.error('Failed to submit contacts')
-      // Handle any error actions here
     }
   } catch (error) {
     console.error('An error occurred:', error)
-    // Handle any error actions here
   }
 }
 
