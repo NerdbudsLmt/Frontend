@@ -33,6 +33,8 @@ import { PiCalendarBlankBold } from "react-icons/pi";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { Inbox } from "./component/Inbox";
 import { useEffect, useState } from "react";
+import { signOut } from "next-auth/react";
+
 
 type NestedLinkItemProps = {
   name: string;
@@ -283,7 +285,16 @@ const NavItem = () => {
           <p className="text-yellow">Nerdbuds Ltd</p>
           <p className="text-app-sblue text-sm">Company account</p>
         </div>
-        <BsThreeDotsVertical size={20} />
+        <Image
+        onClick={() => signOut()}
+        src="/images/logout.svg"
+        alt="hand"
+        className="cursor-pointer"
+        width={25}
+        height={25}
+        priority
+      />
+
       </div>
     </Flex>
   );
