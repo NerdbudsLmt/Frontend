@@ -11,9 +11,8 @@ import { useSession } from "next-auth/react";
 
 export default function QuickSet() {
   const { data: session } = useSession();
-  // const accountName = session?.user?.userType ?? "";
-  // const accountName = session?.user?.email ;
-  const storedData = localStorage.getItem("data");
+
+  const storedData = typeof window !== 'undefined' ? localStorage.getItem("data") : null;
   const parsedData = storedData ? JSON.parse(storedData) : {};
   
   // console.log(parsedData)

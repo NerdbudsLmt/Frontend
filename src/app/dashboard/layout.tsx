@@ -57,10 +57,10 @@ interface SidebarProps extends BoxProps {
   onClose: () => void;
 }
 
-const storedData = localStorage.getItem("data");
+const storedData = typeof window !== 'undefined' ? localStorage.getItem("data") : null;
 const parsedData = storedData ? JSON.parse(storedData) : {};
 
-console.log(parsedData)
+// console.log(parsedData)
 
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   return (
