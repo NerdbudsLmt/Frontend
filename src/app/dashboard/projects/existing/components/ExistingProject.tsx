@@ -78,13 +78,13 @@ const ExistingProject: React.FC = () => {
       </div>
                 
        {project?.length === 0 ? (
-        <p className="text-app-pblue py-4 text-center text-lg font-bold">Loading...</p> 
+        <p className="text-app-pblue py-4 text-center text-lg font-bold"> No project available</p> 
       ) : (
         <>
           <div className='mt-10  text-white list-decimal  text-md'>
           
           {loading ?
-            <p className="text-app-pblue py-4 text-center text-lg font-bold">No project available</p> 
+            <p className="text-app-pblue py-4 text-center text-lg font-bold">Loading...</p> 
             :
           <> 
             {currentPosts?.map((item) => (
@@ -128,6 +128,8 @@ const ExistingProject: React.FC = () => {
           }
           </div>
 
+       {project?.length >= 6 &&
+       
           <Pagination
             postsPerPage={postsPerPage}
             totalPosts={project?.length}
@@ -136,6 +138,7 @@ const ExistingProject: React.FC = () => {
             paginateFront={paginateFront}
             paginate={paginate}
           />
+       }
         </>
       )}
 

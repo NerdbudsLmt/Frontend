@@ -9,9 +9,22 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 
 
-
+interface Session {
+  user: {
+    _id: string;
+    email: string;
+    accountType: string;
+    userType: string; // Add this line
+    profilePicture: string;
+    isAdmin: boolean;
+    finishTourGuide: boolean;
+  };
+  // ... other properties
+}
 export default function QuickSet() {
   const { data: session } = useSession();
+  const accountName = session?.user?.userType ?? "";
+  // console.log(accountName)
 
 
   const transaction = [
@@ -51,8 +64,7 @@ export default function QuickSet() {
         </p>
         {session?.user && (
           <p className="text-[#132E40] w-[80%] mx-auto text-md font-semibold">
-            {/* {session?.user.user.userType} account */}
-            {session?.user?.user?.userType} account
+            {accountName}
           </p>
         )}
 
