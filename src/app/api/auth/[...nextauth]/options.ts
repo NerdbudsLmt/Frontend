@@ -29,6 +29,10 @@ export const options: NextAuthOptions = {
         // const author = user?.response
 
         console.log(user);
+        console.log(user.data.user.email);
+        localStorage.setItem("data", JSON.stringify(user.data.user));
+
+
 
         if (res.ok && user) {
           return user;
@@ -58,7 +62,6 @@ export const options: NextAuthOptions = {
         session.user.userType = token.userType;
         session.user.email = token.email;
       }
-      console.log(session)
       return session;
     },
   },

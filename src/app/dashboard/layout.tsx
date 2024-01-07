@@ -57,6 +57,11 @@ interface SidebarProps extends BoxProps {
   onClose: () => void;
 }
 
+const storedData = typeof window !== 'undefined' ? localStorage.getItem("data") : null;
+const parsedData = storedData ? JSON.parse(storedData) : {};
+
+// console.log(parsedData)
+
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   return (
     <Box
@@ -275,7 +280,7 @@ const NavItem = () => {
       <div className="flex gap-3 w-fit mx-auto items-center">
         <div className="w-10 h-10 overflow-hidden rounded-full border-[2px] border-app-pblue">
           <Image
-            src="/images/john.svg"
+            src={parsedData?.profilePicture}
             className=" rounded-full"
             alt="web"
             width={50}
@@ -283,8 +288,8 @@ const NavItem = () => {
           />
         </div>
         <div>
-          <p className="text-yellow">Nerdbuds Ltd</p>
-          <p className="text-app-sblue text-sm">Company account</p>
+          <p className="text-yellow">{parsedData?.accountTyoe}</p>
+        <p className="text-app-sblue text-sm">{parsedData?.userType} account</p>
         </div>
         <Image
         onClick={() => signOut()}

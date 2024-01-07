@@ -25,7 +25,7 @@ const data = [
     userType: "company",
     imageSrc: "/images/company.svg",
     title: "For",
-    subtitle: "Companies",
+    subtitle: "companies",
     description:
       "We help companies with their branding and other services such as creation of products. A company account will give you access to these services and so much more.",
   },
@@ -33,7 +33,7 @@ const data = [
     userType: "student",
     imageSrc: "/images/student.svg",
     title: "For ",
-    subtitle: "Students",
+    subtitle: "students",
 
     description:
       "Investing in the youth is one of our drive so this account is for students who want to bring their idea to life. Don’t feel left out. Let us help you with your dreams.",
@@ -42,7 +42,7 @@ const data = [
     userType: "business",
     imageSrc: "/images/buisness.svg",
     title: "For ",
-    subtitle: "Individuals",
+    subtitle: "individuals",
 
     description:
       "Starting a business can be scary and tasking. Let us help make the process easier for you while making you profit at the same time.",
