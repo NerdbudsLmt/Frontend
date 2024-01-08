@@ -1,9 +1,9 @@
-"use client";
+'use client'
 
-import React, { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { BsArrowDown } from "react-icons/bs";
+import React, { useState } from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
+import { BsArrowDown } from 'react-icons/bs'
 // import { BiUser } from "react-icons/bi";
 // import { MdEmail } from "react-icons/md";
 // import {
@@ -15,30 +15,56 @@ import { BsArrowDown } from "react-icons/bs";
 // import { BsFacebook, BsTelephone } from "react-icons/bs";
 
 function ProjectPal() {
-  const [projectDescription, setProjectDescription] = useState("");
+  interface ProjectData {
+    description: string
+    services: string[] // Assuming services are strings, modify as needed
+  }
 
-  const handleProjectSubmit = async () => {
+  // const CreateProject = () => {
+  const [projectData, setProjectData] = useState<ProjectData>({
+    description: '',
+    services: [],
+  })
+
+  const handleCheckboxChange = (service: string) => {
+    const updatedServices = projectData.services.includes(service)
+      ? projectData.services.filter((s) => s !== service)
+      : [...projectData.services, service]
+
+    setProjectData({
+      ...projectData,
+      services: updatedServices,
+    })
+  }
+
+  const handleBookProject = async () => {
     try {
-      const url = "https://nerdbuds.onrender.com/api/v1/projects";
+      const url = 'https://nerdbuds.onrender.com/api/v1/projects'
+
       const response = await fetch(url, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          description: projectDescription,
-        }),
-      });
+        body: JSON.stringify(projectData),
+      })
 
       if (response.ok) {
-        console.log("success dfrshbfr");
+        const data = await response.json()
+        console.log('Project booked successfully:', data)
+
+        // Optionally, you can reset the form or navigate to another page
+        setProjectData({
+          description: '',
+          services: [],
+        })
       } else {
-        console.error("Failed srfgbxfrhdt");
+        console.error('Failed to book the project')
       }
     } catch (error) {
-      console.error("Error:", error);
+      console.error('An error occurred:', error)
     }
-  };
+  }
 
   return (
     <>
@@ -46,7 +72,7 @@ function ProjectPal() {
         <div className='flex flex-col items-center space-y-5 mb-16'>
           <div>
             <Link
-              href='/about'
+              href='/login'
               className='flex items-center space-x-2 border-2 border-app-sblue text-app-sblue py-1 px-10 rounded-full'
             >
               <>
@@ -158,14 +184,14 @@ function ProjectPal() {
             </p>
             <span className='flex gap-4 mt-3'>
               <Link
-                href='/contact'
-                className='flex gap-3 px-5 py-2 w-fit bg-[#FFFFFF] text-[14px] lg:text-[18px] text-customBlue rounded-3xl font-bold'
+                href='/signup'
+                className='flex gap-3 px-5 py-2 w-fit bg-[#FFFFFF] text-[14px] lg:text-[18px] text-customBlue rounded-3xl font-bold transition-transform hover:scale-110'
               >
                 Book a project
               </Link>
               <Link
                 href='/contact'
-                className='flex gap-3 px-5 py-2 w-fit bg-[#CBD3DE] text-[14px] lg:text-[18px] text-customBlue rounded-3xl font-bold'
+                className='flex gap-3 px-5 py-2 w-fit bg-[#CBD3DE] text-[14px] lg:text-[18px] text-customBlue rounded-3xl font-bold transition-transform hover:scale-110'
               >
                 Learn more
               </Link>
@@ -192,9 +218,9 @@ function ProjectPal() {
                 Project Pal University Availability
               </h4>
             </span>
-            
+
             <div className='grid grid-cols-1 sm:grid-cols-2 gap-6 lg:flex justify-between lg:gap-10'>
-              <div className='lg:flex gap-10'>
+              <div className='flex justify-between gap-10'>
                 <span>
                   <h2 className='text-customBlue text-lg lg:text-base font-medium '>
                     Landmark University
@@ -230,11 +256,21 @@ function ProjectPal() {
                 </span>
                 <p className='w-0.5 h-12 bg-[#486284]'></p>
               </div>
+             
               <Link
                 href='/contact'
-                className='flex gap-3 px-5 py-2 mt-3 w-fit bg-[#CBD3DE] text-[14px] lg:text-[16px] text-customBlue rounded-3xl font-bold'
+                className='flex gap-3 px-5 py-2 mt-3 w-fit bg-[#CBD3DE] text-[14px] lg:text-[16px] text-customBlue rounded-3xl font-bold transition-transform hover:scale-110'
               >
-                and so much more
+                <div className='flex items-center'>
+                  <span className='mr-3'>and so much more</span>
+                  <Image
+                    src='/images/Bank-r.svg'
+                    alt='comments'
+                    width={16}
+                    height={16}
+                    priority
+                  />
+                </div>
               </Link>
             </div>
           </div>
@@ -242,33 +278,33 @@ function ProjectPal() {
       </section>
       <div className='mt-20'>
         <div className='flex flex-col lg:flex-row  mx-0 lg:mx-20 gap-20 mb-20px '>
-          <div className='grid grid-cols-2 gap-4'>
+          <div className='grid grid-cols-2 gap-4 '>
             <Image
-              src='/images/group4.png'
-              alt='graduation'
-              width={282}
-              height={297}
+              src='/images/efficiency.png'
+              alt='comments'
+              width={271}
+              height={256}
               priority
             />
             <Image
-              src='/images/group1.png'
-              alt='graduation'
-              width={282}
-              height={297}
+              src='/images/timeliness.png'
+              alt='comments'
+              width={271}
+              height={256}
               priority
             />
             <Image
-              src='/images/group3.png'
-              alt='graduation'
-              width={282}
-              height={297}
+              src='/images/versatility.png'
+              alt='comments'
+              width={271}
+              height={256}
               priority
             />
             <Image
-              src='/images/group2.png'
-              alt='graduation'
-              width={282}
-              height={297}
+              src='/images/quickedit.png'
+              alt='comments'
+              width={271}
+              height={256}
               priority
             />
           </div>
@@ -279,12 +315,6 @@ function ProjectPal() {
               <span className='text-white'> Project Pal</span>
             </h1>
           </div>
-          {/* <div className='flex items-center justify-center lg:w-[35%]'>
-            <h1 className='text-5xl lg:text-7xl font-bold text-app-porange '>
-              Why Should You Use
-              <span className='text-white'> Project Pal</span>
-            </h1>
-          </div> */}
         </div>
 
         <div className='mx-0 lg:mx-20 flex flex-col lg:flex-row justify-between items-center'>
@@ -337,6 +367,7 @@ function ProjectPal() {
           <textarea
             className='w-full bg-gray-300 p-4 mb-4 rounded-md text-customBlue'
             placeholder='Enter a brief description of your project...'
+            onClick={handleBookProject}
           ></textarea>
           <h5 className='text-lg font-semibold mb-2'>
             What services do you need?
@@ -382,8 +413,9 @@ function ProjectPal() {
             </label>
           </div>
           <Link
-            href='/contact'
-            className='flex gap-3 px-5 py-2 mt-3 w-fit bg-white text-[18px] laptop:text-[16px] text-customBlue rounded-3xl font-bold mb-2'
+            href=''
+            onClick={handleBookProject}
+            className='flex gap-3 px-5 py-2 mt-3 w-fit bg-white text-[18px] laptop:text-[16px] text-customBlue rounded-3xl font-bold mb-2 transition-transform hover:scale-110'
           >
             Book a project
           </Link>
@@ -400,4 +432,4 @@ function ProjectPal() {
   )
 }
 
-export default ProjectPal;
+export default ProjectPal
