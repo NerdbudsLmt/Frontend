@@ -15,21 +15,23 @@ export default function Home() {
         <div className="flex flex-col items-center space-y-5 mb-16 md:mb-20">
           <div>
             <Link
-              href="/pricing"
-              className="flex items-center space-x-2 border-2 border-app-sblue text-app-sblue py-1 px-10 rounded-full"
+              href="/project-pal"
+              className="flex items-center space-x-2 border-2 border-app-sblue text-app-sblue py-1 px-10 rounded-full transition-transform hover:scale-110"
             >
               <>
-                <span>Introducing: Student Galore</span>
+                <span>
+                  Introducing: <span className=" text-white">Project Pal</span>
+                </span>
                 <BsArrowRight className="text-lg" />
               </>
             </Link>
           </div>
           <div>
-            <h1 className="text-7xl font-bold text-center text-white">
+            <h1 className="text-5xl font-bold text-center text-white lg:text-7xl">
               You <span className="text-app-sblue">Dream.</span>
             </h1>
-            <h1 className="text-7xl font-bold text-center text-white">
-              We <span className="text-app-porange">Build.</span>
+            <h1 className="text-5xl font-bold text-center text-white lg:text-7xl">
+              We <span className="text-[#F9D262]">Build.</span>
             </h1>
           </div>
           <div className="text-center">
@@ -102,7 +104,7 @@ export default function Home() {
             <div className="h-full flex flex-col md:flex-row md:items-center justify-center md:justify-normal">
               <div className="flex flex-col justify-center spacey-3 p-4">
                 <GiArcheryTarget className="text-white text-5xl" />
-                <h3 className="text-app-porange text-[30px] lg:text-[32px] font-bold">
+                <h3 className="text-[#F9D262] text-[30px] lg:text-[32px] font-bold">
                   Our Drive
                 </h3>
                 <p className="text-white text-[17px] lg:text-[20px]">
@@ -126,67 +128,76 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <div className="flex justify-between my-16">
-        <div className="w-1/3 p-4">
-          <p>
-            &quot;As a company there are different projects that may not be
-            possible to get done due to various factors. But one can always
-            delegate projects to Nerdbuds and trust them to deliver&quot;
-          </p>
-          <div className="mt-5 flex items-center">
-            <Image
-              src="/images/profile 1.png"
-              alt="Profile 1"
-              className="w-12 h-12 rounded-full mr-2 inline"
-              width={50}
-              height={50}
-              priority
-            />
-            <div>
-              <span className="text-[#3F9BD5] inline-block">
-                Jonathan Ayomide
-              </span>
-              <span className="block">Senior VP | Tritech</span>
+
+      <div>
+        <h2 className=" text-center text-4xl mt-7 font-bold">
+          What People Say About Nerdbuds
+        </h2>
+        <div className="flex flex-col gap-4 sm:flex-row sm:space-x-0 space-y-8 sm:space-y-0 mt-5">
+          <div className="w-full sm:w-1/3 border border-solid border-blue-600 bg-[#00131E] p-4 rounded-lg">
+            <p>
+              &quot;As a company there are different projects that may not be
+              possible to get done due to various factors. But one can always
+              delegate projects to Nerdbuds and trust them to deliver&quot;
+            </p>
+            <div className="mt-3 flex items-center">
+              <Image
+                src="/images/profile 1.png"
+                alt="Profile 1"
+                className="w-12 h-12 rounded-full mr-2 inline"
+                width={50}
+                height={50}
+                priority
+              />
+              <div>
+                <span className="text-[#3F9BD5] inline-block">
+                  Jonathan Ayomide
+                </span>
+                <span className="block">Senior VP | Tritech</span>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="w-1/3  p-4">
-          <p>
-            &quot;My final year saw my best result in my project and
-            performance. Project Pal is the best thing that a final year student
-            can rely on for maximum success, take it from a graduate.&quot;
-          </p>
-          <div className="mt-5 flex items-center">
-            <Image
-              src="/images/profile 2.png"
-              alt="Profile 2"
-              className="w-12 h-12 rounded-full mr-2 inline"
-              width={50}
-              height={50}
-            />
-            <div>
-              <span className="text-[#3F9BD5] inline-block">Rita Eze</span>
-              <span className="block">400L Computer Science Student</span>
+          <div className="w-full sm:w-1/3 border border-solid border-blue-600 bg-[#00131E] p-4 rounded-lg ">
+            <p>
+              &quot;My final year saw my best result in my project and
+              performance. Project Pal is the best thing that a final year
+              student can rely on for maximum success, take it from a
+              graduate.&quot;
+            </p>
+            <div className="mt-3 flex items-center">
+              <Image
+                src="/images/profile 2.png"
+                alt="Profile 2"
+                className="w-12 h-12 rounded-full mr-2 inline"
+                width={50}
+                height={50}
+              />
+              <div>
+                <span className="text-[#3F9BD5] inline-block">Rita Eze</span>
+                <span className="block">400L Computer Science Student</span>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="w-1/3  p-4">
-          <p>
-            &quot;Starting a business can be very tricky. There is a lot
-            involved which can seem overwhelming but thanks to Nerdbuds I was
-            able to get my business up and running within a week.&quot;
-          </p>
-          <div className="mt-5 flex items-center">
-            <Image
-              src="/images/profile 3.png"
-              alt="Profile 3"
-              className="w-12 h-12 rounded-full mr-2 inline"
-              width={50}
-              height={50}
-            />
-            <div>
-              <span className="text-[#3F9BD5] inline-block">Anita Bassey</span>
-              <span className="block">Entrepreneur</span>
+          <div className="w-full sm:w-1/3 border border-solid border-blue-600 bg-[#00131E] p-4 rounded-lg">
+            <p>
+              &quot;Starting a business can be very tricky. There is a lot
+              involved which can seem overwhelming but thanks to Nerdbuds I was
+              able to get my business up and running within a week.&quot;
+            </p>
+            <div className="mt-3 flex items-center">
+              <Image
+                src="/images/profile 3.png"
+                alt="Profile 3"
+                className="w-12 h-12 rounded-full mr-2 inline"
+                width={50}
+                height={50}
+              />
+              <div>
+                <span className="text-[#3F9BD5] inline-block">
+                  Anita Bassey
+                </span>
+                <span className="block">Entrepreneur</span>
+              </div>
             </div>
           </div>
         </div>
@@ -198,7 +209,7 @@ export default function Home() {
             <h1 className="text-3xl md:text-6xl font-bold text-center text-app-sblue">
               Get started with Nerdbuds.
             </h1>
-            <h1 className="text-3xl md:text-6xl font-bold text-center text-app-porange">
+            <h1 className="text-3xl md:text-6xl font-bold text-center text-[#F9D262]">
               Explore our offers today.
             </h1>
           </div>
