@@ -16,7 +16,7 @@ export default function Portfolio() {
           <div>
             <Link
               href="/pricing"
-              className="flex items-center space-x-2 border-2 border-app-sblue text-app-sblue py-1 px-10 rounded-full"
+              className="flex items-center space-x-2 border-2 border-app-sblue text-app-sblue py-1 px-10 rounded-full transition-transform hover:scale-110"
             >
               <>
                 <span>Offers & Pricing</span>
@@ -25,8 +25,8 @@ export default function Portfolio() {
             </Link>
           </div>
           <div>
-            <h1 className="text-8xl font-bold text-center text-app-sblue">
-              Our <span className="text-app-porange">Build</span>
+            <h1 className="text-5xl lg:text-7xl font-bold text-center text-app-sblue">
+              Our <span className="text-[#F9D262]">Works</span>
             </h1>
           </div>
           <div className="text-center">
@@ -38,11 +38,13 @@ export default function Portfolio() {
       </header>
 
       <section className="mb-8 w-[95%] max-w-[1100px] mx-auto">
-        <div className="flex gap-5 w-fit mx-auto mb-16">
+        <div className="flex gap-5 w-fit mx-auto mb-16 ">
           <button
-          className={isWeb ? 'flex gap-2 items-center transition bg-app-sblue border-2 border-app-sblue py-2 px-5 rounded-full'
-        : 'flex gap-2 items-center  border-2 border-app-sblue transition py-2 px-5 rounded-full'
-        }
+            className={
+              isWeb
+                ? "flex gap-2 items-center transition bg-app-sblue border-2 border-app-sblue py-2 px-5 rounded-full "
+                : "flex gap-2 items-center  border-2 border-app-sblue transition transform hover:scale-110 py-2 px-5 rounded-full "
+            }
             onClick={() => setIsWeb(true)}
           >
             Web
@@ -50,9 +52,11 @@ export default function Portfolio() {
           </button>
           <button
             onClick={() => setIsWeb(false)}
-            className={!isWeb ? 'flex gap-2 items-center transition bg-app-sblue border-2 border-app-sblue py-2 px-5 rounded-full'
-        : 'flex gap-2 items-center  border-2 border-app-sblue transition py-2 px-5 rounded-full'
-        }
+            className={
+              !isWeb
+                ? "flex gap-2 items-center transition bg-app-sblue border-2 border-app-sblue py-2 px-5 rounded-full"
+                : "flex gap-2 items-center  border-2 border-app-sblue transition transform hover:scale-110 py-2 px-5 rounded-full"
+            }
           >
             Mobile
             <BiMobileAlt />
@@ -63,7 +67,7 @@ export default function Portfolio() {
 
       <div>
         <h1 className="text-4xl laptop:text-6xl font-bold text-center text-app-sblue">
-          Our <span className="text-app-porange">Partners</span>
+          Our <span className="text-[#F9D262]">Partners</span>
         </h1>
 
         <div className="my-10 flex gap-3 flex-wrap justify-around mx-auto ">
@@ -115,10 +119,10 @@ export default function Portfolio() {
               </p>
               <Link
                 href="/contact"
-                className="flex gap-3 px-5 py-2 mt-3 w-fit bg-[#151719] text-[14px] laptop:text[16px]  rounded-3xl"
+                className="flex gap-3 px-5 py-2 mt-3 w-fit bg-app-sblue border-2 border-app-sblue text-[14px] laptop:text[16px]  rounded-3xl transition-transform hover:scale-110"
               >
                 Contact us
-                <BsArrowRight className="text-md" />
+                <BsArrowRight className="text-md mt-1" />
               </Link>
             </div>
           </div>

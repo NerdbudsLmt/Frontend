@@ -8,7 +8,7 @@ const NLForm = () => {
 
   return (
     <form
-      className=" flex justify-end items-center mt-5 ml-80"
+      className=" flex justify-end items-center ml-2 mt-5 md:ml-[-1.2rem]  "
       onSubmit={(e) => e.preventDefault()}
     >
       <div className="flex justify-between items-center w-[80%] space-x-2 p-2 border-2 border-white/40 rounded-md">
@@ -21,7 +21,7 @@ const NLForm = () => {
           placeholder="Enter your email"
         />
       </div>
-      <button className=" ml-4 bg-[#3F9BD5] text-white text-[.9rem] p-2">
+      <button className=" ml-1 bg-[#3F9BD5] text-white text-[.9rem] p-2">
         Subscribe
       </button>
     </form>

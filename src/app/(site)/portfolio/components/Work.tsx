@@ -13,9 +13,7 @@ type webProps = {
 export const Work = ({ title, bg, content, img, btn, name }: webProps) => {
   return (
     <div className="mt-20 ">
-      <div
-        className="w-fit mb-4 mx-auto flex items-center space-x-2 border-2 border-white text-[14px] text-[#ffffff] py-1 px-14 rounded-full"
-      >
+      <div className="w-fit mb-4 mx-auto flex items-center space-x-2 border-2 border-white text-[14px] text-[#ffffff] py-1 px-14 rounded-full">
         <>
           <span>{name}</span>
           <Image
@@ -43,13 +41,15 @@ export const Work = ({ title, bg, content, img, btn, name }: webProps) => {
         <div className=" grow w-[90%] mx-auto laptop:w-[47%] my-auto ">
           <div className="w-[90%]">
             <p className="text-4xl font-bold leading-12">{title}</p>
-            <p className="mt-4 mb-5 text-[14px] laptop:text[16px] ">{content}</p>
+            <p className="mt-4 mb-5 text-[14px] laptop:text[16px] ">
+              {content}
+            </p>
             <Link
               href="/"
               style={{
                 background: btn,
               }}
-              className="px-5 py-2 text-[14px] laptop:text[16px]  rounded-3xl"
+              className="px-5 py-2 text-[14px] laptop:text[16px]  rounded-3xl transition-transform hover:scale-110"
             >
               Learn more
             </Link>
