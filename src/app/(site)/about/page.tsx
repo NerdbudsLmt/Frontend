@@ -89,7 +89,7 @@ export default function About() {
             <p className=" text-app-sblue font-bold text-[1.15rem]">
               Sean Chinedu
             </p>
-            <p className="font-semibold">CEO & Founder</p>
+            <p className="font-semibold">CEO and Founder</p>
           </div>
         </div>
         <p className="w-full tablet_l:w-[45%] text-[#F9D262] font-semibold leading-9 text-[1.75rem]">
