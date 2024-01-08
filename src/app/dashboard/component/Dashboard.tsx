@@ -164,19 +164,19 @@ export default function DashboardCom() {
 
   return (
     <div>
-      <div className="text-[#265D80]  flex flex-wrap gap-4 justify-between items-start">
-        <div className=" bg-[#F5F4F4] p-3 basis-full lg:basis-[48%]   text-center rounded-lg">
-          <p className="text-lg font-bold underline ">Active Projects </p>
+      <div className="text-[#265D80] h-[175px] flex flex-wrap gap-4 justify-between items-start">
+        <div className=" bg-[#F5F4F4] p-3 basis-full h-full lg:basis-[48%] text-center rounded-lg">
+          <p className="text-[1rem] md:text-lg font-bold underline ">Active Projects </p>
           <div className="flex justify-between gap-4 flex-wrap">
             {loading ? (
-              <p className="text-app-pblue py-4 text-center text-lg font-bold">
+              <p className="text-app-pblue py-4 text-center text-[.95rem] md:text-md font-bold">
                 Loading...
               </p>
             ) : (
               <div>
                 {activeProjects.length === 0 ? (
                   <>
-                    <p className="text-app-pblue py-4 text-center text-lg font-bold">
+                    <p className="text-app-pblue mx-auto py-4 text-center text-[.95rem] md:text-md font-bold">
                       No active projects
                     </p>
                   </>
@@ -235,19 +235,19 @@ export default function DashboardCom() {
           </div>
         </div>
 
-        <div className=" bg-[#F5F4F4] p-4 basis-full lg:basis-[48%]  text-center rounded-lg">
-          <p className="text-lg font-bold underline ">
+        <div className=" bg-[#F5F4F4] p-4 basis-full h-full lg:basis-[48%]  text-center rounded-lg">
+          <p className="text-[1rem] md:text-lg font-bold underline ">
             Overall Project Reports{" "}
           </p>
           <div className="flex flex-wrap justify-start gap-1">
             {loading ? (
-              <p className="text-app-pblue py-4 text-center text-lg font-bold">
+              <p className="text-app-pblue py-4 text-center text-[.95rem] md:text-md font-bold">
                 Loading...
               </p>
             ) : (
               <>
                 {projects.length === 0 ? (
-                  <p className="text-app-pblue py-4 text-center text-lg font-bold">
+                  <p className="text-app-pblue py-4 text-center text-[.95rem] md:text-md font-bold">
                     Create a project to see your report
                   </p>
                 ) : (
@@ -261,11 +261,11 @@ export default function DashboardCom() {
                       <li className="text-[#D69E00]"> {pending} pending</li>
                     </ul>
 
-                    <DoughnutChart
+                    {/* <DoughnutChart
                       running={running}
                       finished={finished}
                       pending={pending}
-                    />
+                    /> */}
                   </>
                 )}
               </>

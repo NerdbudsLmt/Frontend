@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { BsArrowRight, BsArrowDownShort } from "react-icons/bs";
@@ -9,6 +11,7 @@ import {
   AiFillLinkedin,
 } from "react-icons/ai";
 import { BsFacebook } from "react-icons/bs";
+import { log } from "console";
 
 export default function About() {
   return (
@@ -118,21 +121,21 @@ export default function About() {
       {/* <div id="team" className="mt-20 mb-10 pb-20 border-b-2 border-[#fff]">
         <p className="mb-8 text-center border-b-2 mx-auto w-fit border-[#fff] text-3xl font-bold  text-app-sblue">
           Meet
-          <span className="text-[#fff]"> the</span>
-          <span className="text-app-porange"> Nerds </span>
+          <span className='text-[#fff]'> the</span>
+          <span className='text-app-porange'> Nerds </span>
         </p>
-        <div className="flex justify-around mx-auto gap-x-8 flex-wrap">
-          <div className="mt-9 w-[30%]">
+        <div className='flex justify-around mx-auto gap-x-8 flex-wrap'>
+          <div className='mt-9 w-[30%]'>
             <Image
-              src="/images/sean.svg"
-              className="h-[300px] w-[250px]"
-              alt="hand"
+              src='/images/sean.svg'
+              className='h-[300px] w-[250px]'
+              alt='hand'
               width={400}
               height={200}
               priority
             />
-            <div className="relative ">
-              <p className=" text-app-sblue font-bold text-[1.15rem]">
+            <div className='relative '>
+              <p className=' text-app-sblue font-bold text-[1.15rem]'>
                 Sean Chinedu
               </p>
               <p className="">Founder & CEO</p>
@@ -146,11 +149,11 @@ export default function About() {
             </div>
           </div>
 
-          <div className="mt-9 w-[30%]">
+          <div className='mt-9 w-[30%]'>
             <Image
-              src="/images/benard.svg"
-              className="h-[300px] w-[250px]"
-              alt="hand"
+              src='/images/benard.svg'
+              className='h-[300px] w-[250px]'
+              alt='hand'
               width={400}
               height={200}
               priority
@@ -170,11 +173,11 @@ export default function About() {
             </div>
           </div>
 
-          <div className="mt-9 w-[30%]">
+          <div className='mt-9 w-[30%]'>
             <Image
-              src="/images/muhammod.svg"
-              className="h-[300px] w-[250px]"
-              alt="hand"
+              src='/images/muhammod.svg'
+              className='h-[300px] w-[250px]'
+              alt='hand'
               width={400}
               height={200}
               priority
@@ -194,11 +197,11 @@ export default function About() {
             </div>
           </div>
 
-          <div className="mt-9 w-[30%]">
+          <div className='mt-9 w-[30%]'>
             <Image
-              src="/images/enoch.svg"
-              className="h-[300px] w-[250px]"
-              alt="hand"
+              src='/images/enoch.svg'
+              className='h-[300px] w-[250px]'
+              alt='hand'
               width={400}
               height={200}
               priority
@@ -218,11 +221,11 @@ export default function About() {
             </div>
           </div>
 
-          <div className="mt-9 w-[30%]">
+          <div className='mt-9 w-[30%]'>
             <Image
-              src="/images/john.svg"
-              className="h-[300px] w-[250px]"
-              alt="hand"
+              src='/images/john.svg'
+              className='h-[300px] w-[250px]'
+              alt='hand'
               width={400}
               height={200}
               priority
@@ -242,11 +245,11 @@ export default function About() {
             </div>
           </div>
 
-          <div className="mt-9 w-[30%]">
+          <div className='mt-9 w-[30%]'>
             <Image
-              src="/images/samuel.svg"
-              className="h-[300px] w-[250px]"
-              alt="hand"
+              src='/images/samuel.svg'
+              className='h-[300px] w-[250px]'
+              alt='hand'
               width={400}
               height={200}
               priority

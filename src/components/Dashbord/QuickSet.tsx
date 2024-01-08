@@ -8,9 +8,15 @@ import { BsPerson } from "react-icons/bs";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 
+
 export default function QuickSet() {
   const { data: session } = useSession();
 
+  const storedData = typeof window !== 'undefined' ? localStorage.getItem("data") : null;
+  const parsedData = storedData ? JSON.parse(storedData) : {};
+  
+  // console.log(parsedData)
+  
   const transaction = [
     {
       title: "Project Assistant",
@@ -48,8 +54,8 @@ export default function QuickSet() {
         </p>
         {session?.user && (
           <p className="text-[#132E40] w-[80%] mx-auto text-md font-semibold">
-            {/* {session?.user.user.userType} account */}
-            {session?.user?.user?.userType} account
+            {/* {accountName} */}
+            {parsedData?.userType}
           </p>
         )}
 

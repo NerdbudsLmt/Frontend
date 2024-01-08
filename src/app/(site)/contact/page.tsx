@@ -1,5 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { useState, useEffect } from "react";
+
 import { BsArrowRight } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
 import { MdEmail } from "react-icons/md";
@@ -11,7 +15,93 @@ import {
 } from "react-icons/ai";
 import { BsFacebook, BsTelephone } from "react-icons/bs";
 
+interface ContactForm {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  message: string;
+}
+
 export default function Contact() {
+  // const [contactForm, setContactForm] = useState<ContactForm[]>([])
+
+  // useEffect(() => {
+  //   try {
+
+  //   } catch (error) {
+
+  //   }
+  //   const getContactForm = async () => {
+  //     const url = 'https://nerdbuds.onrender.com/api/v1/contactform'
+  //     const response = await fetch(url, {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       // body: JSON.stringify(values),
+  //     })
+  //     console.log(response)
+
+  //     if (response.ok) {
+  //       const data = await response.json()
+  //       setContactForm(data)
+  //     } else {
+  //       console.error('Failed to submit contacts')
+  //     }
+  //   }
+  //   getContactForm()
+  // }, [])
+
+  const [formData, setFormData] = useState<ContactForm>({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+    message: "",
+  });
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const url = "https://nerdbuds.onrender.com/api/v1/contactform";
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      console.log("Response from server:", response);
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Form submitted successfully:", data);
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phoneNumber: "",
+          message: "",
+        });
+      } else {
+        console.error("Failed to submit contacts");
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  };
+
   return (
     <>
       <header className="pt-10">
@@ -86,13 +176,19 @@ export default function Contact() {
           <span className="text-[#F9D262]">touch</span>
         </h1>
 
-        <form className="tablet_l:w-[600px] w-[95%] mx-auto mt-10 mb-20">
+        <form
+          className="tablet_l:w-[600px] w-[95%] mx-auto mt-10 mb-20"
+          onSubmit={handleSubmit}
+        >
           <div className="flex justify-between gap-5 flex-col tablet_l:flex-row">
             <div className="flex justify-between items-center space-x-2 p-2 border-2 border-white/40 rounded-md">
               <BiUser className="text-xl text-white" />
               <input
                 type="text"
                 className="flex-grow bg-transparent text-white outline-none"
+                name="firstName"
+                value={formData.firstName}
+                onChange={handleInputChange}
                 // onChange={e => setEmail(e.target.value)}
                 // value={email}
                 placeholder="First Name"
