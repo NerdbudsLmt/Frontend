@@ -95,7 +95,7 @@ function ProjectPal() {
         </div>
       </header>
 
-      <main className='flex flex-col lg:flex-row mb-48'>
+      <main className='flex flex-col lg:flex-row lg:mb-30 mb-8 '>
         <div className='flex flex-col items-center mb-8 lg:mb-0 max-w-[80%] mx-auto'>
           <Image
             src='/images/Group 34.svg'
@@ -151,12 +151,12 @@ function ProjectPal() {
         </div>
 
         <div className='flex flex-col items-center mb-8 lg:mb-0 max-w-[80%] mx-auto'>
-          <div className='p-25 bg-[#344C5B] rounded-[25px]'>
+          <div className='p-6 bg-[#344C5B] rounded-[25px]'>
             <Image
               src='/images/Send_fill.svg'
               alt='hand'
-              width={106}
-              height={106}
+              width={56}
+              height={56}
               priority
             />
           </div>
@@ -205,7 +205,7 @@ function ProjectPal() {
             priority
             className='lg:w-1/2 mt-5 lg:mt-0'
           />
-          <div className='absolute bottom-0 left-0 w-full bg-[#E6EFF6] p-3 mt-5 lg:mt-0'>
+          <div className='absolute bottom-0 left-0 w-full bg-[#E6EFF6] p-2 mt-5 lg:mt-0'>
             <span className='flex gap-1'>
               <Image
                 src='/images/MapPinLine-d.svg'
@@ -219,7 +219,7 @@ function ProjectPal() {
               </h4>
             </span>
 
-            <div className='grid grid-cols-1 sm:grid-cols-2 gap-6 lg:flex justify-between lg:gap-10'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 lg:flex justify-between lg:gap-10'>
               <div className='flex justify-between gap-10'>
                 <span>
                   <h2 className='text-customBlue text-lg lg:text-base font-medium '>
