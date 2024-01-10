@@ -54,7 +54,8 @@ export default function Login() {
             "Log In Success",
             "top-right"
           );
-          router.push("/dashboard");
+          // router.push("/dashboard");
+          window.location.replace('/dashboard')
           console.log(res);
           setIsLoading(false);
         } else if (res.status === 401) {
