@@ -198,7 +198,7 @@ export default function ProjectPal() {
                     // name="universityName"
                     placeholder="Universiy Name"
                     {...formik.getFieldProps("universityName")}
-                    className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
+                    className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
                   />
                   {formik.touched.universityName &&
                   formik.errors.universityName ? (
@@ -209,7 +209,7 @@ export default function ProjectPal() {
                 </div>
               </div>
               <div className="flex justify-between gap-4">
-                <div className="my-3">
+                <div className="my-3 basis-[47%]">
                   <label
                     htmlFor="firstname"
                     className="block text-gray-300 text-[16px]"
@@ -222,7 +222,7 @@ export default function ProjectPal() {
                     // name="firstname"
                     placeholder="First Name"
                     {...formik.getFieldProps("firstname")}
-                    className="border-[1.5px] w-full text-[16px] rounded-md text-black bg-white px-3 py-1 mt-1"
+                    className="border-[1.5px] w-full text-[16px] rounded-md text-black bg-white px-3 py-2 mt-1"
                   />
                   {formik.touched.firstname && formik.errors.firstname ? (
                     <div className="text-[red] text-[14px] italic">
@@ -230,7 +230,7 @@ export default function ProjectPal() {
                     </div>
                   ) : null}
                 </div>
-                <div className="my-3">
+                <div className="my-3  basis-[47%]">
                   <label
                     htmlFor="lastname"
                     className="block text-gray-300 text-[16px]"
@@ -254,7 +254,7 @@ export default function ProjectPal() {
               </div>
 
               <div className="flex justify-between gap-4">
-                <div className="my-3">
+                <div className="my-3  basis-[47%]">
                   <label
                     htmlFor="level"
                     className="block text-gray-300 text-[16px]"
@@ -275,7 +275,7 @@ export default function ProjectPal() {
                     </div>
                   ) : null}
                 </div>
-                <div className="my-3">
+                <div className="my-3 basis-[47%]">
                   <label
                     htmlFor="username"
                     className="block text-gray-300 text-[16px]"
