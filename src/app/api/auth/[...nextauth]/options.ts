@@ -24,10 +24,7 @@ export const options: NextAuthOptions = {
           }),
         });
         const user = await res.json();
-        
 
-        console.log(user);
-        console.log(user.data.user.email);
         localStorage.setItem("data", JSON.stringify(user.data.user));
 
 
