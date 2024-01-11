@@ -7,6 +7,7 @@ import { useState, useEffect, SetStateAction } from "react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { FiPlus } from "react-icons/fi";
+import { Progress } from '@chakra-ui/react'
 
 interface Project {
   _id: string;
@@ -164,7 +165,7 @@ export default function DashboardCom() {
 
   return (
     <div>
-      <div className="text-[#265D80] h-[175px] flex flex-wrap gap-4 justify-between items-start">
+      <div className="text-[#265D80] lg:h-[175px] flex flex-wrap gap-4 justify-between items-start">
         <div className=" bg-[#F5F4F4] p-3 basis-full h-full lg:basis-[48%] text-center rounded-lg">
           <p className="text-[1rem] md:text-lg font-bold underline ">Active Projects </p>
           <div className="flex justify-between gap-4 flex-wrap">
@@ -176,9 +177,9 @@ export default function DashboardCom() {
               <div>
                 {activeProjects.length === 0 ? (
                   <>
-                    <p className="text-app-pblue mx-auto py-4 text-center text-[.95rem] md:text-md font-bold">
-                      No active projects
-                    </p>
+                     <p className="text-[#265D80] pb-4 pt-2 text-center font-semibold">
+                  No project available
+                </p>
                   </>
                 ) : (
                   <div className="flex justify-between">
@@ -239,33 +240,27 @@ export default function DashboardCom() {
           <p className="text-[1rem] md:text-lg font-bold underline ">
             Overall Project Reports{" "}
           </p>
-          <div className="flex flex-wrap justify-start gap-1">
+          <div className="">
             {loading ? (
               <p className="text-app-pblue py-4 text-center text-[.95rem] md:text-md font-bold">
                 Loading...
               </p>
             ) : (
               <>
-                {projects.length === 0 ? (
-                  <p className="text-app-pblue py-4 text-center text-[.95rem] md:text-md font-bold">
+                {activeProjects.length === 0 ? (
+                  <p className="text-[#265D80] pb-4 pt-2 text-center font-semibold">
                     Create a project to see your report
                   </p>
                 ) : (
                   <>
-                    <ul className="text-left mt-4 font-semibold pl-5 w-[170px] text-md list-disc">
-                      <li className="text-[#2CB629]">{running} running </li>
-                      <li className="text-[#009CFF] my-2">
-                        {" "}
-                        {finished} finished
-                      </li>
-                      <li className="text-[#D69E00]"> {pending} pending</li>
-                    </ul>
-
-                    {/* <DoughnutChart
-                      running={running}
-                      finished={finished}
-                      pending={pending}
-                    /> */}
+                    {activeProjects.slice(0, 2).map((item, index) => (
+                      <ul key={item._id} className="text-left mt-4 font-semibold text-md">
+                        <li className="text-[#265D80] ">
+                          <p className=" mb-1">{item.projectName}</p>
+                          <Progress hasStripe value={item.projectPercentage} className="bg-white" />
+                        </li>
+                      </ul>
+                    ))}
                   </>
                 )}
               </>
@@ -273,6 +268,8 @@ export default function DashboardCom() {
           </div>
         </div>
       </div>
+        {/* </div> */}
+      {/* </div> */}
 
       <Projects />
       <QuickSet />
