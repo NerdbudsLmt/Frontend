@@ -30,13 +30,6 @@ export default function Contact() {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const toast = useCustomToast();
 
-  const validationSchema = Yup.object().shape({
-    firstName: Yup.string().required("Project name is required"),
-    lastName: Yup.string().required("Description is required"),
-    email: Yup.string().required("Select at least one item"),
-    phoneNumber: Yup.string().required("Select a fixed date and time"),
-  });
-
   const formik = useFormik<ContactForm>({
     initialValues: {
       firstName: "",
@@ -45,17 +38,38 @@ export default function Contact() {
       phoneNumber: "",
       message: "",
     },
-    validationSchema: validationSchema,
+
     onSubmit: async (values) => {
+      // Check if any of the fields are empty
+      if (
+        !values.firstName ||
+        !values.lastName ||
+        !values.email ||
+        !values.phoneNumber ||
+        !values.message
+      ) {
+        toast(
+          "All fields are required",
+          "error",
+          true,
+          2000,
+          "Please fill out all fields",
+          "top-right"
+        );
+        return;
+      }
+
       try {
-        const res: any = await fetch(`${apiUrl}/contactform`, {
+        const res = await fetch(`${apiUrl}/contactform`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(values),
         });
+
         const data = await res.json();
+
         if (res.status === 200) {
           toast(
             "Message Sent",
@@ -65,7 +79,6 @@ export default function Contact() {
             data.data.message,
             "top-right"
           );
-
           formik.resetForm();
         } else {
           toast("Failed", "error", true, 2000, data.message, "top-right");
@@ -165,6 +178,7 @@ export default function Contact() {
                 placeholder="First Name"
               />
             </div>
+
             <div className="flex justify-between items-center space-x-2 p-2 border-2 border-white/40 rounded-md">
               <BiUser className="text-xl text-white" />
               <input
