@@ -14,6 +14,9 @@ import {
   AiFillLinkedin,
 } from "react-icons/ai";
 import { BsFacebook, BsTelephone } from "react-icons/bs";
+import { Formik, useFormik } from "formik";
+import * as Yup from "yup";
+import useCustomToast from "@/components/Toast";
 
 interface ContactForm {
   firstName: string;
@@ -24,84 +27,55 @@ interface ContactForm {
 }
 
 export default function Contact() {
-  // const [contactForm, setContactForm] = useState<ContactForm[]>([])
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const toast = useCustomToast();
 
-  // useEffect(() => {
-  //   try {
-
-  //   } catch (error) {
-
-  //   }
-  //   const getContactForm = async () => {
-  //     const url = 'https://nerdbuds.onrender.com/api/v1/contactform'
-  //     const response = await fetch(url, {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       // body: JSON.stringify(values),
-  //     })
-  //     console.log(response)
-
-  //     if (response.ok) {
-  //       const data = await response.json()
-  //       setContactForm(data)
-  //     } else {
-  //       console.error('Failed to submit contacts')
-  //     }
-  //   }
-  //   getContactForm()
-  // }, [])
-
-  const [formData, setFormData] = useState<ContactForm>({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phoneNumber: "",
-    message: "",
+  const validationSchema = Yup.object().shape({
+    firstName: Yup.string().required("Project name is required"),
+    lastName: Yup.string().required("Description is required"),
+    email: Yup.string().required("Select at least one item"),
+    phoneNumber: Yup.string().required("Select a fixed date and time"),
   });
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
-  };
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const url = "https://nerdbuds.onrender.com/api/v1/contactform";
 
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      console.log("Response from server:", response);
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log("Form submitted successfully:", data);
-        setFormData({
-          firstName: "",
-          lastName: "",
-          email: "",
-          phoneNumber: "",
-          message: "",
+  const formik = useFormik<ContactForm>({
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phoneNumber: "",
+      message: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: async (values) => {
+      try {
+        const res: any = await fetch(`${apiUrl}/contactform`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values),
         });
-      } else {
-        console.error("Failed to submit contacts");
-      }
-    } catch (error) {
-      console.error("An error occurred:", error);
-    }
-  };
+        const data = await res.json();
+        if (res.status === 200) {
+          toast(
+            "Message Sent",
+            "success",
+            true,
+            2000,
+            data.data.message,
+            "top-right"
+          );
 
+          formik.resetForm();
+        } else {
+          toast("Failed", "error", true, 2000, data.message, "top-right");
+          console.error(res);
+        }
+      } catch (error) {
+        console.error("An error occurred:", error);
+      }
+    },
+  });
   return (
     <>
       <header className="pt-10">
@@ -178,7 +152,7 @@ export default function Contact() {
 
         <form
           className="tablet_l:w-[600px] w-[95%] mx-auto mt-10 mb-20"
-          onSubmit={handleSubmit}
+          onSubmit={formik.handleSubmit}
         >
           <div className="flex justify-between gap-5 flex-col tablet_l:flex-row">
             <div className="flex justify-between items-center space-x-2 p-2 border-2 border-white/40 rounded-md">
@@ -186,11 +160,8 @@ export default function Contact() {
               <input
                 type="text"
                 className="flex-grow bg-transparent text-white outline-none"
+                {...formik.getFieldProps("firstName")}
                 name="firstName"
-                value={formData.firstName}
-                onChange={handleInputChange}
-                // onChange={e => setEmail(e.target.value)}
-                // value={email}
                 placeholder="First Name"
               />
             </div>
@@ -199,8 +170,8 @@ export default function Contact() {
               <input
                 type="text"
                 className="flex-grow bg-transparent text-white outline-none"
-                // onChange={e => setEmail(e.target.value)}
-                // value={email}
+                {...formik.getFieldProps("lastName")}
+                name="lastName"
                 placeholder="Last Name"
               />
             </div>
@@ -211,8 +182,8 @@ export default function Contact() {
             <input
               type="text"
               className="flex-grow bg-transparent text-white outline-none"
-              // onChange={e => setEmail(e.target.value)}
-              // value={email}
+              {...formik.getFieldProps("email")}
+              name="email"
               placeholder="Enter your email"
             />
           </div>
@@ -222,8 +193,8 @@ export default function Contact() {
             <input
               type="text"
               className="flex-grow bg-transparent text-white outline-none"
-              // onChange={e => setEmail(e.target.value)}
-              // value={email}
+              {...formik.getFieldProps("phoneNumber")}
+              name="phoneNumber"
               placeholder="Enter your phone number"
             />
           </div>
@@ -231,14 +202,15 @@ export default function Contact() {
           <div className="flex justify-between items- space-x-2 p-2 border-2 border-white/40 rounded-md">
             <AiOutlineFileText className="text-xl text-white" />
             <textarea
-              // type="text"
               className="flex-grow bg-transparent h-[200px] text-white outline-none"
-              // onChange={e => setEmail(e.target.value)}
-              // value={email}
+              {...formik.getFieldProps("message")}
               placeholder="Write your message?"
             />
           </div>
-          <button className="flex items-center gap-3 px-10 py-3 mt-7 mx-auto w-fit bg-app-sblue text-[14px] laptop:text[16px]  rounded-3xl transition-transform hover:scale-110">
+          <button
+            type="submit"
+            className="flex items-center gap-3 px-10 py-3 mt-7 mx-auto w-fit bg-app-sblue text-[14px] laptop:text[16px]  rounded-3xl transition-transform hover:scale-110"
+          >
             Submit
             <BsArrowRight className="text-md" />
           </button>
