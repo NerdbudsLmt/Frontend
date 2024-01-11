@@ -43,9 +43,11 @@ export default function Login() {
           email: values.email,
           password: values.password,
           redirect: false,
-          callbackUrl: "/dashboard",
+          // callbackUrl: "/dashboard",
         });
+
         if (res.status === 200) {
+          // Successful login
           toast(
             "Success",
             "success",
@@ -54,20 +56,19 @@ export default function Login() {
             "Log In Success",
             "top-right"
           );
-          // router.push("/dashboard");
-          window.location.replace('/dashboard')
-          console.log(res);
-          setIsLoading(false);
-        } else if (res.status === 401) {
-          toast(
-            "Error",
-            "error",
-            true,
-            2000,
-            "Invalid Email or Password",
-            "top-right"
-          );
-          setIsLoading(false);
+          router.replace("/dashboard");
+        } else {
+          if (res.status === 401) {
+            toast(
+              "Error",
+              "error",
+              true,
+              2000,
+              "Invalid Email or Password",
+              "top-right"
+            );
+            setIsLoading(false);
+          }
         }
       } catch (error: any) {
         toast("Error", "error", true, 2000, error, "top-right");

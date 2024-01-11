@@ -1,10 +1,17 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { BsArrowRight, BsArrowDownShort } from "react-icons/bs";
 import { BiMobileAlt } from "react-icons/bi";
-import { MdEmail } from 'react-icons/md'
-import { AiFillInstagram, AiOutlineTwitter, AiFillLinkedin } from 'react-icons/ai'
-import { BsFacebook } from 'react-icons/bs'
+import { MdEmail } from "react-icons/md";
+import {
+  AiFillInstagram,
+  AiOutlineTwitter,
+  AiFillLinkedin,
+} from "react-icons/ai";
+import { BsFacebook } from "react-icons/bs";
+import { log } from "console";
 
 export default function About() {
   return (
@@ -13,18 +20,18 @@ export default function About() {
         <div className="flex flex-col items-center space-y-5 mb-16">
           <div>
             <a
-              href="#team"
-              className="flex items-center space-x-2 border-2 border-app-sblue text-app-sblue py-1 px-10 rounded-full"
+              href="/contact"
+              className="flex items-center space-x-2 border-2 border-app-sblue text-app-sblue py-1 px-10 rounded-full transition-transform hover:scale-110"
             >
               <>
-                <span>See The Team</span>
-                <BsArrowDownShort className="text-xl" />
+                <span>Contact Us</span>
+                <BsArrowRight className="text-lg" />
               </>
             </a>
           </div>
           <div>
-            <h1 className="text-8xl font-bold text-center text-app-sblue">
-              About <span className="text-app-porange">Us</span>
+            <h1 className="text-5xl font-bold text-center lg:text-7xl text-app-sblue">
+              About <span className="text-[#F9D262]">Us</span>
             </h1>
           </div>
           <div className="text-center">
@@ -37,7 +44,7 @@ export default function About() {
       </header>
 
       <div className="my-16 flex tablet_l:flex-row flex-col gap-6 tablet_l:gap-10 justify-between  laptop:w-[770px] laptop_l:w-[90%] mx-auto ">
-        <p className="text-3xl font-bold  text-app-porange">
+        <p className="text-3xl font-bold  text-[#F9D262]">
           We are a team of creatives that bring your{" "}
           <span className="text-app-sblue"> ideas </span>to
           <span className="text-app-sblue"> reality.</span>
@@ -57,7 +64,7 @@ export default function About() {
       <div className="mt-16  flex  tablet_l:flex-row flex-col gap-6 tablet_l:gap-10 justify-between w-[95%] laptop:w-[90%] mx-auto ">
         <p className="text-3xl w-full tablet_l:w-[45%] font-bold  text-app-sblue">
           Innovate,
-          <span className="text-app-porange"> Collaborate, Achieve, </span>
+          <span className="text-[#F9D262]"> Collaborate, Achieve, </span>
           Together,
           <span className="text-white"> unstoppable.</span>
         </p>
@@ -85,10 +92,10 @@ export default function About() {
             <p className=" text-app-sblue font-bold text-[1.15rem]">
               Sean Chinedu
             </p>
-            <p className="font-semibold">CEO & Founder</p>
+            <p className="font-semibold">CEO and Founder</p>
           </div>
         </div>
-        <p className="w-full tablet_l:w-[45%] text-app-porange font-semibold leading-9 text-[1.75rem]">
+        <p className="w-full tablet_l:w-[45%] text-[#F9D262] font-semibold leading-9 text-[1.75rem]">
           <span className="text-app-sblue">“</span>Our goal is to turn dreams to
           ideas and ideas to companies through innovative software solutions, we
           plan to bring your vision to life, one line of code at a time.{" "}
@@ -106,169 +113,169 @@ export default function About() {
           <p className="text-sm">companies and startups reached</p>
         </div>
         <div className="flex gap-2 w-[250px]">
-          <p className="text-app-porange font-[500] text-4xl">18+</p>
+          <p className="text-[#F9D262] font-[500] text-4xl">18+</p>
           <p className="text-sm">registered students across Nigeria.</p>
         </div>
       </div>
 
-      <div id='team' className="mt-20 mb-10 pb-20 border-b-2 border-[#fff]">
+      {/* <div id="team" className="mt-20 mb-10 pb-20 border-b-2 border-[#fff]">
         <p className="mb-8 text-center border-b-2 mx-auto w-fit border-[#fff] text-3xl font-bold  text-app-sblue">
           Meet
-          <span className="text-[#fff]"> the</span>
-          <span className="text-app-porange"> Nerds </span>
+          <span className='text-[#fff]'> the</span>
+          <span className='text-app-porange'> Nerds </span>
         </p>
-        <div className="flex justify-around mx-auto gap-x-8 flex-wrap">
-          <div className="mt-9 w-[30%]">
+        <div className='flex justify-around mx-auto gap-x-8 flex-wrap'>
+          <div className='mt-9 w-[30%]'>
             <Image
-              src="/images/sean.svg"
-              className="h-[300px] w-[250px]"
-              alt="hand"
+              src='/images/sean.svg'
+              className='h-[300px] w-[250px]'
+              alt='hand'
               width={400}
               height={200}
               priority
             />
-            <div className="relative ">
-              <p className=" text-app-sblue font-bold text-[1.15rem]">
+            <div className='relative '>
+              <p className=' text-app-sblue font-bold text-[1.15rem]'>
                 Sean Chinedu
               </p>
               <p className="">Founder & CEO</p>
               <div className="flex gap-3 mt-3">
-                <AiFillInstagram className="text-[#fff] w-[20px] h-[20px]"/>
-                <BsFacebook className="text-[#fff] w-[20px] h-[20px]"/>
-                <AiOutlineTwitter className="text-[#fff] w-[20px] h-[20px]"/>
-                <MdEmail className="text-[#fff] w-[20px] h-[20px]"/>
-                <AiFillLinkedin className="text-[#fff] w-[20px] h-[20px]"/>
+                <AiFillInstagram className="text-[#fff] w-[20px] h-[20px]" />
+                <BsFacebook className="text-[#fff] w-[20px] h-[20px]" />
+                <AiOutlineTwitter className="text-[#fff] w-[20px] h-[20px]" />
+                <MdEmail className="text-[#fff] w-[20px] h-[20px]" />
+                <AiFillLinkedin className="text-[#fff] w-[20px] h-[20px]" />
               </div>
             </div>
           </div>
 
-          <div className="mt-9 w-[30%]">
+          <div className='mt-9 w-[30%]'>
             <Image
-              src="/images/benard.svg"
-              className="h-[300px] w-[250px]"
-              alt="hand"
+              src='/images/benard.svg'
+              className='h-[300px] w-[250px]'
+              alt='hand'
               width={400}
               height={200}
               priority
             />
             <div className="relative ">
               <p className=" text-app-sblue font-bold text-[1.15rem]">
-              Joshua Chidi-Bernard
+                Joshua Chidi-Bernard
               </p>
               <p className="">Product Manager & UI/UX Designer</p>
               <div className="flex gap-3 mt-3">
-                <AiFillInstagram className="text-[#fff] w-[20px] h-[20px]"/>
-                <BsFacebook className="text-[#fff] w-[20px] h-[20px]"/>
-                <AiOutlineTwitter className="text-[#fff] w-[20px] h-[20px]"/>
-                <MdEmail className="text-[#fff] w-[20px] h-[20px]"/>
-                <AiFillLinkedin className="text-[#fff] w-[20px] h-[20px]"/>
+                <AiFillInstagram className="text-[#fff] w-[20px] h-[20px]" />
+                <BsFacebook className="text-[#fff] w-[20px] h-[20px]" />
+                <AiOutlineTwitter className="text-[#fff] w-[20px] h-[20px]" />
+                <MdEmail className="text-[#fff] w-[20px] h-[20px]" />
+                <AiFillLinkedin className="text-[#fff] w-[20px] h-[20px]" />
               </div>
             </div>
           </div>
 
-          <div className="mt-9 w-[30%]">
+          <div className='mt-9 w-[30%]'>
             <Image
-              src="/images/muhammod.svg"
-              className="h-[300px] w-[250px]"
-              alt="hand"
+              src='/images/muhammod.svg'
+              className='h-[300px] w-[250px]'
+              alt='hand'
               width={400}
               height={200}
               priority
             />
             <div className="relative ">
               <p className=" text-app-sblue font-bold text-[1.15rem]">
-              Muhammoud Ajibade
+                Muhammoud Ajibade
               </p>
               <p className="">Front End Developer</p>
               <div className="flex gap-3 mt-3">
-                <AiFillInstagram className="text-[#fff] w-[20px] h-[20px]"/>
-                <BsFacebook className="text-[#fff] w-[20px] h-[20px]"/>
-                <AiOutlineTwitter className="text-[#fff] w-[20px] h-[20px]"/>
-                <MdEmail className="text-[#fff] w-[20px] h-[20px]"/>
-                <AiFillLinkedin className="text-[#fff] w-[20px] h-[20px]"/>
+                <AiFillInstagram className="text-[#fff] w-[20px] h-[20px]" />
+                <BsFacebook className="text-[#fff] w-[20px] h-[20px]" />
+                <AiOutlineTwitter className="text-[#fff] w-[20px] h-[20px]" />
+                <MdEmail className="text-[#fff] w-[20px] h-[20px]" />
+                <AiFillLinkedin className="text-[#fff] w-[20px] h-[20px]" />
               </div>
             </div>
           </div>
 
-          <div className="mt-9 w-[30%]">
+          <div className='mt-9 w-[30%]'>
             <Image
-              src="/images/enoch.svg"
-              className="h-[300px] w-[250px]"
-              alt="hand"
+              src='/images/enoch.svg'
+              className='h-[300px] w-[250px]'
+              alt='hand'
               width={400}
               height={200}
               priority
             />
             <div className="relative ">
               <p className=" text-app-sblue font-bold text-[1.15rem]">
-              Enoch Olasinde
+                Enoch Olasinde
               </p>
               <p className="">Full Stack Developer</p>
               <div className="flex gap-3 mt-3">
-                <AiFillInstagram className="text-[#fff] w-[20px] h-[20px]"/>
-                <BsFacebook className="text-[#fff] w-[20px] h-[20px]"/>
-                <AiOutlineTwitter className="text-[#fff] w-[20px] h-[20px]"/>
-                <MdEmail className="text-[#fff] w-[20px] h-[20px]"/>
-                <AiFillLinkedin className="text-[#fff] w-[20px] h-[20px]"/>
+                <AiFillInstagram className="text-[#fff] w-[20px] h-[20px]" />
+                <BsFacebook className="text-[#fff] w-[20px] h-[20px]" />
+                <AiOutlineTwitter className="text-[#fff] w-[20px] h-[20px]" />
+                <MdEmail className="text-[#fff] w-[20px] h-[20px]" />
+                <AiFillLinkedin className="text-[#fff] w-[20px] h-[20px]" />
               </div>
             </div>
           </div>
 
-          <div className="mt-9 w-[30%]">
+          <div className='mt-9 w-[30%]'>
             <Image
-              src="/images/john.svg"
-              className="h-[300px] w-[250px]"
-              alt="hand"
+              src='/images/john.svg'
+              className='h-[300px] w-[250px]'
+              alt='hand'
               width={400}
               height={200}
               priority
             />
             <div className="relative ">
               <p className=" text-app-sblue font-bold text-[1.15rem]">
-              John Alafiatayo
+                John Alafiatayo
               </p>
               <p className="">Back End Developer</p>
               <div className="flex gap-3 mt-3">
-                <AiFillInstagram className="text-[#fff] w-[20px] h-[20px]"/>
-                <BsFacebook className="text-[#fff] w-[20px] h-[20px]"/>
-                <AiOutlineTwitter className="text-[#fff] w-[20px] h-[20px]"/>
-                <MdEmail className="text-[#fff] w-[20px] h-[20px]"/>
-                <AiFillLinkedin className="text-[#fff] w-[20px] h-[20px]"/>
+                <AiFillInstagram className="text-[#fff] w-[20px] h-[20px]" />
+                <BsFacebook className="text-[#fff] w-[20px] h-[20px]" />
+                <AiOutlineTwitter className="text-[#fff] w-[20px] h-[20px]" />
+                <MdEmail className="text-[#fff] w-[20px] h-[20px]" />
+                <AiFillLinkedin className="text-[#fff] w-[20px] h-[20px]" />
               </div>
             </div>
           </div>
 
-          <div className="mt-9 w-[30%]">
+          <div className='mt-9 w-[30%]'>
             <Image
-              src="/images/samuel.svg"
-              className="h-[300px] w-[250px]"
-              alt="hand"
+              src='/images/samuel.svg'
+              className='h-[300px] w-[250px]'
+              alt='hand'
               width={400}
               height={200}
               priority
             />
             <div className="relative ">
               <p className=" text-app-sblue font-bold text-[1.15rem]">
-              Olutekunbi Samuel
+                Olutekunbi Samuel
               </p>
               <p className="">Head of Marketing</p>
               <div className="flex gap-3 mt-3">
-                <AiFillInstagram className="text-[#fff] w-[20px] h-[20px]"/>
-                <BsFacebook className="text-[#fff] w-[20px] h-[20px]"/>
-                <AiOutlineTwitter className="text-[#fff] w-[20px] h-[20px]"/>
-                <MdEmail className="text-[#fff] w-[20px] h-[20px]"/>
-                <AiFillLinkedin className="text-[#fff] w-[20px] h-[20px]"/>
+                <AiFillInstagram className="text-[#fff] w-[20px] h-[20px]" />
+                <BsFacebook className="text-[#fff] w-[20px] h-[20px]" />
+                <AiOutlineTwitter className="text-[#fff] w-[20px] h-[20px]" />
+                <MdEmail className="text-[#fff] w-[20px] h-[20px]" />
+                <AiFillLinkedin className="text-[#fff] w-[20px] h-[20px]" />
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="my-16 flex tablet_l:flex-row flex-col gap-6 tablet_l:gap-10 justify-between  laptop:w-[770px] laptop_l:w-[90%] mx-auto ">
         <p className="w-full tablet_l:w-[50%] text-3xl font-bold  text-app-sblue">
-          join
+          Join
           <span className="text-[#fff]"> our</span>
-          <span className="text-app-porange"> team </span>
+          <span className="text-[#F9D262]"> team </span>
         </p>
         <p className="w-full tablet_l:w-[50%]">
           We believe it takes great people to make great product. That is why we
@@ -294,15 +301,15 @@ export default function About() {
               Ask about Nerdbuds services, pricing, implementation or anything
               else. Our highly trained reps are standing by, ready to help.
             </p>
-            <div className="flex justify-between items-center">
+            <div className="flex items-center">
               <Link
                 href="/contact"
-                className="flex items-center gap-3 px-5 py-2 mt-3 w-fit bg-app-sblue text-[14px] laptop:text[16px]  rounded-3xl"
+                className="flex items-center gap-1 px-4 sm:px-4 py-2 w-fit bg-app-sblue text-[14px] laptop:text-[16px] rounded-3xl transition-transform hover:scale-110"
               >
                 Contact us
                 <BsArrowRight className="text-md" />
               </Link>
-              <a href="#">
+              <a href="#" className="ml-4 hidden sm:inline">
                 or call <span className="underline">+234 904 900 4960</span>
               </a>
             </div>

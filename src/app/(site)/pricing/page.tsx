@@ -11,7 +11,7 @@ export default function Pricing() {
           <div>
             <Link
               href="/about"
-              className="flex items-center space-x-2 border-2 border-app-sblue text-app-sblue py-1 px-10 rounded-full"
+              className="flex items-center space-x-2 border-2 border-app-sblue text-app-sblue py-1 px-10 rounded-full transition-transform hover:scale-110"
             >
               <>
                 <span>Learn About Us</span>
@@ -20,8 +20,8 @@ export default function Pricing() {
             </Link>
           </div>
           <div>
-            <h1 className="text-8xl font-bold text-center text-app-sblue">
-              Pric<span className="text-app-porange">ing</span>
+            <h1 className="text-5xl font-bold text-center lg:text-7xl text-app-sblue">
+              Serv<span className="text-[#F9D262]">ices</span>
             </h1>
           </div>
           <div className="text-center">
@@ -48,7 +48,7 @@ export default function Pricing() {
             </p>
             <Link
               href="/contact"
-              className=" border-[#3F9BD5] bg-[#3F9BD5] text-white text-[14px] mx-auto flex gap-2 items-center border-2 w-fit mt-6 tablet_l:mt-0 py-2 px-6 rounded-full"
+              className=" border-[#3F9BD5] bg-[#3F9BD5] text-white text-[14px] mx-auto flex gap-2 items-center border-2 w-fit mt-6 tablet_l:mt-0 py-2 px-6 rounded-full transition-transform hover:scale-110"
             >
               Contact sales
               <Image
@@ -61,8 +61,8 @@ export default function Pricing() {
             </Link>
           </div>
         </div>
-        <div className="overflow-x-hidden">
-          <div className="flex gap-2 w-[180%] tablet_l:w-[110%]">
+        <div className="overflow-x-auto">
+          <div className="flex gap-2 w-[170%] tablet_l:w-[110%]">
             <Link
               href="/"
               className="border-white text-white text-[12px] mx-auto flex gap-2 items-center border-2 w-fit py-1 px-5 rounded-full"
@@ -104,7 +104,7 @@ export default function Pricing() {
             </Link>
             <Link
               href="/"
-              className="border-white text-white text-[12px] mx-auto flex gap-2 items-center border-2 w-fit py-1 px-5 rounded-full"
+              className="border-white text-white text-[12px] mx-auto flex gap-2  items-center border-2 w-fit py-1 px-5 rounded-full"
             >
               Simplicity for Everyone
               <Image
@@ -174,21 +174,24 @@ export default function Pricing() {
       </div>
 
       <div className="mt-16 mb-[10rem]">
-      <div>
-            <p className="text-4xl tablet_l:text-6xl font-bold text-center text-app-porange">
+        <div>
+          <p className="text-4xl tablet_l:text-6xl font-bold text-center text-[#F9D262]">
             Create an account today!
-            </p>
-            <p className="text-4xl tablet_l:text-6xl mt-2 font-bold text-center text-app-sblue">Unlock our features.</p>
-
-          </div>
-          <div className="text-center">
-            <p className="w-[85%] tablet_l:w-[520px] text-sm tablet_l:text-[16px] mx-auto mt-3 text-center">
-            Experience the power of tailored software solutions. Create an account with us today and unlock a world of efficiency, innovation, and growth for your business.
-            </p>
-          </div>
-          <Link
+          </p>
+          <p className="text-4xl tablet_l:text-6xl mt-2 font-bold text-center text-app-sblue">
+            Unlock our features.
+          </p>
+        </div>
+        <div className="text-center">
+          <p className="w-[85%] tablet_l:w-[520px] text-sm tablet_l:text-[16px] mx-auto mt-3 text-center">
+            Experience the power of tailored software solutions. Create an
+            account with us today and unlock a world of efficiency, innovation,
+            and growth for your business.
+          </p>
+        </div>
+        <Link
           href="/signup"
-          className="border-app-sblue bg-app-sblue text-white text-[14px] mx-auto flex gap-2 items-center border-2 mt-8 mb-0 w-fit py-2 px-5 rounded-full"
+          className="border-app-sblue bg-app-sblue text-white text-[14px] mx-auto flex gap-2 items-center border-2 mt-8 mb-0 w-fit py-2 px-5 rounded-full transition-transform hover:scale-110"
         >
           Get Started
           <BsArrowRight className="text-lg" />

@@ -30,7 +30,7 @@ export const Web = () => {
       />
 
       <Work
-        title="Simplify HR tasks with our secure app"
+        title="Safeguard payments with PayRec"
         bg="linear-gradient(180deg, #6A2A86 0%, #271A2D 61.46%)"
         content="Transforming payment security. Our website empowers businesses and individuals to manage payments securely. Experience peace of mind today!"
         btn="#5D2775"

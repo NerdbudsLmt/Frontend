@@ -38,10 +38,10 @@ export const Tools = () => {
         </p>
       </div>
 
-      <div className="mt-5 md:mt-14">
-        <div className="flex justify-between gap-4 gap-y-10 flex-wrap">
+      <div className="mt-8 md:mt-14">
+        <div className="grid grid-cols-3 ml-10 lg:grid-cols-6 gap-4 lg:ml-28 md:grid-cols-6 md:ml-8">
           {lang.map((item) => (
-            <div key={item.img} className="w-fit mx-auto">
+            <div key={item.img} className="w-full sm:w-auto">
               <Image
                 src={item.img}
                 alt="lang"
