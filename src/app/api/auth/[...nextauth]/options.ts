@@ -61,6 +61,7 @@ export const options: NextAuthOptions = {
         session.user.userType = token.userType;
         session.user.email = token.email;
       }
+      // localStorage.setItem("userData", JSON.stringify(session));
       return session;
     },
   },
