@@ -85,16 +85,18 @@ export default function ProjectPal() {
           formData.append(key, value);
         });
 
-        const res = await fetch(`${apiUrl}/users/student`, {
+        // const res = await fetch(`https://nerdbuds.onrender.com/api/v1/users/student`, {
+          const res = await fetch(`${apiUrl}/users/student`, {
           method: "PUT",
           headers: {
+            "Content-Type": "application/json",
             Authorization: `Bearer ${parsedToken}`,
           },
-          body: formData,
+          body: JSON.stringify(formData),
         });
 
+        const data = await res.json();
         if (res.status === 200) {
-          const data = await res.json();
           toast(
             "Success",
             "success",
@@ -104,14 +106,16 @@ export default function ProjectPal() {
             "top-right"
           );
           console.log("Success:", data);
-          router.push("/signup/user-type");
+          router.push("/login");
+
         } else {
-          const data = await res.json();
           toast("Error", "error", true, 2000, data.message, "top-right");
+          console.log("errr 2");
         }
       } catch (error: any) {
         console.error("Error:", (error as Error).message);
         toast("Error", "error", true, 2000, error, "top-right");
+        console.log("errr 5");
       }
     },
   });
@@ -424,8 +428,8 @@ export default function ProjectPal() {
                 <Image
                   src="/images/upload.svg"
                   alt="Upload Icon"
-                  width={200}
-                  height={200}
+                  width={100}
+                  height={100}
                   priority
                 />
                 <input
