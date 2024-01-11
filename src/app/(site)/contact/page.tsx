@@ -17,6 +17,7 @@ import { BsFacebook, BsTelephone } from "react-icons/bs";
 import { Formik, useFormik } from "formik";
 import * as Yup from "yup";
 import useCustomToast from "@/components/Toast";
+import { Spinner } from "@chakra-ui/react";
 
 interface ContactForm {
   firstName: string;
@@ -29,6 +30,7 @@ interface ContactForm {
 export default function Contact() {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const toast = useCustomToast();
+  const [loading, setLoading] = useState(false);
 
   const formik = useFormik<ContactForm>({
     initialValues: {
@@ -60,6 +62,7 @@ export default function Contact() {
       }
 
       try {
+        setLoading(true);
         const res = await fetch(`${apiUrl}/contactform`, {
           method: "POST",
           headers: {
@@ -79,12 +82,15 @@ export default function Contact() {
             data.data.message,
             "top-right"
           );
+          setLoading(false);
           formik.resetForm();
         } else {
           toast("Failed", "error", true, 2000, data.message, "top-right");
+          setLoading(false);
           console.error(res);
         }
       } catch (error) {
+        setLoading(false);
         console.error("An error occurred:", error);
       }
     },
@@ -223,10 +229,17 @@ export default function Contact() {
           </div>
           <button
             type="submit"
+            disabled={loading}
             className="flex items-center gap-3 px-10 py-3 mt-7 mx-auto w-fit bg-app-sblue text-[14px] laptop:text[16px]  rounded-3xl transition-transform hover:scale-110"
           >
-            Submit
-            <BsArrowRight className="text-md" />
+            {loading ? (
+              <Spinner />
+            ) : (
+              <div className="flex items-center">
+                Submit
+                <BsArrowRight className="text-md" />
+              </div>
+            )}
           </button>
         </form>
       </div>
