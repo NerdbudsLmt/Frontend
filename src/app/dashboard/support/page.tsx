@@ -1,15 +1,15 @@
 import Image from "next/image";
 import React from "react";
 import { LuClock3 } from "react-icons/lu";
-import { options } from "../../api/auth/[...nextauth]/options"
-import { getServerSession } from "next-auth/next"
-import { redirect } from "next/navigation"
+import { options } from "../../api/auth/[...nextauth]/options";
+import { getServerSession } from "next-auth/next";
+import { redirect } from "next/navigation";
 
 export default async function Support() {
-  const session = await getServerSession(options)
+  const session = await getServerSession(options);
 
   if (!session) {
-      redirect('/api/auth/signin?callbackUrl=/server')
+    redirect("/api/auth/signin?callbackUrl=/server");
   }
 
   return (
@@ -30,9 +30,7 @@ export default async function Support() {
         </h2>
         <textarea
           className="bg-white mt-4 md:w-[466px] w-full h-[170px] rounded-[8px] p-5 border-[#DBD9D9] border-solid shadow-md outline-none"
-          defaultValue={
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et "
-          }
+          defaultValue={""}
         ></textarea>
 
         <div className="space-y-4 md:w-[438px] w-full mt-5">
