@@ -112,8 +112,8 @@ export default function Projects() {
             <ul className="mt-4  text-white list-decimal  text-md">
               {projects?.length === 0 ? (
                 // {loading ? (
-                <p className="text-app-pblue py-4 text-center text-lg font-bold">
-                  No project available
+                  <p className="text-[#265D80] pb-4 pt-2 font-semibold">
+                  Create a project to see your report
                 </p>
               ) : (
                 <>
@@ -126,8 +126,8 @@ export default function Projects() {
                         key={item._id}
                         className="flex items-center rounded-lg py-3 px-3 gap-4 my-3 bg-app-pblue"
                       >
-                        <p className="text-[18px]">{index + 1}.</p>
-                        <p className="text-[18px] border-r-2 pr-4">
+                        <p className="">{index + 1}.</p>
+                        <p className=" border-r-2 pr-4">
                           {item.projectName}
                         </p>
                         <p
@@ -177,8 +177,9 @@ export default function Projects() {
             ) : (
               <ul className="mt-4  text-white list-decimal  text-md">
                 {projects?.length === 0 ? (
-                  <p className="text-app-pblue py-4 text-center text-lg font-bold">
-                    No project available
+                  <p className="text-[#205584] py-4 font-semibold">
+                    You currently don’t have a meeting scheduled right now, to create a meeting click below or contact 
+                    <Link href='/dashboard/support' className="underline ml-1 text-black">Customer Support. </Link>
                   </p>
                 ) : (
                   <>

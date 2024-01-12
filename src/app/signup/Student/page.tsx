@@ -85,16 +85,18 @@ export default function ProjectPal() {
           formData.append(key, value);
         });
 
-        const res = await fetch(`${apiUrl}/users/student`, {
+        // const res = await fetch(`https://nerdbuds.onrender.com/api/v1/users/student`, {
+          const res = await fetch(`${apiUrl}/users/student`, {
           method: "PUT",
           headers: {
+            "Content-Type": "application/json",
             Authorization: `Bearer ${parsedToken}`,
           },
-          body: formData,
+          body: JSON.stringify(formData),
         });
 
+        const data = await res.json();
         if (res.status === 200) {
-          const data = await res.json();
           toast(
             "Success",
             "success",
@@ -104,14 +106,16 @@ export default function ProjectPal() {
             "top-right"
           );
           console.log("Success:", data);
-          router.push("/signup/user-type");
+          router.push("/login");
+
         } else {
-          const data = await res.json();
           toast("Error", "error", true, 2000, data.message, "top-right");
+          console.log("errr 2");
         }
       } catch (error: any) {
         console.error("Error:", (error as Error).message);
         toast("Error", "error", true, 2000, error, "top-right");
+        console.log("errr 5");
       }
     },
   });
@@ -194,7 +198,7 @@ export default function ProjectPal() {
                     // name="universityName"
                     placeholder="Universiy Name"
                     {...formik.getFieldProps("universityName")}
-                    className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
+                    className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
                   />
                   {formik.touched.universityName &&
                   formik.errors.universityName ? (
@@ -205,7 +209,7 @@ export default function ProjectPal() {
                 </div>
               </div>
               <div className="flex justify-between gap-4">
-                <div className="my-3">
+                <div className="my-3 basis-[47%]">
                   <label
                     htmlFor="firstname"
                     className="block text-gray-300 text-[16px]"
@@ -218,7 +222,7 @@ export default function ProjectPal() {
                     // name="firstname"
                     placeholder="First Name"
                     {...formik.getFieldProps("firstname")}
-                    className="border-[1.5px] w-full text-[16px] rounded-md text-black bg-white px-3 py-1 mt-1"
+                    className="border-[1.5px] w-full text-[16px] rounded-md text-black bg-white px-3 py-2 mt-1"
                   />
                   {formik.touched.firstname && formik.errors.firstname ? (
                     <div className="text-[red] text-[14px] italic">
@@ -226,7 +230,7 @@ export default function ProjectPal() {
                     </div>
                   ) : null}
                 </div>
-                <div className="my-3">
+                <div className="my-3  basis-[47%]">
                   <label
                     htmlFor="lastname"
                     className="block text-gray-300 text-[16px]"
@@ -250,7 +254,7 @@ export default function ProjectPal() {
               </div>
 
               <div className="flex justify-between gap-4">
-                <div className="my-3">
+                <div className="my-3  basis-[47%]">
                   <label
                     htmlFor="level"
                     className="block text-gray-300 text-[16px]"
@@ -271,7 +275,7 @@ export default function ProjectPal() {
                     </div>
                   ) : null}
                 </div>
-                <div className="my-3">
+                <div className="my-3 basis-[47%]">
                   <label
                     htmlFor="username"
                     className="block text-gray-300 text-[16px]"
@@ -424,8 +428,8 @@ export default function ProjectPal() {
                 <Image
                   src="/images/upload.svg"
                   alt="Upload Icon"
-                  width={200}
-                  height={200}
+                  width={100}
+                  height={100}
                   priority
                 />
                 <input
