@@ -13,7 +13,6 @@ export const options: NextAuthOptions = {
         email: {},
         password: {},
       },
-
       async authorize(credentials) {
         // This is where you need to retrieve user data
         // to verify with credentials
