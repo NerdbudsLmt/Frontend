@@ -85,7 +85,6 @@ export default function ProjectPal() {
           formData.append(key, value);
         });
 
-        // const res = await fetch(`https://nerdbuds.onrender.com/api/v1/users/student`, {
           const res = await fetch(`${apiUrl}/users/student`, {
           method: "PUT",
           headers: {
