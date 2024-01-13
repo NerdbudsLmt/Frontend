@@ -52,8 +52,8 @@ const validationSchema = Yup.object().shape({
 export default function Student() {
   const toast = useCustomToast();
   const [imagePreview, setImagePreview] = useState<string | null>(null);
-
   const router = useRouter();
+
 
   // Initialize Formik for managing form state and validation.
   const formik = useFormik<CompanyFormValues>({
@@ -85,7 +85,7 @@ export default function Student() {
           formData.append(key, value);
         });
 
-          const res = await fetch(`${apiUrl}/users/student`, {
+          const res: any = await fetch(`${apiUrl}/users/student`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -122,7 +122,7 @@ export default function Student() {
   return (
     <div>
       <div className="py-6 mx-auto text-white w-[97%] tablet:w-[95%] max-w-[1380px] min-h-[100dvh]">
-        <Link href="/signup">
+        <Link href="/signup" className="">
           <BsChevronLeft size={30} className="my-5" />
         </Link>
         <div className="flex gap-8 mb-4">
