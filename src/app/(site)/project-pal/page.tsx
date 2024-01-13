@@ -17,7 +17,7 @@ import { BsArrowDown } from 'react-icons/bs'
 function ProjectPal() {
   interface ProjectData {
     description: string
-    services: string[] // Assuming services are strings, modify as needed
+    services: string[] 
   }
 
   // const CreateProject = () => {
@@ -53,7 +53,6 @@ function ProjectPal() {
         const data = await response.json()
         console.log('Project booked successfully:', data)
 
-        // Optionally, you can reset the form or navigate to another page
         setProjectData({
           description: '',
           services: [],
