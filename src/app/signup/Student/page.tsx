@@ -49,7 +49,7 @@ const validationSchema = Yup.object().shape({
     ),
 });
 
-export default function ProjectPal() {
+export default function Student() {
   const toast = useCustomToast();
   const [imagePreview, setImagePreview] = useState<string | null>(null);
 
