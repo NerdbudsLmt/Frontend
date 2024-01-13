@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 import {
   Modal,
@@ -16,17 +17,21 @@ import {
 export default function PayStack({ isOpen, onClose }: any) {
   const [email, setEmail] = useState("");
   const [amount, setAmount] = useState("");
+  const [firstName, setfirstName] = useState("");
+  const [lastName, setlastName] = useState("");
   const [name, setName] = useState("");
   const [payresult, setPayresult] = useState("");
+  const router = useRouter();
 
   const url = "/";
 
   const form = new FormData();
   form.append("email", email);
   form.append("amount", amount);
-  form.append("name", name);
+  form.append("firstName", firstName);
+  form.append("lastName", lastName);
 
-  async function paystackpay(e: { preventDefault: () => void; }) {
+  async function paystackpay(e: { preventDefault: () => void }) {
     e.preventDefault();
     await axios
       .post(url, form, {
@@ -38,8 +43,8 @@ export default function PayStack({ isOpen, onClose }: any) {
         let data = JSON.parse(response.data);
         console.log(data.data.authorization_url);
         setPayresult(data.data.authorization_url);
-        window.location.href = data.data.authorization_url;
-        return null;
+        router.push(data.data.authorization_url)
+        
       })
       .catch(function (error) {
         console.log(error);
@@ -51,39 +56,79 @@ export default function PayStack({ isOpen, onClose }: any) {
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader>
+         Enter Your details
+          </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <p>payment</p>
+            <p></p>
             <p>{payresult}</p>
-            urgjek;oj
-            <form>
-              <div>
-                <label htmlFor="email">Email</label>
+
+            <form 
+                className="mb-4"
+            >
+              <div className="my-3">
+                <label
+                  htmlFor="email"
+                  className="block text-[16px]"
+                >
+                  Email
+                </label>
                 <input
                   type="email"
                   onChange={(e) => setEmail(e.target.value)}
                   value={email}
                   id="email"
+                  className="border-[1.5px] border-black w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1 outline-primary"
                 />
               </div>
 
-              <div>
-                <label htmlFor="email">Amount</label>
+              <div className="my-3">
+                <label
+                  htmlFor="email"
+                  className="block text-[16px]"
+                >
+                  Amount
+                </label>
                 <input
                   type="email"
                   onChange={(e) => setAmount(e.target.value)}
                   value={amount}
                   id="email"
+                  className="border-[1.5px] border-black w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1 outline-primary"
                 />
               </div>
-              <div>
-                <label htmlFor="email">Name</label>
+              <div className="my-3">
+                <label
+                  htmlFor="email"
+                  className="block text-[16px]"
+                >
+                  First Name
+                </label>
                 <input
                   type="email"
-                  onChange={(e) => setName(e.target.value)}
-                  value={name}
+                  onChange={(e) => setfirstName(e.target.value)}
+                  value={firstName}
                   id="email"
+                  className="border-[1.5px] border-black w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1 outline-primary"
+                />
+              </div>
+
+             
+
+              <div className="my-3">
+                <label
+                  htmlFor="email"
+                  className="block text-[16px]"
+                >
+                  Last Name
+                </label>
+                <input
+                  type="email"
+                  onChange={(e) => setfirstName(e.target.value)}
+                  value={lastName}
+                  id="email"
+                  className="border-[1.5px] border-black  w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1 outline-primary"
                 />
               </div>
 
@@ -91,18 +136,15 @@ export default function PayStack({ isOpen, onClose }: any) {
                 <input
                   type="submit"
                   onClick={paystackpay}
-                  value='Pay with paystack'
+                  value="Pay with paystack"
                   id="email"
+                  className="bg-[#205584] block font-semibold text-white ml-1 mt-10 w-full h-10 rounded-md"
                 />
               </div>
             </form>
           </ModalBody>
 
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
-            </Button>
-          </ModalFooter>
+          
         </ModalContent>
       </Modal>
     </div>
