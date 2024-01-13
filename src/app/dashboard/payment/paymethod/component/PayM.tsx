@@ -1,11 +1,23 @@
 "use client";
 
 import { useState } from "react";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+} from '@chakra-ui/react'
 
 import Link from "next/link";
+import PayStack from "./PayStack";
 
 export default function PayM() {
   const [activeTab, setActiveTab] = useState("Paystack");
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   const openTab = (tabName: string) => {
     setActiveTab(tabName);
@@ -42,11 +54,11 @@ export default function PayM() {
           activeTab === "Paystack" ? "active-tab" : ""
         }`}
       >
-        <Link href="/dashboard/payment/paymethod">
-          <button className="bg-[#205584] block font-semibold text-white ml-1 mt-10 w-72 h-10 rounded-md">
+        {/* <Link href="/dashboard/payment/paymethod"> */}
+          <button onClick={onOpen} className="bg-[#205584] block font-semibold text-white ml-1 mt-10 w-72 h-10 rounded-md">
             Make payment with Paystack
           </button>
-        </Link>
+        {/* </Link> */}
         <div className="flex items-center mt-8 ml-1">
           <input
             className=" mt-[-1px] cursor-pointer"
@@ -114,6 +126,8 @@ export default function PayM() {
             </div>
           </div>
         </div>
+
+        <PayStack isOpen={isOpen} onClose={onClose} />
       </div>
 
       <style jsx>{`
