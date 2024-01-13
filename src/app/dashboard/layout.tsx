@@ -33,8 +33,7 @@ import { PiCalendarBlankBold } from "react-icons/pi";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { Inbox } from "./component/Inbox";
 import { useEffect, useState } from "react";
-import { signOut } from "next-auth/react";
-
+import { signOut, useSession } from "next-auth/react";
 
 type NestedLinkItemProps = {
   name: string;
@@ -103,7 +102,7 @@ const NavItem = () => {
       _focus={{ boxShadow: "none" }}
       flexDirection={"column"}
       justifyContent={"space-between"}
-      height={'85dvh'}
+      height={"85dvh"}
     >
       <div>
         <Flex
@@ -271,32 +270,6 @@ const NavItem = () => {
           </Flex>
         </Flex>
       </div>
-
-      <div className="flex gap-3 w-fit mx-auto items-center">
-        <div className="w-10 h-10 overflow-hidden rounded-full border-[2px] border-app-pblue">
-          <Image
-            src="/images/john.svg"
-            className=" rounded-full"
-            alt="web"
-            width={50}
-            height={50}
-          />
-        </div>
-        <div>
-          <p className="text-yellow">Nerdbuds Ltd</p>
-          <p className="text-app-sblue text-sm">Company account</p>
-        </div>
-        <Image
-        onClick={() => signOut()}
-        src="/images/logout.svg"
-        alt="hand"
-        className="cursor-pointer"
-        width={25}
-        height={25}
-        priority
-      />
-
-      </div>
     </Flex>
   );
 };
@@ -315,6 +288,8 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
     const newFormattedDate = date.toLocaleDateString("en-US", options);
     setFormattedDate(newFormattedDate);
   }, []);
+
+  const { data: session }: any = useSession();
 
   return (
     <Flex
@@ -342,14 +317,32 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
       </div>
 
       <div className="flex gap-4 items-center">
-        <div className="flex gap-4 text-xl items-center font-semibold p-2 rounded-md ">
-          {/* <PiEnvelopeSimple /> */}
-          <Inbox />
+        <div className="flex gap-3 w-fit mx-auto items-center">
+          {/* <div className="w-10 h-10 overflow-hidden rounded-full border-[2px] border-app-pblue">
+            <Image
+              src={session?.user.profilePicture}
+              className=" rounded-full"
+              alt="web"
+              width={50}
+              height={50}
+            />
+          </div> */}
+          <div>
+            <p className="text-yellow"></p>
+            <p className="text-app-sblue text-md font-medium">
+              {session?.user.userType} Account
+            </p>
+          </div>
+          <Image
+            onClick={() => signOut()}
+            src="/images/logout.svg"
+            alt="hand"
+            className="cursor-pointer"
+            width={22}
+            height={22}
+            priority
+          />
         </div>
-        <div className="bg-app-pblue h-9 w-[2px] rounded-sm"></div>
-        <p className="py-2 px-4 text-[.75rem] font-semibold bg-[#F5F4F4] rounded-md">
-          Welcome Nerdbuds!
-        </p>
       </div>
     </Flex>
   );

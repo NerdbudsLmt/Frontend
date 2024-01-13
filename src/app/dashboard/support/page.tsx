@@ -1,16 +1,19 @@
-import Image from "next/image";
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import { LuClock3 } from "react-icons/lu";
-import { options } from "../../api/auth/[...nextauth]/options"
-import { getServerSession } from "next-auth/next"
-import { redirect } from "next/navigation"
+import {
+  RiFacebookFill,
+  RiInstagramLine,
+  RiLinkedinFill,
+  RiMailLine,
+  RiTwitterXLine,
+  RiWhatsappLine,
+} from "react-icons/ri";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-export default async function Support() {
-  const session = await getServerSession(options)
-
-  if (!session) {
-      redirect('/api/auth/signin?callbackUrl=/server')
-  }
+export default function Support() {
+  const [startDate, setStartDate] = useState(new Date());
 
   return (
     <div>
@@ -30,16 +33,24 @@ export default async function Support() {
         </h2>
         <textarea
           className="bg-white mt-4 md:w-[466px] w-full h-[170px] rounded-[8px] p-5 border-[#DBD9D9] border-solid shadow-md outline-none"
-          defaultValue={
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et "
-          }
+          defaultValue={""}
         ></textarea>
 
         <div className="space-y-4 md:w-[438px] w-full mt-5">
-          <button className="flex items-center gap-2 text-white h-[50px]  bg-[#3F9BD5] rounded-[12px] md:px-[24px] px-[20px] md:py-[12px] py-[9px] text-[15px]">
+          {/* <button className="flex items-center gap-2 text-white h-[50px]  bg-[#3F9BD5] rounded-[12px] md:px-[24px] px-[20px] md:py-[12px] py-[9px] text-[15px]">
             Schedule meeting with Calendy
             <LuClock3 />
-          </button>
+          </button> */}
+          <DatePicker
+            className="bg-[#3F9BD5] rounded-[12px] text-white outline-none w-fit md:px-[24px] px-[20px] md:py-[12px] py-[9px] text-[15px]"
+            selected={startDate}
+            onChange={(date: any) => {
+              setStartDate(date);
+            }}
+            //  icon={<LuClock3 />} showIcon
+
+            dateFormat="Pp"
+          />
           <h2 className="text-[#676767] md:text-[20px] text-[15px]">
             Note: Always come back to your account and click on{" "}
             <span className="text-[#205584]">“Confirm”</span> to verify your
@@ -53,60 +64,51 @@ export default async function Support() {
 
       <div className="mt-8">
         <h2 className="text-[20px]">You can contact us through</h2>
+        <div className="flex gap-5 mt-3">
+          <a
+            href=""
+            target="_blank"
+            className="p-2 rounded-full bg-[#132E40] text-white w-[35px] h-[35px]"
+          >
+            <RiWhatsappLine style={{ width: "100%", height: "100%" }} />
+          </a>
+          <a
+            href="https://www.instagram.com/nerdbudsltd"
+            target="_blank"
+            className="p-2 rounded-full bg-[#132E40] text-white w-[35px] h-[35px]"
+          >
+            <RiInstagramLine
+              width={40}
+              style={{ width: "100%", height: "100%" }}
+            />
+          </a>
 
-        <div
-          className="flex gap-5
-         mt-3"
-        >
-          <a href="">
-            <Image
-              src="/images/whatsapp.png"
-              alt="icon"
-              width={35}
-              height={35}
-            />
+          <a
+            href="https://x.com/nerdbudsoffice"
+            target="_blank"
+            className="p-2 rounded-full bg-[#132E40] text-white w-[35px] h-[35px]"
+          >
+            <RiTwitterXLine style={{ width: "100%", height: "100%" }} />
           </a>
-          <a href="">
-            {" "}
-            <Image
-              src="/images/instagram.png"
-              alt="icon"
-              width={35}
-              height={35}
-            />
+          <a
+            href=""
+            target="_blank"
+            className="p-2 rounded-full bg-[#132E40] text-white w-[35px] h-[35px]"
+          >
+            <RiFacebookFill style={{ width: "100%", height: "100%" }} />
           </a>
-          <a href="">
-            <Image src="/images/x.png" alt="icon" width={35} height={35} />
+          <a
+            href="https://www.linkedin.com/company/nerdbuds-ltd/"
+            target="_blank"
+            className="p-2 rounded-full bg-[#132E40] text-white w-[35px] h-[35px]"
+          >
+            <RiLinkedinFill style={{ width: "100%", height: "100%" }} />
           </a>
-          <a href="">
-            <Image
-              src="/images/facebook.png"
-              alt="icon"
-              width={35}
-              height={35}
-            />
-          </a>
-          <a href="">
-            <Image src="/images/tiktok.png" alt="icon" width={35} height={35} />
-          </a>
-          <a href="">
-            <Image
-              src="/images/telegram.png"
-              alt="icon"
-              width={35}
-              height={35}
-            />
-          </a>
-          <a href="">
-            <Image
-              src="/images/linkedin.png"
-              alt="icon"
-              width={35}
-              height={35}
-            />
-          </a>
-          <a href="">
-            <Image src="/images/gmail.png" alt="icon" width={35} height={35} />
+          <a
+            href="mailto:nerdbudsltd@gmail.com"
+            className="p-2 rounded-full bg-[#132E40] text-white w-[35px] h-[35px]"
+          >
+            <RiMailLine style={{ width: "100%", height: "100%" }} />
           </a>
         </div>
       </div>

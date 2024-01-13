@@ -63,7 +63,7 @@ const Nav = () => {
         <div className="z-20 basis-full md:basis-auto flex items-center justify-between">
           <Link href="/">
             <Image
-              src="/images/nav-logo.png"
+              src="/images/footer logo.png"
               alt="Vercel Logo"
               width={33}
               height={33}
@@ -81,7 +81,7 @@ const Nav = () => {
                     /> */}
         </div>
         {/* md:navbar */}
-        <div className="hidden md:flex justify-between items-center space-x-8">
+        <div className="hidden justify-between items-center space-x-8 lg:flex lg:justify-between lg:items-center lg:space-x-8 lg:ml-[5rem] lg:text-[1.2rem] md:flex md:justify-between md:items-center md:space-x-4 md:ml-[4rem] md:text-[0.9rem]">
           {links.map((link, index) => (
             <NavLink key={index} {...link} />
           ))}
@@ -114,8 +114,8 @@ const Nav = () => {
               <div>
                 <Link href="/signup">
                   <button
-                    className="bg-app-porange border-2 border-app-porange
-                    text-white py-2 px-3 rounded-md transition-transform
+                    className="bg-[#F9D262] border-app-porange
+                    text-black py-2 px-3 rounded-md transition-transform
                     hover:scale-110"
                   >
                     {" "}

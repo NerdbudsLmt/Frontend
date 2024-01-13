@@ -8,12 +8,14 @@ import { BsPerson } from "react-icons/bs";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 
-
 export default function QuickSet() {
   const { data: session } = useSession();
-  // const accountName = session?.user?.userType ?? "";
-  // const accountName = session?.user?.email ;
-  // console.log(accountName)
+
+  const storedData =
+    typeof window !== "undefined" ? localStorage.getItem("data") : null;
+  const parsedData = storedData ? JSON.parse(storedData) : {};
+
+  // console.log(parsedData)
 
   const transaction = [
     {
@@ -40,50 +42,35 @@ export default function QuickSet() {
   return (
     <div className="grid text-app-pblue grid-col-1  tablet:grid-col-4 laptop_l:grid-cols-8 gap-4">
       <div className="col-span-1  laptop_l:col-span-2 bg-[#F5F4F4] p-4 rounded-lg">
-        <p className="text-lg font-bold underline w-[80%] mx-auto">
-          Quick Settings{" "}
+        <p className="text-lg font-bold text-[#265D80]  w-[80%] ">
+          Transactions
         </p>
-        <div className="flex  justify-between gap-3 mt-3 h-fit w-[80%] mx-auto text-lg font-semibold text-[#265D80]">
-          Show side board
-        </div>
 
-        <p className="text-[#265D80] font-semibold text-lg w-[80%] mx-auto mt-1">
-          Account type:{" "}
-        </p>
-        {session?.user && (
-          <p className="text-[#132E40] w-[80%] mx-auto text-md font-semibold">
-            {/* {accountName} */}
-          </p>
-        )}
-
-        <div className=" w-[80%] mx-auto">
-          <Link
-            href="/dashboard/settings"
-            className=" flex gap-2 items-center transition text-app-pblue bg-yellow border-2 border-yellow py-2 px-4 w-fit rounded-full"
-          >
-            Edit profile
-            <BsPerson size={20} />
-          </Link>
+        <div className="mt-4 text-white list-decimal  text-md">
+        {transaction?.length === 0 ? (
+                  <p className="text-[#205584] py-4 font-semibold text-lg text-center">
+                    You have no transactions.
+                  </p>
+                ) : (
+                  <>
+          {transaction
+            ?.slice(-3)
+            .map((item) => (
+              <div
+                key={item.id}
+                className="flex gap-2 rounded-lg py-2 px-3 my-2 bg-app-pblue"
+              >
+                <p className=" ">{item.id}.</p>
+                <div>
+                  <p className=" ">{item.title}</p>
+                  <p className="text-[.8rem] text-app-sblue">N{item.amount}</p>
+                </div>
+              </div>
+            ))}
+              </>
+                )}
         </div>
       </div>
-
-      {/* <div className="col-span-1 laptop_l:col-span-2 bg-[#F5F4F4] p-3 rounded-lg">
-        <p className="text-lg text-center font-bold underline ">Transactions</p>
-        <div className="mt-4 text-white list-decimal  text-md">
-          {transaction?.map((item) => (
-            <div
-              key={item.id}
-              className="flex gap-2 rounded-lg py-2 px-3 my-2 bg-app-pblue"
-            >
-              <p className=" ">{item.id}.</p>
-              <div>
-                <p className=" ">{item.title}</p>
-                <p className="text-[.9rem] text-app-sblue">N{item.amount}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div> */}
 
       <div className="col-span-1 tablet:col-span-2 laptop_l:col-span-3 bg-[#F5F4F4] p-3 rounded-lg">
         <p className="text-lg font-bold underline text-center ">

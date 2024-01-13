@@ -10,7 +10,7 @@ export const links = [
 
   {
     path: '/pricing',
-    text: 'Pricing',
+    text: 'Services',
   },
   {
     path: '/project-pal',

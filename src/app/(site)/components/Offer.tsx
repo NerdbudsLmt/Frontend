@@ -41,9 +41,12 @@ export const Offer = () => {
       </div>
 
       <div className="mt-5 md:mt-14">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-8 md:gap-y-6 xl:gap-y-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-8 md:gap-y-6 xl:gap-y-0 rounded-lg ">
           {lang.map((item) => (
-            <div key={item.img} className="w-full md:w-[270px] mx-auto">
+            <div
+              key={item.img}
+              className="w-full md:w-[270px] mx-auto border border-solid border-blue-600 bg-[#1E4863] p-4 rounded-lg"
+            >
               <Image
                 src={item.img}
                 alt="lang"
@@ -65,7 +68,7 @@ export const Offer = () => {
       </div>
 
       <div className="mt-10 md:mt-20 flex justify-between flex-col md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-4">
-        <div className="relative flex-grow bg-center bg-cover bg-no-repeat bg-[url('/images/help.svg')] rounded-md">
+        <div className="relative flex-grow bg-center bg-cover bg-no-repeat bg-[url('/images/help2.png')] rounded-md">
           <div className="h-full w-full flex flex-col justify-between space-y-6 md:space-y-28 mx-auto p-5">
             <p className=" text-transparent w-full lg:w-[280px] ml-0 md:ml-auto font-[500]">
               Get ahead with your final year programming projects! Our expert
@@ -78,45 +81,46 @@ export const Offer = () => {
                 </h1>
                 <h1 className="text-4xl laptop:text-5xl font-bold text-white">
                   {" "}
-                  <span className="text-app-porange">Help You</span>
+                  <span className="text-[#F9D262]">Help You</span>
                   <span className="text-app-sblue">.</span>
                 </h1>
               </div>
               <Link
                 href="/pricing"
-                className="border-app-sblue flex gap-2 items-center bg-app-sblue border-2 w-fit mt-6 text-white py-3 px-4 rounded-full transition-transform hover:scale-110"
+                className="border-app-sblue flex gap-2 items-center bg-app-sblue border-2 w-fit mt-6 text-white py-2 px-4 rounded-full transition-transform hover:scale-110"
               >
                 Get Started
-                <BsArrowRight className="text-lg" />
+                <BsArrowRight className=" text-lg" />
               </Link>
               <p></p>
             </div>
           </div>
         </div>
-        <div className="relative h-[350px] md:h-auto w-full md:basis-[29%] bg-[url('/images/money.svg')] bg-center bg-cover bg-no-repeat rounded-md overflow-hidden">
+        <div className="relative h-[350px] md:h-auto w-full md:basis-[29%] bg-[url('/images/product.png')] bg-center bg-cover bg-no-repeat rounded-md overflow-hidden">
           <div className="h-full w-full flex flex-col justify-between space-y-28 py-3">
             <div className="">
-              <div className="text-yellow text-[14px] mx-auto flex gap-2 items-center border-2 w-fit py-1 px-4 rounded-full">
+              <div className="text-white text-[14px] mx-auto flex gap-2 items-center border-2 w-fit py-1 px-4 rounded-full">
                 Brand Building & Management
                 {/* <BsArrowRight className="text-lg" /> */}
                 <Image
-                  src="/images/cube.svg"
+                  className="text-white"
+                  src="/images/icon2.svg"
                   alt="lang"
                   width={10}
                   height={15}
                   //   priority
                 />
               </div>
-              <p className="mt-3 text-yellow text-2xl font-[600] text-center w-fit mx-auto">
+              <p className="mt-3 text-white text-2xl font-[600] text-center w-fit mx-auto">
                 Mastering brands with precision.
               </p>
             </div>
             <Link
               href="/pricing"
-              className="border-yellow text-yellow text-[14px] mx-auto flex gap-2 items-center border-2 w-fit py-2 px-4 rounded-full transition-transform hover:scale-110 "
+              className="border-white text-white text-[14px] mx-auto flex gap-2 items-center border-2 w-fit py-2 px-4 rounded-full transition-transform hover:scale-110 "
             >
-              Get Started
-              <BsArrowRight className="text-lg" />
+              Learn more
+              {/* <BsArrowRight className="text-lg" /> */}
             </Link>
           </div>
         </div>
