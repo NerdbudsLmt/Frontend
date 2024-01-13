@@ -9,7 +9,6 @@ import * as Yup from "yup";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import useCustomToast from "@/components/Toast";
-import Detail from "./component/Detail";
 
 /**
  * Represents the values of the Company form.
@@ -50,80 +49,80 @@ const validationSchema = Yup.object().shape({
     ),
 });
 
-export default function Student() {
+export default function Detail
+() {
   const toast = useCustomToast();
   const [imagePreview, setImagePreview] = useState<string | null>(null);
 
   const router = useRouter();
 
   // Initialize Formik for managing form state and validation.
-  // const formik = useFormik<CompanyFormValues>({
-  //   initialValues: {
-  //     firstname: "",
-  //     lastname: "",
-  //     username: "",
-  //     universityName: "",
-  //     level: "",
-  //     universityEmail: "",
-  //     universityRegNo: "",
-  //     semester: "",
-  //     proofOfIdentification: null,
-  //   },
-  //   validationSchema: validationSchema,
-  //   onSubmit: async (values) => {
-  //     try {
-  //       const token = localStorage.getItem("token");
+  const formik = useFormik<CompanyFormValues>({
+    initialValues: {
+      firstname: "",
+      lastname: "",
+      username: "",
+      universityName: "",
+      level: "",
+      universityEmail: "",
+      universityRegNo: "",
+      semester: "",
+      proofOfIdentification: null,
+    },
+    validationSchema: validationSchema,
+    onSubmit: async (values) => {
+      try {
+        const token = localStorage.getItem("token");
 
-  //       const parsedToken = token?.replace(/"/g, "") || null;
+        const parsedToken = token?.replace(/"/g, "") || null;
 
-  //       console.log(parsedToken);
+        console.log(parsedToken);
 
-  //       const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-  //       const formData = new FormData();
-  //       // Iterate through form values and append them to formData
-  //       Object.entries(values).forEach(([key, value]) => {
-  //         formData.append(key, value);
-  //       });
+        const formData = new FormData();
+        // Iterate through form values and append them to formData
+        Object.entries(values).forEach(([key, value]) => {
+          formData.append(key, value);
+        });
 
-  //         const res = await fetch(`${apiUrl}/users/student`, {
-  //         method: "PUT",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization: `Bearer ${parsedToken}`,
-  //         },
-  //         body: JSON.stringify(formData),
-  //       });
+          const res = await fetch(`${apiUrl}/users/student`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${parsedToken}`,
+          },
+          body: JSON.stringify(formData),
+        });
 
-  //       const data = await res.json();
-  //       if (res.status === 200) {
-  //         toast(
-  //           "Success",
-  //           "success",
-  //           true,
-  //           2000,
-  //           data.data.message,
-  //           "top-right"
-  //         );
-  //         console.log("Success:", data);
-  //         router.push("/login");
+        const data = await res.json();
+        if (res.status === 200) {
+          toast(
+            "Success",
+            "success",
+            true,
+            2000,
+            data.data.message,
+            "top-right"
+          );
+          console.log("Success:", data);
+          router.push("/login");
 
-  //       } else {
-  //         toast("Error", "error", true, 2000, data.message, "top-right");
-  //         console.log("errr 2");
-  //       }
-  //     } catch (error: any) {
-  //       console.error("Error:", (error as Error).message);
-  //       toast("Error", "error", true, 2000, error, "top-right");
-  //       console.log("errr 5");
-  //     }
-  //   },
-  // });
+        } else {
+          toast("Error", "error", true, 2000, data.message, "top-right");
+          console.log("errr 2");
+        }
+      } catch (error: any) {
+        console.error("Error:", (error as Error).message);
+        toast("Error", "error", true, 2000, error, "top-right");
+        console.log("errr 5");
+      }
+    },
+  });
 
   return (
     <div>
-      <Detail />
-      {/* <div className="py-6 mx-auto text-white w-[97%] tablet:w-[95%] max-w-[1380px] min-h-[100dvh]">
+      <div className="py-6 mx-auto text-white w-[97%] tablet:w-[95%] max-w-[1380px] min-h-[100dvh]">
         <Link href="/signup">
           <BsChevronLeft size={30} className="my-5" />
         </Link>
@@ -196,6 +195,7 @@ export default function Student() {
                   <input
                     type="text"
                     id="universityName"
+                    // name="universityName"
                     placeholder="Universiy Name"
                     {...formik.getFieldProps("universityName")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
@@ -219,6 +219,7 @@ export default function Student() {
                   <input
                     type="text"
                     id="firstname"
+                    // name="firstname"
                     placeholder="First Name"
                     {...formik.getFieldProps("firstname")}
                     className="border-[1.5px] w-full text-[16px] rounded-md text-black bg-white px-3 py-2 mt-1"
@@ -239,6 +240,7 @@ export default function Student() {
                   <input
                     type="text"
                     id="lastname"
+                    // name="lastname"
                     placeholder="Last Name"
                     {...formik.getFieldProps("lastname")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
@@ -262,6 +264,7 @@ export default function Student() {
                   <input
                     type="text"
                     id="level"
+                    // name="level"
                     placeholder="200L"
                     {...formik.getFieldProps("level")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
@@ -282,6 +285,7 @@ export default function Student() {
                   <input
                     type="text"
                     id="username"
+                    // name="username"
                     placeholder="username"
                     {...formik.getFieldProps("username")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
@@ -309,6 +313,7 @@ export default function Student() {
                   <input
                     type="email"
                     id="universityEmail"
+                    // name=""
                     placeholder="sean.chinedu@lmu.edu.ng"
                     {...formik.getFieldProps("universityEmail")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
@@ -333,6 +338,7 @@ export default function Student() {
                   <input
                     type="text"
                     id="universityRegNo"
+                    // name="sean.chinedu@lmu.edu.ng"
                     placeholder="84A23S"
                     {...formik.getFieldProps("universityRegNo")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
@@ -357,6 +363,7 @@ export default function Student() {
                   <input
                     type="text"
                     id="semester"
+                    // name="sean.chinedu@lmu.edu.ng"
                     placeholder="semester"
                     {...formik.getFieldProps("semester")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
@@ -369,7 +376,39 @@ export default function Student() {
                 </div>
               </div>
 
-        
+              {/* <div className="my-3 relative">
+                <label
+                  htmlFor="proofOfIdentification"
+                  className="block text-gray-300 text-[16px]"
+                >
+                  Upload ID Card
+                </label>
+                <Image
+                  src="/images/upload.svg"
+                  alt="Upload Icon"
+                  width={200}
+                  height={200}
+                  priority
+                />
+                <input
+                  type="file"
+                  id="proofOfIdentification"
+                  name="proofOfIdentification"
+                  accept="image/*"
+                  onChange={(event) => {
+                    const selectedFile = event.currentTarget.files
+                      ? event.currentTarget.files[0]
+                      : null;
+                    formik.setFieldValue("proofOfIdentification", selectedFile);
+                  }}
+                  className="border-[1.5px] absolute top-7 bg-white opacity-0 z-10 w-[200px] h-[170px] text-[16px] rounded-md text-black px-3 py-1 mt-1"
+                />
+                {formik.touched.proofOfIdentification && formik.errors.proofOfIdentification ? (
+                  <div className="text-[red] text-[14px] italic">
+                    {formik.errors.proofOfIdentification}
+                  </div>
+                ) : null}
+              </div> */}
               <div className="my-3 relative">
                 <label
                   htmlFor="proofOfIdentification"
@@ -397,12 +436,14 @@ export default function Student() {
                   type="file"
                   id="proofOfIdentification"
                   name="proofOfIdentification"
+                  // accept="image/*"
                   onChange={(event) => {
                     const selectedFile = event.currentTarget.files
                       ? event.currentTarget.files[0]
                       : null;
                     formik.setFieldValue("proofOfIdentification", selectedFile);
 
+                    // Image preview
                     if (selectedFile) {
                       const reader = new FileReader();
                       reader.onloadend = () => {
@@ -432,7 +473,7 @@ export default function Student() {
             </form>
           </div>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 }
