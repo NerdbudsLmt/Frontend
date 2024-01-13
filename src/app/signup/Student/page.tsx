@@ -9,7 +9,6 @@ import * as Yup from "yup";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import useCustomToast from "@/components/Toast";
-import Detail from "./component/Detail";
 
 /**
  * Represents the values of the Company form.
@@ -57,73 +56,72 @@ export default function Student() {
   const router = useRouter();
 
   // Initialize Formik for managing form state and validation.
-  // const formik = useFormik<CompanyFormValues>({
-  //   initialValues: {
-  //     firstname: "",
-  //     lastname: "",
-  //     username: "",
-  //     universityName: "",
-  //     level: "",
-  //     universityEmail: "",
-  //     universityRegNo: "",
-  //     semester: "",
-  //     proofOfIdentification: null,
-  //   },
-  //   validationSchema: validationSchema,
-  //   onSubmit: async (values) => {
-  //     try {
-  //       const token = localStorage.getItem("token");
+  const formik = useFormik<CompanyFormValues>({
+    initialValues: {
+      firstname: "",
+      lastname: "",
+      username: "",
+      universityName: "",
+      level: "",
+      universityEmail: "",
+      universityRegNo: "",
+      semester: "",
+      proofOfIdentification: null,
+    },
+    validationSchema: validationSchema,
+    onSubmit: async (values) => {
+      try {
+        const token = localStorage.getItem("token");
 
-  //       const parsedToken = token?.replace(/"/g, "") || null;
+        const parsedToken = token?.replace(/"/g, "") || null;
 
-  //       console.log(parsedToken);
+        console.log(parsedToken);
 
-  //       const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-  //       const formData = new FormData();
-  //       // Iterate through form values and append them to formData
-  //       Object.entries(values).forEach(([key, value]) => {
-  //         formData.append(key, value);
-  //       });
+        const formData = new FormData();
+        // Iterate through form values and append them to formData
+        Object.entries(values).forEach(([key, value]) => {
+          formData.append(key, value);
+        });
 
-  //         const res = await fetch(`${apiUrl}/users/student`, {
-  //         method: "PUT",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization: `Bearer ${parsedToken}`,
-  //         },
-  //         body: JSON.stringify(formData),
-  //       });
+          const res = await fetch(`${apiUrl}/users/student`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${parsedToken}`,
+          },
+          body: JSON.stringify(formData),
+        });
 
-  //       const data = await res.json();
-  //       if (res.status === 200) {
-  //         toast(
-  //           "Success",
-  //           "success",
-  //           true,
-  //           2000,
-  //           data.data.message,
-  //           "top-right"
-  //         );
-  //         console.log("Success:", data);
-  //         router.push("/login");
+        const data = await res.json();
+        if (res.status === 200) {
+          toast(
+            "Success",
+            "success",
+            true,
+            2000,
+            data.data.message,
+            "top-right"
+          );
+          console.log("Success:", data);
+          router.push("/login");
 
-  //       } else {
-  //         toast("Error", "error", true, 2000, data.message, "top-right");
-  //         console.log("errr 2");
-  //       }
-  //     } catch (error: any) {
-  //       console.error("Error:", (error as Error).message);
-  //       toast("Error", "error", true, 2000, error, "top-right");
-  //       console.log("errr 5");
-  //     }
-  //   },
-  // });
+        } else {
+          toast("Error", "error", true, 2000, data.message, "top-right");
+          console.log("errr 2");
+        }
+      } catch (error: any) {
+        console.error("Error:", (error as Error).message);
+        toast("Error", "error", true, 2000, error, "top-right");
+        console.log("errr 5");
+      }
+    },
+  });
 
   return (
     <div>
-      <Detail />
-      {/* <div className="py-6 mx-auto text-white w-[97%] tablet:w-[95%] max-w-[1380px] min-h-[100dvh]">
+      <div className="py-6 mx-auto text-white w-[97%] tablet:w-[95%] max-w-[1380px] min-h-[100dvh]">
         <Link href="/signup">
           <BsChevronLeft size={30} className="my-5" />
         </Link>
@@ -432,7 +430,7 @@ export default function Student() {
             </form>
           </div>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 }
