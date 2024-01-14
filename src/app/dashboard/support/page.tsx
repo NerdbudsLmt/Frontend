@@ -9,11 +9,66 @@ import {
   RiTwitterXLine,
   RiWhatsappLine,
 } from "react-icons/ri";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import useCustomToast from "@/components/Toast";
+import { useSession } from "next-auth/react";
+import { Spinner } from "@chakra-ui/react";
 
+interface SupportForm {
+  message: string;
+  callSchedule: Date | null;
+}
 export default function Support() {
-  const [startDate, setStartDate] = useState(new Date());
+  const { data: session }: any = useSession();
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const toast = useCustomToast();
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const validationSchema = Yup.object().shape({
+    message: Yup.string().required("Message is required"),
+    callSchedule: Yup.date().required("Select a fixed time and date"),
+  });
+  const formik = useFormik<SupportForm>({
+    initialValues: {
+      message: "",
+      callSchedule: null,
+    },
+    validationSchema: validationSchema,
+    onSubmit: async (values) => {
+      try {
+        setLoading(true);
+        const res: any = await fetch(`${apiUrl}/contacted/support`, {
+          method: "POST",
+          headers: {
+            "content-Type": "application/json",
+            authorization: `Bearer ${session?.user.accessToken}`,
+          },
+          body: JSON.stringify(values),
+        });
+        const data = await res.json();
+        if (res.status === 200) {
+          toast(
+            "Success",
+            "success",
+            true,
+            2000,
+            data.data.message,
+            "top-right"
+          );
+          setLoading(false);
+          formik.resetForm();
+        } else if (res.status === 401) {
+          toast("Error", "error", true, 2000, data.message, "top-right");
+          setLoading(false);
+        }
+      } catch (error: any) {
+        setLoading(false);
+      }
+    },
+  });
 
   return (
     <div>
@@ -27,39 +82,56 @@ export default function Support() {
         </h3>
       </span>
 
-      <div className="mt-8 bg-[#F5F4F4] md:w-[90%] w-full h-[435px] p-4 rounded-[8px] space-y-2">
+      <div className="mt-8 bg-[#F5F4F4] md:w-[90%] w-full h-fit p-4 rounded-[8px] space-y-2">
         <h2 className="text-[20px] text-[#363939] font-[600]">
           What is the meeting about?
         </h2>
-        <textarea
-          className="bg-white mt-4 md:w-[466px] w-full h-[170px] rounded-[8px] p-5 border-[#DBD9D9] border-solid shadow-md outline-none"
-          defaultValue={""}
-        ></textarea>
+        <form onSubmit={formik.handleSubmit}>
+          <div>
+            <textarea
+              className="bg-white mt-4 md:w-[466px] w-full h-[170px] rounded-[8px] p-5 border-[#DBD9D9] border-solid shadow-md outline-none"
+              defaultValue={""}
+              {...formik.getFieldProps("message")}
+            ></textarea>
+            {formik.touched.message && formik.errors.message ? (
+              <div className="text-[red] text-[14px] italic">
+                {formik.errors.message}
+              </div>
+            ) : null}
+          </div>
 
-        <div className="space-y-4 md:w-[438px] w-full mt-5">
-          {/* <button className="flex items-center gap-2 text-white h-[50px]  bg-[#3F9BD5] rounded-[12px] md:px-[24px] px-[20px] md:py-[12px] py-[9px] text-[15px]">
-            Schedule meeting with Calendy
-            <LuClock3 />
-          </button> */}
-          <DatePicker
-            className="bg-[#3F9BD5] rounded-[12px] text-white outline-none w-fit md:px-[24px] px-[20px] md:py-[12px] py-[9px] text-[15px]"
-            selected={startDate}
-            onChange={(date: any) => {
-              setStartDate(date);
-            }}
-            //  icon={<LuClock3 />} showIcon
-
-            dateFormat="Pp"
-          />
-          <h2 className="text-[#676767] md:text-[20px] text-[15px]">
-            Note: Always come back to your account and click on{" "}
-            <span className="text-[#205584]">“Confirm”</span> to verify your
-            meeting
-          </h2>
-          <button className="text-white bg-[#205584] py-[8px] px-[24px] rounded-[12px] h-[42px] font-[600] w-[80px]]">
-            Confirm
-          </button>
-        </div>
+          <div className="space-y-4 md:w-[438px] w-full mt-5">
+            <div>
+              <DatePicker
+                selected={formik.values.callSchedule}
+                onChange={(date) => formik.setFieldValue("callSchedule", date)}
+                className="rounded-[12px] text-black outline-none w-fit md:p-[12px] p-[6px] text-[15px]"
+                showTimeSelect
+                timeFormat="HH:mm"
+                timeIntervals={15}
+                dateFormat="Pp"
+                placeholderText="Schedule Meeting"
+              />
+              {formik.touched.callSchedule && formik.errors.callSchedule ? (
+                <div className="text-[red] text-[14px] italic">
+                  {formik.errors.callSchedule}
+                </div>
+              ) : null}
+            </div>
+            <h2 className="text-[#676767] md:text-[20px] text-[15px]">
+              Note: Always come back to your account and click on{" "}
+              <span className="text-[#205584]">“Confirm”</span> to verify your
+              meeting
+            </h2>
+            <button
+              type="submit"
+              disabled={loading}
+              className="text-white bg-[#205584] py-[8px] px-[24px] rounded-[12px] h-[42px] font-[600] w-[80px]]"
+            >
+              {loading ? <Spinner /> : " Confirm"}
+            </button>
+          </div>
+        </form>
       </div>
 
       <div className="mt-8">
