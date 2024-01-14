@@ -124,8 +124,8 @@ const TransactionsList = () => {
           No project available
         </p>
       ) : (
-      <div className="mt-7 list-decimal  text-md">
-        <table className="w-full border-collapse">
+      <div className=" w-full mt-7 list-decimal  text-md">
+        <table className=" w-full border-collapse">
           <thead>{tableHeader}</thead>
           <tbody>
             {currentPosts?.map((item, index) => {
