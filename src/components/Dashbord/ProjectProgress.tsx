@@ -53,8 +53,11 @@ const ProjectProgress: React.FC<ProjectProgressProps> = ({ item }) => {
     <div className=" border-2 border-[#B1AFAF] rounded-lg py-4 px-4 tablet:px-8">
       <div className="flex gap-4 flex-wrap justify-between">
         <p className="font-bold text-2xl">{projectName}</p>
-        <Link href="#" className="underline font-semibold  text-gray-500">
-          View more
+        <Link
+          href="/dashboard/projects/projectdetails"
+          className="underline font-semibold  text-gray-500"
+        >
+          View project progress
         </Link>
       </div>
       <div className="flex flex-col tablet:flex-row gap-5 flex-wrap justify-between">
