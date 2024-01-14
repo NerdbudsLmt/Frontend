@@ -381,7 +381,7 @@ export default function DashboardLayout({
       <Box ml={{ base: 0, md: 60 }} p="4">
         {children}
 
-        <div className=" sticky bottom-1 right-3 ">
+        <div className=" fixed p-6 right-3 bottom-1 ">
         <TawkMessengerReact
           propertyId="658beb0670c9f2407f83a50e"
           widgetId="1hil8s5jb"
