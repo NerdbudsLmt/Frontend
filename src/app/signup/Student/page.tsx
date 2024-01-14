@@ -86,7 +86,7 @@ export default function ProjectPal() {
         });
 
         // const res = await fetch(`https://nerdbuds.onrender.com/api/v1/users/student`, {
-          const res = await fetch(`${apiUrl}/users/student`, {
+        const res = await fetch(`${apiUrl}/users/student`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -107,7 +107,6 @@ export default function ProjectPal() {
           );
           console.log("Success:", data);
           router.push("/login");
-
         } else {
           toast("Error", "error", true, 2000, data.message, "top-right");
           console.log("errr 2");
@@ -153,7 +152,7 @@ export default function ProjectPal() {
               <div className="flex my-6 gap-6 flex-col tablet:flex-row">
                 <div className="flex w-[100%] tablet_l:w-[60%] gap-3 items-center">
                   <Image
-                    src="/images/sean.svg"
+                    src="/images/Temi.png"
                     className=" rounded-full"
                     alt="Vercel Logo"
                     width={50}

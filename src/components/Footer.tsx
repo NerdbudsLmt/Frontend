@@ -85,19 +85,35 @@ const Footer = () => {
           <div className="flex space-x-3 mb-4 sm:mb-0">
             {" "}
             {/* Updated div for social icons */}
-            <Link href="/" className="text-white text-3xl">
+            <Link
+              href="https://www.linkedin.com/company/nerdbuds-ltd/"
+              className="text-white text-3xl"
+              target="_blank"
+            >
               <FaLinkedin />
             </Link>
-            <Link href="/" className="text-white text-3xl">
+            <Link
+              href="https://www.instagram.com/nerdbudsltd/"
+              className="text-white text-3xl"
+              target="_blank"
+            >
               <AiFillInstagram />
             </Link>
-            <Link href="/" className="text-white text-3xl">
+            {/* <Link href="/" className="text-white text-3xl">
               <AiFillFacebook />
-            </Link>
-            <Link href="/" className="text-white text-3xl">
+            </Link> */}
+            <Link
+              href="https://x.com/nerdbudsoffice?s=21"
+              className="text-white text-3xl"
+              target="_blank"
+            >
               <FaTwitterSquare />
             </Link>
-            <Link href="/" className="text-white text-[2.1rem]">
+            <Link
+              href="mailto:Nerdbudsltd@gmail.com"
+              className="text-white text-[2.1rem]"
+              target="_blank"
+            >
               <MdEmail />
             </Link>
           </div>
