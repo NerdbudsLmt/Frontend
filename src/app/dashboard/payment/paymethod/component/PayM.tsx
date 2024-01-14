@@ -1,11 +1,16 @@
 "use client";
 
 import { useState } from "react";
+import {
+  useDisclosure,
+} from "@chakra-ui/react";
 
-import Link from "next/link";
+import PayStack from "./PayStack";
+import Image from "next/image";
 
 export default function PayM() {
   const [activeTab, setActiveTab] = useState("Paystack");
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const openTab = (tabName: string) => {
     setActiveTab(tabName);
@@ -13,10 +18,13 @@ export default function PayM() {
 
   return (
     <div>
-      <p className="text-3xl text-gray-500  ml-1 inline">
-        payments <img className="inline" src="/Dot.png" alt="" />
+      <p className="text-2xl text-gray-500  ml-1 inline">
+        payments <Image
+        width={10}
+        height={10}
+        className="inline" src="/Dot.png" alt="" />
       </p>
-      <p className="ml-3 text-3xl inline font-semibold">Payment Methods</p>
+      <p className="ml-3 text-2xl inline font-semibold">Payment Methods</p>
 
       <div className="tab-titles">
         <p
@@ -42,11 +50,11 @@ export default function PayM() {
           activeTab === "Paystack" ? "active-tab" : ""
         }`}
       >
-        <Link href="/dashboard/payment/paymethod">
-          <button className="bg-[#205584] block font-semibold text-white ml-1 mt-10 w-72 h-10 rounded-md">
+        {/* <Link href="/dashboard/payment/paymethod"> */}
+        {/* </Link> */}
+        {/* <button onClick={onOpen} className="bg-[#205584] block font-semibold text-white ml-1 mt-10 w-72 h-10 rounded-md">
             Make payment with Paystack
           </button>
-        </Link>
         <div className="flex items-center mt-8 ml-1">
           <input
             className=" mt-[-1px] cursor-pointer"
@@ -57,7 +65,16 @@ export default function PayM() {
           <p className="ml-2 text-[0.85rem] font-semibold">
             Save card for future purchases.
           </p>
-        </div>
+        </div> */}
+        <p className="ml-2 text-[1rem] font-semibold">
+          Coming Soon...{" "}
+          <span
+            onClick={() => openTab("BankTransfer")}
+            className="text-primary underline text-[.9rem] "
+          >
+            Use Bank Transfer.
+          </span>
+        </p>
       </div>
 
       <div
@@ -114,6 +131,8 @@ export default function PayM() {
             </div>
           </div>
         </div>
+
+        <PayStack isOpen={isOpen} onClose={onClose} />
       </div>
 
       <style jsx>{`

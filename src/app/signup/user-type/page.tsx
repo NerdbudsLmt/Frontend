@@ -58,7 +58,7 @@ export default function Home() {
   const handleFormSubmit = async (userType: string) => {
     // Retrieve formData from localStorage
     const capitalizedUserType =
-      userType.charAt(0).toUpperCase() + userType.slice(1).toLowerCase();
+      userType.charAt(0).toUpperCase() + userType?.slice(1).toLowerCase();
     console.log(capitalizedUserType);
     const storedData = localStorage.getItem("signupData");
     const parsedData = storedData ? JSON.parse(storedData) : {};
@@ -90,8 +90,8 @@ export default function Home() {
         );
       }
     } catch (error: any) {
-      console.error("Error occurred during fetch:", error);
       toast("Error", "error", true, 2000, error, "top-right");
+      console.error("Error occurred during fetch:", error);
     }
   };
 

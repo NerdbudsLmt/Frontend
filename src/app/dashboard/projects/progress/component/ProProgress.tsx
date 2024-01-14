@@ -42,7 +42,7 @@ export default function ProProgress() {
           },
         });
         const data = await res.json();
-        console.log(data);
+        
         data && setLoading(false);
         setProjectList(data.data.projects);
       } catch (error) {
@@ -67,7 +67,7 @@ export default function ProProgress() {
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = filteredProjects.slice(
+  const currentPosts = filteredProjects?.slice(
     indexOfFirstPost,
     indexOfLastPost
   );
@@ -84,7 +84,7 @@ export default function ProProgress() {
       <div className="flex gap-2 mb-8 items-center">
         <p className="text-gray-500 text-xl font-semibold">Project</p>
         <div className="h-2 w-2 bg-black rounded-full" />
-        <p className="font-semibold  text-2xl">Project in progress</p>
+        <p className="font-semibold text-2xl">Project in progress</p>
       </div>
       <div className="flex justify-between items-center gap-y-2 gap-x-4 flex-wrap mb-3 ">
         <p className=" text-[14px] tablet:text-[16px] font-semibold">
@@ -123,16 +123,16 @@ export default function ProProgress() {
               <ProjectProgress key={index} item={item} />
             ))}
           </div>
-            {projectList?.length >= 6 &&
-          <Pagination
-            postsPerPage={postsPerPage}
-            totalPosts={filteredProjects.length}
-            currentPage={currentPage}
-            paginateBack={paginateBack}
-            paginateFront={paginateFront}
-            paginate={paginate}
-          />
-            }
+          {projectList?.length >= 6 && (
+            <Pagination
+              postsPerPage={postsPerPage}
+              totalPosts={filteredProjects.length}
+              currentPage={currentPage}
+              paginateBack={paginateBack}
+              paginateFront={paginateFront}
+              paginate={paginate}
+            />
+          )}
         </>
       )}
     </div>

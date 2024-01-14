@@ -79,7 +79,9 @@ const FinishedProject: React.FC = () => {
         <p className="font-semibold text-2xl">Finished projects</p>
       </div>
 
-      {projects.length === 0 ? (
+      {loading ? (
+        <Loader />
+      ) : projects.length === 0 ? (
         <p>No finished projects to display.</p>
       ) : (
         <>

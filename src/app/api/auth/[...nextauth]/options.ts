@@ -51,6 +51,9 @@ export const options: NextAuthOptions = {
         token.accessToken = user.data.accessToken;
         token.userType = user.data?.user?.userType;
         token.email = user.data.user.email;
+        token.firstname = user.data.user?.firstname;
+        token.lastname = user.data.user?.lastname;
+        token.profilePicture = user.data.user?.profilePicture;
       }
       return token;
     },
@@ -59,8 +62,10 @@ export const options: NextAuthOptions = {
         session.user.accessToken = token.accessToken;
         session.user.userType = token.userType;
         session.user.email = token.email;
+        session.user.firstname = token.firstname;
+        session.user.lastname = token.lastname;
+        session.user.profilePicture = token.profilePicture;
       }
-
       return session;
     },
   },

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { BsArrowRight } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
@@ -13,9 +13,8 @@ import {
   AiOutlineFileText,
   AiFillLinkedin,
 } from "react-icons/ai";
-import { BsFacebook, BsTelephone } from "react-icons/bs";
-import { Formik, useFormik } from "formik";
-import * as Yup from "yup";
+import { BsTelephone } from "react-icons/bs";
+import { useFormik } from "formik";
 import useCustomToast from "@/components/Toast";
 import { Spinner } from "@chakra-ui/react";
 
@@ -63,7 +62,7 @@ export default function Contact() {
 
       try {
         setLoading(true);
-        const res = await fetch(`${apiUrl}/contactform`, {
+        const res = await fetch(`${apiUrl}/contacted`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -138,14 +137,33 @@ export default function Contact() {
             Follow <span className="text-[#F9D262]">us</span>
           </h1>
           <div className="flex gap-3 mt-3">
-            <AiFillLinkedin className="text-[#fff] w-[20px] h-[20px]" />
-            <AiFillInstagram className="text-[#fff] w-[20px] h-[20px]" />
-            <BsFacebook className="text-[#fff] w-[20px] h-[20px]" />
-            <AiOutlineTwitter className="text-[#fff] w-[20px] h-[20px]" />
-            <MdEmail className="text-[#fff] w-[20px] h-[20px]" />
+            <a
+              href="https://www.linkedin.com/company/nerdbuds-ltd/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <AiFillLinkedin className="text-[#fff] w-[20px] h-[20px]" />
+            </a>
+            <a
+              href="https://www.instagram.com/nerdbudsltd/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <AiFillInstagram className="text-[#fff] w-[20px] h-[20px]" />
+            </a>
+           
+            <a
+              href="https://x.com/nerdbudsoffice?s=21"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <AiOutlineTwitter className="text-[#fff] w-[20px] h-[20px]" />
+            </a>
+            <a href="mailto:Nerdbudsltd@gmail.com">
+              <MdEmail className="text-[#fff] w-[20px] h-[20px]" />
+            </a>
           </div>
         </div>
-        {/* <div className="h-full w-[4px] mx-7 bg-[#fff]"/> */}
         <div className="pl-5 mt-2 lg:mt-0 lg:pl-5">
           <Link
             href="/"

@@ -17,7 +17,7 @@ const lang = [
   {
     img: "/images/r.svg",
     title: "3. Brand consultation",
-    desc: "Your go-to software company for cutting-edge solutions. We specialize in software creation, crafting innovative and tailor-made applications for your business needs. Our talented team of tech-savvy nerds will transform your ideas into sleek, efficient software products that propel your company to new heights.",
+    desc: "Empower your brand's digital journey with our software expertise. Grow your online presence through strategic brand consultations that blend innovation, tailored solutions, and SEO optimization for a lasting impact.",
   },
   {
     img: "/images/settings.svg",

@@ -11,6 +11,8 @@ import * as Yup from "yup";
 import Link from "next/link";
 import Nav from "@/components/Nav/Nav";
 import useCustomToast from "@/components/Toast";
+import { Spinner } from "@chakra-ui/react";
+
 
 interface CompanyFormValues {
   email: string;
@@ -56,6 +58,8 @@ export default function Login() {
             "Log In Success",
             "top-right"
           );
+        setIsLoading(false);
+
           router.replace("/dashboard");
         } else {
           if (res.status === 401) {
@@ -164,7 +168,8 @@ export default function Login() {
                 type="submit"
                 disabled={isLoading}
               >
-                Proceed
+                {isLoading ? <Spinner/> : 'Proceed'}
+        
               </button>
             </form>
 
