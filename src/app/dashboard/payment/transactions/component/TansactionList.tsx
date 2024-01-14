@@ -1,199 +1,64 @@
 "use client";
 
+import { Loader } from "@/app/dashboard/projects/existing/components/Loader";
 import Pagination from "@/components/Pagination";
-import React from "react";
-import { useState } from "react";
-
+import { useSession } from "next-auth/react";
+import React, { useState, useEffect } from "react";
 
 interface transactions {
-  title: string;
-  Amount: string;
-  Date: string;
+  projectName: string;
+  amount: string;
+  userEmail: string;
+  date: string;
   status: "Finished" | "Pending";
-  id: number;
+  _id: number;
 }
 
 const TransactionsList = () => {
 
+ 
+  const { data: session } = useSession();
 
-  const transactionList: transactions[] = [
-    {
-      title: "Project Assistant",
-      status: "Finished",
-      Amount: "N660,000",
-      Date: "10th July 2022",
-      id: 1,
-    },
-    {
-      title: "Brand IT",
-      status: "Finished",
-      Amount: "N660,000",
-      Date: "10th July 2022",
-      id: 2,
-    },
-    {
-      title: "Nerdburds Pro",
-      status: "Pending",
-      Amount: "N360,000",
-      Date: "10th May 2022 ",
-      id: 3,
-    },
-    {
-      title: "Project Assistant",
-      status: "Finished",
-      Amount: "N660,000",
-      Date: "10th July 2022",
-      id: 4,
-    },
-    {
-      title: "Brand IT",
-      status: "Finished",
-      Amount: "N660,000",
-      Date: "10th July 2022",
-      id: 5,
-    },
-    {
-      title: "Nerdburds Pro",
-      status: "Pending",
-      Amount: "N360,000",
-      Date: "10th May 2022 ",
-      id: 6,
-    },
-    {
-      title: "Project Assistant",
-      status: "Finished",
-      Amount: "N660,000",
-      Date: "10th July 2022",
-      id: 7,
-    },
-    {
-      title: "Brand IT",
-      status: "Finished",
-      Amount: "N660,000",
-      Date: "10th July 2022",
-      id: 8,
-    },
-    {
-      title: "Nerdburds Pro",
-      status: "Pending",
-      Amount: "N360,000",
-      Date: "10th May 2022 ",
-      id: 9,
-    },
-    {
-      title: "Project Assistant",
-      status: "Finished",
-      Amount: "N660,000",
-      Date: "10th July 2022",
-      id: 10,
-    },
-    {
-      title: "Brand IT",
-      status: "Finished",
-      Amount: "N660,000",
-      Date: "10th July 2022",
-      id: 11,
-    },
-    {
-      title: "Nerdburds Pro",
-      status: "Pending",
-      Amount: "N360,000",
-      Date: "10th May 2022 ",
-      id: 12,
-    },
-    {
-      title: "Project Assistant",
-      status: "Finished",
-      Amount: "N660,000",
-      Date: "10th July 2022",
-      id: 13,
-    },
-    {
-      title: "Brand IT",
-      status: "Finished",
-      Amount: "N660,000",
-      Date: "10th July 2022",
-      id: 14,
-    },
-    {
-      title: "Nerdburds Pro",
-      status: "Pending",
-      Amount: "N360,000",
-      Date: "10th May 2022 ",
-      id: 15,
-    },
-    {
-      title: "Project Assistant",
-      status: "Finished",
-      Amount: "N660,000",
-      Date: "10th July 2022",
-      id: 16,
-    },
-    {
-      title: "Brand IT",
-      status: "Finished",
-      Amount: "N660,000",
-      Date: "10th July 2022",
-      id: 17,
-    },
-    {
-      title: "Nerdburds Pro",
-      status: "Pending",
-      Amount: "N360,000",
-      Date: "10th May 2022 ",
-      id: 18,
-    },
-    {
-      title: "Project Assistant",
-      status: "Finished",
-      Amount: "N660,000",
-      Date: "10th July 2022",
-      id: 19,
-    },
-    {
-      title: "Brand IT",
-      status: "Finished",
-      Amount: "N660,000",
-      Date: "10th July 2022",
-      id: 20,
-    },
-    {
-      title: "Nerdburds Pro",
-      status: "Pending",
-      Amount: "N360,000",
-      Date: "10th May 2022 ",
-      id: 21,
-    },
-    {
-      title: "Project Assistant",
-      status: "Finished",
-      Amount: "N660,000",
-      Date: "10th July 2022",
-      id: 22,
-    },
-    {
-      title: "Brand IT",
-      status: "Finished",
-      Amount: "N660,000",
-      Date: "10th July 2022",
-      id: 23,
-    },
-    {
-      title: "Nerdburds Pro",
-      status: "Pending",
-      Amount: "N360,000",
-      Date: "10th May 2022 ",
-      id: 24,
-    },
-  ];
-
+  const [loading, setLoading] = useState<boolean>(true);
+  const [project, setProject] = useState<transactions[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(6);
+
+  useEffect(() => {
+    const fetchUserProjects = async () => {
+      try {
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+        const accessToken = session?.user?.accessToken ?? "";
+
+        if (!accessToken) {
+          console.error("Access token not available");
+          return;
+        }
+
+        const url = `${apiUrl}/payment/payment-history`;
+        // const url = `${apiUrl}/projects/userProjects`
+        const response = await fetch(url, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
+
+        const data = await response.json();
+        setLoading(false);
+        setProject(data?.data?.paymentHistory);
+      } catch (error) {
+        console.error("An error occurred:", error);
+      }
+    };
+
+    fetchUserProjects();
+  }, [session]);
 
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = transactionList.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPosts = project?.slice(indexOfFirstPost, indexOfLastPost);
 
   //Change page
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
@@ -211,27 +76,6 @@ const TransactionsList = () => {
     </tr>
   );
 
-  // Table body for transactions
-  const tableRows = currentPosts.map((item, index) => {
-    const transactionIndex = indexOfFirstPost + index + 1;
-    return (
-      <tr
-        key={item.id}
-        className="border-b-[2rem] border-white rounded-lg gap-4 bg-[#F5F4F4]"
-      >
-        <td className="p-3">{`${transactionIndex}. ${item.title}`}</td>
-        <td className="p-2">{item.Amount}</td>
-        <td className="p-1">{item.Date}</td>
-        <td
-          className={`p-1 ${
-            item.status === "Finished" ? "text-[#5583C3]" : "text-black"
-          }`}
-        >
-          {item.status}
-        </td>
-      </tr>
-    );
-  });
 
   return (
     <div className="max-w-[1000px]">
@@ -241,21 +85,59 @@ const TransactionsList = () => {
         <p className="font-semibold text-2xl">Transactions</p>
       </div>
 
+      {loading ? (
+       <>
+        <Loader />
+       </>
+        
+      ) : 
+      project?.length === 0 ? (
+        <p className="text-app-pblue py-4 text-center text-lg font-bold">
+          No project available
+        </p>
+      ) : (
       <div className="mt-7 list-decimal  text-md">
         <table className="w-full border-collapse">
           <thead>{tableHeader}</thead>
-          <tbody>{tableRows}</tbody>
+          <tbody>
+            {currentPosts?.map((item, index) => {
+              const transactionIndex = indexOfFirstPost + index + 1;
+
+              return (
+                <tr
+                  key={item._id}
+                  className="border-b-[2rem] border-white rounded-lg gap-4 bg-[#F5F4F4]"
+                >
+                  <td className="p-3">{`${transactionIndex}. ${item.projectName}`}</td>
+                  <td className="p-2">{item.amount}</td>
+                  <td className="p-1">{item.date}</td>
+                  <td
+                    className={`p-1 ${
+                      item.status === "Finished"
+                        ? "text-[#5583C3]"
+                        : "text-black"
+                    }`}
+                  >
+                    {item.status}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
         </table>
       </div>
+       )}
 
-      <Pagination
-        postsPerPage={postsPerPage}
-        totalPosts={transactionList.length}
-        currentPage={currentPage}
-        paginateBack={paginateBack}
-        paginateFront={paginateFront}
-        paginate={paginate}
-      />
+      {project?.length >= 6 && (
+        <Pagination
+          postsPerPage={postsPerPage}
+          totalPosts={project?.length}
+          currentPage={currentPage}
+          paginateBack={paginateBack}
+          paginateFront={paginateFront}
+          paginate={paginate}
+        />
+      )}
     </div>
   );
 };

@@ -63,7 +63,7 @@ const ProjectProgress: React.FC<ProjectProgressProps> = ({ item }) => {
       <div className="flex flex-col tablet:flex-row gap-5 flex-wrap justify-between">
         <div className="basis-2/4">
           <p className="my-3 font-semibold">
-            {item.description.slice(0, 100)}...
+            {item.description?.slice(0, 100)}...
           </p>
 
           <p className="font-bold text-lg">

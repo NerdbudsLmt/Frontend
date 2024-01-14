@@ -8,24 +8,9 @@ import { useSession } from "next-auth/react";
 import { useToast } from "@chakra-ui/react";
 import axios from "axios";
 import Link from "next/link";
+import { DashLoader } from "@/app/dashboard/component/DashLoader";
 
-const project = [
-  {
-    title: "Project Assistant",
-    status: "Finished",
-    id: 1,
-  },
-  {
-    title: "Brand IT",
-    status: "Finished",
-    id: 2,
-  },
-  {
-    title: "Nerdburds Pro",
-    status: "In Progress",
-    id: 3,
-  },
-];
+
 
 const meeting = [
   {
@@ -55,7 +40,7 @@ interface Project {
 
 export default function Projects() {
   const { data: session } = useSession();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [projects, setProjects] = useState<Project[]>([]);
   const [error, setError] = useState<string | null>(null);
   const toast = useToast();
@@ -64,17 +49,15 @@ export default function Projects() {
     const fetchUserProjects = async () => {
       try {
         const accessToken = session?.user?.accessToken ?? "";
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
         // if (!accessToken) {
         //   // console.error("Access token not available");
         //   return;
         // }
 
-        const url = `${apiUrl}/projects/userProjects?limit=1000000`
+        const url = `${apiUrl}/projects/userProjects?limit=1000000`;
         // const url = `${apiUrl}/projects/userProjects`
-
-
 
         const response = await fetch(url, {
           method: "GET",
@@ -85,15 +68,10 @@ export default function Projects() {
         });
 
         // console.log("API Response:", response);
-        if (response.ok) {
-          setLoading(true);
-          const data = await response.json();
-          console.log(data.data);
-          setProjects(data?.data?.projects);
-          setLoading(false);
-        } else {
-          console.error("Failed to fetch user projects");
-        }
+
+        const data = await response.json();
+        setLoading(false);
+        setProjects(data?.data?.projects);
       } catch (error) {
         console.error("An error occurred:", error);
       }
@@ -109,31 +87,27 @@ export default function Projects() {
           <p className="text-lg font-bold">Projects </p>
 
           {loading ? (
-            <p className="text-app-pblue py-4 text-center text-lg font-bold">
-              Loading...
-            </p>
+            <DashLoader />
           ) : (
             <ul className="mt-4  text-white list-decimal  text-md">
               {projects?.length === 0 ? (
                 // {loading ? (
-                  <p className="text-[#265D80] pb-4 pt-2 font-semibold">
+                <p className="text-[#265D80] pb-4 pt-2 font-semibold">
                   Create a project to see your report
                 </p>
               ) : (
                 <>
                   {" "}
                   {projects
-                    .slice(-3)
-                    .reverse()
-                    .map((item, index) => (
+                    ?.slice(-3)
+                    ?.reverse()
+                    ?.map((item, index) => (
                       <li
                         key={item._id}
                         className="flex items-center rounded-lg py-3 px-3 gap-4 my-3 bg-app-pblue"
                       >
                         <p className="">{index + 1}.</p>
-                        <p className=" border-r-2 pr-4">
-                          {item.projectName}
-                        </p>
+                        <p className=" border-r-2 pr-4">{item.projectName}</p>
                         <p
                           className={
                             item.paymentStatus === 100
@@ -175,23 +149,27 @@ export default function Projects() {
               </div>
             ))} */}
             {loading ? (
-              <p className="text-app-pblue py-4 text-center text-lg font-bold">
-                Loading...
-              </p>
+              <DashLoader />
             ) : (
               <ul className="mt-4  text-white list-decimal  text-md">
                 {projects?.length === 0 ? (
                   <p className="text-[#205584] py-4 font-semibold">
-                    You currently don’t have a meeting scheduled right now, to create a meeting click below or contact 
-                    <Link href='/dashboard/support' className="underline ml-1 text-black">Customer Support. </Link>
+                    You currently don’t have a meeting scheduled right now, to
+                    create a meeting click below or contact
+                    <Link
+                      href="/dashboard/support"
+                      className="underline ml-1 text-black"
+                    >
+                      Customer Support.{" "}
+                    </Link>
                   </p>
                 ) : (
                   <>
                     {" "}
                     {projects
-                      .slice(-3)
-                      .reverse()
-                      .map((item, index) => (
+                      ?.slice(-3)
+                      ?.reverse()
+                      ?.map((item, index) => (
                         <div
                           key={item._id}
                           className="rounded-lg py-3.5 px-3 my-2 bg-app-pblue"

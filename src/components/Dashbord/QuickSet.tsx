@@ -1,34 +1,31 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BiSolidMessageDetail } from "react-icons/bi";
 // @ts-ignore
 import TawkMessengerReact from "@tawk.to/tawk-messenger-react";
 import { BsPerson } from "react-icons/bs";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import { DashLoader } from "@/app/dashboard/component/DashLoader";
 
+interface transactions {
+  projectName: string;
+  amount: string;
+  userEmail: string;
+  date: string;
+  status: "Finished" | "Pending";
+  _id: number;
+}
 export default function QuickSet() {
   const { data: session } = useSession();
+
+  const [loading, setLoading] = useState<boolean>(true);
+  const [transactions, setTransactions] = useState<transactions[]>([]);
 
   const storedData =
     typeof window !== "undefined" ? localStorage.getItem("data") : null;
   const parsedData = storedData ? JSON.parse(storedData) : {};
-
-  // console.log(parsedData)
-
-  const transaction = [
-    {
-      title: "Project Assistant",
-      amount: "600, 000",
-      id: 1,
-    },
-    {
-      title: "Nerdbud pro",
-      amount: "600, 000",
-      id: 2,
-    },
-  ];
 
   const bankName = [
     {
@@ -39,6 +36,37 @@ export default function QuickSet() {
     },
   ];
 
+  useEffect(() => {
+    const fetchUserProjects = async () => {
+      try {
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+        const accessToken = session?.user?.accessToken ?? "";
+
+        if (!accessToken) {
+          console.error("Access token not available");
+          return;
+        }
+
+        const url = `${apiUrl}/payment/payment-history`;
+        // const url = `${apiUrl}/projects/userProjects`
+        const response = await fetch(url, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
+
+        const data = await response.json();
+        setLoading(false);
+        setTransactions(data?.data?.paymentHistory);
+      } catch (error) {
+        console.error("An error occurred:", error);
+      }
+    };
+
+    fetchUserProjects();
+  }, [session]);
+
   return (
     <div className="grid text-app-pblue grid-col-1  tablet:grid-col-4 laptop_l:grid-cols-8 gap-4">
       <div className="col-span-1  laptop_l:col-span-2 bg-[#F5F4F4] p-4 rounded-lg">
@@ -47,28 +75,38 @@ export default function QuickSet() {
         </p>
 
         <div className="mt-4 text-white list-decimal  text-md">
-        {transaction?.length === 0 ? (
-                  <p className="text-[#205584] py-4 font-semibold text-lg text-center">
-                    You have no transactions.
-                  </p>
-                ) : (
-                  <>
-          {transaction
-            ?.slice(-3)
-            .map((item) => (
-              <div
-                key={item.id}
-                className="flex gap-2 rounded-lg py-2 px-3 my-2 bg-app-pblue"
-              >
-                <p className=" ">{item.id}.</p>
-                <div>
-                  <p className=" ">{item.title}</p>
-                  <p className="text-[.8rem] text-app-sblue">N{item.amount}</p>
-                </div>
-              </div>
-            ))}
-              </>
-                )}
+        {loading ? (
+       <>
+        <DashLoader />
+       </>
+        
+      ) :
+          transactions?.length === 0 ? (
+            <p className="text-[#205584] py-4 font-semibold text-lg text-center">
+              You have no transactions.
+            </p>
+          ) : (
+            <>
+              {transactions?.slice(-3)?.map((item, index) => {
+                const transactionIndex = index + 1;
+                return (
+                  <div
+                    key={item._id}
+                    className="flex gap-2 rounded-lg py-2 px-3 my-2 bg-app-pblue"
+                  >
+                    <p className=" ">{transactionIndex}.</p>
+                    <div>
+                      <p className=" ">{item.projectName}</p>
+                      <p className="text-[.8rem] text-app-sblue">
+                        N{item.amount}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </>
+          )}
+
         </div>
       </div>
 
