@@ -76,6 +76,34 @@ const TransactionsList = () => {
     </tr>
   );
 
+  function getOrdinalSuffix(day: number): string {
+    if (day >= 11 && day <= 13) {
+      return 'th';
+    }
+    switch (day % 10) {
+      case 1:
+        return 'st';
+      case 2:
+        return 'nd';
+      case 3:
+        return 'rd';
+      default:
+        return 'th';
+    }
+  }
+  
+  function formatDate(inputDate: string): string {
+    const date = new Date(inputDate);
+    const day = date.getDate();
+    const month = date.toLocaleString('en-US', { month: 'long' });
+    const year = date.getFullYear();
+    const suffix = getOrdinalSuffix(day);
+  
+    return `${day}${suffix} ${month} ${year}`;
+  }
+  
+  
+  
 
   return (
     <div className="max-w-[1000px]">
@@ -110,7 +138,7 @@ const TransactionsList = () => {
                 >
                   <td className="p-3">{`${transactionIndex}. ${item.projectName}`}</td>
                   <td className="p-2">{item.amount}</td>
-                  <td className="p-1">{item.date}</td>
+                  <td className="p-1">{formatDate(item.date)}</td>
                   <td
                     className={`p-1 ${
                       item.status === "Finished"
