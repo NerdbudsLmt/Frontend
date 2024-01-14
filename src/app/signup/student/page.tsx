@@ -9,6 +9,8 @@ import * as Yup from "yup";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import useCustomToast from "@/components/Toast";
+import { Spinner } from "@chakra-ui/react";
+
 
 /**
  * Represents the values of the Company form.
@@ -53,6 +55,8 @@ export default function Student() {
   const toast = useCustomToast();
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
 
 
   // Initialize Formik for managing form state and validation.
@@ -85,7 +89,6 @@ export default function Student() {
           formData.append(key, value);
         });
 
-        // const res = await fetch(`https://nerdbuds.onrender.com/api/v1/users/student`, {
         const res = await fetch(`${apiUrl}/users/student`, {
           method: "PUT",
           headers: {
@@ -94,6 +97,7 @@ export default function Student() {
           },
           body: JSON.stringify(formData),
         });
+        setIsLoading(true);
 
         const data = await res.json();
         if (res.status === 200) {
@@ -106,15 +110,21 @@ export default function Student() {
             "top-right"
           );
           console.log("Success:", data);
+          
           router.push("/login");
+          setIsLoading(false);
         } else {
           toast("Error", "error", true, 2000, data.message, "top-right");
           console.log("errr 2");
+        setIsLoading(false);
+
         }
       } catch (error: any) {
         console.error("Error:", (error as Error).message);
         toast("Error", "error", true, 2000, error, "top-right");
-        console.log("errr 5");
+        
+        setIsLoading(false);
+
       }
     },
   });
@@ -421,10 +431,12 @@ export default function Student() {
               </div>
 
               <button
-                className='bg-app-sblue border-2 border-app-sblue text-white py-2 px-5 mt-3 rounded-full'
-                type='submit'
+                className="bg-app-sblue border-2 border-app-sblue text-white py-2 px-5 mt-3 rounded-full"
+                type="submit"
+                disabled={isLoading}
               >
-                Create account
+                {isLoading ? <Spinner/> : 'Proceed'}
+        
               </button>
             </form>
           </div>

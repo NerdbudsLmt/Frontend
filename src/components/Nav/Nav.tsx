@@ -75,10 +75,7 @@ const Nav = () => {
             isOpen={navOpen}
             toggle={() => setNavOpen((prevState) => !prevState)}
           />
-          {/* <NavToggler 
-                        isOpen={navOpen}
-                        toggle={() => setNavOpen(prevState => !prevState)} 
-                    /> */}
+         
         </div>
         {/* md:navbar */}
         <div className="hidden justify-between items-center space-x-8 lg:flex lg:justify-between lg:items-center lg:space-x-8 lg:ml-[5rem] lg:text-[1.2rem] md:flex md:justify-between md:items-center md:space-x-4 md:ml-[4rem] md:text-[0.9rem]">
@@ -89,8 +86,7 @@ const Nav = () => {
         <div className="hidden md:flex justify-between items-center space-x-3">
           {session?.user ? (
             <>
-              {/* <p className="text-sky-600"> {session.user?.response?.full_name}</p> */}
-              {/* <p className="text-sky-600"> {session.user?.response?.user_type}</p> */}
+           
               <div>
                 <button
                   className="border-2 border-app-porange text-white py-2 px-3 rounded-md"
@@ -145,17 +141,28 @@ const Nav = () => {
               {links?.map((link, index) => (
                 <MobileNavLink
                   key={index}
-                  className="text-[1.5rem] sm:text-[1.5rem] uppercase cursor-pointer font-semibold"
+                  className="text-[1.2rem] sm:text-[1.3rem] uppercase cursor-pointer font-semibold"
                   onClick={() => setNavOpen(false)}
                   isOpen={navOpen}
                   {...link}
                 />
               ))}
               <div className="flex flex-col gap-8 px-5 ">
+              {session?.user ? (
+                <div>
+                <button
+                  className="border-2 border-app-porange text-[1.2rem]  text-white py-2 px-3 rounded-md"
+                  onClick={() => signOut()}
+                >
+                  Sign Out
+                </button>
+              </div>
+              ) : 
+            <>
                 <div>
                   <Link
                     href="/login"
-                    className="border-2 border-white text-white py-2 px-3 rounded-md"
+                    className="border-2 border-white text-[1.2rem]  text-white py-2 px-3 rounded-md"
                   >
                     Login
                   </Link>
@@ -163,11 +170,13 @@ const Nav = () => {
                 <div>
                   <Link
                     href="/signup"
-                    className="bg-app-porange border-2 border-app-porange text-white py-2 px-3 rounded-md"
+                    className="bg-app-porange text-[1.2rem]  border-2 border-app-porange text-white py-2 px-3 rounded-md"
                   >
                     Sign Up
                   </Link>
                 </div>
+            </>
+            }
               </div>
             </motion.div>
           </div>
