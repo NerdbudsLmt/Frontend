@@ -53,7 +53,6 @@ function ProjectPal() {
         const data = await response.json();
         console.log("Project booked successfully:", data);
 
-        // Optionally, you can reset the form or navigate to another page
         setProjectData({
           description: "",
           services: [],
