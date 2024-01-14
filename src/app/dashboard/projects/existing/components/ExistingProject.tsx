@@ -46,7 +46,7 @@ const ExistingProject: React.FC = () => {
           return
         }
 
-        const url = `${apiUrl}/projects/userProjects?limit=1000000`
+        const url = `${apiUrl}/projects/userProjects?limit=1000`
         // const url = `${apiUrl}/projects/userProjects`
         const response = await fetch(url, {
           method: 'GET',
@@ -61,6 +61,7 @@ const ExistingProject: React.FC = () => {
 
         if (response.ok) {
           const data = await response.json()
+          console.log(data.data)
           setProject(data?.data?.projects)
           setLoading(false)
         } else {
