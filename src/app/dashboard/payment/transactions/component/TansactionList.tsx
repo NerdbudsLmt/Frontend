@@ -147,11 +147,11 @@ const TransactionsList = () => {
                       key={item._id}
                       className="border-b-[2rem] border-white rounded-lg gap-4 bg-[#F5F4F4]"
                     >
-                      <Td className="p-3">{`${transactionIndex}. ${item.projectName}`}</Td>
-                      <Td className="p-2">{item.amount}</Td>
-                      <Td className="p-1">{formatDate(item.date)}</Td>
+                      <Td className="">{`${transactionIndex}. ${item.projectName}`}</Td>
+                      <Td className="">{item.amount}</Td>
+                      <Td className="">{formatDate(item.date)}</Td>
                       <Td
-                        className={`p-1 ${
+                        className={`p ${
                           item.status === "Finished"
                             ? "text-[#5583C3]"
                             : "text-black"
