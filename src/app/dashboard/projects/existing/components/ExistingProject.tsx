@@ -82,25 +82,12 @@ const ExistingProject: React.FC = () => {
       </div>
 
       {loading ? (
-<<<<<<< HEAD
-        
-        <div className="text-app-pblue py-4 text-center text-lg font-bold">
-          <Skeleton height={30} width={200} />
-          <p>Loading...</p>
-        </div>
-      ) : (
-        <>
-          <div className="mt-10  text-white list-decimal  text-md">
-            {/* {loading ?  */}
-            {project?.length === 0 ? (
-=======
        <>
         <Loader />
        </>
         
       ) :     
             project?.length === 0 ? (
->>>>>>> d5707a44c4d62c1a6780738a0d022cae0a90ddb5
               <p className="text-app-pblue py-4 text-center text-lg font-bold">
                 No project available
               </p>
