@@ -9,11 +9,29 @@ import {
   RiTwitterXLine,
   RiWhatsappLine,
 } from "react-icons/ri";
+import { Formik, useFormik } from "formik";
+import * as Yup from "yup";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import useCustomToast from "@/components/Toast";
 
+interface SupportForm {
+  message: string;
+  callSchedule: Date | null;
+}
 export default function Support() {
   const [startDate, setStartDate] = useState(new Date());
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const toast = useCustomToast();
+  const [loading, setLoading] = useState(false);
+
+  const formik = useFormik<SupportForm>({
+    initialValues: {
+      message: "",
+      callSchedule: null,
+    },
+    onSubmit: async (values) => {},
+  });
 
   return (
     <div>
@@ -42,13 +60,12 @@ export default function Support() {
             <LuClock3 />
           </button> */}
           <DatePicker
+            selected={formik.values.callSchedule}
+            onChange={(date) => formik.setFieldValue("callSchedule", date)}
             className="bg-[#3F9BD5] rounded-[12px] text-white outline-none w-fit md:px-[24px] px-[20px] md:py-[12px] py-[9px] text-[15px]"
-            selected={startDate}
-            onChange={(date: any) => {
-              setStartDate(date);
-            }}
-            //  icon={<LuClock3 />} showIcon
-
+            showTimeSelect
+            timeFormat="HH:mm"
+            timeIntervals={15}
             dateFormat="Pp"
           />
           <h2 className="text-[#676767] md:text-[20px] text-[15px]">
