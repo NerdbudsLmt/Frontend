@@ -91,10 +91,7 @@ const ExistingProject: React.FC = () => {
       </div>
 
       {loading ? (
-        //  {project?.l/ength === 0 ? (
-        // <p className="text-app-pblue py-4 text-center text-lg font-bold">
-        //   Loading...
-        // </p>
+        
         <div className="text-app-pblue py-4 text-center text-lg font-bold">
           <Skeleton height={30} width={200} />
           <p>Loading...</p>
