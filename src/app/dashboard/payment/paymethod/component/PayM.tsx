@@ -2,18 +2,11 @@
 
 import { useState } from "react";
 import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
   useDisclosure,
 } from "@chakra-ui/react";
 
-import Link from "next/link";
 import PayStack from "./PayStack";
+import Image from "next/image";
 
 export default function PayM() {
   const [activeTab, setActiveTab] = useState("Paystack");
@@ -25,10 +18,13 @@ export default function PayM() {
 
   return (
     <div>
-      <p className="text-3xl text-gray-500  ml-1 inline">
-        payments <img className="inline" src="/Dot.png" alt="" />
+      <p className="text-2xl text-gray-500  ml-1 inline">
+        payments <Image
+        width={10}
+        height={10}
+        className="inline" src="/Dot.png" alt="" />
       </p>
-      <p className="ml-3 text-3xl inline font-semibold">Payment Methods</p>
+      <p className="ml-3 text-2xl inline font-semibold">Payment Methods</p>
 
       <div className="tab-titles">
         <p
@@ -70,11 +66,11 @@ export default function PayM() {
             Save card for future purchases.
           </p>
         </div> */}
-        <p className="ml-2 text-[2rem] font-semibold">
+        <p className="ml-2 text-[1rem] font-semibold">
           Coming Soon...{" "}
           <span
             onClick={() => openTab("BankTransfer")}
-            className="text-primary underline text-[1.5rem] block"
+            className="text-primary underline text-[.9rem] "
           >
             Use Bank Transfer.
           </span>

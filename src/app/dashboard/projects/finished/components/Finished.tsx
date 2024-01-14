@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Pagination from '@/components/Pagination'
 import { useSession } from 'next-auth/react'
+import { Loader } from '../../existing/components/Loader'
 
 interface Project {
   _id: string
@@ -19,6 +20,7 @@ interface Project {
 
 const FinishedProject: React.FC = () => {
   const { data: session } = useSession()
+  const [loading, setLoading] = useState<boolean>(true);
   const [projects, setProjects] = useState<Project[]>([])
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage] = useState(6)
@@ -46,15 +48,13 @@ const FinishedProject: React.FC = () => {
 
         console.log('API Response:', response)
 
-        if (response.ok) {
           const data = await response.json()
+         setLoading(false);
           const finishedProjects = data.data.projects.filter(
             (project: Project) => project.projectPercentage === 100
           )
           setProjects(finishedProjects)
-        } else {
-          console.error('Failed to fetch finished projects')
-        }
+        
       } catch (error) {
         console.error('An error occurred:', error)
       }
@@ -79,7 +79,9 @@ const FinishedProject: React.FC = () => {
         <p className='font-semibold text-2xl'>Finished projects</p>
       </div>
 
-      {projects.length === 0 ? (
+      {loading ? (
+        <Loader />
+      ) : projects.length === 0 ? (
         <p>No finished projects to display.</p>
       ) : (
         <>

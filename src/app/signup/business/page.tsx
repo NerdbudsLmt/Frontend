@@ -8,6 +8,8 @@ import * as Yup from "yup";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import useCustomToast from "@/components/Toast";
+import { Spinner } from "@chakra-ui/react";
+
 
 /**
  * Represents the values of the Company form.
@@ -34,6 +36,8 @@ const validationSchema = Yup.object().shape({
 export default function Company() {
   const toast = useCustomToast();
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
 
   // Initialize Formik for managing form state and validation.
   const formik = useFormik<CompanyFormValues>({
@@ -54,6 +58,7 @@ export default function Company() {
         console.log(parsedToken);
 
         const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+        setIsLoading(true);
 
         const res = await fetch(`${apiUrl}/users/business`, {
           method: "PUT",
@@ -73,9 +78,13 @@ export default function Company() {
             data.data.message,
             "top-right"
           );
+          
           router.push("/login");
+          setIsLoading(false);
         } else {
           toast("Error", "error", true, 2000, data.message, "top-right");
+        setIsLoading(false);
+
         }
       } catch (error: any) {
         console.error("Error:", (error as Error).message);
@@ -230,8 +239,12 @@ export default function Company() {
             <button
               className="bg-app-sblue border-2 border-app-sblue text-white py-2 px-5 mt-3 rounded-full"
               type="submit"
+              disabled={isLoading}
+
             >
-              Create account
+             
+              {isLoading ? <Spinner/> : ' Create account'}
+
             </button>
           </form>
 
@@ -239,22 +252,7 @@ export default function Company() {
             Do have an account?{" "}
             <span className="text-app-porange"> Log in </span>
           </p>
-          {/* <p className="w-[450px]">
-            By continuing you agree to Nerdbuds{" "}
-            <span className="text-app-sblue underline"> Terms of Service </span>{" "}
-            and acknowledge that you have read our{" "}
-            <span className="text-app-porange underline"> Privacy Policy.</span>{" "}
-          </p>
-          <Link href='/signup/google-business'>
-          <button
-            className="bg-[#265D80] flex items-center justify-center mt-6 gap-4 text-white py-2 px-5 w-full rounded-full"
-            // type="submit"
-          >
-           
-            <FcGoogle />
-            Sign up with Google
-          </button>
-          </Link> */}
+         
         </div>
       </div>
     </div>
