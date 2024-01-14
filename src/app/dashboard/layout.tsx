@@ -23,6 +23,8 @@ import {
 } from "@chakra-ui/react";
 import { FiHome, FiSettings, FiMenu } from "react-icons/fi";
 import { RxDashboard } from "react-icons/rx";
+import TawkMessengerReact from "@tawk.to/tawk-messenger-react";
+
 import {
   MdPayment,
   MdOutlineDesktopWindows,
@@ -378,6 +380,13 @@ export default function DashboardLayout({
       <MobileNav onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p="4">
         {children}
+
+        <div className=" sticky bottom-1 right-3 ">
+        <TawkMessengerReact
+          propertyId="658beb0670c9f2407f83a50e"
+          widgetId="1hil8s5jb"
+        />
+      </div>
       </Box>
     </Box>
   );

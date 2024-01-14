@@ -138,12 +138,12 @@ export default function QuickSet() {
         <BiSolidMessageDetail size={40} />
       </div> */}
 
-      <div className="fixed bottom-4 right-3 ">
+      {/* <div className=" sticky bottom-4 right-3 ">
         <TawkMessengerReact
           propertyId="658beb0670c9f2407f83a50e"
           widgetId="1hil8s5jb"
         />
-      </div>
+      </div> */}
     </div>
   );
 }
