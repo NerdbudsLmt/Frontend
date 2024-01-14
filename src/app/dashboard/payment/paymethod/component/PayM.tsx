@@ -76,7 +76,7 @@ export default function PayM() {
             onClick={() => openTab("BankTransfer")}
             className="text-primary underline text-[1.5rem] block"
           >
-            Use Bank Transfer
+            Use Bank Transfer.
           </span>
         </p>
       </div>
