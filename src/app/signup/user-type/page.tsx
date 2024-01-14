@@ -90,8 +90,8 @@ export default function Home() {
         );
       }
     } catch (error: any) {
-      console.error("Error occurred during fetch:", error);
       toast("Error", "error", true, 2000, error, "top-right");
+      console.error("Error occurred during fetch:", error);
     }
   };
 

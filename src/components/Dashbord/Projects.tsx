@@ -64,13 +64,17 @@ export default function Projects() {
     const fetchUserProjects = async () => {
       try {
         const accessToken = session?.user?.accessToken ?? "";
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL
+
         // if (!accessToken) {
         //   // console.error("Access token not available");
         //   return;
         // }
 
-        const url =
-          "https://nerdbuds.onrender.com/api/v1/projects/userProjects";
+        const url = `${apiUrl}/projects/userProjects?limit=1000000`
+        // const url = `${apiUrl}/projects/userProjects`
+
+
 
         const response = await fetch(url, {
           method: "GET",
