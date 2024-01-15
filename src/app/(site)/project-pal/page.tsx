@@ -443,7 +443,7 @@ function ProjectPal() {
             Book a project
             <BsArrowRight className='text-lg' />
           </Link>
-          {/* <h4 className="text-lg text-center">
+          {/*<h4 className="text-lg text-center">
             For assistance with booking a meeting reach out to
             <span className="text-[#F9D262] underline"> Customer Support.</span>
           </h4> */}
