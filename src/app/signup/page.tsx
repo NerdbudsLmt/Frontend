@@ -44,7 +44,7 @@ export default function Login() {
         localStorage.setItem("signupData", JSON.stringify(values));
 
         // Navigate to the next page
-        
+
         router.push("/signup/user-type");
         setIsLoading(false);
       } catch (error) {
@@ -136,9 +136,8 @@ export default function Login() {
                 className="bg-app-sblue border-2 border-app-sblue text-white py-2 px-5 mt-3 rounded-full"
                 type="submit"
                 disabled={isLoading}
-                >
-                  {isLoading ? <Spinner/> : 'Proceed'}
-          
+              >
+                {isLoading ? <Spinner /> : "Proceed"}
               </button>
             </form>
 
@@ -159,13 +158,13 @@ export default function Login() {
               </Link>
             </p>
 
-            <button
+            {/* <button
               className="bg-[#265D80] flex items-center justify-center mt-6 gap-4 text-white py-2 px-5 w-full rounded-full"
               // type="submit"
             >
               <FcGoogle />
               Sign up with Google
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
