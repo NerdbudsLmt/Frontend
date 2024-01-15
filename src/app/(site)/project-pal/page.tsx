@@ -180,7 +180,7 @@ function ProjectPal() {
               to get everything right from courses to projects. Not all are up
               to these tasks, and that’s where we come in.
               <br />
-              <span className="text-customBlue">Let Us Help!</span>
+              <span className="text-customBlue">Let Us Help</span>
             </p>
             <span className="flex gap-4 mt-3">
               <Link
