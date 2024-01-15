@@ -44,8 +44,7 @@ const ExistingProject: React.FC = () => {
           return;
         }
 
-        const url = `${apiUrl}/projects/userProjects?limit=10000`;
-        // const url = `${apiUrl}/projects/userProjects`
+        const url = `${apiUrl}/projects/userProjects`;
         const response = await fetch(url, {
           method: "GET",
           headers: {

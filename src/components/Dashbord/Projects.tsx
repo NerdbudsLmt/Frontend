@@ -56,7 +56,7 @@ export default function Projects() {
         //   return;
         // }
 
-        const url = `${apiUrl}/projects/userProjects?limit=1000000`;
+        const url = `${apiUrl}/projects/userProjects`;
         // const url = `${apiUrl}/projects/userProjects`
 
         const response = await fetch(url, {

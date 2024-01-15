@@ -58,7 +58,7 @@ const Nav = () => {
   // const { height } = useDimensions(containerRef);
 
   return (
-    <nav className="py-4 mx-auto w-[97%] tablet:w-[95%] max-w-[1380px]">
+    <nav className="py-4 mx-auto w-[100%] tablet:w-[95%] max-w-[1380px]">
       <div className="relative flex justify-between items-center">
         <div className="z-20 basis-full md:basis-auto flex items-center justify-between">
           <Link href="/">
