@@ -96,18 +96,18 @@ export default function PayM() {
               <p className=" mt-5 ml-5">
                 Bank Name:{" "}
                 <span className=" text-[#132E40] font-semibold">
-                  Ecobank Plc
+                  Moniepoint
                 </span>{" "}
                 <br />
                 Account Name:
                 <span className=" text-[#132E40] font-semibold">
                   {" "}
-                  Nerdbuds Ltd
+                  Nerdbuds
                 </span>{" "}
                 <br />
                 Account Number:{" "}
                 <span className=" text-[#132E40 font-semibold">
-                  09998712345
+                  6488403770
                 </span>
               </p>
               <p className=" mt-5 ml-5">

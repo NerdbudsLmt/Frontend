@@ -19,7 +19,8 @@ interface FormValues {
 
 const servicesList: string[] = [
   "Cloud Engineering",
-  "UI/UX",
+  "Web Development",
+  "Mobile App Development",
   "Security",
   "Consultation",
   "Branding",
