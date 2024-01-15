@@ -12,7 +12,7 @@ const Footer = () => {
         <div className=" flex flex-col space-y-2 ">
           <div className=" sm:flex flex-col lg:flex flex-col-2 lg:space-x-[28rem] md:flex-row items-start ">
             <div className=" ml-2 mt-5">
-              <p className=" w-[30rem] text-[#F9D262] text-lg font-bold">
+              <p className=" w-[80%] text-[#F9D262] text-lg font-bold">
                 Sign up to our{" "}
                 <span className="text-[#3F9BD5]">newsletter</span>
               </p>
@@ -22,6 +22,7 @@ const Footer = () => {
               </p>
             </div>
             <div>
+              {" "}
               <NLForm />
             </div>
           </div>
@@ -35,14 +36,14 @@ const Footer = () => {
               width={60}
               height={60}
             />
-            {/* <div className=" ml-[-0.5rem] inline-block">
+            <div className=" ml-[-0.5rem] inline-block">
               <h1 className="text-[0.7rem] font-bold text-center text-white lg:text-[1.1rem]">
                 You <span className="text-app-sblue">Dream.</span>
               </h1>
               <h1 className="text-[0.7rem] font-bold text-center text-white lg:text-[1.1rem]">
                 We <span className="text-[#F9D262]">Build.</span>
               </h1>
-            </div> */}
+            </div>
           </div>
           <div className="flex flex-col space-y-2 sm:ml-[3rem]  ">
             <p className="text-[#3F9BD5] text-lg font-bold">Products</p>
