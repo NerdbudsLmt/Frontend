@@ -161,7 +161,7 @@ function ProjectPal() {
       </main>
       <section className=' bg-[#D9E5EF] pt-10 pl-10 pr-10 pb-20'>
         <div className='flex flex-col lg:flex-row justify-between items-center gap-10 relative'>
-          <div className='lg:w-1/2'>
+          <div className='lg:w-1/2 mb:10'>
             <h1 className='text-[#205584] text-3xl lg:text-5xl font-semibold mb-3'>
               The Ultimate Final Year Student Package
             </h1>
@@ -195,7 +195,7 @@ function ProjectPal() {
             priority
             className='lg:w-1/2 mt-5 lg:mt-0'
           />
-          <div className='absolute bottom-0 left-0 w-full bg-[#E6EFF6] p-3 mt-5 lg:mt-0'>
+          <div className='lg:absolute bottom-0 left-0 w-full bg-[#E6EFF6] p-3 mt-5 lg:mt-0'>
             <span className='flex gap-1'>
               <Image
                 src='/images/MapPinLine-d.svg'
