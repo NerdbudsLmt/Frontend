@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { BsArrowDown } from "react-icons/bs";
+import { BsArrowRight, BsArrowDownShort } from "react-icons/bs";
 // import { BiUser } from "react-icons/bi";
 // import { MdEmail } from "react-icons/md";
 // import {
@@ -360,20 +361,28 @@ function ProjectPal() {
           Create a project
         </h1>
         <span>
+          <h5 className="text-lg font-semibold mb-2">Email</h5>
+          <input
+            className="w-full bg-[#F5F4F4] p-4 mb-4 rounded-md text-customBlue"
+            type="email"
+            name=""
+            placeholder="seanchinedu@gmail.com"
+            id=""
+          />
           <h5 className="text-lg font-semibold mb-2">
-            Briefly describe your project.
+            Briefly describe your project
           </h5>
           <textarea
-            className="w-full bg-gray-300 p-4 mb-4 rounded-md text-customBlue"
-            placeholder="Enter a brief description of your project..."
+            className="w-full bg-[#F5F4F4] p-4 mb-4 rounded-md text-customBlue"
+            placeholder="Enter a brief description of your project."
             onClick={handleBookProject}
           ></textarea>
           <h5 className="text-lg font-semibold mb-2">
             What services do you need?
           </h5>
-          <div className="flex flex-wrap gap-4 bg-gray-300 p-4 mb-4 rounded-md">
+          <div className="flex flex-wrap gap-4 bg-[#F5F4F4] p-4 mb-4 rounded-md">
             <label className="flex items-center ">
-              <span className="p-4 border rounded-full bg-white flex items-center">
+              <span className="p-3 border rounded-full bg-white flex items-center">
                 <input type="checkbox" className="mr-2" />
                 <span className="text-customBlue font-semibold">
                   Cloud Engineering
@@ -382,21 +391,21 @@ function ProjectPal() {
             </label>
 
             <label className="flex items-center ">
-              <span className="p-4 border rounded-full bg-white flex items-center">
+              <span className="p-3 border rounded-full bg-white flex items-center">
                 <input type="checkbox" className="mr-2" />
                 <span className="text-customBlue font-semibold">UI/UX</span>
               </span>
             </label>
 
             <label className="flex items-center ">
-              <span className="p-4 border rounded-full bg-white flex items-center">
+              <span className="p-3 border rounded-full bg-white flex items-center">
                 <input type="checkbox" className="mr-2" />
                 <span className="text-customBlue font-semibold">Security</span>
               </span>
             </label>
 
             <label className="flex items-center ">
-              <span className="p-4 border rounded-full bg-white flex items-center">
+              <span className="p-3 border rounded-full bg-white flex items-center">
                 <input type="checkbox" className="mr-2" />
                 <span className="text-customBlue font-semibold">
                   Consultation
@@ -405,7 +414,7 @@ function ProjectPal() {
             </label>
 
             <label className="flex items-center ">
-              <span className="p-4 border rounded-full bg-white flex items-center">
+              <span className="p-3 border rounded-full bg-white flex items-center">
                 <input type="checkbox" className="mr-2" />
                 <span className="text-customBlue font-semibold">Branding</span>
               </span>
@@ -414,14 +423,15 @@ function ProjectPal() {
           <Link
             href=""
             onClick={handleBookProject}
-            className="flex gap-3 px-5 py-2 mt-3 w-fit bg-white text-[18px] laptop:text-[16px] text-customBlue rounded-3xl font-bold mb-2 transition-transform hover:scale-110"
+            className="flex items-center gap-3 px-5 py-3 mb-5 mt-5 w-fit bg-[#3F9BD5] text-[18px] laptop:text-[16px] text-white rounded-3xl font-bold transition-transform hover:scale-110 mx-auto"
           >
             Book a project
+            <BsArrowRight className="text-lg" />
           </Link>
-          <h4 className="text-lg">
+          {/* <h4 className="text-lg text-center">
             For assistance with booking a meeting reach out to
             <span className="text-[#F9D262] underline"> Customer Support.</span>
-          </h4>
+          </h4> */}
         </span>
       </div>
     </>
