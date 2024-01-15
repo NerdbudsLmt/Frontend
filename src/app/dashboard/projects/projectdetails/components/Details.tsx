@@ -10,48 +10,55 @@ import {
   CardFooter,
   Chip,
 } from "@nextui-org/react";
-
-interface ProjectList {
-  projectName: string;
-  description: string;
-  status: string;
-  id: number;
-  completedDate: string;
-  projectPercentage: string;
-}
+import { useSession } from "next-auth/react";
 
 interface ProjectProgressProps {
-  item: ProjectList;
+  params: any;
+}
+interface ProjectDetails {
+  _id: string | number;
+  user: string | number;
+  projectName: string;
+  services: string[];
+  callSchedule: Date | null;
+  projectPercentage: string | any;
+  status: boolean;
+  paymentStatus: boolean;
+  description: string;
 }
 
-export const ProjectDetails: React.FC<ProjectProgressProps> = ({ item }) => {
-  const projectPercentage = parseInt(item.projectPercentage, 10);
-  const {
-    projectName,
-    description,
-    status,
-    id,
-    completedDate: deadlineDate,
-    projectPercentage: percentage,
-  } = item;
+export const ProjectDetails: React.FC<ProjectProgressProps> = ({ params }) => {
+  const id = params.projectId;
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const { data: session }: any = useSession();
+  const [details, setDetails] = useState<ProjectDetails>();
 
-  const formatDate = (dateString: string) => {
-    const options: Intl.DateTimeFormatOptions = {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-      timeZone: "UTC",
-      hour12: true,
+  const projectPercentage = parseInt(details?.projectPercentage, 10);
+
+  useEffect(() => {
+    const fetchProjectDetails = async () => {
+      try {
+        const res = await fetch(`${apiUrl}/projects/${id}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${session?.user?.accessToken}`,
+          },
+        });
+
+        const data = await res.json();
+        if (!res.ok) {
+          throw new Error("error");
+        }
+        console.log(data);
+        setDetails(data.data);
+      } catch (error) {
+        console.error("Error fetching project details:", error);
+      }
     };
 
-    const formattedDate = new Intl.DateTimeFormat("en-US", options).format(
-      new Date(dateString)
-    );
-    return formattedDate;
-  };
+    fetchProjectDetails();
+  }, [session, apiUrl, id]);
 
   return (
     <div className="" aria-label="Project progress information">
@@ -64,7 +71,7 @@ export const ProjectDetails: React.FC<ProjectProgressProps> = ({ item }) => {
       <div className="w-[50rem] h-[60rem] border-3 border-[#B1AFAF] rounded-[1.5rem]">
         <div className="w-[50rem] h-[13rem] bg-[#205584] rounded-t-[1.5rem] ml-[-0.2rem] mt-[-0.2rem]">
           <p className="text-[2.5rem] text-center text-[#fff] font-semibold pt-[2.5rem] ">
-            Tech Bot Project
+            {details?.projectName}
           </p>
           <div className="flex items-start w-[15rem] h-[4.1rem] bg-[#FAFAFA] ml-9 mt-7 rounded-[0.5rem] ">
             <Image
@@ -92,20 +99,12 @@ export const ProjectDetails: React.FC<ProjectProgressProps> = ({ item }) => {
             <p className="text-[#205584] ml-[-1rem] text-[2rem] font-semibold">
               Project Description
             </p>
-            <p className=" w-[35rem] ml-[-1rem] mt-2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco lab.
-              Vajndjns dus dsj sjnsk dsjj. Lorem ipsum dolor sit amet,
-              consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-              labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-              nostrud exercitation ullamco lab. Vajndjns dus dsj sjnsk dsj.
-            </p>
+            <p className=" w-[35rem] ml-[-1rem] mt-2">{details?.description}</p>
           </div>
 
           <div className=" mt-[2.3rem]">
             <Card
-              aria-label={`Project progress ${percentage}%`}
+              aria-label={`Project progress ${details?.projectPercentage}%`}
               className="w-[120px] h-[120px] my-auto border-none bg-[#F5F4F4] rounded-[1rem]"
             >
               <CardBody className="justify-center items-center pb-0">
@@ -113,7 +112,7 @@ export const ProjectDetails: React.FC<ProjectProgressProps> = ({ item }) => {
                   classNames={{
                     track: "stroke-white/10",
                     svg: `w-20 h-20 my-auto mb-5 drop-shadow-md ${
-                      percentage === "100%"
+                      details?.projectPercentage === "100%"
                         ? "text-green-400"
                         : projectPercentage >= 50
                         ? "text-app-sblue"
