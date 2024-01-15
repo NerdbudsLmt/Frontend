@@ -13,9 +13,9 @@ export default function Home({
 }) {
   return (
     <section className="mx-auto text-white w-[97%] tablet:w-[95%] max-w-[1380px]">
-      {/* <Nav /> */}
+      <Nav />
       {children}
-      <Footer />
+      {/* <Footer /> */}
     </section>
   );
 }
