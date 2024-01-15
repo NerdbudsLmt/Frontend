@@ -15,7 +15,7 @@ export default function Home({
     <section className="mx-auto text-white w-[97%] tablet:w-[95%] max-w-[1380px]">
       <Nav />
       {children}
-      {/* <Footer /> */}
+      <Footer />
     </section>
   );
 }
