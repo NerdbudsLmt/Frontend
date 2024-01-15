@@ -82,7 +82,7 @@ function ProjectPal() {
             </Link>
           </div>
           <div>
-            <h1 className="text-8xl font-bold text-center text-app-sblue">
+            <h1 className="text-5xl font-bold text-center lg:text-7xl text-app-sblue">
               Project <span className="text-[#F9D262]">Pal</span>
             </h1>
           </div>
