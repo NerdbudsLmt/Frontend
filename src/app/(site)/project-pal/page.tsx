@@ -82,7 +82,7 @@ function ProjectPal() {
             </Link>
           </div>
           <div>
-            <h1 className="text-5xl font-bold text-center lg:text-7xl text-app-sblue">
+            <h1 className="text-8xl font-bold text-center text-app-sblue">
               Project <span className="text-[#F9D262]">Pal</span>
             </h1>
           </div>
@@ -204,7 +204,7 @@ function ProjectPal() {
             priority
             className="lg:w-1/2 mt-5 lg:mt-0"
           />
-          <div className="absolute bottom-0 left-0 w-full bg-[#E6EFF6] p-3 mt-5 lg:mt-0">
+          <div className="lg:absolute bottom-0 left-0 w-full bg-[#E6EFF6] p-3 mt-2 lg:mt-0">
             <span className="flex gap-1">
               <Image
                 src="/images/MapPinLine-d.svg"
