@@ -392,7 +392,14 @@ function ProjectPal() {
             <label className='flex items-center '>
               <span className='p-3 border rounded-full bg-white flex items-center'>
                 <input type='checkbox' className='mr-2' />
-                <span className='text-customBlue font-semibold'>UI/UX</span>
+                <span className='text-customBlue font-semibold'>Web Development</span>
+              </span>
+            </label>
+
+            <label className='flex items-center '>
+              <span className='p-3 border rounded-full bg-white flex items-center'>
+                <input type='checkbox' className='mr-2' />
+                <span className='text-customBlue font-semibold'>Mobile App Development</span>
               </span>
             </label>
 
