@@ -29,9 +29,9 @@ export default function QuickSet() {
 
   const bankName = [
     {
-      title: "Ecobank Plc",
-      name: "Nerdburds Ltd",
-      number: "0998712345",
+      title: "Moniepoint",
+      name: "Nerdbuds",
+      number: " 6488403770",
       id: 1,
     },
   ];
