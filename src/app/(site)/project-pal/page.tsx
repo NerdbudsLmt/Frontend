@@ -18,16 +18,16 @@ import { BsArrowRight, BsArrowDownShort } from "react-icons/bs";
 function ProjectPal() {
   interface ProjectData {
     description: string;
-    services: string[]; // Assuming services are strings, modify as needed
+    services: string[];
   }
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-  // const CreateProject = () => {
   const [projectData, setProjectData] = useState<ProjectData>({
     description: "",
     services: [],
   });
 
-  const handleCheckboxChange = (service: string) => {
+  const handleServices = (service: string) => {
     const updatedServices = projectData.services.includes(service)
       ? projectData.services.filter((s) => s !== service)
       : [...projectData.services, service];
@@ -40,7 +40,7 @@ function ProjectPal() {
 
   const handleBookProject = async () => {
     try {
-      const url = "https://nerdbuds.onrender.com/api/v1/projects";
+      const url = `${apiUrl}/projects`;
 
       const response = await fetch(url, {
         method: "POST",
@@ -95,7 +95,7 @@ function ProjectPal() {
         </div>
       </header>
 
-      <main className="flex flex-col lg:flex-row mb-48">
+      <main className="flex flex-col lg:flex-row mb-20">
         <div className="flex flex-col items-center mb-8 lg:mb-0 max-w-[80%] mx-auto">
           <Image
             src="/images/Group 34.svg"
@@ -146,7 +146,6 @@ function ProjectPal() {
             width={800}
             height={100}
             priority
-            // style={{ marginTop: -120, marginLeft: -85, marginRight: -85 }}
           />
         </div>
 
@@ -262,12 +261,12 @@ function ProjectPal() {
                 className="flex gap-3 px-5 py-2 mt-3 w-fit bg-[#CBD3DE] text-[14px] lg:text-[16px] text-customBlue rounded-3xl font-bold transition-transform hover:scale-110"
               >
                 <div className="flex items-center">
-                  <span className="mr-3">and so much more</span>
+                  <span className="mr-3 text-[14px]">and so much more</span>
                   <Image
                     src="/images/Bank-r.svg"
                     alt="comments"
-                    width={16}
-                    height={16}
+                    width={15}
+                    height={15}
                     priority
                   />
                 </div>

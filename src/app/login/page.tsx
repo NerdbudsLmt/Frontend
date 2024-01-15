@@ -11,6 +11,7 @@ import * as Yup from "yup";
 import Link from "next/link";
 import Nav from "@/components/Nav/Nav";
 import useCustomToast from "@/components/Toast";
+import { Spinner } from "@chakra-ui/react";
 
 interface CompanyFormValues {
   email: string;
@@ -56,6 +57,8 @@ export default function Login() {
             "Log In Success",
             "top-right"
           );
+          setIsLoading(false);
+
           router.replace("/dashboard");
         } else {
           if (res.status === 401) {
@@ -164,7 +167,7 @@ export default function Login() {
                 type="submit"
                 disabled={isLoading}
               >
-                Proceed
+                {isLoading ? <Spinner /> : "Proceed"}
               </button>
             </form>
 
@@ -184,7 +187,7 @@ export default function Login() {
               </Link>
             </p>
 
-            <Link href="/signup/google-company">
+            {/* <Link href="/signup/google-company">
               <button
                 className="bg-[#265D80] flex items-center justify-center mt-6 gap-4 text-white py-3 px-5 w-full rounded-full"
                 // type="submit"
@@ -192,7 +195,7 @@ export default function Login() {
                 <FcGoogle />
                 Sign up with Google
               </button>
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>

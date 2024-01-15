@@ -42,7 +42,7 @@ export default function ProProgress() {
           },
         });
         const data = await res.json();
-        console.log(data);
+        
         data && setLoading(false);
         setProjectList(data.data.projects);
       } catch (error) {
@@ -67,7 +67,7 @@ export default function ProProgress() {
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = filteredProjects.slice(
+  const currentPosts = filteredProjects?.slice(
     indexOfFirstPost,
     indexOfLastPost
   );

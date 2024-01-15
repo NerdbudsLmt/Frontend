@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { BsArrowRight } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
@@ -13,9 +13,8 @@ import {
   AiOutlineFileText,
   AiFillLinkedin,
 } from "react-icons/ai";
-import { BsFacebook, BsTelephone } from "react-icons/bs";
-import { Formik, useFormik } from "formik";
-import * as Yup from "yup";
+import { BsTelephone } from "react-icons/bs";
+import { useFormik } from "formik";
 import useCustomToast from "@/components/Toast";
 import { Spinner } from "@chakra-ui/react";
 
@@ -63,7 +62,7 @@ export default function Contact() {
 
       try {
         setLoading(true);
-        const res = await fetch(`${apiUrl}/contactform`, {
+        const res = await fetch(`${apiUrl}/contacted`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -152,13 +151,7 @@ export default function Contact() {
             >
               <AiFillInstagram className="text-[#fff] w-[20px] h-[20px]" />
             </a>
-            {/* <a
-              href="https://www.facebook.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <BsFacebook className="text-[#fff] w-[20px] h-[20px]" />
-            </a> */}
+           
             <a
               href="https://x.com/nerdbudsoffice?s=21"
               target="_blank"
@@ -171,7 +164,6 @@ export default function Contact() {
             </a>
           </div>
         </div>
-        {/* <div className="h-full w-[4px] mx-7 bg-[#fff]"/> */}
         <div className="pl-5 mt-2 lg:mt-0 lg:pl-5">
           <Link
             href="/"
