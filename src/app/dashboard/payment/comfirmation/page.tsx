@@ -19,24 +19,21 @@ export default async function PaymentComfirmation() {
       </p>
       <p className="ml-3 text-3xl inline font-semibold ">Price Comfirmation</p>
       <p className="text-1xl ml-1 mt-10">
-        The amount displayed below is the agreed amount upon conclusion of the
-        meeting. This <br /> amount is meant to be paid, and the condition of
-        the project agreement is meant to be adhered <br /> to.
+      The displayed amount below reflects the agreed sum following the conclusion of the meeting. This sum is intended for payment, and adherence to the terms of the project agreement is expected.
       </p>
-      <div className="bg-[#d9d8d8] h-20 w-80 mt-8 ml-1 flex align-middle justify-center rounded-md">
+      <div className="bg-[#d9d8d8] h-20 w-fit mt-8 px-3 ml-1 flex align-middle justify-center rounded-md">
         <p className="text-[#676767] mt-10">Cost of Project</p>{" "}
         <p className="text-3xl text-[#2E8A1F] font-semibold ml-5 mt-8">
-          N100,000
+          N******
         </p>
       </div>
       <p className="text-1xl ml-1 mt-8">
-        If the amount above is not the same as agreed in the meeting or there is
-        any problem with <br /> payment, please reach out to{" "}
+      If the sum specified exceeds the agreed upon amount in the meeting or if any issues arise regarding the payment, kindly contact  
         <a
           href="https://example.com/customer-support"
-          className="underline text-[#5583C3]"
+          className="underline text-[#5583C3] ml-1"
         >
-          Customer Support
+           Customer Support
         </a>
         .
       </p>

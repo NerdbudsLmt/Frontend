@@ -4,14 +4,23 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { BsArrowDown } from "react-icons/bs";
-
+import { BsArrowRight, BsArrowDownShort } from "react-icons/bs";
+// import { BiUser } from "react-icons/bi";
+// import { MdEmail } from "react-icons/md";
+// import {
+//   AiFillInstagram,
+//   AiOutlineTwitter,
+//   AiOutlineFileText,
+//   AiFillLinkedin,
+// } from "react-icons/ai";
+// import { BsFacebook, BsTelephone } from "react-icons/bs";
 
 function ProjectPal() {
   interface ProjectData {
     description: string;
-    services: string[]; 
+    services: string[];
   }
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   const [projectData, setProjectData] = useState<ProjectData>({
     description: "",
@@ -161,7 +170,7 @@ function ProjectPal() {
       </main>
       <section className=' bg-[#D9E5EF] pt-10 pl-10 pr-10 pb-20'>
         <div className='flex flex-col lg:flex-row justify-between items-center gap-10 relative'>
-          <div className='lg:w-1/2 mb:10'>
+          <div className='lg:w-1/2'>
             <h1 className='text-[#205584] text-3xl lg:text-5xl font-semibold mb-3'>
               The Ultimate Final Year Student Package
             </h1>
@@ -170,7 +179,7 @@ function ProjectPal() {
               to get everything right from courses to projects. Not all are up
               to these tasks, and that’s where we come in.
               <br />
-              <span className='text-customBlue'>Let Us Help!</span>
+              <span className='text-customBlue'>Let Us Help</span>
             </p>
             <span className='flex gap-4 mt-3'>
               <Link
@@ -195,7 +204,7 @@ function ProjectPal() {
             priority
             className='lg:w-1/2 mt-5 lg:mt-0'
           />
-          <div className='lg:absolute bottom-0 left-0 w-full bg-[#E6EFF6] p-3 mt-5 lg:mt-0'>
+          <div className='lg:absolute bottom-0 left-0 w-full bg-[#E6EFF6] p-3 mt-2 lg:mt-0'>
             <span className='flex gap-1'>
               <Image
                 src='/images/MapPinLine-d.svg'
@@ -351,25 +360,29 @@ function ProjectPal() {
           Create a project
         </h1>
         <span>
+          <h5 className='text-lg font-semibold mb-2'>Email</h5>
+          <input
+            className='w-full bg-[#F5F4F4] p-4 mb-4 rounded-md text-customBlue'
+            type='email'
+            name=''
+            placeholder='seanchinedu@gmail.com'
+            id=''
+          />
           <h5 className='text-lg font-semibold mb-2'>
-            Briefly describe your project.
+            Briefly describe your project
           </h5>
           <textarea
-            className='w-full bg-gray-300 p-4 mb-4 rounded-md text-customBlue'
-            placeholder='Enter a brief description of your project...'
+            className='w-full bg-[#F5F4F4] p-4 mb-4 rounded-md text-customBlue'
+            placeholder='Enter a brief description of your project.'
             onClick={handleBookProject}
           ></textarea>
           <h5 className='text-lg font-semibold mb-2'>
             What services do you need?
           </h5>
-          <div className='flex flex-wrap gap-4 bg-gray-300 p-4 mb-4 rounded-md'>
+          <div className='flex flex-wrap gap-4 bg-[#F5F4F4] p-4 mb-4 rounded-md'>
             <label className='flex items-center '>
-              <span className='p-4 border rounded-full bg-white flex items-center'>
-                <input
-                  type='checkbox'
-                  className='mr-2'
-                  onChange={() => handleServices('Cloud Engineering')}
-                />
+              <span className='p-3 border rounded-full bg-white flex items-center'>
+                <input type='checkbox' className='mr-2' />
                 <span className='text-customBlue font-semibold'>
                   Cloud Engineering
                 </span>
@@ -377,29 +390,21 @@ function ProjectPal() {
             </label>
 
             <label className='flex items-center '>
-              <span className='p-4 border rounded-full bg-white flex items-center'>
-                <input
-                  type='checkbox'
-                  className='mr-2'
-                  onChange={() => handleServices('UI/UX')}
-                />
+              <span className='p-3 border rounded-full bg-white flex items-center'>
+                <input type='checkbox' className='mr-2' />
                 <span className='text-customBlue font-semibold'>UI/UX</span>
               </span>
             </label>
 
             <label className='flex items-center '>
-              <span className='p-4 border rounded-full bg-white flex items-center'>
-                <input
-                  type='checkbox'
-                  className='mr-2'
-                  onChange={() => handleServices('Security')}
-                />
+              <span className='p-3 border rounded-full bg-white flex items-center'>
+                <input type='checkbox' className='mr-2' />
                 <span className='text-customBlue font-semibold'>Security</span>
               </span>
             </label>
 
             <label className='flex items-center '>
-              <span className='p-4 border rounded-full bg-white flex items-center'>
+              <span className='p-3 border rounded-full bg-white flex items-center'>
                 <input type='checkbox' className='mr-2' />
                 <span className='text-customBlue font-semibold'>
                   Consultation
@@ -408,12 +413,8 @@ function ProjectPal() {
             </label>
 
             <label className='flex items-center '>
-              <span className='p-4 border rounded-full bg-white flex items-center'>
-                <input
-                  type='checkbox'
-                  className='mr-2'
-                  onChange={() => handleServices('Branding')}
-                />
+              <span className='p-3 border rounded-full bg-white flex items-center'>
+                <input type='checkbox' className='mr-2' />
                 <span className='text-customBlue font-semibold'>Branding</span>
               </span>
             </label>
@@ -421,14 +422,15 @@ function ProjectPal() {
           <Link
             href=''
             onClick={handleBookProject}
-            className='flex gap-3 px-5 py-2 mt-3 w-fit bg-white text-[18px] laptop:text-[16px] text-customBlue rounded-3xl font-bold mb-2 transition-transform hover:scale-110'
+            className='flex items-center gap-3 px-5 py-3 mb-5 mt-5 w-fit bg-[#3F9BD5] text-[18px] laptop:text-[16px] text-white rounded-3xl font-bold transition-transform hover:scale-110 mx-auto'
           >
             Book a project
+            <BsArrowRight className='text-lg' />
           </Link>
-          <h4 className='text-lg'>
+          {/* <h4 className="text-lg text-center">
             For assistance with booking a meeting reach out to
-            <span className='text-[#F9D262] underline'> Customer Support.</span>
-          </h4>
+            <span className="text-[#F9D262] underline"> Customer Support.</span>
+          </h4> */}
         </span>
       </div>
     </>

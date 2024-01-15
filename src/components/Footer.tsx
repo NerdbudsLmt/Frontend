@@ -35,21 +35,21 @@ const Footer = () => {
               width={60}
               height={60}
             />
-            <div className=" ml-[-0.5rem] inline-block">
+            {/* <div className=" ml-[-0.5rem] inline-block">
               <h1 className="text-[0.7rem] font-bold text-center text-white lg:text-[1.1rem]">
                 You <span className="text-app-sblue">Dream.</span>
               </h1>
               <h1 className="text-[0.7rem] font-bold text-center text-white lg:text-[1.1rem]">
                 We <span className="text-[#F9D262]">Build.</span>
               </h1>
-            </div>
+            </div> */}
           </div>
           <div className="flex flex-col space-y-2 sm:ml-[3rem]  ">
             <p className="text-[#3F9BD5] text-lg font-bold">Products</p>
-            <Link href="/" className="text-neutral-300">
-              Pricing
+            <Link href="/pricing" className="text-neutral-300">
+              Services
             </Link>
-            <Link href="/" className="text-white">
+            <Link href="/project-pal" className="text-white">
               ProjectPal
             </Link>
           </div>
@@ -58,16 +58,16 @@ const Footer = () => {
             <Link href="/about" className="text-neutral-300">
               About Us
             </Link>
-            <Link href="/" className="text-neutral-300">
+            <Link href="/portfolio" className="text-neutral-300">
               Customers
             </Link>
-            <Link href="/" className="text-neutral-300">
+            <Link href="/portfolio" className="text-neutral-300">
               Brand
             </Link>
           </div>
           <div className="flex flex-col space-y-2  ">
             <p className="text-[#3F9BD5] text-lg font-bold">Resources</p>
-            <Link href="/" className="text-neutral-300">
+            <Link href="/contact" className="text-neutral-300">
               Contact
             </Link>
             <Link href="/" className="text-neutral-300">

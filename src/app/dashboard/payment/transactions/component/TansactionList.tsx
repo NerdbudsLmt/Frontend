@@ -4,6 +4,17 @@ import { Loader } from "@/app/dashboard/projects/existing/components/Loader";
 import Pagination from "@/components/Pagination";
 import { useSession } from "next-auth/react";
 import React, { useState, useEffect } from "react";
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+  TableContainer,
+} from "@chakra-ui/react";
 
 interface transactions {
   projectName: string;
@@ -15,8 +26,6 @@ interface transactions {
 }
 
 const TransactionsList = () => {
-
- 
   const { data: session } = useSession();
 
   const [loading, setLoading] = useState<boolean>(true);
@@ -76,6 +85,31 @@ const TransactionsList = () => {
     </tr>
   );
 
+  function getOrdinalSuffix(day: number): string {
+    if (day >= 11 && day <= 13) {
+      return "th";
+    }
+    switch (day % 10) {
+      case 1:
+        return "st";
+      case 2:
+        return "nd";
+      case 3:
+        return "rd";
+      default:
+        return "th";
+    }
+  }
+
+  function formatDate(inputDate: string): string {
+    const date = new Date(inputDate);
+    const day = date.getDate();
+    const month = date.toLocaleString("en-US", { month: "long" });
+    const year = date.getFullYear();
+    const suffix = getOrdinalSuffix(day);
+
+    return `${day}${suffix} ${month} ${year}`;
+  }
 
   return (
     <div className="max-w-[1000px]">
@@ -86,47 +120,53 @@ const TransactionsList = () => {
       </div>
 
       {loading ? (
-       <>
-        <Loader />
-       </>
-        
-      ) : 
-      project?.length === 0 ? (
+        <>
+          <Loader />
+        </>
+      ) : project?.length === 0 ? (
         <p className="text-app-pblue py-4 text-center text-lg font-bold">
           No project available
         </p>
       ) : (
-      <div className="mt-7 list-decimal  text-md">
-        <table className="w-full border-collapse">
-          <thead>{tableHeader}</thead>
-          <tbody>
-            {currentPosts?.map((item, index) => {
-              const transactionIndex = indexOfFirstPost + index + 1;
-
-              return (
-                <tr
-                  key={item._id}
-                  className="border-b-[2rem] border-white rounded-lg gap-4 bg-[#F5F4F4]"
-                >
-                  <td className="p-3">{`${transactionIndex}. ${item.projectName}`}</td>
-                  <td className="p-2">{item.amount}</td>
-                  <td className="p-1">{item.date}</td>
-                  <td
-                    className={`p-1 ${
-                      item.status === "Finished"
-                        ? "text-[#5583C3]"
-                        : "text-black"
-                    }`}
-                  >
-                    {item.status}
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-       )}
+        <>
+          <TableContainer>
+            <Table variant="simple">
+              <Thead>
+                <Tr  className="font-bold text-lg">
+                  <Th>Product/Service Name</Th>
+                  <Th>Amount</Th>
+                  <Th>Date</Th>
+                  <Th>Status</Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                {currentPosts?.map((item, index) => {
+                  const transactionIndex = indexOfFirstPost + index + 1;
+                  return (
+                    <Tr
+                      key={item._id}
+                      className="border-b-[2rem] border-white rounded-lg gap-4 bg-[#F5F4F4]"
+                    >
+                      <Td className="">{`${transactionIndex}. ${item.projectName}`}</Td>
+                      <Td className="">{item.amount}</Td>
+                      <Td className="">{formatDate(item.date)}</Td>
+                      <Td
+                        className={`p ${
+                          item.status === "Finished"
+                            ? "text-[#5583C3]"
+                            : "text-black"
+                        }`}
+                      >
+                        {item.status}
+                      </Td>
+                    </Tr>
+                  );
+                })}
+              </Tbody>
+            </Table>
+          </TableContainer>
+        </>
+      )}
 
       {project?.length >= 6 && (
         <Pagination
