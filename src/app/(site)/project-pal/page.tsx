@@ -382,7 +382,11 @@ function ProjectPal() {
           <div className='flex flex-wrap gap-4 bg-[#F5F4F4] p-4 mb-4 rounded-md'>
             <label className='flex items-center '>
               <span className='p-3 border rounded-full bg-white flex items-center'>
-                <input type='checkbox' className='mr-2' />
+                <input
+                  type='checkbox'
+                  className='mr-2'
+                  onChange={() => handleServices('Cloud Engineering')}
+                />
                 <span className='text-customBlue font-semibold'>
                   Cloud Engineering
                 </span>
@@ -391,21 +395,33 @@ function ProjectPal() {
 
             <label className='flex items-center '>
               <span className='p-3 border rounded-full bg-white flex items-center'>
-                <input type='checkbox' className='mr-2' />
+                <input
+                  type='checkbox'
+                  className='mr-2'
+                  onChange={() => handleServices('UI/UX')}
+                />
                 <span className='text-customBlue font-semibold'>UI/UX</span>
               </span>
             </label>
 
             <label className='flex items-center '>
               <span className='p-3 border rounded-full bg-white flex items-center'>
-                <input type='checkbox' className='mr-2' />
+                <input
+                  type='checkbox'
+                  className='mr-2'
+                  onChange={() => handleServices('Security')}
+                />
                 <span className='text-customBlue font-semibold'>Security</span>
               </span>
             </label>
 
             <label className='flex items-center '>
               <span className='p-3 border rounded-full bg-white flex items-center'>
-                <input type='checkbox' className='mr-2' />
+                <input
+                  type='checkbox'
+                  className='mr-2'
+                  onChange={() => handleServices('Consultation')}
+                />
                 <span className='text-customBlue font-semibold'>
                   Consultation
                 </span>
