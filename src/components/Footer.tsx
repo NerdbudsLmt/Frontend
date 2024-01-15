@@ -35,14 +35,14 @@ const Footer = () => {
               width={60}
               height={60}
             />
-            <div className=" ml-[-0.5rem] inline-block">
+            {/* <div className=" ml-[-0.5rem] inline-block">
               <h1 className="text-[0.7rem] font-bold text-center text-white lg:text-[1.1rem]">
                 You <span className="text-app-sblue">Dream.</span>
               </h1>
               <h1 className="text-[0.7rem] font-bold text-center text-white lg:text-[1.1rem]">
                 We <span className="text-[#F9D262]">Build.</span>
               </h1>
-            </div>
+            </div> */}
           </div>
           <div className="flex flex-col space-y-2 sm:ml-[3rem]  ">
             <p className="text-[#3F9BD5] text-lg font-bold">Products</p>
