@@ -151,7 +151,7 @@ export default function Contact() {
             >
               <AiFillInstagram className="text-[#fff] w-[20px] h-[20px]" />
             </a>
-           
+
             <a
               href="https://x.com/nerdbudsoffice?s=21"
               target="_blank"
@@ -176,7 +176,7 @@ export default function Contact() {
               height={20}
               // priority
             />
-            <span>+234 904 900 4960</span>
+            <span>+234 907 442 5813</span>
           </Link>
         </div>
       </div>
