@@ -425,45 +425,8 @@ function ProjectPal() {
           <h5 className="text-lg font-semibold mb-2">
             What services do you need?
           </h5>
-          <div className="flex flex-wrap gap-4 bg-[#F5F4F4] p-4 mb-4 rounded-md">
-            <label className="flex items-center ">
-              <span className="p-3 border rounded-full bg-white flex items-center">
-                <input type="checkbox" className="mr-2" />
-                <span className="text-customBlue font-semibold">
-                  Cloud Engineering
-                </span>
-              </span>
-            </label>
 
-            <label className="flex items-center ">
-              <span className="p-3 border rounded-full bg-white flex items-center">
-                <input type="checkbox" className="mr-2" />
-                <span className="text-customBlue font-semibold">
-                  Web Development
-                </span>
-              </span>
-            </label>
 
-            <label className="flex items-center ">
-              <span className="p-3 border rounded-full bg-white flex items-center">
-                <input type="checkbox" className="mr-2" />
-                <span className="text-customBlue font-semibold">
-                  Mobile App Development
-                </span>
-              </span>
-            </label>
-
-            <label className="flex items-center ">
-              <span className="p-3 border rounded-full bg-white flex items-center">
-                <input type="checkbox" className="mr-2" />
-                <span className="text-customBlue font-semibold">Security</span>
-              </span>
-            </label>
-
-            <label className="flex items-center ">
-              <span className="p-3 border rounded-full bg-white flex items-center">
-                <input type="checkbox" className="mr-2" />
-                <span className="text-customBlue font-semibold">
                   Consultation
                 </span>
               </span>
@@ -484,7 +447,7 @@ function ProjectPal() {
             Book a project
             <BsArrowRight className="text-lg" />
           </Link>
-          {/* <h4 className="text-lg text-center">
+          {/*<h4 className="text-lg text-center">
             For assistance with booking a meeting reach out to
             <span className="text-[#F9D262] underline"> Customer Support.</span>
           </h4> */}
