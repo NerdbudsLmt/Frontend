@@ -381,7 +381,7 @@ function ProjectPal() {
       <div className="flex flex-col md:flex-row justify-between mt-10">
         <div className="md:w-1/2">
           <p className="text-4xl md:text-6xl font-semibold ml-2 md:ml-0 text-[#3F9BD5]">
-            Become a <span className="text-[#F9D262]">Nerd Affiliate</span>
+            Become an <span className="text-[#F9D262]">Affiliate</span>
           </p>
         </div>
         <div className="md:w-1/2 mt-5 md:mt-0">
