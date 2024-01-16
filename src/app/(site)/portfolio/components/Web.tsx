@@ -6,7 +6,7 @@ export const Web = () => {
       <Work
         title="Focused, Active Management of High-Growth Digital Asset"
         bg="linear-gradient(180deg, #16181D 3.12%, #4C515F 56.25%)"
-        content="Trade Bitcoin with confidence. Our secure software company ensures a safe and reliable platform for seamless Bitcoin transactions."
+        content="Buy, Sell and Trade Bitcoin with confidence. Our secure software company ensures a safe and reliable platform for seamless Bitcoin transactions."
         img="/images/bit.svg"
         btn="#1A1C22"
         name="Crypto & Mining"
