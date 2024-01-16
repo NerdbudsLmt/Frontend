@@ -20,6 +20,8 @@ import {
   MenuDivider,
   MenuItem,
   MenuList,
+  SkeletonCircle,
+  Skeleton,
 } from "@chakra-ui/react";
 import { FiHome, FiSettings, FiMenu } from "react-icons/fi";
 import { RxDashboard } from "react-icons/rx";
@@ -300,7 +302,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
       height="20"
       alignItems="center"
       bg="white"
-      flexWrap={'wrap'}
+      flexWrap={"wrap"}
       justifyContent={{ base: "space-between", md: "space-between" }}
       {...rest}
     >
@@ -309,30 +311,41 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         onClick={onOpen}
         variant="outline"
         aria-label="open menu"
-        mb={'2'}
+        mb={"2"}
         icon={<FiMenu />}
       />
-      <div
-        // href="#team"
-        className="hidden tablet:flex items-center text-[.75rem] mx-0 font-semibold space-x-2 border-2 border-app-pblue text-app-pblue py-1 px-5 rounded-full"
-      >
-        <span>{formattedDate}</span>
-        <PiCalendarBlankBold className="text-xl" />
-      </div>
+      {!formattedDate ? (
+        <Skeleton
+          className="border-2 border-[#B1AFAF] rounded-full py-2 w-[13rem]"
+          h="30px"
+        />
+      ) : (
+        <div className="hidden tablet:flex items-center text-[.75rem] mx-0 font-semibold space-x-2 border-2 border-app-pblue text-app-pblue py-1 px-5 rounded-full">
+          <span>{formattedDate}</span>
+          <PiCalendarBlankBold className="text-xl" />
+        </div>
+      )}
 
       <div className="flex gap-4 items-center">
         <div className="flex gap-3 w-fit mx-auto items-center">
-          <div className="w-10 h-10 my-auto overflow-hidden rounded-full border-[1px] border-gray-400">
-            <Image
-              src={session?.user?.profilePicture}
-              className=" rounded-full "
-              alt="web"
-              width={50}
-              height={50}
-            />
-          </div>
+          {!session ? (
+            <SkeletonCircle size={"10"} />
+          ) : (
+            <div className="w-10 h-10 my-auto overflow-hidden rounded-full border-[1px] border-gray-400">
+              <Image
+                src={session?.user?.profilePicture}
+                className=" rounded-full "
+                alt="web"
+                width={50}
+                height={50}
+              />
+            </div>
+          )}
+
           <div>
-            <p className="text-app-sblue font-medium">{session?.user?.firstname} {session?.user?.lastname}</p>
+            <p className="text-app-sblue font-medium">
+              {session?.user?.firstname} {session?.user?.lastname}
+            </p>
             <p className="text-app-sblue text-[12px] font-medium">
               {session?.user.userType} Account
             </p>
@@ -382,11 +395,11 @@ export default function DashboardLayout({
         {children}
 
         <div className=" fixed p-6 right-3 bottom-1 ">
-        <TawkMessengerReact
-          propertyId="658beb0670c9f2407f83a50e"
-          widgetId="1hil8s5jb"
-        />
-      </div>
+          <TawkMessengerReact
+            propertyId="658beb0670c9f2407f83a50e"
+            widgetId="1hil8s5jb"
+          />
+        </div>
       </Box>
     </Box>
   );

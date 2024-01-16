@@ -12,7 +12,7 @@ interface projectList {
   projectName: string;
   description: string;
   status: string;
-  id: number;
+  _id: number;
   completedDate: string;
   projectPercentage: string;
 }
@@ -42,7 +42,7 @@ export default function ProProgress() {
           },
         });
         const data = await res.json();
-        
+
         data && setLoading(false);
         setProjectList(data.data.projects);
       } catch (error) {

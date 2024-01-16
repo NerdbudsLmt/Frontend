@@ -9,12 +9,17 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
+import { useSession } from "next-auth/react";
 import React from "react";
 import { CiBank } from "react-icons/ci";
 import { FaRegUserCircle } from "react-icons/fa";
 import { MdAlternateEmail } from "react-icons/md";
 
 const Profile = () => {
+  const { data: session }: any = useSession();
+
+  console.log(session?.user);
+
   return (
     <div>
       {" "}
@@ -64,14 +69,15 @@ const Profile = () => {
                 <Input
                   width={{ base: "full", md: "355px" }}
                   rounded={"lg"}
-                  placeholder="seanchinedu@gmail.com"
+                  placeholder={session?.user.email}
+                  isDisabled
                   focusBorderColor="#3F9BD5"
                 />
               </InputGroup>
             </FormControl>
-            <button className="text-white bg-[#3F9BD5]  rounded-[10px] px-[24px] py-[10px] h-[45px] md:inline-flex hidden">
+            {/* <button className="text-white bg-[#3F9BD5]  rounded-[10px] px-[24px] py-[10px] h-[45px] md:inline-flex hidden">
               Edit
-            </button>
+            </button> */}
           </HStack>
 
           <FormControl>
@@ -82,7 +88,8 @@ const Profile = () => {
               <Input
                 width={{ base: "full", md: "355px" }}
                 rounded={"lg"}
-                placeholder="Techbuds"
+                placeholder={session?.user.userType}
+                isDisabled
                 focusBorderColor="#3F9BD5"
               />
             </InputGroup>
@@ -105,9 +112,9 @@ const Profile = () => {
                 />
               </InputGroup>
             </FormControl>
-            <button className="text-white bg-[#3F9BD5] md:inline-flex hidden rounded-[10px] px-[24px] py-[10px] h-[45px]">
+            {/* <button className="text-white bg-[#3F9BD5] md:inline-flex hidden rounded-[10px] px-[24px] py-[10px] h-[45px]">
               Edit
-            </button>
+            </button> */}
           </HStack>
         </Stack>
       </Box>
