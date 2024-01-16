@@ -83,10 +83,9 @@ export default function Login() {
                     <input
                       type="text"
                       id="email"
-                      // name="email"
                       placeholder="nerdbudsltd@gmail.com"
                       {...formik.getFieldProps("email")}
-                      className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
+                      className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1 outline-none"
                     />
                     {formik.touched.email && formik.errors.email ? (
                       <div className="text-[red] text-[14px] italic">
@@ -111,7 +110,7 @@ export default function Login() {
                   // name="password"
                   placeholder="Password"
                   {...formik.getFieldProps("password")}
-                  className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
+                  className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 outline-none"
                 />
                 <div
                   className="absolute top-9 right-4"
