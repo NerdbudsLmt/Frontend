@@ -310,7 +310,7 @@ export default function About() {
                 <BsArrowRight className="text-md" />
               </Link>
               <a href="#" className="ml-4 hidden sm:inline">
-                or call <span className="underline">+234 904 900 4960</span>
+                or call <span className="underline">+234 907 442 5813</span>
               </a>
             </div>
           </div>
