@@ -70,19 +70,36 @@ function ProjectPal() {
     <>
       <header className="pt-10">
         <div className="flex flex-col items-center space-y-5 mb-16">
-          <div>
-            <Link
-              href="/login"
-              className="flex items-center space-x-2 border-2 border-app-sblue text-app-sblue py-1 px-10 rounded-full"
-            >
-              <>
-                <span>Get Started</span>
-                <BsArrowDown className="text-lg" />
-              </>
-            </Link>
+          <div className="flex flex-col items-center space-y-5 mb-16 sm:flex-row sm:items-center sm:space-y-0 sm:space-x-5">
+            <div>
+              <Link
+                href="/login"
+                className="flex items-center space-x-2 border-2 border-app-sblue text-white py-1 px-8 rounded-full"
+              >
+                <>
+                  <span>Get Started</span>
+                  <BsArrowDown className="text-lg" />
+                </>
+              </Link>
+            </div>
+            <div className="hidden sm:block">
+              <span className="mx-2">|</span>
+            </div>
+            <div>
+              <Link
+                href="/login"
+                className="flex items-center space-x-2 border-2 border-app-sblue text-white py-1 px-6 rounded-full"
+              >
+                <>
+                  <span>I’m an affiliate</span>
+                  <BsArrowRight className="text-lg" />
+                </>
+              </Link>
+            </div>
           </div>
+
           <div>
-            <h1 className="text-8xl font-bold text-center text-app-sblue">
+            <h1 className="text-5xl font-bold text-center mt-[-2rem]  lg:text-7xl text-app-sblue">
               Project <span className="text-[#F9D262]">Pal</span>
             </h1>
           </div>
@@ -309,7 +326,7 @@ function ProjectPal() {
           </div>
 
           <div className="flex items-center justify-center lg:w-[50%] order-first lg:order-last">
-            <h1 className="text-7xl font-bold text-[#F9D262] ">
+            <h1 className="text-4xl lg:text-7xl font-bold text-[#F9D262] ">
               Why Should You Use
               <span className="text-white"> Project Pal</span>
             </h1>
@@ -328,35 +345,64 @@ function ProjectPal() {
           </p>
         </div>
 
-        <div className="flex items-center justify-between mx-4 lg:mx-20 mb-8 lg:mb-20">
-          <Image
-            src="/images/Group 100888.png"
-            alt="comments"
-            width={271}
-            height={256}
-            priority
-            className="max-w-[30%] lg:max-w-none"
-          />
-          <Image
-            src="/images/Group 100890.png"
-            alt="comments"
-            width={271}
-            height={256}
-            priority
-            className="max-w-[30%] lg:max-w-none"
-          />
-          <Image
-            src="/images/Group 100892.png"
-            alt="comments"
-            width={271}
-            height={256}
-            priority
-            className="max-w-[30%] lg:max-w-none"
-          />
+        <div className="flex flex-col gap-4 sm:flex-row sm:space-x-0 space-y-8 sm:space-y-0 mt-5">
+          <div className="w-full sm:w-1/3 p-4 rounded-lg">
+            <Image
+              src="/images/Group 100888.png"
+              alt="comments"
+              width={410}
+              height={256}
+              priority
+              className="max-w-[100%] lg:max-w-none"
+            />
+          </div>
+          <div className="w-full sm:w-1/3 p-4 rounded-lg">
+            <Image
+              src="/images/Group 100890.png"
+              alt="comments"
+              width={410}
+              height={256}
+              priority
+              className="max-w-[100%] lg:max-w-none"
+            />
+          </div>
+          <div className="w-full sm:w-1/3 p-4 rounded-lg">
+            <Image
+              src="/images/Group 100892.png"
+              alt="comments"
+              width={410}
+              height={256}
+              priority
+              className="max-w-[100%] lg:max-w-none"
+            />
+          </div>
         </div>
       </div>
+      <div className="flex flex-col md:flex-row justify-between mt-10">
+        <div className="md:w-1/2">
+          <p className="text-4xl md:text-6xl font-semibold ml-2 md:ml-0 text-[#3F9BD5]">
+            Become a <span className="text-[#F9D262]">Nerd Affiliate</span>
+          </p>
+        </div>
+        <div className="md:w-1/2 mt-5 md:mt-0">
+          <p className="text-[1rem] ml-2 lg:text-[1.3rem]">
+            Earn money while you help your friends and peers by introducing them
+            to Project Pal. They get professional help on their various projects
+            while you are rewarded for helping them choose the right place for
+            their project needs.
+            <a
+              href="/"
+              className="flex items-center gap-2 px-5 py-2 mb-5 mt-5 w-fit ml-0 md:ml-0 bg-[#3F9BD5] text-[18px] laptop:text-[16px] text-white rounded-3xl font-bold transition-transform hover:scale-110 mx-auto"
+            >
+              Get Started
+              <BsArrowRight className="text-lg" />
+            </a>
+          </p>
+        </div>
+      </div>
+
       <div className="mx-auto max-w-3xl p-4 rounded-lg">
-        <h1 className="text-6xl font-bold mb-4 text-center">
+        <h1 className="text-4xl lg:text-7xl font-bold mb-4 text-center">
           Create a project
         </h1>
         <span>
