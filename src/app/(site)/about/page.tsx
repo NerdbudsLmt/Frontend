@@ -90,7 +90,7 @@ export default function About() {
           />
           <div className="h-fit">
             <p className=" text-app-sblue font-bold text-[1.15rem]">
-              Sean Chinedu
+              Sean Stevens
             </p>
             <p className="font-semibold">CEO and Founder</p>
           </div>
@@ -277,10 +277,17 @@ export default function About() {
           <span className="text-[#fff]"> our</span>
           <span className="text-[#F9D262]"> team </span>
         </p>
-        <p className="w-full tablet_l:w-[50%]">
+        <p className="w-full tablet_l:w-[50%] text-1xl">
           We believe it takes great people to make great product. That is why we
           hire not only professional fits but, people who embody our company
           values.
+          <Link
+            href="/jointeam"
+            className=" underline flex items-center gap-1 px-4 sm:px-4 py-2 w-fit ml-[-1rem] mt-4 text-[14px] laptop:text-[16px] transition-transform hover:scale-110"
+          >
+            See open positions
+            <BsArrowRight className="text-md" />
+          </Link>
         </p>
       </div>
 

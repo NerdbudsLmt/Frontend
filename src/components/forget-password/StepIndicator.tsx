@@ -6,9 +6,8 @@ const StepIndicator = ({ steps, step }: any) => {
       {[...Array(steps)].map((_, index) => (
         <div
           key={index}
+          className="lg:w-[100px] md:w-[90px] sm:w-[80px] w-[60px] h-[8px]"
           style={{
-            width: "100px",
-            height: 8,
             borderRadius: "10px",
             backgroundColor:
               index === step ? "#3F9BD5" : index < step ? "#fff" : "#fff",

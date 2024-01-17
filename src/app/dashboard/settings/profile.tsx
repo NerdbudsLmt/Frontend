@@ -9,11 +9,11 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
+import { useSession } from "next-auth/react";
 import React from "react";
 import { CiBank } from "react-icons/ci";
 import { FaRegUserCircle } from "react-icons/fa";
 import { MdAlternateEmail } from "react-icons/md";
-import { useSession } from "next-auth/react";
 
 const Profile = () => {
   const { data: session }: any = useSession();
@@ -45,6 +45,8 @@ const Profile = () => {
                 value={session?.user?.firstname}
                 focusBorderColor="#3F9BD5"
                 className="capitalize"
+                isDisabled
+
               />
             </InputGroup>
           </FormControl>
@@ -59,6 +61,7 @@ const Profile = () => {
                 // placeholder="Chinedu"
                 value={session?.user?.lastname}
                 className="capitalize"
+                isDisabled
                
                 focusBorderColor="#3F9BD5"
               />
@@ -73,8 +76,9 @@ const Profile = () => {
                 <Input
                   width={{ base: "full", md: "355px" }}
                   rounded={"lg"}
-                  value={session?.user?.email}
-                  focusBorderColor="#3F9BD5"                 
+                  placeholder={session?.user.email}
+                  isDisabled
+                  focusBorderColor="#3F9BD5"
                 />
               </InputGroup>
             </FormControl>
@@ -91,7 +95,8 @@ const Profile = () => {
               <Input
                 width={{ base: "full", md: "355px" }}
                 rounded={"lg"}
-                placeholder="Techbuds"
+                placeholder={session?.user.userType}
+                isDisabled
                 focusBorderColor="#3F9BD5"
                 fontStyle={'capitalize'}
               />
@@ -115,7 +120,7 @@ const Profile = () => {
                 />
               </InputGroup>
             </FormControl>
-            <button className="text-white bg-[#3F9BD5] md:inline-flex hidden rounded-[10px] px-[24px] py-[10px] h-[45px]">
+            {/* <button className="text-white bg-[#3F9BD5] md:inline-flex hidden rounded-[10px] px-[24px] py-[10px] h-[45px]">
               Edit
             </button>
           </HStack> */}

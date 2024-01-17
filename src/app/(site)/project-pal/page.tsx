@@ -73,7 +73,7 @@ function ProjectPal() {
           <div className="flex flex-col items-center space-y-5 mb-16 sm:flex-row sm:items-center sm:space-y-0 sm:space-x-5">
             <div>
               <Link
-                href="/login"
+                href="#propal"
                 className="flex items-center space-x-2 border-2 border-app-sblue text-white py-1 px-8 rounded-full"
               >
                 <>
@@ -391,7 +391,7 @@ function ProjectPal() {
             while you are rewarded for helping them choose the right place for
             their project needs.
             <a
-              href="/"
+              href="/affiliate"
               className="flex items-center gap-2 px-5 py-2 mb-5 mt-5 w-fit ml-0 md:ml-0 bg-[#3F9BD5] text-[18px] laptop:text-[16px] text-white rounded-3xl font-bold transition-transform hover:scale-110 mx-auto"
             >
               Get Started
@@ -400,8 +400,7 @@ function ProjectPal() {
           </p>
         </div>
       </div>
-
-      <div className="mx-auto max-w-3xl p-4 rounded-lg">
+      <div className="mx-auto max-w-3xl p-4 rounded-lg" id="propal">
         <h1 className="text-4xl lg:text-7xl font-bold mb-4 text-center">
           Create a project
         </h1>
