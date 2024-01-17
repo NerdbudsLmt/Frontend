@@ -16,12 +16,13 @@ import Password from "./password";
 import { Notification } from "./notification";
 import Profile from "./profile";
 
+
 const Settings = () => {
   const [currentPage, setCurrentPage] = useState("profile");
 
   return (
     <div>
-      <div className="flex items-center md:gap-2 gap-1">
+      <div className="flex items-center md:gap-2 gap-1 ">
         <h2 className="text-[#676767] md:text-[30px] text-[20px] font-[600]">
           settings
         </h2>
@@ -29,15 +30,16 @@ const Settings = () => {
         <h3 className="font-[600] text-[#363939] md:text-[30px] text-[20px]">
           {currentPage === "profile" && "Profile"}
           {currentPage === "password" && "Password"}
-          {currentPage === "notification" && "Notification"}
+          {/* {currentPage === "notification" && "Notification"} */}
         </h3>
       </div>
-      <div className="flex sm:flex-row flex-col gap-[5rem] mt-4">
+      <div className="flex w-full max-w-[900px] sm:flex-row flex-col gap-[3rem] flex-wrap mt-4">
         <Box
           bg="#F5F4F4"
           width={{ base: "full", md: "272px" }}
           height="243px"
           borderRadius="10px"
+          h={'fit-content'}
           p={3}
         >
           <Text fontSize="24px" fontWeight="500">
@@ -62,7 +64,7 @@ const Settings = () => {
               <BsKey />
               Password
             </span>
-            <span
+            {/* <span
               className={`flex items-center py-[10px] px-[12px] gap-2 cursor-pointer font-semibold ${
                 currentPage === "notification"
                   ? "bg-[#DCEBFF]"
@@ -72,12 +74,12 @@ const Settings = () => {
             >
               <BsBell />
               Notification
-            </span>
+            </span> */}
           </div>
         </Box>
         {currentPage === "profile" && <Profile />}
         {currentPage === "password" && <Password />}
-        {currentPage === "notification" && <Notification />}
+        {/* {currentPage === "notification" && <Notification />} */}
       </div>
     </div>
   );
