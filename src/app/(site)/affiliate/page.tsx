@@ -57,16 +57,16 @@ export default function ProjectPalAffiliate() {
           ProjectPal <span className=" text-[#F9D262]">Affiliate</span>
         </div>
         <p className=" w-[90%] sm:w-[75%] text-1xl lg:text-2xl text-center">
-          Unlock limitless earnings with Nerdbuds' Affiliate Program for Project
+          Unlock limitless earnings with Nerdbuds&apos; Affiliate Program for Project
           Pal! 🌟 Join our dynamic community of influencers and trendsetters who
           are turning their passion into profit. By referring friends to Project
-          Pal, you're not just sharing a fantastic product – you're building
+          Pal, you&apos;re not just sharing a fantastic product – you&apos;re building
           your own revenue stream.
         </p>{" "}
         <p className=" w-[90%] sm:w-[75%] text-1xl lg:text-2xl text-center">
           Earn generous commissions for every successful referral and watch your
-          income soar. It's simple: the more you share, the more you earn. Join
-          Nerdbuds' Affiliate Program now and embark on a journey where your
+          income soar. It&apos;s simple: the more you share, the more you earn. Join
+          Nerdbuds&apos; Affiliate Program now and embark on a journey where your
           network becomes your net worth. Seize this opportunity to make money
           while spreading the word about the innovative Project Pal! 💸🚀{" "}
         </p>
