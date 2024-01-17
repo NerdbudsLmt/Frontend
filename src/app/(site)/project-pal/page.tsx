@@ -7,61 +7,81 @@ import { BsArrowDown } from "react-icons/bs";
 import { BsArrowRight, BsArrowDownShort } from "react-icons/bs";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import useCustomToast from "@/components/Toast";
+import { Spinner } from "@chakra-ui/react";
 
+
+interface FormValues {
+  email: string;
+  description: string;
+  services: string[];
+}
+
+const servicesList: string[] = [
+  "Cloud Engineering",
+  "Web Development",
+  "Mobile App Development",
+  "Security",
+  "Consultation",
+  "Branding",
+];
 
 function ProjectPal() {
-  interface ProjectData {
-    email: string;
-    description: string;
-    services: string[];
-  }
+  const toast = useCustomToast();
+  const [loading, setLoading] = useState<boolean>(false);
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-  const [projectData, setProjectData] = useState<ProjectData>({
-    email: "",
-    description: "",
-    services: [],
+
+
+  const validationSchema = Yup.object().shape({
+    email: Yup.string().required("Email is required"),
+    description: Yup.string().required("Description is required"),
+    services: Yup.array().min(1, "Select at least one item"),
   });
 
-  const handleServices = (service: string) => {
-    const updatedServices = projectData.services.includes(service)
-      ? projectData.services.filter((s) => s !== service)
-      : [...projectData.services, service];
-
-    setProjectData({
-      ...projectData,
-      services: updatedServices,
-    });
-  };
-
-  const handleBookProject = async () => {
-    try {
-      const url = `${apiUrl}/projects`;
-
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(projectData),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log("Project booked successfully:", data);
-
-        setProjectData({
-          email: "",
-          description: "",
-          services: [],
+  const formik = useFormik<FormValues>({
+    initialValues: {
+      email: "",
+      description: "",
+      services: [],
+    },
+    validationSchema: validationSchema,
+    onSubmit: async (values) => {
+      try {
+        setLoading(true);
+        const res: any = await fetch(`${apiUrl}/contacted/projectpal`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values),
         });
-      } else {
-        console.error("Failed to book the project");
+        const data = await res.json();
+        if (res.status === 200) {
+          toast(
+            "Project created",
+            "success",
+            true,
+            2000,
+            data.data.message,
+            "top-right"
+          );
+          setLoading(false);
+          formik.resetForm();
+        } else {
+          toast("Failed", "error", true, 2000, data.message, "top-right");
+          console.error(res);
+          setLoading(false);
+        }
+      } catch (error) {
+        console.error("An error occurred:", error);
+        setLoading(false);
       }
-    } catch (error) {
-      console.error("An error occurred:", error);
-    }
-  };
+    },
+  });
+ 
+
+
 
   return (
     <>
@@ -397,7 +417,7 @@ function ProjectPal() {
           </p>
         </div>
       </div>
-      <div className="mx-auto max-w-3xl p-4 rounded-lg" id="propal">
+      <form onSubmit={formik.handleSubmit} className="mx-auto max-w-3xl p-4 rounded-lg" id="propal">
         <h1 className="text-4xl lg:text-7xl font-bold mb-4 text-center">
           Create a project
         </h1>
@@ -405,87 +425,83 @@ function ProjectPal() {
           <h5 className="text-lg font-semibold mb-2">Email</h5>
           <input
             className="w-full bg-[#F5F4F4] p-4 mb-4 rounded-md text-customBlue"
-            type="email"
-            name=""
             placeholder="example@gmail.com"
-            id=""
+            {...formik.getFieldProps("email")}
           />
+          {formik.touched.email && formik.errors.email ? (
+            <div className="text-[red] text-[14px] italic">
+              {formik.errors.email}
+            </div>
+          ) : null}
           <h5 className="text-lg font-semibold mb-2">
             Briefly describe your project
           </h5>
           <textarea
             className="w-full bg-[#F5F4F4] p-4 mb-4 rounded-md text-customBlue"
             placeholder="Enter a brief description of your project."
-            onClick={handleBookProject}
+            {...formik.getFieldProps("description")}
+            name="description"
           ></textarea>
+          {formik.touched.description && formik.errors.description ? (
+            <div className="text-[red] text-[14px] italic">
+              {formik.errors.description}
+            </div>
+          ) : null}
           <h5 className="text-lg font-semibold mb-2">
             What services do you need?
           </h5>
-          <div className="flex flex-wrap gap-4 bg-[#F5F4F4] p-4 mb-4 rounded-md">
-            <label className="flex items-center ">
-              <span className="p-3 border rounded-full bg-white flex items-center">
-                <input type="checkbox" className="mr-2" />
-                <span className="text-customBlue font-semibold">
-                  Cloud Engineering
-                </span>
-              </span>
-            </label>
-
-            <label className="flex items-center ">
-              <span className="p-3 border rounded-full bg-white flex items-center">
-                <input type="checkbox" className="mr-2" />
-                <span className="text-customBlue font-semibold">
-                  Web Development
-                </span>
-              </span>
-            </label>
-
-            <label className="flex items-center ">
-              <span className="p-3 border rounded-full bg-white flex items-center">
-                <input type="checkbox" className="mr-2" />
-                <span className="text-customBlue font-semibold">
-                  Mobile App Development
-                </span>
-              </span>
-            </label>
-
-            <label className="flex items-center ">
-              <span className="p-3 border rounded-full bg-white flex items-center">
-                <input type="checkbox" className="mr-2" />
-                <span className="text-customBlue font-semibold">Security</span>
-              </span>
-            </label>
-
-            <label className="flex items-center ">
-              <span className="p-3 border rounded-full bg-white flex items-center">
-                <input type="checkbox" className="mr-2" />
-                <span className="text-customBlue font-semibold">
-                  Consultation
-                </span>
-              </span>
-            </label>
-
-            <label className="flex items-center ">
-              <span className="p-3 border rounded-full bg-white flex items-center">
-                <input type="checkbox" className="mr-2" />
-                <span className="text-customBlue font-semibold">Branding</span>
-              </span>
-            </label>
+          <div className="flex gap-5 flex-wrap mt-4 p-4 bg-[#F5F4F4] rounded-md">
+            {servicesList.map((item) => (
+              <div
+                key={item}
+                className="flex bg-[#DCEBFF] py-2 px-4 rounded-full gap-2 text-black accent-app-pblue"
+              >
+                <input
+                  type="checkbox"
+                  name="items"
+                  className="h-4 w-4 m-auto"
+                  value={item}
+                  checked={formik.values.services.includes(item)}
+                  onChange={() => {
+                    const services = [...formik.values.services];
+                    if (services.includes(item)) {
+                      services.splice(services.indexOf(item), 1);
+                    } else {
+                      services.push(item);
+                    }
+                    formik.setFieldValue("services", services);
+                  }}
+                />
+                <label>{item}</label>
+              </div>
+            ))}
           </div>
-          <Link
-            href=""
-            onClick={handleBookProject}
+          {formik.touched.services && formik.errors.services ? (
+            <div className="text-[red] text-[14px] italic">
+              {formik.errors.services}
+            </div>
+          ) : null}
+
+         
+          <button
+            // href=""
+            type="submit"
+            // onClick={handleBookProject}
             className="flex items-center gap-3 px-5 py-3 mb-5 mt-5 w-fit bg-[#3F9BD5] text-[18px] laptop:text-[16px] text-white rounded-3xl font-bold transition-transform hover:scale-110 mx-auto"
           >
-            Book a project
+             {loading ? (
+              <Spinner />
+            ) : (
+              <span className="flex items-center gap-2">
+                 Book a project
             <BsArrowRight className="text-lg" />
-          </Link>
-          {/* <h4 className="text-lg text-center">
-            For assistance with booking a meeting reach out to
-            <span className="text-[#F9D262] underline"> Customer Support.</span>
-          </h4> */}
+              </span>
+            )}
+           
+          </button>
+         
         </span>
-      </div>
+      </form>
     </>
   );
 }
