@@ -5,24 +5,20 @@ import Link from "next/link";
 import Image from "next/image";
 import { BsArrowDown } from "react-icons/bs";
 import { BsArrowRight, BsArrowDownShort } from "react-icons/bs";
-// import { BiUser } from "react-icons/bi";
-// import { MdEmail } from "react-icons/md";
-// import {
-//   AiFillInstagram,
-//   AiOutlineTwitter,
-//   AiOutlineFileText,
-//   AiFillLinkedin,
-// } from "react-icons/ai";
-// import { BsFacebook, BsTelephone } from "react-icons/bs";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+
 
 function ProjectPal() {
   interface ProjectData {
+    email: string;
     description: string;
     services: string[];
   }
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   const [projectData, setProjectData] = useState<ProjectData>({
+    email: "",
     description: "",
     services: [],
   });
@@ -55,6 +51,7 @@ function ProjectPal() {
         console.log("Project booked successfully:", data);
 
         setProjectData({
+          email: "",
           description: "",
           services: [],
         });
@@ -410,7 +407,7 @@ function ProjectPal() {
             className="w-full bg-[#F5F4F4] p-4 mb-4 rounded-md text-customBlue"
             type="email"
             name=""
-            placeholder="seanchinedu@gmail.com"
+            placeholder="example@gmail.com"
             id=""
           />
           <h5 className="text-lg font-semibold mb-2">

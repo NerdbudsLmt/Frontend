@@ -343,7 +343,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
           )}
 
           <div>
-            <p className="text-app-sblue font-medium">
+            <p className="text-app-sblue font-medium capitalize">
               {session?.user?.firstname} {session?.user?.lastname}
             </p>
             <p className="text-app-sblue text-[12px] font-medium">
