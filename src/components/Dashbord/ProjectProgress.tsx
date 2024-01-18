@@ -12,7 +12,7 @@ interface ProjectList {
   projectName: string;
   description: string;
   status: string;
-  id: number;
+  _id: number;
   completedDate: string;
   projectPercentage: string;
 }
@@ -27,7 +27,7 @@ const ProjectProgress: React.FC<ProjectProgressProps> = ({ item }) => {
     projectName,
     description,
     status,
-    id,
+    _id: id,
     completedDate: deadlineDate,
     projectPercentage: percentage,
   } = item;
@@ -54,7 +54,7 @@ const ProjectProgress: React.FC<ProjectProgressProps> = ({ item }) => {
       <div className="flex gap-4 flex-wrap justify-between">
         <p className="font-bold text-2xl">{projectName}</p>
         <Link
-          href="/dashboard/projects/projectdetails"
+          href={`/dashboard/projects/projectdetails/${id}`}
           className="underline font-semibold  text-gray-500"
         >
           View project progress

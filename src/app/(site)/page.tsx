@@ -60,7 +60,7 @@ export default function Home() {
 
       <div className=" text-center my-20">
         <p className=" my-5 ">
-          <span className="text-white font-[600] text-lg leading-6 tracking-tight ">
+          <span className="text-white font-[600] text-3xl leading-6 tracking-tight ">
             Welcome to
           </span>
           <span className="text-[#3F9BD5]  font-[600] text-[32px] leading-6 tracking-tighter">
@@ -71,7 +71,7 @@ export default function Home() {
             buds
           </span>
         </p>
-        <p className="text-white text-center font-medium">
+        <p className="text-white text-[1.6rem] text-center font-medium ">
           Explore the prestige of Nerdbuds, a leading software company shaped by
           the expertise and <br /> dedication of founding partners. Our
           meticulously skilled team transforms your ideas into reality <br />{" "}

@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useRef, useMemo } from "react";
+import { useState } from "react";
 // import { useTheme } from "next-themes";
 import cn from "clsx";
 import { signIn, signOut, useSession } from "next-auth/react";
