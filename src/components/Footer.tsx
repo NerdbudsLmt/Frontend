@@ -27,16 +27,16 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="py-10 grid grid-cols-2 md:grid-cols-4 ml-5 lg:grid-cols-3 xl:grid-cols-4 gap-y-5 md:gap-y-4 lg:gap-y-4 xl:gap-y-0">
+        <div className="py-10 grid grid-cols-2 md:grid-cols-4 ml-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-5 md:gap-y-4 lg:gap-y-4 xl:gap-y-0">
           <div>
             <Image
-              className=" sm:w-[8rem] sm:ml-[4rem] sm:mt-[-2rem] mt-[0.3rem] md:sm:ml-[0rem] inline "
+              className=" ml-[-1.4rem] sm:w-[8rem] sm:ml-[1rem] sm:mt-[-2rem] mt-[-1rem] md:sm:ml-[0rem] inline "
               src="/images/footer logo.png"
               alt=""
-              width={60}
-              height={60}
+              width={120}
+              height={120}
             />
-            <div className=" ml-[-0.5rem] inline-block">
+            <div className=" ml-[-0.7rem] inline-block">
               <h1 className="text-[0.7rem] font-bold text-center text-white lg:text-[1.1rem]">
                 You <span className="text-app-sblue">Dream.</span>
               </h1>
@@ -72,7 +72,7 @@ const Footer = () => {
               Contact
             </Link>
             <Link href="/" className="text-neutral-300">
-              Terms Of Service
+              Terms and Conditions
             </Link>
             <Link href="/" className="text-neutral-300">
               Private Policy
