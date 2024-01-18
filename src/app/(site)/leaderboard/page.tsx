@@ -12,7 +12,7 @@ export default function LeaderBoard() {
         <div className='flex flex-col items-center space-y-5 mb-16'>
           <div className='flex '>
             <Link
-              href='/terms-conditions'
+              href='/'
               className='flex items-center space-x-2 border-2 border-app-sblue text-app-sblue py-1 px-10 rounded-full'
             >
               <>
@@ -22,7 +22,7 @@ export default function LeaderBoard() {
             </Link>
             <div className='border-r border-gray-400 h-full mx-8'></div>
             <Link
-              href='/terms-conditions'
+              href='/affiliate'
               className='flex items-center space-x-2 border-2 border-app-sblue text-app-sblue py-1 px-10 rounded-full'
             >
               <>

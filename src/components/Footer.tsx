@@ -69,8 +69,7 @@ const Footer = () => {
           <div className='flex flex-col space-y-2  '>
             <p className='text-[#3F9BD5] text-lg font-bold'>Resources</p>
 
-            {/* <Link href="/contact" className="text-neutral-300"> */}
-            <Link href='/leaderboard' className='text-neutral-300'>
+            <Link href='/contact' className='text-neutral-300'>
               Contact
             </Link>
             <Link href='/terms-conditions' className='text-neutral-300'>
