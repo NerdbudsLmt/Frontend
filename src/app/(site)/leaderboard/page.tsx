@@ -207,8 +207,6 @@ export default function LeaderBoard() {
                 </tr>
               ))}
             </tbody>
-
-           
           </table>
           <Pagination
             postsPerPage={postsPerPage}
