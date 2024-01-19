@@ -1,11 +1,56 @@
-import React from 'react'
+'use client'
+
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { BsArrowDown, BsArrowLeft } from 'react-icons/bs'
 import { BsArrowRight, BsArrowDownShort } from 'react-icons/bs'
 import { AiOutlineSearch } from 'react-icons/ai'
+import Pagination from '@/components/Pagination'
+
+interface User {
+  username: string
+  referrals: number
+  earnings: number
+}
+
+interface PaginationProps {
+  currentPage: number
+  postsPerPage: number
+  totalPosts: number
+  paginate: (number: any) => void
+  paginateFront: () => void
+  paginateBack: () => void
+}
 
 export default function LeaderBoard() {
+  const [currentPage, setCurrentPage] = useState(1)
+  const [postsPerPage] = useState(10)
+  const [displayedItems, setDisplayedItems] = useState<User[]>([])
+
+  useEffect(() => {
+    const url = 'adhbwwfewifw'
+
+    const fetchData = async () => {
+      try {
+        const res = await fetch(url)
+        const data = res.json()
+
+        // setDisplayedItems(user)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchData()
+  }, [])
+
+  const indexOfLastPost = currentPage * postsPerPage
+  const indexOfFirstPost = indexOfLastPost - postsPerPage
+  const currentPosts = displayedItems?.slice(indexOfFirstPost, indexOfLastPost)
+
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber)
+  const paginateFront = () => setCurrentPage(currentPage + 1)
+  const paginateBack = () => setCurrentPage(currentPage - 1)
   return (
     <>
       <header className='pt-10'>
@@ -142,19 +187,37 @@ export default function LeaderBoard() {
               </tr>
             </thead>
             <tbody>
-              {[...Array(10)].map((_, index) => (
-                <tr key={index} className={index % 2 === 0 ? '' : ''}>
-                  <td className='py-2 px-4 text-#205584'>{`User${
-                    index + 1
-                  }`}</td>
-                  <td className='py-2 px-4 text-#205584'>{index + 1}</td>
-                  <td className='py-2 px-4 text-#205584'>{`$${
-                    (index + 1) * 1000
-                  }`}</td>
+              {currentPosts.map((user, index) => (
+                <tr key={index}>
+                  <td className='py-2 px-4 text-[#205584] flex items-center'>
+                    <div className='bg-[#D9D9D9] rounded-full p-2 mr-2'>
+                      <Image
+                        alt=''
+                        src='./images/userProfile.svg'
+                        width={10}
+                        height={10}
+                        priority
+                        className='rounded-full'
+                      />
+                    </div>
+                    {user.username}
+                  </td>
+                  <td className='py-2 px-4 text-#205584'>{user.referrals}</td>
+                  <td className='py-2 px-4 text-#205584'>{`$${user.earnings.toLocaleString()}`}</td>
                 </tr>
               ))}
             </tbody>
+
+           
           </table>
+          <Pagination
+            postsPerPage={postsPerPage}
+            totalPosts={displayedItems?.length}
+            currentPage={currentPage}
+            paginateBack={paginateBack}
+            paginateFront={paginateFront}
+            paginate={paginate}
+          />
         </div>
       </section>
     </>

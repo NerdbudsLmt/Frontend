@@ -1,23 +1,21 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import HeaderComponent from './Components/HeaderComponent'
-import Image from 'next/image'
-import { BsArrowDown, BsArrowLeft } from 'react-icons/bs'
-import { BsArrowRight, BsArrowDownShort } from 'react-icons/bs'
+
 
 export default function privacyPolicy() {
   return (
     <>
       <HeaderComponent />
-      <section className=' flex justify-center mx-auto flex-col w-[70%] mb-28'>
+      <section className=' flex justify-center mx-auto flex-col lg:w-[70%] w-90%  mb-28'>
         <h1 className=' text-[#F9D262] text-3xl text-left mb-4'>
           Privacy Policy for nerdbuds
         </h1>
         <p className='text-xl mb-4'>
-          Nerdbuds Ltd, hereinafter referred to as "Nerdbuds," is committed to
-          ensuring the privacy and security of personal information collected
-          from clients and users of our website. This Privacy Policy outlines
-          how we collect, use, disclose, and protect your information.
+          Nerdbuds Ltd, hereinafter referred to as &quot;Nerdbuds,&quot; is
+          committed to ensuring the privacy and security of personal information
+          collected from clients and users of our website. This Privacy Policy
+          outlines how we collect, use, disclose, and protect your information.
         </p>
         <div>
           <h1 className='text-[#F9D262] text-3xl mb-2'>
@@ -137,4 +135,3 @@ export default function privacyPolicy() {
     </>
   )
 }
-

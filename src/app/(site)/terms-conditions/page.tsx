@@ -5,7 +5,7 @@ export default function TermsConditions() {
   return (
     <>
       <HeaderComponent />
-      <section className=' flex justify-center mx-auto flex-col w-[70%] mb-28'>
+      <section className=' flex justify-center mx-auto flex-col lg:w-[70%] w-90% mb-28'>
         <h1 className='text-[#F9D262] text-3xl mb-2'>1. Acceptance of Terms</h1>
         <p className='text-xl mb-6'>
           By engaging with Nerdbuds, here in after you agree to comply with and
