@@ -54,7 +54,7 @@ export default function privacyPolicy() {
           </h3>
           <p className='text-xl mb-4'>
             Non-personal information is used for website analytics and to
-            improve our website's functionality and content.
+            improve our website&apos;s functionality and content.
           </p>
           <h3 className='text-2xl mb-2 text-[#F9D262] '>2.3. Marketing</h3>
           <p className='text-xl mb-6'>
