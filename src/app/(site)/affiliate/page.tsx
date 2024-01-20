@@ -7,6 +7,7 @@ import * as Yup from "yup";
 import Image from "next/image";
 import { useFormik } from "formik";
 import useCustomToast from "@/components/Toast";
+import { Spinner } from "@chakra-ui/react";
 
 interface AffiliateDate {
   username: string;
@@ -16,6 +17,7 @@ interface AffiliateDate {
 export default function ProjectPalAffiliate() {
   const [isStudent, setIsStudent] = useState<null | boolean>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const toast = useCustomToast();
 
@@ -24,6 +26,7 @@ export default function ProjectPalAffiliate() {
   };
 
   const validationSchema = Yup.object().shape({
+    username: Yup.string().required("Username is required"),
     email: Yup.string().email("Invalid email").required("Email is required"),
   });
 
@@ -46,10 +49,13 @@ export default function ProjectPalAffiliate() {
       });
       const data = await res.json();
       try {
+        setIsLoading(true);
         if (res.status === 200) {
           setIsModalOpen(true);
-        } else if (res.status === 201) {
+          setIsLoading(false);
+        } else if (res.status === 401 || 400) {
           setIsModalOpen(false);
+          setIsLoading(false);
           toast("Error", "error", true, 2000, data.message, "top-right");
         }
       } catch (error: any) {
@@ -101,22 +107,30 @@ export default function ProjectPalAffiliate() {
           must be filled
         </p>
         <form onSubmit={formik.handleSubmit}>
-          <h5 className="text-lg font-semibold mb-2">
-            Username<span className=" text-[#E74242]">*</span>
-          </h5>
-          <input
-            className="w-[100%] sm:w-[100%] bg-[#F5F4F4] p-4 mb-4 rounded-md text-black"
-            type="text"
-            placeholder="jonathandoe"
-            id=""
-            {...formik.getFieldProps("username")}
-          />
-          <div>
+          <div className="mb-4 ">
+            <h5 className="text-lg font-semibold mb-2">
+              Username<span className=" text-[#E74242]">*</span>
+            </h5>
+            <input
+              className="w-[100%] sm:w-[100%] bg-[#F5F4F4] p-4 rounded-md text-black"
+              type="text"
+              placeholder="jonathandoe"
+              id=""
+              {...formik.getFieldProps("username")}
+            />
+            {formik.touched.username && formik.errors.username ? (
+              <div className="text-[red] text-[14px] italic">
+                {formik.errors.username}
+              </div>
+            ) : null}
+          </div>
+
+          <div className="mb-4">
             <h5 className="text-lg font-semibold mb-2">
               Email<span className=" text-[#E74242]">*</span>
             </h5>
             <input
-              className="w-[100%] sm:w-[100%] bg-[#F5F4F4] p-4 mb-4 rounded-md text-black"
+              className="w-[100%] sm:w-[100%] bg-[#F5F4F4] p-4  rounded-md text-black"
               type="text"
               placeholder="johndoe@gmail.com"
               id=""
@@ -190,13 +204,12 @@ export default function ProjectPalAffiliate() {
           </div>
           <button
             type="submit"
-            className={`flex items-center gap-3 px-8 py-2 mb-20 mt-5 w-fit bg-[#3F9BD5] text-[18px] laptop:text-[16px] text-white rounded-3xl font-bold transition-transform hover:scale-110 mx-auto ${
-              formik.touched.email && formik.errors.email
-                ? ""
-                : "opacity-50 cursor-not-allowed"
-            }`}
+            className={
+              "flex items-center gap-3 px-8 py-2 mb-20 mt-5 w-fit bg-[#3F9BD5] text-[18px] laptop:text-[16px] text-white rounded-3xl font-bold transition-transform hover:scale-110 mx-auto "
+            }
+            disabled={isLoading}
           >
-            Proceed
+            {isLoading ? <Spinner /> : "Proceed"}
           </button>
         </form>
       </div>
