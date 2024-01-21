@@ -57,6 +57,10 @@ export default function Student() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+     // Retrieve refId from local storage
+  const storedRefId = localStorage.getItem('refId');
+  console.log('refId', storedRefId);
+
 
 
   // Initialize Formik for managing form state and validation.
@@ -79,7 +83,7 @@ export default function Student() {
 
         const parsedToken = token?.replace(/"/g, "") || null;
 
-        console.log(parsedToken);
+        // console.log(parsedToken);
 
         const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
