@@ -25,9 +25,14 @@ interface CompanyFormValues {
   universityEmail: string;
   universityRegNo: string;
   semester: string;
-  hearaboutus: string;
-  proofOfIdentification: string | null;
-  affiliateUsername: string;
+  howDidYouHear: {
+    options: string;
+    details: {
+      refId: string | null;
+      socialMedia: string;
+    };
+  };
+  proofOfIdentification: File | null;
 }
 
 // Define validation schema using Yup
@@ -42,6 +47,8 @@ const validationSchema = Yup.object().shape({
     .required("Email is required"),
   universityRegNo: Yup.string().required("universityRegNo number is required"),
   semester: Yup.string().required("semester is required"),
+  options: Yup.string().required("Choose one"),
+  socialMedia: Yup.string().required("Choose one"),
   proofOfIdentification: Yup.mixed()
     .required("Image is required")
     .test("fileSize", "File size must be less than 1MB", (value) =>
@@ -61,7 +68,7 @@ export default function Student() {
 
   // Retrieve refId from local storage
   const storedRefId = localStorage.getItem("refId");
-  console.log("refId", storedRefId);
+  // console.log("refId", storedRefId);
 
   // Initialize Formik for managing form state and validation.
   const formik = useFormik<CompanyFormValues>({
@@ -74,9 +81,15 @@ export default function Student() {
       universityEmail: "",
       universityRegNo: "",
       semester: "",
-      hearaboutus: "",
+      howDidYouHear: {
+        options: "",
+        details: {
+          refId: storedRefId,
+          socialMedia: "",
+        },
+      },
       proofOfIdentification: null,
-      affiliateUsername: "",
+      
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
@@ -97,13 +110,12 @@ export default function Student() {
 
         Object.entries(values).forEach(([key, value]) => {
           // Skip appending the proofOfIdentification field if it's null
-          if (key === 'proofOfIdentification' && value === null) {
+          if (key === "proofOfIdentification" && value === null) {
             return;
           }
           formData.append(key, value);
         });
 
-        
         const res = await fetch(`${apiUrl}/users/student`, {
           method: "PUT",
           headers: {
@@ -112,6 +124,7 @@ export default function Student() {
           },
           body: JSON.stringify(formData),
         });
+        console.log(formData)
         setIsLoading(true);
 
         const data = await res.json();
@@ -137,7 +150,6 @@ export default function Student() {
         console.error("Error:", (error as Error).message);
         toast("Error", "error", true, 2000, error, "top-right");
         setIsLoading(false);
-
       }
     },
   });
@@ -396,40 +408,69 @@ export default function Student() {
                   </label>
 
                   <select
-                    {...formik.getFieldProps("hearaboutus")}
+                    {...formik.getFieldProps("howDidYouHear.options")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
                   >
-                    <option value={"affiliate"}>An Affiliate</option>
-                    <option value={"online"}>Online Ad</option>
+                    <option>Option</option>
+                    <option value={"An affiliate"}>An Affiliate</option>
+                    <option value={"socialMedia"}>Social Media</option>
                     <option value={"friend"}>A friend</option>
                   </select>
-                  {formik.touched.hearaboutus && formik.errors.hearaboutus ? (
+                  {formik.touched.howDidYouHear?.options && formik.errors.howDidYouHear?.options ? (
                     <div className="text-[red] text-[14px] italic">
-                      {formik.errors.hearaboutus}
+                      {formik.errors.howDidYouHear?.options}
                     </div>
                   ) : null}
                 </div>
               </div>
-              {formik.values.hearaboutus === "affiliate" && (
+              {formik.values.howDidYouHear?.options === "An affiliate" && (
                 <div className="">
                   <div className="my-3">
                     <label
-                      htmlFor="affiliateUsername"
+                      htmlFor="refId"
                       className="block text-gray-300 text-[16px]"
                     >
                       Affiliate Name
                     </label>
                     <input
                       type="text"
-                      id="affiliateUsername"
+                      id="howDidYouHear.details.refId"
                       placeholder="Affiliate username"
-                      {...formik.getFieldProps("affiliateUsername")}
+                      defaultValue={formik.values.howDidYouHear?.details?.refId ?? storedRefId!}
+                      readOnly
+                      {...formik.getFieldProps("howDidYouHear.details.refId")}
                       className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
                     />
-                    {formik.touched.affiliateUsername &&
-                    formik.errors.affiliateUsername ? (
+                   {formik.touched.howDidYouHear?.details?.refId && formik.errors.howDidYouHear?.details?.refId ? (
                       <div className="text-[red] text-[14px] italic">
-                        {formik.errors.affiliateUsername}
+                        {formik.errors.howDidYouHear?.details?.refId}
+                      </div>
+                    ) : null}
+                  </div>
+                </div>
+              )}
+
+              {formik.values.howDidYouHear.options === "socialMedia" && (
+                <div className="">
+                  <div className="my-3">
+                    <label
+                      htmlFor="howDidYouHear.details.socialMedia"
+                      className="block text-gray-300 text-[16px]"
+                    >
+                      Social Media
+                    </label>
+                    <select
+                     {...formik.getFieldProps("howDidYouHear.details.socialMedia")}
+                      className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
+                    >
+                      <option>Option</option>
+                      <option value={"Twitter"}>Twitter</option>
+                      <option value={"Instagram"}>Instagram</option>
+                      <option value={"Snapchat"}>Snapchat</option>
+                    </select>
+                    {formik.touched.howDidYouHear?.details?.socialMedia && formik.errors.howDidYouHear?.details?.socialMedia ? (
+                      <div className="text-[red] text-[14px] italic">
+                        {formik.errors.howDidYouHear?.details?.socialMedia}
                       </div>
                     ) : null}
                   </div>
