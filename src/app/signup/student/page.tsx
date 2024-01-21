@@ -89,10 +89,19 @@ export default function Student() {
 
         const formData = new FormData();
         // Iterate through form values and append them to formData
+        // Object.entries(values).forEach(([key, value]) => {
+        //   formData.append(key, value);
+        // });
+
         Object.entries(values).forEach(([key, value]) => {
+          // Skip appending the proofOfIdentification field if it's null
+          if (key === 'proofOfIdentification' && value === null) {
+            return;
+          }
           formData.append(key, value);
         });
 
+        
         const res = await fetch(`${apiUrl}/users/student`, {
           method: "PUT",
           headers: {
@@ -126,7 +135,6 @@ export default function Student() {
       } catch (error: any) {
         console.error("Error:", (error as Error).message);
         toast("Error", "error", true, 2000, error, "top-right");
-        
         setIsLoading(false);
 
       }
