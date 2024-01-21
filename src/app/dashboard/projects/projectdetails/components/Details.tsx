@@ -74,7 +74,7 @@ export const ProjectDetails: React.FC<ProjectProgressProps> = ({ params }) => {
       </div>
 
       <div className="md:w-[50rem] w-full h-[60rem] border-3 border-[#B1AFAF] rounded-[1.5rem]">
-        <div className="md:w-[50rem] w-full h-[13rem] bg-[#205584] rounded-t-[1.5rem] ml-[-0.2rem] mt-[-0.2rem]">
+        <div className="md:w-[50rem] w-full h-[13rem] bg-[#205584] rounded-t-[1.5rem]">
           <p className="sm:text-[2.5rem] text-[1.5rem] text-center text-[#fff] font-semibold pt-[2.5rem] ">
             {details?.projectName}
           </p>
