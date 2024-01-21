@@ -93,9 +93,9 @@ function ProjectPal() {
                 </>
               </Link>
             </div>
-            <div className='hidden sm:block'>
-              <span className='mx-2'>|</span>
-            </div>
+            
+            <div className='border-r border-gray-400 h-10 mx-8'></div>
+
             <div>
               <Link
                 href='/affiliate'

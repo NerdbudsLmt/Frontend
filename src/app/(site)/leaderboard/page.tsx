@@ -54,8 +54,8 @@ export default function LeaderBoard() {
   return (
     <>
       <header className='pt-10'>
-        <div className='flex flex-col items-center space-y-5 mb-16'>
-          <div className='flex '>
+        <div className='flex flex-col items-center space-y-5 mb-16 '>
+          <div className='flex flex-col items-center gap-4 tablet:flex-row tablet:gap-0 lg:flex-row lg:gap-0'>
             <Link
               href='/'
               className='flex items-center space-x-2 border-2 border-app-sblue text-app-sblue py-1 px-10 rounded-full'
@@ -65,7 +65,7 @@ export default function LeaderBoard() {
                 <BsArrowDown className='text-lg' />
               </>
             </Link>
-            <div className='border-r border-gray-400 h-full mx-8'></div>
+            <div className='border-r border-gray-400 h-10 mx-4 hidden tablet:block lg:block'></div>
             <Link
               href='/affiliate'
               className='flex items-center space-x-2 border-2 border-app-sblue text-app-sblue py-1 px-10 rounded-full'
@@ -77,7 +77,7 @@ export default function LeaderBoard() {
             </Link>
           </div>
           <div>
-            <h1 className='text-8xl font-bold text-center text-app-sblue'>
+            <h1 className='text-5xl font-bold text-center text-app-sblue lg:text-7xl'>
               Leader<span className='text-[#F9D262]'>Board</span>
             </h1>
           </div>
@@ -90,15 +90,15 @@ export default function LeaderBoard() {
           </div>
         </div>
       </header>
-      <div className=' flex items-center justify-center mx-auto'>
+      {/* <div className=' flex items-center justify-center mx-auto'>
         <div className='bg-white rounded-md p-4'>
           <span className='flex items-end mb-4'>
             <div className='bg-[#D9D9D9] rounded-full p-2 relative'>
               <Image
                 alt=''
                 src='./images/userProfile.svg'
-                width={100}
-                height={100}
+                width={80}
+                height={80}
                 priority
                 className='rounded-full'
               />
@@ -117,8 +117,8 @@ export default function LeaderBoard() {
               <Image
                 alt=''
                 src='./images/userProfile.svg'
-                width={100}
-                height={100}
+                width={80}
+                height={80}
                 priority
                 className='rounded-full'
               />
@@ -137,24 +137,87 @@ export default function LeaderBoard() {
               <Image
                 alt=''
                 src='./images/userProfile.svg'
-                width={100}
-                height={100}
+                width={60}
+                height={60}
                 priority
                 className='rounded-full'
               />
               <p className='bg-[#132E40] rounded-full text-sm absolute bottom-[-0.5] right-10 px-3 py-1 font-bold w-6 h-6 flex items-center justify-center'>
                 3
               </p>
-              {/* <p className='bg-[#132E40] rounded-full text-sm absolute bottom-[0] right-10 px-2 py-1 font-bold'>
-                3
-              </p> */}
+              
             </div>
           </span>
           <h1 className='text-[#132E40] font-bold'>N34,000,000</h1>
           <p className='text-[#132E40] font-bold'>300,000 referrals</p>
           <p className='text-[#132E40] font-normal'>@jondoe</p>
         </div>
+      </div> */}
+      <div className='flex items-center justify-center mx-auto'>
+        <div className='bg-white rounded-md p-2'>
+          <div className='relative flex items-center'>
+            <div className='bg-[#D9D9D9] rounded-full p-1'>
+              <Image
+                alt=''
+                src='./images/userProfile.svg'
+                width={60}
+                height={60}
+                priority
+                className='rounded-full'
+              />
+            </div>
+            <p className='bg-[#132E40] rounded-full text-sm absolute bottom-0 left-0 px-2 py-1 font-bold w-6 h-6 flex items-center justify-center'>
+              2
+            </p>
+          </div>
+          <h1 className='text-[#132E40] font-bold'>N34,000,000</h1>
+          <p className='text-[#132E40] font-bold'>300,000 referrals</p>
+          <p className='text-[#132E40] font-normal'>@jondoe</p>
+        </div>
+
+        <div className='bg-white rounded-md p-2'>
+          <div className='flex flex-col items-center'>
+            <div className='bg-[#D9D9D9] rounded-full p-1'>
+              <Image
+                alt=''
+                src='./images/userProfile.svg'
+                width={100}
+                height={100}
+                priority
+                className='rounded-full'
+              />
+            </div>
+            <p className='bg-[#132E40] rounded-full text-2xl p-2 font-bold w-8 h-8 flex items-center justify-center'>
+              1
+            </p>
+          </div>
+          <h1 className='text-[#132E40] font-bold'>N44,000,000</h1>
+          <p className='text-[#132E40] font-bold'>300,000 referrals</p>
+          <p className='text-[#132E40] font-normal'>@jondoe</p>
+        </div>
+
+        <div className='bg-white rounded-md p-2'>
+          <div className='relative flex items-center'>
+            <div className='bg-[#D9D9D9] rounded-full p-1 items-center'>
+              <Image
+                alt=''
+                src='./images/userProfile.svg'
+                width={60}
+                height={60}
+                priority
+                className='rounded-full'
+              />
+            </div>
+            <p className='bg-[#132E40] rounded-full text-sm absolute bottom-0 left-0 px-2 py-1 font-bold w-6 h-6 flex items-center justify-center'>
+              3
+            </p>
+          </div>
+          <h1 className='text-[#132E40] font-bold'>N34,000,000</h1>
+          <p className='text-[#132E40] font-bold'>300,000 referrals</p>
+          <p className='text-[#132E40] font-normal'>@jondoe</p>
+        </div>
       </div>
+
       <section>
         <div className='bg-white rounded p-4 mt-20 mb-20'>
           <div className='flex items-left mb-4'>

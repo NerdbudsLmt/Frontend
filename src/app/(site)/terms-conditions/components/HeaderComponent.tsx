@@ -21,12 +21,15 @@ export default function HeaderComponent() {
             </Link>
           </div>
           <div>
-            <h1 className='text-8xl font-bold text-center text-white'>
-              <span className='text-8xl font-bold text-center text-app-sblue'>
+            <h1 className='text-5xl font-bold text-center text-white lg:text-7xl'>
+              <span className='text-5xl font-bold text-center text-app-sblue lg:text-7xl'>
                 Terms
               </span>{' '}
               and
-              <span className='text-[#F9D262]'> Conditions</span>
+              <span className='text-5xl text-[#F9D262] lg:text-7xl'>
+                {' '}
+                Conditions
+              </span>
             </h1>
           </div>
           <div className='text-center'>
