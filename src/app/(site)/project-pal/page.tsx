@@ -93,12 +93,12 @@ function ProjectPal() {
                 </>
               </Link>
             </div>
-            <div className='hidden sm:block'>
-              <span className='mx-2'>|</span>
-            </div>
+            
+            <div className='border-r border-gray-400 h-10 mx-8'></div>
+
             <div>
               <Link
-                href='/affiliate'
+                href='/leaderboard'
                 className='flex items-center space-x-2 border-2 border-app-sblue text-white py-1 px-6 rounded-full'
               >
                 <>
