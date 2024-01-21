@@ -60,21 +60,35 @@ declare module "next-auth" {
   // }
 
   interface Session {
-    user: {
-      user: {
-        _id: string;
-        email: string;
-        accountType: string;
-        userType: string;
-        profilePicture: string;
-        isAdmin: boolean;
-        finishTourGuide: boolean;
-      };
-      accessToken: string;
-      refreshToken: string;
-      message: string;
-      // Add other properties from your API response if necessary
-    } & DefaultSession;
+    user:
+      | ({
+          user: {
+            _id: string;
+            email: string;
+            accountType: string;
+            userType: string;
+            profilePicture: string;
+            isAdmin: boolean;
+            finishTourGuide: boolean;
+          };
+          accessToken: string;
+          refreshToken: string;
+          message: string;
+        } & DefaultSession)
+      | {
+          googleUser: {
+            _id: string;
+            email: string;
+            accountType: string;
+            userType: string;
+            profilePicture: string;
+            isAdmin: boolean;
+            finishTourGuide: boolean;
+          };
+          accessToken: string;
+          refreshToken: string;
+          message: string;
+        };
   }
 
   // interface User extends DefaultUser {
