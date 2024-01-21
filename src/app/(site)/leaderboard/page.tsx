@@ -153,9 +153,6 @@ export default function LeaderBoard() {
               <p className="bg-[#132E40] rounded-full text-sm absolute bottom-[-0.5] right-10 px-3 py-1 font-bold w-6 h-6 flex items-center justify-center">
                 3
               </p>
-              {/* <p className='bg-[#132E40] rounded-full text-sm absolute bottom-[0] right-10 px-2 py-1 font-bold'>
-                3
-              </p> */}
             </div>
           </span>
           <h1 className="text-[#132E40] font-bold">N34,000,000</h1>
@@ -163,6 +160,71 @@ export default function LeaderBoard() {
           <p className="text-[#132E40] font-normal">@jondoe</p>
         </div>
       </div>
+      <div className="flex items-center justify-center mx-auto">
+        <div className="bg-white rounded-md p-2">
+          <div className="relative flex items-center">
+            <div className="bg-[#D9D9D9] rounded-full p-1">
+              <Image
+                alt=""
+                src="./images/userProfile.svg"
+                width={60}
+                height={60}
+                priority
+                className="rounded-full"
+              />
+            </div>
+            <p className="bg-[#132E40] rounded-full text-sm absolute bottom-0 left-0 px-2 py-1 font-bold w-6 h-6 flex items-center justify-center">
+              2
+            </p>
+          </div>
+          <h1 className="text-[#132E40] font-bold">N34,000,000</h1>
+          <p className="text-[#132E40] font-bold">300,000 referrals</p>
+          <p className="text-[#132E40] font-normal">@jondoe</p>
+        </div>
+
+        <div className="bg-white rounded-md p-2">
+          <div className="flex flex-col items-center">
+            <div className="bg-[#D9D9D9] rounded-full p-1">
+              <Image
+                alt=""
+                src="./images/userProfile.svg"
+                width={100}
+                height={100}
+                priority
+                className="rounded-full"
+              />
+            </div>
+            <p className="bg-[#132E40] rounded-full text-2xl p-2 font-bold w-8 h-8 flex items-center justify-center">
+              1
+            </p>
+          </div>
+          <h1 className="text-[#132E40] font-bold">N44,000,000</h1>
+          <p className="text-[#132E40] font-bold">300,000 referrals</p>
+          <p className="text-[#132E40] font-normal">@jondoe</p>
+        </div>
+
+        <div className="bg-white rounded-md p-2">
+          <div className="relative flex items-center">
+            <div className="bg-[#D9D9D9] rounded-full p-1 items-center">
+              <Image
+                alt=""
+                src="./images/userProfile.svg"
+                width={60}
+                height={60}
+                priority
+                className="rounded-full"
+              />
+            </div>
+            <p className="bg-[#132E40] rounded-full text-sm absolute bottom-0 left-0 px-2 py-1 font-bold w-6 h-6 flex items-center justify-center">
+              3
+            </p>
+          </div>
+          <h1 className="text-[#132E40] font-bold">N34,000,000</h1>
+          <p className="text-[#132E40] font-bold">300,000 referrals</p>
+          <p className="text-[#132E40] font-normal">@jondoe</p>
+        </div>
+      </div>
+
       <section>
         <div className="bg-white rounded p-4 mt-20 mb-20">
           <div className="flex items-left mb-4">

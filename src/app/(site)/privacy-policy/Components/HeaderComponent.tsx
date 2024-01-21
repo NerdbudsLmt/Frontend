@@ -21,7 +21,7 @@ export default function privacyPolicy() {
             </Link>
           </div>
           <div>
-            <h1 className='text-8xl font-bold text-center text-app-sblue'>
+            <h1 className='text-5xl font-bold text-center text-app-sblue lg:text-7xl'>
               Privacy <span className='text-[#F9D262]'>Policy</span>
             </h1>
           </div>
