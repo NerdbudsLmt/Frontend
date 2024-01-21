@@ -32,7 +32,6 @@ export const options: NextAuthOptions = {
 
           const user = await res.json();
           return user;
-
         } catch (error) {
           console.error("Authorization error:", error);
           return null;
@@ -46,7 +45,7 @@ export const options: NextAuthOptions = {
     error: "/*",
   },
   callbacks: {
-    async jwt({ token, user }: any) {
+    async jwt({ token, user, googleUser }: any) {
       if (user && user.data) {
         token.accessToken = user.data.accessToken;
         token.userType = user.data?.user?.userType;
@@ -54,6 +53,13 @@ export const options: NextAuthOptions = {
         token.firstname = user.data.user?.firstname;
         token.lastname = user.data.user?.lastname;
         token.profilePicture = user.data.user?.profilePicture;
+      } else if (googleUser && googleUser.data) {
+        token.accessToken = googleUser.data.accessToken;
+        token.userType = googleUser.data?.user?.userType;
+        token.email = googleUser.data.user.email;
+        token.firstname = googleUser.data.user?.firstname;
+        token.lastname = googleUser.data.user?.lastname;
+        token.profilePicture = googleUser.data.user?.profilePicture;
       }
       return token;
     },
