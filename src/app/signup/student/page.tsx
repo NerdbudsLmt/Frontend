@@ -383,7 +383,7 @@ export default function Student() {
               <div className="">
                 <div className="my-3">
                   <label htmlFor="" className="block text-gray-300 text-[16px]">
-                    How did you hear about us
+                    How did you hear about us (optional)
                   </label>
 
                   <select
