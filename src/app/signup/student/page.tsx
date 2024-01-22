@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { BsChevronLeft } from "react-icons/bs";
 
@@ -64,11 +64,15 @@ export default function Student() {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [showAffiliate, setshowAffiliate] = useState<boolean>();
 
-  // Retrieve refId from local storage
-  const storedRefId = localStorage.getItem("refId");
-  // console.log("refId", storedRefId);
+  const storedRefId = sessionStorage.getItem("refId");
+
+  useEffect(() => {
+    if (storedRefId) {
+      formik.setFieldValue("howDidYouHear.options", "An affiliate");
+      formik.setFieldValue("howDidYouHear.details.refId", storedRefId);
+    }
+  }, []);
 
   // Initialize Formik for managing form state and validation.
   const formik = useFormik<CompanyFormValues>({
@@ -89,7 +93,6 @@ export default function Student() {
         },
       },
       proofOfIdentification: null,
-      
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
@@ -124,7 +127,7 @@ export default function Student() {
           },
           body: JSON.stringify(formData),
         });
-        console.log(formData)
+        console.log(formData);
         setIsLoading(true);
 
         const data = await res.json();
@@ -416,7 +419,8 @@ export default function Student() {
                     <option value={"socialMedia"}>Social Media</option>
                     <option value={"friend"}>A friend</option>
                   </select>
-                  {formik.touched.howDidYouHear?.options && formik.errors.howDidYouHear?.options ? (
+                  {formik.touched.howDidYouHear?.options &&
+                  formik.errors.howDidYouHear?.options ? (
                     <div className="text-[red] text-[14px] italic">
                       {formik.errors.howDidYouHear?.options}
                     </div>
@@ -436,12 +440,16 @@ export default function Student() {
                       type="text"
                       id="howDidYouHear.details.refId"
                       placeholder="Affiliate username"
-                      defaultValue={formik.values.howDidYouHear?.details?.refId ?? storedRefId!}
+                      defaultValue={
+                        formik.values.howDidYouHear?.details?.refId ??
+                        storedRefId!
+                      }
                       readOnly
                       {...formik.getFieldProps("howDidYouHear.details.refId")}
                       className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
                     />
-                   {formik.touched.howDidYouHear?.details?.refId && formik.errors.howDidYouHear?.details?.refId ? (
+                    {formik.touched.howDidYouHear?.details?.refId &&
+                    formik.errors.howDidYouHear?.details?.refId ? (
                       <div className="text-[red] text-[14px] italic">
                         {formik.errors.howDidYouHear?.details?.refId}
                       </div>
@@ -460,7 +468,9 @@ export default function Student() {
                       Social Media
                     </label>
                     <select
-                     {...formik.getFieldProps("howDidYouHear.details.socialMedia")}
+                      {...formik.getFieldProps(
+                        "howDidYouHear.details.socialMedia"
+                      )}
                       className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
                     >
                       <option>Option</option>
@@ -468,7 +478,8 @@ export default function Student() {
                       <option value={"Instagram"}>Instagram</option>
                       <option value={"Snapchat"}>Snapchat</option>
                     </select>
-                    {formik.touched.howDidYouHear?.details?.socialMedia && formik.errors.howDidYouHear?.details?.socialMedia ? (
+                    {formik.touched.howDidYouHear?.details?.socialMedia &&
+                    formik.errors.howDidYouHear?.details?.socialMedia ? (
                       <div className="text-[red] text-[14px] italic">
                         {formik.errors.howDidYouHear?.details?.socialMedia}
                       </div>
