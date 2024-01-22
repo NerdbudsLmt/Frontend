@@ -201,7 +201,7 @@ export const ProjectDetails: React.FC<ProjectProgressProps> = ({ params }) => {
             </div>
             <div className="static">|</div>
             <div className="flex-1 text-center">
-              <p>80% Completed</p>
+              <p>Completed</p>
             </div>
             <div className="static">|</div>
             <div className="flex-1 text-center">
