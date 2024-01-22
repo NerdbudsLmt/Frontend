@@ -10,7 +10,7 @@ import Pagination from "@/components/Pagination";
 
 interface User {
   username: string;
-  referrals: number;
+  numberOfReferrals: number;
   earnings: number;
 }
 
@@ -59,6 +59,45 @@ export default function LeaderBoard() {
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
   const paginateFront = () => setCurrentPage(currentPage + 1);
   const paginateBack = () => setCurrentPage(currentPage - 1);
+
+  const { highestUser, secondHighestUser, thirdHighestUser } =
+    displayedItems.reduce(
+      (result, currentUser) => {
+        if (
+          currentUser.numberOfReferrals >= result.highestUser.numberOfReferrals
+        ) {
+          return {
+            highestUser: currentUser,
+            secondHighestUser: result.highestUser,
+            thirdHighestUser: result.secondHighestUser,
+          };
+        } else if (
+          currentUser.numberOfReferrals >=
+          result.secondHighestUser.numberOfReferrals
+        ) {
+          return {
+            highestUser: result.highestUser,
+            secondHighestUser: currentUser,
+            thirdHighestUser: result.secondHighestUser,
+          };
+        } else if (
+          currentUser.numberOfReferrals >=
+          result.thirdHighestUser.numberOfReferrals
+        ) {
+          return {
+            highestUser: result.highestUser,
+            secondHighestUser: result.secondHighestUser,
+            thirdHighestUser: currentUser,
+          };
+        }
+        return result;
+      },
+      {
+        highestUser: { numberOfReferrals: -1 },
+        secondHighestUser: { numberOfReferrals: -1 },
+        thirdHighestUser: { numberOfReferrals: -1 },
+      }
+    );
   return (
     <>
       <header className="pt-10">
@@ -98,131 +137,38 @@ export default function LeaderBoard() {
           </div>
         </div>
       </header>
-      <div className=" flex items-center justify-center mx-auto">
-        <div className="bg-white rounded-md p-4">
-          <span className="flex items-end mb-4">
-            <div className="bg-[#D9D9D9] rounded-full p-2 relative">
-              <Image
-                alt=""
-                src="./images/userProfile.svg"
-                width={100}
-                height={100}
-                priority
-                className="rounded-full"
-              />
-              <p className="bg-[#132E40] rounded-full text-sm absolute bottom-[0.5] right-10 px-3 py-1 font-bold w-6 h-6 flex items-center justify-center">
-                2
-              </p>
-            </div>
-          </span>
-          <h1 className="text-[#132E40] font-bold">N34,000,000</h1>
-          <p className="text-[#132E40] font-bold">300,000 referrals</p>
-          <p className="text-[#132E40] font-normal">@jondoe</p>
-        </div>
-        <div className="bg-white rounded-md p-4">
-          <span className="flex flex-col mb-4 items-center">
-            <div className="bg-[#D9D9D9] rounded-full p-2 ">
-              <Image
-                alt=""
-                src="./images/userProfile.svg"
-                width={100}
-                height={100}
-                priority
-                className="rounded-full"
-              />
-            </div>
-            <p className="bg-[#132E40] rounded-full text-2xl  p-3 font-bold mt-2 mb-2 w-10 h-10 flex items-center justify-center">
-              1
-            </p>
-          </span>
-          <h1 className="text-[#132E40] font-bold">N44,000,000</h1>
-          <p className="text-[#132E40] font-bold">300,000 referrals</p>
-          <p className="text-[#132E40] font-normal">@jondoe</p>
-        </div>
-        <div className="bg-white rounded-md p-4">
-          <span className="flex items-end mb-4">
-            <div className="bg-[#D9D9D9] rounded-full p-2 relative">
-              <Image
-                alt=""
-                src="./images/userProfile.svg"
-                width={100}
-                height={100}
-                priority
-                className="rounded-full"
-              />
-              <p className="bg-[#132E40] rounded-full text-sm absolute bottom-[-0.5] right-10 px-3 py-1 font-bold w-6 h-6 flex items-center justify-center">
-                3
-              </p>
-            </div>
-          </span>
-          <h1 className="text-[#132E40] font-bold">N34,000,000</h1>
-          <p className="text-[#132E40] font-bold">300,000 referrals</p>
-          <p className="text-[#132E40] font-normal">@jondoe</p>
-        </div>
-      </div>
+
       <div className="flex items-center justify-center mx-auto">
-        <div className="bg-white rounded-md p-2">
-          <div className="relative flex items-center">
-            <div className="bg-[#D9D9D9] rounded-full p-1">
-              <Image
-                alt=""
-                src="./images/userProfile.svg"
-                width={60}
-                height={60}
-                priority
-                className="rounded-full"
-              />
+        {[highestUser, secondHighestUser, thirdHighestUser].map(
+          (user: any, index) => (
+            <div className="bg-white rounded-md p-4" key={index}>
+              <span className="flex items-end mb-4">
+                <div className="bg-[#D9D9D9] rounded-full p-2 relative">
+                  <Image
+                    alt=""
+                    src="./images/userProfile.svg"
+                    width={100}
+                    height={100}
+                    priority
+                    className="rounded-full"
+                  />
+                  <p className="bg-[#132E40] rounded-full text-2xl p-3 font-bold mt-2 mb-2 w-10 h-10 flex items-center justify-center">
+                    {index + 1}
+                  </p>
+                </div>
+              </span>
+              <h1 className="text-[#132E40] font-bold">{`N${
+                user?.earnings !== undefined ? user.earnings : "0.00"
+              }`}</h1>
+              <p className="text-[#132E40] font-bold">{`${
+                user?.numberOfReferrals || 0
+              } referrals`}</p>
+              <p className="text-[#132E40] font-normal">
+                @{user?.username || "N/A"}
+              </p>
             </div>
-            <p className="bg-[#132E40] rounded-full text-sm absolute bottom-0 left-0 px-2 py-1 font-bold w-6 h-6 flex items-center justify-center">
-              2
-            </p>
-          </div>
-          <h1 className="text-[#132E40] font-bold">N34,000,000</h1>
-          <p className="text-[#132E40] font-bold">300,000 referrals</p>
-          <p className="text-[#132E40] font-normal">@jondoe</p>
-        </div>
-
-        <div className="bg-white rounded-md p-2">
-          <div className="flex flex-col items-center">
-            <div className="bg-[#D9D9D9] rounded-full p-1">
-              <Image
-                alt=""
-                src="./images/userProfile.svg"
-                width={100}
-                height={100}
-                priority
-                className="rounded-full"
-              />
-            </div>
-            <p className="bg-[#132E40] rounded-full text-2xl p-2 font-bold w-8 h-8 flex items-center justify-center">
-              1
-            </p>
-          </div>
-          <h1 className="text-[#132E40] font-bold">N44,000,000</h1>
-          <p className="text-[#132E40] font-bold">300,000 referrals</p>
-          <p className="text-[#132E40] font-normal">@jondoe</p>
-        </div>
-
-        <div className="bg-white rounded-md p-2">
-          <div className="relative flex items-center">
-            <div className="bg-[#D9D9D9] rounded-full p-1 items-center">
-              <Image
-                alt=""
-                src="./images/userProfile.svg"
-                width={60}
-                height={60}
-                priority
-                className="rounded-full"
-              />
-            </div>
-            <p className="bg-[#132E40] rounded-full text-sm absolute bottom-0 left-0 px-2 py-1 font-bold w-6 h-6 flex items-center justify-center">
-              3
-            </p>
-          </div>
-          <h1 className="text-[#132E40] font-bold">N34,000,000</h1>
-          <p className="text-[#132E40] font-bold">300,000 referrals</p>
-          <p className="text-[#132E40] font-normal">@jondoe</p>
-        </div>
+          )
+        )}
       </div>
 
       <section>
@@ -251,7 +197,7 @@ export default function LeaderBoard() {
                   Username
                 </th>
                 <th className="py-2 px-4 text-[#717A8C] font-normal">
-                  Number of referrals
+                  Number of Referrals
                 </th>
                 <th className="py-2 px-4 text-[#717A8C] font-normal">
                   Earnings
@@ -259,27 +205,23 @@ export default function LeaderBoard() {
               </tr>
             </thead>
             <tbody>
+              {/* Mapping through currentPosts */}
               {currentPosts.map((user, index) => (
                 <tr key={index}>
                   <td className="py-2 px-4 text-[#205584] flex items-center">
-                    <div className="bg-[#D9D9D9] rounded-full p-2 mr-2">
-                      <Image
-                        alt=""
-                        src="./images/userProfile.svg"
-                        width={10}
-                        height={10}
-                        priority
-                        className="rounded-full"
-                      />
-                    </div>
-                    {user?.username}
+                    {user.username}
                   </td>
-                  <td className="py-2 px-4 text-#205584">{user?.referrals}</td>
-                  {/* <td className="py-2 px-4 text-#205584">{`$${user?.earnings.toLocaleString()}`}</td> */}
+                  <td className="py-2 px-4 text-[#205584]">
+                    {user?.numberOfReferrals}
+                  </td>
+                  <td className="py-2 px-4 text-[#205584]">
+                    {`N${(user?.earnings && user.earnings) || "0.00"}`}
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
+
           <Pagination
             postsPerPage={postsPerPage}
             totalPosts={displayedItems?.length}

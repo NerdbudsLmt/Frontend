@@ -10,8 +10,7 @@ import * as Yup from "yup";
 import Link from "next/link";
 import Nav from "@/components/Nav/Nav";
 import { Spinner } from "@chakra-ui/react";
-import { useSearchParams } from 'next/navigation'
-
+import { useSearchParams } from "next/navigation";
 
 interface CompanyFormValues {
   email: string;
@@ -30,25 +29,18 @@ export default function Login() {
   const [show, setShow] = useState<boolean>(false);
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const searchParams = useSearchParams()
- 
-  const refId = searchParams.get('refId')
-  console.log(refId)
+  const searchParams = useSearchParams();
 
-    // Store refId in local storage
-    useEffect(() => {
-      if (refId) {
-        localStorage.setItem('refId', refId);
-        console.log('refId', refId);
-      }
-    }, [refId]);
+  const refId = searchParams.get("refid");
+  console.log(refId);
 
-     // Retrieve refId from local storage
-  // const storedRefId = localStorage.getItem('refId');
-  // console.log('refId', storedRefId);
-
-
-
+  // Store refId in local storage
+  useEffect(() => {
+    if (refId) {
+      sessionStorage.setItem("refId", refId);
+      console.log("refId", refId);
+    }
+  }, [refId]);
 
   // Initialize Formik for managing form state and validation.
   const formik = useFormik<CompanyFormValues>({
