@@ -68,12 +68,12 @@ export const ProjectDetails: React.FC<ProjectProgressProps> = ({ params }) => {
         <p className="font-semibold text-2xl">Project in progress</p>
       </div>
 
-      <div className="w-[50rem] h-[60rem] border-3 border-[#B1AFAF] rounded-[1.5rem]">
-        <div className="w-[50rem] h-[13rem] bg-[#205584] rounded-t-[1.5rem] ml-[-0.2rem] mt-[-0.2rem]">
+      <div className="w-full md:w-[50rem] h-auto md:h-[60rem] border-3 border-[#B1AFAF] rounded-[1.5rem] ">
+        <div className="md:flex md:flex-col w-full h-[13rem] bg-[#205584] rounded-t-[1.5rem] mt-[-0.2rem]">
           <p className="text-[2.5rem] text-center text-[#fff] font-semibold pt-[2.5rem] ">
             {details?.projectName}
           </p>
-          <div className="flex items-start w-[15rem] h-[4.1rem] bg-[#FAFAFA] ml-9 mt-7 rounded-[0.5rem] ">
+          <div className="flex items-start w-[15rem] h-[4.1rem] bg-[#FAFAFA] ml-12 sm:ml-10 mt-7 rounded-[0.5rem] ">
             <Image
               src="/images/Avatar.png"
               alt="Description of the image"
@@ -82,27 +82,27 @@ export const ProjectDetails: React.FC<ProjectProgressProps> = ({ params }) => {
               className="ml-3 mt-3"
             />
             <div className="flex flex-col justify-between">
-              <span className="flex justify-between items-start">
-                <h2 className="text-[#205584] text-[1.1rem] ml-4 mt-3 font-medium">
+              <span className="flex justify-between items-start md:items-center">
+                <h2 className="text-[#205584] text-[1.1rem] md:text-xl ml-4 mt-3 font-medium">
                   Owner:
                 </h2>
               </span>
-              <p className="text-[1.1rem] ml-4 font-medium mt-[-0.5rem] text-[#205584]">
+              <p className="text-[1.1rem] md:text-base ml-4 mt-[-0.5rem] text-[#205584]">
                 Nerdbuds
               </p>
             </div>
           </div>
         </div>
 
-        <div className="flex items-center justify-center gap-7 mt-7">
-          <div>
+        <div className="flex flex-col sm:flex-row items-center justify-center sm:gap-[24%] sm:mt-7 sm:ml-3">
+          <div className="md:w-1/2 ml-[17.5rem] sm:ml-3">
             <p className="text-[#205584] ml-[-1rem] text-[2rem] font-semibold">
               Project Description
             </p>
-            <p className=" w-[35rem] ml-[-1rem] mt-2">{details?.description}</p>
+            <p className="w-[35rem] ml-[-1rem] mt-2">{details?.description}</p>
           </div>
 
-          <div className=" mt-[2.3rem]">
+          <div className="mt-[2.3rem] sm:mt-0">
             <Card
               aria-label={`Project progress ${details?.projectPercentage}%`}
               className="w-[120px] h-[120px] my-auto border-none bg-[#F5F4F4] rounded-[1rem]"
@@ -129,8 +129,8 @@ export const ProjectDetails: React.FC<ProjectProgressProps> = ({ params }) => {
           </div>
         </div>
 
-        <p className="font-bold text-lg mt-4 ml-9">Deadline</p>
-        <div className="flex justify-between gap-7 text-sm ml-8 w-[18rem] text-black font-semibold rounded-lg my-2 bg-[#F5F4F4] py-2 px-3">
+        <p className="font-bold text-lg mt-4 ml-6 sm:ml-9">Deadline</p>
+        <div className="flex justify-between gap-7 text-sm ml-5 sm:ml-9 w-[18rem] text-black font-semibold rounded-lg my-2 bg-[#F5F4F4] py-2 px-3">
           <p>Thursday, 2nd July 2023</p>
           <p> 9:00AM</p>
         </div>
@@ -138,7 +138,7 @@ export const ProjectDetails: React.FC<ProjectProgressProps> = ({ params }) => {
         <p className="text-[#205584] ml-8 mt-7 text-[2rem] font-semibold">
           Milestones
         </p>
-        <div className="flex flex-col items-center mx-auto w-[45rem] ml-7">
+        <div className="flex flex-col items-center mx-auto w-[18rem] sm:w-[45rem] ml-7">
           <div className="flex justify-between w-full text-sm text-black font-semibold rounded-lg my-2 bg-[#F5F4F4] py-4 px-3">
             <div className="flex-1">
               <p>Authentication</p>
