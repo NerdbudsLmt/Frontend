@@ -29,7 +29,7 @@ interface CompanyFormValues {
     options: string;
     details: {
       refId: string | null;
-      socialMedia: string;
+      socialMedia: string | null;
     };
   };
   proofOfIdentification: File | null;
