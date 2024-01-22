@@ -11,6 +11,7 @@ import {
   Chip,
 } from "@nextui-org/react";
 import { useSession } from "next-auth/react";
+import useFormattedDate from "@/hooks/useFormattedDate";
 
 interface ProjectProgressProps {
   params: any;
@@ -20,6 +21,8 @@ interface ProjectDetails {
   user: string | number;
   projectName: string;
   services: string[];
+  milestones: string[];
+  completedDate: string;
   callSchedule: Date | null;
   projectPercentage: string | any;
   status: boolean;
@@ -32,6 +35,8 @@ export const ProjectDetails: React.FC<ProjectProgressProps> = ({ params }) => {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const { data: session }: any = useSession();
   const [details, setDetails] = useState<ProjectDetails>();
+
+  const { completedDate, projectName, description, milestones } = details || {};
 
   const projectPercentage = parseInt(details?.projectPercentage, 10);
 
@@ -68,12 +73,12 @@ export const ProjectDetails: React.FC<ProjectProgressProps> = ({ params }) => {
         <p className="font-semibold text-2xl">Project in progress</p>
       </div>
 
-      <div className="w-full md:w-[50rem] h-auto md:h-[60rem] border-3 border-[#B1AFAF] rounded-[1.5rem] ">
-        <div className="md:flex md:flex-col w-full h-[13rem] bg-[#205584] rounded-t-[1.5rem] mt-[-0.2rem]">
-          <p className="text-[2.5rem] text-center text-[#fff] font-semibold pt-[2.5rem] ">
+      <div className="md:w-[50rem] w-full h-[60rem] border-3 border-[#B1AFAF] rounded-[1.5rem]">
+        <div className="md:w-[50rem] w-full h-[13rem] bg-[#205584] rounded-t-[1.5rem]">
+          <p className="sm:text-[2.5rem] text-[1.5rem] text-center text-[#fff] font-semibold pt-[2.5rem] ">
             {details?.projectName}
           </p>
-          <div className="flex items-start w-[15rem] h-[4.1rem] bg-[#FAFAFA] ml-12 sm:ml-10 mt-7 rounded-[0.5rem] ">
+          <div className="flex items-start w-[15rem] h-[4.1rem] bg-[#FAFAFA] sm:ml-9 ml-4 mt-7 rounded-[0.5rem] ">
             <Image
               src="/images/Avatar.png"
               alt="Description of the image"
@@ -94,31 +99,33 @@ export const ProjectDetails: React.FC<ProjectProgressProps> = ({ params }) => {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center sm:gap-[24%] sm:mt-7 sm:ml-3">
-          <div className="md:w-1/2 ml-[17.5rem] sm:ml-3">
-            <p className="text-[#205584] ml-[-1rem] text-[2rem] font-semibold">
+        <div className="flex items-center justify-between sm:px-8 px-4  mt-7">
+          <div>
+            <p className="text-[#205584] sm:text-[2rem] text-[1rem] font-semibold">
               Project Description
             </p>
-            <p className="w-[35rem] ml-[-1rem] mt-2">{details?.description}</p>
+            <p className="md:w-[35rem] sm:w-1/2 w-full mt-2">
+              {details?.description}
+            </p>
           </div>
 
-          <div className="mt-[2.3rem] sm:mt-0">
+          <div className="sm:mt-[2.3rem] mt-[1.2rem]">
             <Card
               aria-label={`Project progress ${details?.projectPercentage}%`}
-              className="w-[120px] h-[120px] my-auto border-none bg-[#F5F4F4] rounded-[1rem]"
+              className="sm:w-[120px] w-[85px] sm:h-[120px] h-[85px] my-auto border-none bg-[#F5F4F4] rounded-[1rem]"
             >
               <CardBody className="justify-center items-center pb-0">
                 <CircularProgress
                   classNames={{
                     track: "stroke-white/10",
-                    svg: `w-20 h-20 my-auto mb-5 drop-shadow-md ${
+                    svg: `sm:w-20 w-10 sm:h-20 h-10 my-auto mb-5 drop-shadow-sm ${
                       details?.projectPercentage === "100%"
                         ? "text-green-400"
                         : projectPercentage >= 50
                         ? "text-app-sblue"
                         : "text-red-500"
                     }`,
-                    value: "text-xl font-semibold mb-5 text-black",
+                    value: "sm:text-xl text-sm font-semibold mb-5 text-black",
                   }}
                   value={projectPercentage}
                   strokeWidth={4}
@@ -129,85 +136,32 @@ export const ProjectDetails: React.FC<ProjectProgressProps> = ({ params }) => {
           </div>
         </div>
 
-        <p className="font-bold text-lg mt-4 ml-6 sm:ml-9">Deadline</p>
-        <div className="flex justify-between gap-7 text-sm ml-5 sm:ml-9 w-[18rem] text-black font-semibold rounded-lg my-2 bg-[#F5F4F4] py-2 px-3">
-          <p>Thursday, 2nd July 2023</p>
-          <p> 9:00AM</p>
+        <p className="font-bold text-lg mt-4 sm:pl-9 pl-3">Deadline</p>
+        <div className="flex justify-between gap-7 text-sm sm:ml-8 ml-3 w-[18rem] text-black font-semibold rounded-lg my-2 bg-[#F5F4F4] py-2 px-3">
+          {useFormattedDate(completedDate)}
         </div>
 
         <p className="text-[#205584] ml-8 mt-7 text-[2rem] font-semibold">
           Milestones
         </p>
-        <div className="flex flex-col items-center mx-auto w-[18rem] sm:w-[45rem] ml-7">
-          <div className="flex justify-between w-full text-sm text-black font-semibold rounded-lg my-2 bg-[#F5F4F4] py-4 px-3">
-            <div className="flex-1">
-              <p>Authentication</p>
-            </div>
-            <div className="static">|</div>
-            <div className="flex-1 text-center">
-              <p>Completed</p>
-            </div>
-            <div className="static">|</div>
-            <div className="flex-1 text-center">
-              <p>20%</p>
-            </div>
-          </div>
-
-          <div className="flex justify-between w-full text-sm text-black font-semibold rounded-lg my-2 bg-[#F5F4F4] py-4 px-3">
-            <div className="flex-1">
-              <p>Payment</p>
-            </div>
-            <div className="static">|</div>
-            <div className="flex-1 text-center">
-              <p>Completed</p>
-            </div>
-            <div className="static">|</div>
-            <div className="flex-1 text-center">
-              <p>20%</p>
-            </div>
-          </div>
-
-          <div className="flex justify-between w-full text-sm text-black font-semibold rounded-lg my-2 bg-[#F5F4F4] py-4 px-3">
-            <div className="flex-1">
-              <p>UI Design</p>
-            </div>
-            <div className="static">|</div>
-            <div className="flex-1 text-center">
-              <p>Completed</p>
-            </div>
-            <div className="static">|</div>
-            <div className="flex-1 text-center">
-              <p>20%</p>
-            </div>
-          </div>
-
-          <div className="flex justify-between w-full text-sm text-black font-semibold rounded-lg my-2 bg-[#F5F4F4] py-4 px-3">
-            <div className="flex-1">
-              <p>Dev and Programming</p>
-            </div>
-            <div className="static">|</div>
-            <div className="flex-1 text-center">
-              <p>Completed</p>
-            </div>
-            <div className="static">|</div>
-            <div className="flex-1 text-center">
-              <p>20%</p>
-            </div>
-          </div>
-
-          <div className="flex justify-between w-full text-sm text-black font-semibold rounded-lg my-2 bg-[#F5F4F4] py-4 px-3">
-            <div className="flex-1">
-              <p>Beta testing</p>
-            </div>
-            <div className="static">|</div>
-            <div className="flex-1 text-center">
-              <p>Completed</p>
-            </div>
-            <div className="static">|</div>
-            <div className="flex-1 text-center">
-              <p>20%</p>
-            </div>
-          </div>
+        <div className="flex flex-col items-center mx-auto  w-full px-2">
+          {milestones?.map((item: any, index) => (
+            <>
+              <div className="flex justify-between w-full text-sm text-black font-semibold rounded-lg my-2 bg-[#F5F4F4] py-4 px-3">
+                <div className="flex-1">
+                  <p>{item.name}</p>
+                </div>
+                <div className="static">|</div>
+                <div className="flex-1 text-center">
+                  <p>{item.status}</p>
+                </div>
+                <div className="static">|</div>
+                <div className="flex-1 text-center">
+                  <p>{item.percentage}%</p>
+                </div>
+              </div>
+            </>
+          ))}
         </div>
       </div>
     </div>

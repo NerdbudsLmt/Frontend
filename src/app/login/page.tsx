@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -12,6 +12,7 @@ import Link from "next/link";
 import Nav from "@/components/Nav/Nav";
 import useCustomToast from "@/components/Toast";
 import { Spinner } from "@chakra-ui/react";
+import axios from "axios";
 
 interface CompanyFormValues {
   email: string;
@@ -29,6 +30,18 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const toast = useCustomToast();
   const router = useRouter();
+  const [googleUrl, setGoogleUrl] = useState("");
+
+  async function getGoogleAuth() {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    try {
+      const res = await axios.get(`${apiUrl}/auth/google/getauthurl`);
+      setGoogleUrl(res.data.data.urlAuth);
+    } catch (error) {
+      console.log(error);
+      setGoogleUrl("");
+    }
+  }
 
   // Initialize Formik for managing form state and validation.
   const formik = useFormik<CompanyFormValues>({
@@ -79,6 +92,10 @@ export default function Login() {
       }
     },
   });
+
+  useEffect(() => {
+    getGoogleAuth();
+  }, []);
 
   return (
     <main className="mx-auto min-h-[100dvh] text-white w-[97%] tablet:w-[95%] max-w-[1380px]">
@@ -187,7 +204,7 @@ export default function Login() {
               </Link>
             </p>
 
-            {/* <Link href="/signup/google-company">
+            <Link href={googleUrl}>
               <button
                 className="bg-[#265D80] flex items-center justify-center mt-6 gap-4 text-white py-3 px-5 w-full rounded-full"
                 // type="submit"
@@ -195,7 +212,7 @@ export default function Login() {
                 <FcGoogle />
                 Sign up with Google
               </button>
-            </Link> */}
+            </Link>
           </div>
         </div>
       </div>
