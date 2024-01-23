@@ -11,7 +11,6 @@ import { useRouter } from "next/navigation";
 import useCustomToast from "@/components/Toast";
 import { Spinner } from "@chakra-ui/react";
 
-
 /**
  * Represents the values of the Company form.
  * @interface CompanyFormValues
@@ -29,7 +28,7 @@ interface CompanyFormValues {
   howDidYouHear: string;
   refId: string | null;
   socialMedia: string ;
-  proofOfIdentification: {};
+  proofOfIdentification: File | null;
 }
 
 // Define validation schema using Yup
@@ -46,11 +45,14 @@ const validationSchema = Yup.object().shape({
   semester: Yup.string().required("Semester is required"),
   options: Yup.string().required("Choose one"),
   socialMedia: Yup.string().required("Choose one"),
-    proofOfIdentification: Yup.object()
-    .shape({
-      preview: Yup.string().required("Image is required"),
-    })
-    .required("At least one image is required"),
+  proofOfIdentification: Yup.mixed()
+    .required("Image is required")
+    .test("fileSize", "File size must be less than 1MB", (value) =>
+      value ? (value as File).size <= 1024000 : true
+    )
+    .test("fileType", "Only image files are allowed", (value) =>
+      value ? (value as File).type.startsWith("image/") : true
+    ),
 });
 
 export default function Student() {
@@ -64,9 +66,92 @@ export default function Student() {
 
   
   // console.log(parsedToken);
-
+  useEffect(() => {
+    if (storedRefId) {
+      // formik.setFieldValue("howDidYouHear.options", "An affiliate");
+      formik.setFieldValue("refId", storedRefId);
+    }
+  }, [storedRefId]);
 
   // Initialize Formik for managing form state and validation.
+  const formik = useFormik<CompanyFormValues>({
+    initialValues: {
+      firstname: "",
+      lastname: "",
+      username: "",
+      universityName: "",
+      level: "",
+      universityEmail: "",
+      universityRegNo: "",
+      semester: "",
+      howDidYouHear: "",
+      refId: storedRefId,
+      socialMedia: "",
+      proofOfIdentification: null,
+    },
+    
+    validationSchema: validationSchema,
+    onSubmit: async (values) => {
+      console.log('Submitting form...', values);
+        console.log('submuit');
+      try {
+        const token = localStorage.getItem("token");
+        const parsedToken = token?.replace(/"/g, "") || null;
+
+
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+        setIsLoading(true);
+
+
+        const formData = new FormData();
+      
+
+        Object.entries(values).forEach(([key, value]) => {
+          // Skip appending the proofOfIdentification field if it's null
+          if (key === "proofOfIdentification" && value === null) {
+            return;
+          }
+          formData.append(key, value);
+        });
+
+        const res: any = await fetch(`${apiUrl}/users/student`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${parsedToken}`,
+          },
+          body: JSON.stringify(formData),
+
+        });
+        // console.log(formData);
+        // setIsLoading(true);
+
+        const data = await res.json();
+        if (res.status === 200) {
+          toast(
+            "Success",
+            "success",
+            true,
+            2000,
+            data.data.message,
+            "top-right"
+          );
+          console.log("Success:", data);
+
+          router.push("/login");
+          setIsLoading(false);
+        } else {
+          toast("Error", "error", true, 2000, data.message, "top-right");
+          console.log("errr 2");
+          setIsLoading(false);
+        }
+      } catch (error: any) {
+        console.error("Error:", (error as Error).message);
+        toast("Error", "error", true, 2000, error, "top-right");
+        setIsLoading(false);
+      }
+    },
+  });
 
   return (
     <div>
@@ -132,7 +217,7 @@ export default function Student() {
               level.
             </p>
 
-            <form className="my-4">
+            <form className="my-4" onSubmit={formik.handleSubmit}>
               <div className="">
                 <div className="my-3">
                   <label
@@ -145,9 +230,15 @@ export default function Student() {
                     type="text"
                     id="universityName"
                     placeholder="Universiy Name"
+                    {...formik.getFieldProps("universityName")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
                   />
-               
+                  {formik.touched.universityName &&
+                  formik.errors.universityName ? (
+                    <div className="text-[red] text-[14px] italic">
+                      {formik.errors.universityName}
+                    </div>
+                  ) : null}
                 </div>
               </div>
               <div className="flex justify-between gap-4">
@@ -162,9 +253,14 @@ export default function Student() {
                     type="text"
                     id="firstname"
                     placeholder="First Name"
+                    {...formik.getFieldProps("firstname")}
                     className="border-[1.5px] w-full text-[16px] rounded-md text-black bg-white px-3 py-2 mt-1"
                   />
-                 
+                  {formik.touched.firstname && formik.errors.firstname ? (
+                    <div className="text-[red] text-[14px] italic">
+                      {formik.errors.firstname}
+                    </div>
+                  ) : null}
                 </div>
                 <div className="my-3  basis-[50%]">
                   <label
@@ -177,9 +273,14 @@ export default function Student() {
                     type="text"
                     id="lastname"
                     placeholder="Last Name"
+                    {...formik.getFieldProps("lastname")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
                   />
-                 
+                  {formik.touched.lastname && formik.errors.lastname ? (
+                    <div className="text-[red] text-[14px] italic">
+                      {formik.errors.lastname}
+                    </div>
+                  ) : null}
                 </div>
               </div>
 
@@ -195,9 +296,14 @@ export default function Student() {
                     type="text"
                     id="level"
                     placeholder="200L"
+                    {...formik.getFieldProps("level")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
                   />
-              
+                  {formik.touched.level && formik.errors.level ? (
+                    <div className="text-[red] text-[14px] italic">
+                      {formik.errors.level}
+                    </div>
+                  ) : null}
                 </div>
                 <div className="my-3 basis-[50%]">
                   <label
@@ -210,9 +316,14 @@ export default function Student() {
                     type="text"
                     id="username"
                     placeholder="username"
+                    {...formik.getFieldProps("username")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
                   />
-                
+                  {formik.touched.username && formik.errors.username ? (
+                    <div className="text-[red] text-[14px] italic">
+                      {formik.errors.username}
+                    </div>
+                  ) : null}
                 </div>
               </div>
 
@@ -232,9 +343,15 @@ export default function Student() {
                     type="email"
                     id="universityEmail"
                     placeholder="example@edu.ng"
+                    {...formik.getFieldProps("universityEmail")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
                   />
-                  
+                  {formik.touched.universityEmail &&
+                  formik.errors.universityEmail ? (
+                    <div className="text-[red] text-[14px] italic">
+                      {formik.errors.universityEmail}
+                    </div>
+                  ) : null}
                 </div>
               </div>
 
@@ -250,9 +367,15 @@ export default function Student() {
                     type="text"
                     id="universityRegNo"
                     placeholder="84A23S"
+                    {...formik.getFieldProps("universityRegNo")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
                   />
-                  
+                  {formik.touched.universityRegNo &&
+                  formik.errors.universityRegNo ? (
+                    <div className="text-[red] text-[14px] italic">
+                      {formik.errors.universityRegNo}
+                    </div>
+                  ) : null}
                 </div>
               </div>
 
@@ -268,8 +391,14 @@ export default function Student() {
                     type="text"
                     id="semester"
                     placeholder="semester"
+                    {...formik.getFieldProps("semester")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
                   />
+                  {formik.touched.semester && formik.errors.semester ? (
+                    <div className="text-[red] text-[14px] italic">
+                      {formik.errors.semester}
+                    </div>
+                  ) : null}
                 </div>
               </div>
               <div className="">
@@ -280,6 +409,7 @@ export default function Student() {
 
                   <select
                     id="howDidYouHear"
+                    {...formik.getFieldProps("howDidYouHear")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
                   >
                     <option>Option</option>
@@ -287,10 +417,15 @@ export default function Student() {
                     <option value={"Social Media"}>Social Media</option>
                     <option value={"A Friend"}>A friend</option>
                   </select>
-                
+                  {formik.touched.howDidYouHear &&
+                  formik.errors.howDidYouHear ? (
+                    <div className="text-[red] text-[14px] italic">
+                      {formik.errors.howDidYouHear}
+                    </div>
+                  ) : null}
                 </div>
               </div>
-
+              {formik.values.howDidYouHear === "An affiliate" && (
                 <div className="">
                   <div className="my-3">
                     <label
@@ -303,12 +438,20 @@ export default function Student() {
                       type="text"
                       id="refId"
                       placeholder="Affiliate username"
+                      {...formik.getFieldProps("refId")}
                       className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
                     />
-                   
+                    {formik.touched.refId &&
+                    formik.errors.refId ? (
+                      <div className="text-[red] text-[14px] italic">
+                        {formik.errors.refId}
+                      </div>
+                    ) : null}
                   </div>
                 </div>
+              )}
 
+              {formik.values.howDidYouHear === "Social Media" && (
                 <div className="">
                   <div className="my-3">
                     <label
@@ -320,7 +463,9 @@ export default function Student() {
                     <select
                       id="socialMedia"
 
-                     
+                      {...formik.getFieldProps(
+                        "socialMedia"
+                      )}
                       className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
                     >
                       <option>Option</option>
@@ -328,10 +473,15 @@ export default function Student() {
                       <option value={"Instagram"}>Instagram</option>
                       <option value={"Snapchat"}>Snapchat</option>
                     </select>
-                  
+                    {formik.touched.socialMedia &&
+                    formik.errors.socialMedia ? (
+                      <div className="text-[red] text-[14px] italic">
+                        {formik.errors.socialMedia}
+                      </div>
+                    ) : null}
                   </div>
                 </div>
-            
+              )}
 
               <div className="my-3 relative">
                 <label
@@ -364,6 +514,7 @@ export default function Student() {
                     const selectedFile = event.currentTarget.files
                       ? event.currentTarget.files[0]
                       : null;
+                    formik.setFieldValue("proofOfIdentification", selectedFile);
 
                     if (selectedFile) {
                       const reader = new FileReader();
@@ -378,7 +529,12 @@ export default function Student() {
                   // className="border-[1.5px] absolute top-7 opacity-50 z-10 w-[100px] bg-red-500 h-[100px] text-[16px] rounded-md text-black px-3 py-1 -mt-1"
                   className="border-[1.5px] absolute top-7 opacity-0 z-10 w-[100px] bg-white h-[100px] text-[16px] rounded-md text-black px-3 py-1 -mt-1"
                 />
-               
+                {formik.touched.proofOfIdentification &&
+                formik.errors.proofOfIdentification ? (
+                  <div className="text-[red] text-[14px] italic">
+                    {formik.errors.proofOfIdentification}
+                  </div>
+                ) : null}
               </div>
 
               <button
