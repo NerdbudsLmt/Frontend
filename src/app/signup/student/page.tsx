@@ -488,7 +488,7 @@ export default function Student() {
                 </div>
               )}
 
-              <div className="my-3 relative">
+              <div className="my-3 ">
                 <label
                   htmlFor="proofOfIdentification"
                   className="block text-gray-300 text-[16px]"
