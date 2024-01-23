@@ -278,7 +278,7 @@ export default function About() {
           <span className="text-[#F9D262]"> team </span>
         </p>
         <p className="w-full tablet_l:w-[50%] text-1xl">
-          We believe it takes great people to make great product. That is why we
+          we believe it takes great people to make great product. That is why we
           hire not only professional fits but, people who embody our company
           values.
           <Link
