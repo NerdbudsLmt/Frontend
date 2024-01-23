@@ -163,7 +163,7 @@ function ProjectPal() {
             <h1 className='text-2xl my-2'>Process</h1>
             <p className='text-base'>
               Our capable programmers work on your project, update you as the
-              process goes on and give you relevant information needed.
+              process goes on and gives you relevant information needed.
             </p>
           </div>
         </div>
