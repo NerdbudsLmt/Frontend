@@ -31,8 +31,8 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const searchParams = useSearchParams();
 
-  const refId = searchParams.get("refid");
-  console.log(refId);
+  const refId = searchParams.get("refId");
+  // console.log(refId);
 
   // Store refId in local storage
   useEffect(() => {
