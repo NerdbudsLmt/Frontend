@@ -98,23 +98,22 @@ export const ProjectDetails: React.FC<ProjectProgressProps> = ({ params }) => {
             </div>
           </div>
         </div>
-
-        <div className="flex items-center justify-between sm:px-8 px-4  mt-7">
-          <div>
-            <p className="text-[#205584] sm:text-[2rem] text-[1rem] font-semibold">
+        <div className="flex justify-between gap-[24%] sm:px-8 px-4 mt-7">
+          <div className="sm:w-[50%]">
+            <p className="text-[#205584] ml-0 mt-7 text-[1.7rem] sm:text-[2rem] font-semibold">
               Project Description
             </p>
-            <p className="md:w-[35rem] sm:w-1/2 w-full mt-2">
+            <p className="md:w-[35rem] sm:w-full w-full mt-2">
               {details?.description}
             </p>
           </div>
 
-          <div className="sm:mt-[2.3rem] mt-[1.2rem]">
+          <div className="sm:w-[50%] sm:mt-[2.3rem] mt-[1.2rem]">
             <Card
               aria-label={`Project progress ${details?.projectPercentage}%`}
               className="sm:w-[120px] w-[85px] sm:h-[120px] h-[85px] my-auto border-none bg-[#F5F4F4] rounded-[1rem]"
             >
-              <CardBody className="justify-center items-center pb-0">
+              <CardBody className="pb-0">
                 <CircularProgress
                   classNames={{
                     track: "stroke-white/10",
@@ -141,13 +140,16 @@ export const ProjectDetails: React.FC<ProjectProgressProps> = ({ params }) => {
           {useFormattedDate(completedDate)}
         </div>
 
-        <p className="text-[#205584] ml-8 mt-7 text-[2rem] font-semibold">
+        <div className="text-[#205584] ml-3 sm:ml-7 mt-7 text-[1.7rem] sm:text-[2rem] font-semibold">
           Milestones
-        </p>
-        <div className="flex flex-col items-center mx-auto  w-full px-2">
-          {milestones?.map((item: any, index) => (
-            <>
-              <div className="flex justify-between w-full text-sm text-black font-semibold rounded-lg my-2 bg-[#F5F4F4] py-4 px-3">
+        </div>
+        {milestones && milestones.length > 0 ? (
+          <div className="flex flex-col items-center mx-auto w-full px-2">
+            {milestones.map((item: any, index) => (
+              <div
+                className="flex justify-between w-full text-sm text-black font-semibold rounded-lg my-2 bg-[#F5F4F4] py-4 px-3"
+                key={index}
+              >
                 <div className="flex-1">
                   <p>{item.name}</p>
                 </div>
@@ -160,9 +162,13 @@ export const ProjectDetails: React.FC<ProjectProgressProps> = ({ params }) => {
                   <p>{item.percentage}%</p>
                 </div>
               </div>
-            </>
-          ))}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <p className="text-[#000] ml-3 sm:ml-7 mt-2 text-lg font-normal">
+            Milestones will be discussed during the meeting.
+          </p>
+        )}
       </div>
     </div>
   );
