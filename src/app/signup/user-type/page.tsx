@@ -90,10 +90,14 @@ export default function Home() {
           "Error occurred while sending data to the backend:",
           errData.message
         );
+        router.push('/signup');
+
       }
     } catch (error: any) {
       toast("Error", "error", true, 2000, error, "top-right");
       console.error("Error occurred during fetch:", error);
+      router.push('/signup');
+
     }
   };
 
