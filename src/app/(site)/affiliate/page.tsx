@@ -12,7 +12,7 @@ import { Spinner } from "@chakra-ui/react";
 interface AffiliateDate {
   username: string;
   email: string;
-  school: string;
+  school: string | null;
 }
 export default function ProjectPalAffiliate() {
   const [isStudent, setIsStudent] = useState<null | boolean>(null);
@@ -40,10 +40,13 @@ export default function ProjectPalAffiliate() {
     initialValues: {
       username: "",
       email: "",
-      school: "",
+      school: isStudent === false ? '' : null,
+
+      //  school: !isStudent ? null| '',
     },
     validationSchema: validationSchema,
-    onSubmit: async (values) => {
+    onSubmit: async (values) => {  
+    
       console.log(values);
 
       const res: any = await fetch(`${apiUrl}/affiliates`, {

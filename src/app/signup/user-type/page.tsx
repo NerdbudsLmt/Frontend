@@ -78,7 +78,9 @@ export default function Home() {
       if (res.status === 201) {
         const data = await res.json();
         localStorage.removeItem("signupData");
+        console.log(data.data.accessToken)
         localStorage.setItem("token", JSON.stringify(data.data.accessToken));
+        // localStorage.setItem("token", JSON.stringify(data.data.accessToken));
         toast("Success", "success", true, 2000, data.data.message, "top-right");
         router.push(`/signup/${userType}`);
       } else {

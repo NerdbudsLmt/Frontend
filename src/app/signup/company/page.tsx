@@ -58,7 +58,7 @@ export default function Company() {
 
         const parsedToken = token?.replace(/"/g, "") || null;
 
-        console.log(parsedToken);
+        // console.log(parsedToken);
 
         const apiUrl = process.env.NEXT_PUBLIC_API_URL;
         setIsLoading(true);
