@@ -23,22 +23,17 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required("Password is required"),
 });
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-
 export default function Login() {
   const [show, setShow] = useState<boolean>(false);
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const searchParams = useSearchParams();
-
-  const refId = searchParams.get("refId");
-  // console.log(refId);
+  const refId = searchParams.get("refid");
 
   // Store refId in local storage
   useEffect(() => {
     if (refId) {
       sessionStorage.setItem("refId", refId);
-      console.log("refId", refId);
     }
   }, [refId]);
 
@@ -51,13 +46,9 @@ export default function Login() {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       try {
-        // Save form data to localStorage
         setIsLoading(true);
 
         localStorage.setItem("signupData", JSON.stringify(values));
-
-        // Navigate to the next page
-
         router.push("/signup/user-type");
         setIsLoading(false);
       } catch (error) {

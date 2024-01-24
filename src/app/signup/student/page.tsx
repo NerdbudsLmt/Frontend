@@ -3,12 +3,19 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { BsChevronLeft } from "react-icons/bs";
+
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import useCustomToast from "@/components/Toast";
 import { Spinner } from "@chakra-ui/react";
+import { useSession } from "next-auth/react";
+
+/**
+ * Represents the values of the Company form.
+ * @interface CompanyFormValues
+ */
 
 interface CompanyFormValues {
   firstname: string;
@@ -19,59 +26,52 @@ interface CompanyFormValues {
   universityEmail: string;
   universityRegNo: string;
   semester: string;
-  howDidYouHear: string;
-  refId: string | null;
-  socialMedia: string | null;
+  howDidYouHear: {
+    options: string;
+    details: {
+      refId: string | null;
+      socialMedia: string;
+    };
+  };
   proofOfIdentification: File | null;
 }
-
-// Define validation schema using Yup
-const validationSchema = Yup.object().shape({
-  firstname: Yup.string().required("First Name is required"),
-  username: Yup.string().required("User Name is required"),
-  lastname: Yup.string().required("Last Name is required"),
-  universityName: Yup.string().required("University Name is required"),
-  level: Yup.string().required("Level is required"),
-  universityEmail: Yup.string()
-    .email("Invalid email")
-    .required("Email is required"),
-  universityRegNo: Yup.string().required("University Reg No is required"),
-  semester: Yup.string().required("Semester is required"),
-  howDidYouHear: Yup.string().required("Choose one"),
-  socialMedia: Yup.string().required("Choose one"),
-    proofOfIdentification: Yup.object()
-    .shape({
-      preview: Yup.string().required("Image is required"),
-    })
-    .required("At least one image is required"),
-});
 
 export default function Student() {
   const toast = useCustomToast();
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  
-  const storedRefId =
-  typeof window !== "undefined" ? sessionStorage.getItem("refId") : null;
+  const [isLoading, setIsLoading] = useState(false);
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const storedRefId = sessionStorage?.getItem("refId");
 
-  
-  // console.log(parsedToken);
-
-  useEffect(() => {
-    const storedRefId = sessionStorage.getItem("refId");
-
-    if (storedRefId) {
-      formik.setFieldValue("howDidYouHear", "An affiliate");
-      formik.setFieldValue("refId", storedRefId);
-    }
-
-    // Store refId in local storage for future use
-    localStorage.setItem("refId", storedRefId || "");
-  }, []);
+  // Define validation schema using Yup
+  const validationSchema = Yup.object().shape({
+    firstname: Yup.string().required("First Name is required"),
+    username: Yup.string().required("Username is required"),
+    lastname: Yup.string().required("Last Name is required"),
+    universityName: Yup.string().required("universityName Name is required"),
+    level: Yup.string().required("level Name is required"),
+    universityEmail: Yup.string()
+      .email("Invalid email")
+      .required("Email is required"),
+    universityRegNo: Yup.string().required(
+      "universityRegNo number is required"
+    ),
+    semester: Yup.string().required("semester is required"),
+    options: Yup.string(),
+    // refId: Yup.string().required("refId is required"),
+    // socialMedia: Yup.string().required("Choose one"),
+    proofOfIdentification: Yup.mixed()
+      .required("Image is required")
+      .test("fileSize", "File size must be less than 1MB", (value) =>
+        value ? (value as File).size <= 1024000 : true
+      )
+      .test("fileType", "Only image files are allowed", (value) =>
+        value ? (value as File).type.startsWith("image/") : true
+      ),
+  });
 
   // Initialize Formik for managing form state and validation.
-
   const formik = useFormik<CompanyFormValues>({
     initialValues: {
       firstname: "",
@@ -82,32 +82,53 @@ export default function Student() {
       universityEmail: "",
       universityRegNo: "",
       semester: "",
-      howDidYouHear: "",
-      refId: storedRefId,
-      socialMedia: "",
+      howDidYouHear: {
+        options: "",
+        details: {
+          refId: storedRefId,
+          socialMedia: "",
+        },
+      },
       proofOfIdentification: null,
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
+      const formData = new FormData();
+      Object.entries(values).forEach(([key, value]) => {
+        // Skip appending the proofOfIdentification field if it's null
+        if (key === "proofOfIdentification" && value === null) {
+          return;
+        }
+
+        // Skip appending the howDidYouHear field if no option is chosen
+        if (key === "howDidYouHear" && value.options === "") {
+          return;
+        }
+        if (key === "howDidYouHear") {
+          // Append the options property only if it's not an empty string
+          formData.append("howDidYouHear", value.options);
+          // Check if the options is "An affiliate" and append the refId
+          if (value.options === "An affiliate") {
+            formData.append("refId", value.details.refId || "");
+          }
+          // Check if the options is "Social Media" and append the socialMedia
+          if (value.options === "Social Media") {
+            formData.append("socialMedia", value.details.socialMedia || "");
+          }
+        } else if (value !== "") {
+          // Skip empty values
+          formData.append(key, value);
+        }
+      });
+
+      // console.log("formdata", JSON.stringify(formData));
+      console.log(values);
+
       try {
+        setIsLoading(true);
+        console.log("working");
         const token = localStorage.getItem("token");
         const parsedToken = token?.replace(/"/g, "") || null;
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-
-        const formData = new FormData();
-
-        Object.entries(values).forEach(([key, value]) => {
-          if (key === "proofOfIdentification" && value === null) {
-            return;
-          }
-          if (key === "howDidYouHear") {
-            formData.append("refId", value.refId || "");
-            formData.append("socialMedia", value.socialMedia || "");
-            formData.append("howDidYouHear", value || "");
-          } else {
-            formData.append(key, value);
-          }
-        });
 
         const res = await fetch(`${apiUrl}/users/student`, {
           method: "PUT",
@@ -116,9 +137,6 @@ export default function Student() {
           },
           body: formData,
         });
-
-        setIsLoading(true);
-
         const data = await res.json();
         if (res.status === 200) {
           toast(
@@ -129,12 +147,15 @@ export default function Student() {
             data.data.message,
             "top-right"
           );
+          console.log("Success:", data);
+
           router.push("/login");
+          setIsLoading(false);
         } else {
           toast("Error", "error", true, 2000, data.message, "top-right");
+          console.log("errr 2");
+          setIsLoading(false);
         }
-
-        setIsLoading(false);
       } catch (error: any) {
         console.error("Error:", (error as Error).message);
         toast("Error", "error", true, 2000, error, "top-right");
@@ -142,6 +163,12 @@ export default function Student() {
       }
     },
   });
+  useEffect(() => {
+    if (storedRefId) {
+      formik.setFieldValue("howDidYouHear.options", "An affiliate");
+      formik.setFieldValue("howDidYouHear.details.refId", storedRefId);
+    }
+  }, [formik, storedRefId]);
 
   return (
     <div>
@@ -157,7 +184,6 @@ export default function Student() {
               width={600}
               quality={100}
               height={600}
-              priority
             />
 
             <div className="bg-sign my-10 p-4 rounded-md">
@@ -219,10 +245,16 @@ export default function Student() {
                   <input
                     type="text"
                     id="universityName"
-                    placeholder="Universiy Name"
+                    placeholder="University Name"
+                    {...formik.getFieldProps("universityName")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
                   />
-               
+                  {formik.touched.universityName &&
+                  formik.errors.universityName ? (
+                    <div className="text-[red] text-[14px] italic">
+                      {formik.errors.universityName}
+                    </div>
+                  ) : null}
                 </div>
               </div>
               <div className="flex justify-between gap-4">
@@ -237,9 +269,14 @@ export default function Student() {
                     type="text"
                     id="firstname"
                     placeholder="First Name"
+                    {...formik.getFieldProps("firstname")}
                     className="border-[1.5px] w-full text-[16px] rounded-md text-black bg-white px-3 py-2 mt-1"
                   />
-                 
+                  {formik.touched.firstname && formik.errors.firstname ? (
+                    <div className="text-[red] text-[14px] italic">
+                      {formik.errors.firstname}
+                    </div>
+                  ) : null}
                 </div>
                 <div className="my-3  basis-[50%]">
                   <label
@@ -252,9 +289,14 @@ export default function Student() {
                     type="text"
                     id="lastname"
                     placeholder="Last Name"
+                    {...formik.getFieldProps("lastname")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
                   />
-                 
+                  {formik.touched.lastname && formik.errors.lastname ? (
+                    <div className="text-[red] text-[14px] italic">
+                      {formik.errors.lastname}
+                    </div>
+                  ) : null}
                 </div>
               </div>
 
@@ -270,9 +312,14 @@ export default function Student() {
                     type="text"
                     id="level"
                     placeholder="200L"
+                    {...formik.getFieldProps("level")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
                   />
-              
+                  {formik.touched.level && formik.errors.level ? (
+                    <div className="text-[red] text-[14px] italic">
+                      {formik.errors.level}
+                    </div>
+                  ) : null}
                 </div>
                 <div className="my-3 basis-[50%]">
                   <label
@@ -285,9 +332,14 @@ export default function Student() {
                     type="text"
                     id="username"
                     placeholder="username"
+                    {...formik.getFieldProps("username")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
                   />
-                
+                  {formik.touched.username && formik.errors.username ? (
+                    <div className="text-[red] text-[14px] italic">
+                      {formik.errors.username}
+                    </div>
+                  ) : null}
                 </div>
               </div>
 
@@ -306,11 +358,16 @@ export default function Student() {
                   <input
                     type="email"
                     id="universityEmail"
-                    placeholder="example@edu.ng"
+                    placeholder="sean.chinedu@lmu.edu.ng"
                     {...formik.getFieldProps("universityEmail")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
                   />
-                  
+                  {formik.touched.universityEmail &&
+                  formik.errors.universityEmail ? (
+                    <div className="text-[red] text-[14px] italic">
+                      {formik.errors.universityEmail}
+                    </div>
+                  ) : null}
                 </div>
               </div>
 
@@ -326,9 +383,15 @@ export default function Student() {
                     type="text"
                     id="universityRegNo"
                     placeholder="84A23S"
+                    {...formik.getFieldProps("universityRegNo")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
                   />
-                  
+                  {formik.touched.universityRegNo &&
+                  formik.errors.universityRegNo ? (
+                    <div className="text-[red] text-[14px] italic">
+                      {formik.errors.universityRegNo}
+                    </div>
+                  ) : null}
                 </div>
               </div>
 
@@ -344,98 +407,105 @@ export default function Student() {
                     type="text"
                     id="semester"
                     placeholder="semester"
+                    {...formik.getFieldProps("semester")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
                   />
+                  {formik.touched.semester && formik.errors.semester ? (
+                    <div className="text-[red] text-[14px] italic">
+                      {formik.errors.semester}
+                    </div>
+                  ) : null}
                 </div>
               </div>
               <div className="">
                 <div className="my-3">
-                  <label htmlFor="howDidYouHear" className="block text-gray-300 text-[16px]">
+                  <label htmlFor="" className="block text-gray-300 text-[16px]">
                     How did you hear about us (optional)
                   </label>
-                </div>
-                <select
-                id="howDidYouHear"
-                  {...formik.getFieldProps("howDidYouHear")}
-                  className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
-                >
-                  <option value="">Select an option</option>
-                  <option value={"An affiliate"}>An Affiliate</option>
-                  <option value={"socialMedia"}>Social Media</option>
-                  <option value={"friend"}>A friend</option>
-                </select>
-                {formik.touched.howDidYouHear && formik.errors.howDidYouHear ? (
-                  <div className="text-[red] text-[14px] italic">
-                    {formik.errors.howDidYouHear}
-                  </div>
-                ) : null}
 
-                {formik.values.howDidYouHear === "An affiliate" && (
+                  <select
+                    {...formik.getFieldProps("howDidYouHear.options")}
+                    className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
+                  >
+                    <option>Option</option>
+                    <option value={"An affiliate"}>An Affiliate</option>
+                    <option value={"Social Media"}>Social Media</option>
+                    <option value={"A Friend"}>A friend</option>
+                  </select>
+                  {formik.touched.howDidYouHear?.options &&
+                  formik.errors.howDidYouHear?.options ? (
+                    <div className="text-[red] text-[14px] italic">
+                      {formik.errors.howDidYouHear?.options}
+                    </div>
+                  ) : null}
+                </div>
+              </div>
+              {formik.values.howDidYouHear?.options === "An affiliate" && (
+                <div className="">
                   <div className="my-3">
                     <label
                       htmlFor="refId"
                       className="block text-gray-300 text-[16px]"
                     >
-                      Referral Id
+                      Refferal Id
                     </label>
                     <input
                       type="text"
-                      id="refId"
-                      placeholder="Ref Id"
-                      value={formik.values.refId || ""}
-                      readOnly={!!storedRefId} // Set to read-only if retrieved from storedRefId
-                      onChange={formik.handleChange}
+                      id="howDidYouHear.details.refId"
+                      placeholder="Affiliate username"
+                      defaultValue={
+                        formik.values.howDidYouHear?.details?.refId ??
+                        storedRefId!
+                      }
+                      {...formik.getFieldProps("howDidYouHear.details.refId")}
                       className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
                     />
-                    {formik.touched.refId && formik.errors.refId ? (
+                    {formik.touched.howDidYouHear?.details?.refId &&
+                    formik.errors.howDidYouHear?.details?.refId ? (
                       <div className="text-[red] text-[14px] italic">
-                        {formik.errors.refId}
+                        {formik.errors.howDidYouHear?.details?.refId}
                       </div>
                     ) : null}
                   </div>
-                )}
+                </div>
+              )}
 
-                {formik.values.howDidYouHear === "socialMedia" && (
+              {formik.values.howDidYouHear.options === "Social Media" && (
+                <div className="">
                   <div className="my-3">
                     <label
-                      htmlFor="socialMedia"
+                      htmlFor="howDidYouHear.details.socialMedia"
                       className="block text-gray-300 text-[16px]"
                     >
                       Social Media
                     </label>
                     <select
-                      {...formik.getFieldProps("socialMedia")}
+                      {...formik.getFieldProps(
+                        "howDidYouHear.details.socialMedia"
+                      )}
                       className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
                     >
-                      <option>Select an option</option>
+                      <option>Option</option>
                       <option value={"Twitter"}>Twitter</option>
                       <option value={"Instagram"}>Instagram</option>
                       <option value={"Snapchat"}>Snapchat</option>
                     </select>
-                    {formik.touched.socialMedia && formik.errors.socialMedia ? (
+                    {formik.touched.howDidYouHear?.details?.socialMedia &&
+                    formik.errors.howDidYouHear?.details?.socialMedia ? (
                       <div className="text-[red] text-[14px] italic">
-                        {formik.errors.socialMedia}
+                        {formik.errors.howDidYouHear?.details?.socialMedia}
                       </div>
                     ) : null}
                   </div>
-                )}
+                </div>
+              )}
 
-                <div className="my-3 relative">
-                  <label
-                    htmlFor="proofOfIdentification"
-                    className="block text-gray-300 text-[16px]"
-                  >
-                    Upload ID Card
-                  </label>
-                  {imagePreview && (
-                    <Image
-                      src={imagePreview}
-                      alt="Image Preview"
-                      width={100}
-                      height={100}
-                      className="relative rounded-xl mb-2"
-                    />
-                  )}
+              <div className="my-3 relative">
+                <label
+                  htmlFor="proofOfIdentification"
+                  className="block text-gray-300 text-[16px]"
+                >
+                  Upload ID Card
                   <Image
                     src="/images/upload.svg"
                     alt="Upload Icon"
@@ -443,48 +513,55 @@ export default function Student() {
                     height={100}
                     priority
                   />
-                  <input
-                    type="file"
-                    id="proofOfIdentification"
-                    name="proofOfIdentification"
-                    onChange={(event) => {
-                      const selectedFile = event.currentTarget.files
-                        ? event.currentTarget.files[0]
-                        : null;
-                      formik.setFieldValue(
-                        "proofOfIdentification",
-                        selectedFile
-                      );
-
-                      if (selectedFile) {
-                        const reader = new FileReader();
-                        reader.onloadend = () => {
-                          setImagePreview(reader.result as string);
-                        };
-                        reader.readAsDataURL(selectedFile);
-                      } else {
-                        setImagePreview(null);
-                      }
-                    }}
-                  className="border-[1.5px] absolute top-7 opacity-0 z-10 w-[100px] bg-white h-[100px] text-[16px] rounded-md text-black px-3 py-1 -mt-1"
-
+                </label>
+                {imagePreview && (
+                  <Image
+                    src={imagePreview}
+                    alt="Image Preview"
+                    width={200}
+                    height={200}
+                    className="relative rounded-xl mb-2 w-[13rem] h-[10rem]"
                   />
-                  {formik.touched.proofOfIdentification &&
-                  formik.errors.proofOfIdentification ? (
-                    <div className="text-[red] text-[14px] italic">
-                      {formik.errors.proofOfIdentification}
-                    </div>
-                  ) : null}
-                </div>
+                )}
 
-                <button
-                  className="bg-app-sblue cursor-pointer border-2 border-app-sblue text-white py-2 px-5 mt-3 rounded-full"
-                  type="submit"
-                  disabled={isLoading}
-                >
-                  {isLoading ? <Spinner /> : "Proceed"}
-                </button>
+                <input
+                  type="file"
+                  id="proofOfIdentification"
+                  name="proofOfIdentification"
+                  onChange={(event) => {
+                    const selectedFile = event.currentTarget.files
+                      ? event.currentTarget.files[0]
+                      : null;
+                    formik.setFieldValue("proofOfIdentification", selectedFile);
+
+                    if (selectedFile) {
+                      const reader = new FileReader();
+                      reader.onloadend = () => {
+                        setImagePreview(reader.result as string);
+                      };
+                      reader.readAsDataURL(selectedFile);
+                    } else {
+                      setImagePreview(null);
+                    }
+                  }}
+                  style={{ zIndex: 1, pointerEvents: "none" }}
+                  className="border-[1.5px] absolute  bg-white opacity-0 z-10 w-[200px] h-[170px] text-[16px] rounded-md text-black px-3 py-1 mt-1"
+                />
+                {formik.touched.proofOfIdentification &&
+                formik.errors.proofOfIdentification ? (
+                  <div className="text-[red] text-[14px] italic">
+                    {formik.errors.proofOfIdentification}
+                  </div>
+                ) : null}
               </div>
+
+              <button
+                className="mt-3 bg-app-sblue border-2 border-app-sblue text-white py-2 px-5 cursor-pointer  rounded-full"
+                type="submit"
+                disabled={isLoading}
+              >
+                {isLoading ? <Spinner /> : "Proceed"}
+              </button>
             </form>
           </div>
         </div>
