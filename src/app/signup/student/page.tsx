@@ -207,7 +207,7 @@ export default function Student() {
               level.
             </p>
 
-            <form className="my-4">
+            <form className="my-4" onSubmit={formik.handleSubmit}>
               <div className="">
                 <div className="my-3">
                   <label
@@ -355,10 +355,11 @@ export default function Student() {
                   </label>
                 </div>
                 <select
+                id="howDidYouHear"
                   {...formik.getFieldProps("howDidYouHear")}
                   className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
                 >
-                  <option>Select an option</option>
+                  <option value="">Select an option</option>
                   <option value={"An affiliate"}>An Affiliate</option>
                   <option value={"socialMedia"}>Social Media</option>
                   <option value={"friend"}>A friend</option>
@@ -477,7 +478,7 @@ export default function Student() {
                 </div>
 
                 <button
-                  className="bg-app-sblue border-2 border-app-sblue text-white py-2 px-5 mt-3 rounded-full"
+                  className="bg-app-sblue cursor-pointer border-2 border-app-sblue text-white py-2 px-5 mt-3 rounded-full"
                   type="submit"
                   disabled={isLoading}
                 >
