@@ -101,11 +101,11 @@ export default function Student() {
           // Append the options property only if it's not an empty string
           formData.append("howDidYouHear", value.howDidYouHear);
           // Check if the options is "An affiliate" and append the refId
-          if (value.options === "An affiliate") {
+          if (value.howDidYouHear === "An affiliate") {
             formData.append("refId", value.refId || "");
           }
           // Check if the options is "Social Media" and append the socialMedia
-          if (value.options === "Social Media") {
+          if (value.howDidYouHear === "Social Media") {
             formData.append("socialMedia", value.socialMedia || "");
           }
         } else if (value !== "") {
