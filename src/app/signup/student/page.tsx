@@ -93,30 +93,32 @@ export default function Student() {
         formData.append("firstname", values.firstname);
         formData.append("lastname", values.lastname);
         formData.append("lastname", values.username);
+        formData.append("lastname", values.universityName);
+        formData.append("lastname", values.level);
+        formData.append("lastname", values.semester);
         formData.append("lastname", values.universityEmail);
         formData.append("lastname", values.universityRegNo);
-        formData.append("lastname", values.universityName);
-        formData.append("lastname", values.semester);
-        formData.append("lastname", values.level);
-        // Skip appending the howDidYouHear field if no option is chosen
-        if (key === "howDidYouHear" && value.options === "") {
-          return;
-        }
-        if (values.howDidYouHear === "An affiliate" && values.refId) {
-          formData.append("refId", values.refId);
-        } else if (
-          values.howDidYouHear === "Social Media" &&
-          values.socialMedia
-        ) {
-          formData.append("socialMedia", values.socialMedia);
-        }
-        // Append the proofOfIdentification field only if it's not null
         if (values.proofOfIdentification !== null) {
           formData.append(
             "proofOfIdentification",
             values.proofOfIdentification
           );
         }
+        // Skip appending the howDidYouHear field if no option is chosen
+        if (key === "howDidYouHear" && value.options === "") {
+          return;
+        }
+        formData.append("howDidYouHear", values.howDidYouHear);
+
+
+        if (values.howDidYouHear === "An affiliate" && values.refId) {
+          formData.append("refId", values.refId);
+        } else if (
+          values.howDidYouHear === "Social Media" && values.socialMedia
+        ) {
+          formData.append("socialMedia", values.socialMedia);
+        } 
+        // Append the proofOfIdentification field only if it's not null
       });
 
       // console.log("formdata", JSON.stringify(formData));
