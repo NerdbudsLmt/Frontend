@@ -27,7 +27,7 @@ interface CompanyFormValues {
   semester: string;
   howDidYouHear: string;
   refId: string | null;
-  socialMedia: string ;
+  socialMedia: string;
   proofOfIdentification: File | null;
 }
 
@@ -60,11 +60,10 @@ export default function Student() {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  
-  const storedRefId =
-  typeof window !== "undefined" ? sessionStorage.getItem("refId") : null;
 
-  
+  const storedRefId =
+    typeof window !== "undefined" ? sessionStorage.getItem("refId") : null;
+
   // console.log(parsedToken);
   useEffect(() => {
     if (storedRefId) {
@@ -89,22 +88,19 @@ export default function Student() {
       socialMedia: "",
       proofOfIdentification: null,
     },
-    
+
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      console.log('Submitting form...', values);
-        console.log('submuit');
+      console.log("Submitting form...", values);
+      console.log("submuit");
       try {
         const token = localStorage.getItem("token");
         const parsedToken = token?.replace(/"/g, "") || null;
 
-
         const apiUrl = process.env.NEXT_PUBLIC_API_URL;
         setIsLoading(true);
 
-
         const formData = new FormData();
-      
 
         Object.entries(values).forEach(([key, value]) => {
           // Skip appending the proofOfIdentification field if it's null
@@ -121,7 +117,6 @@ export default function Student() {
             Authorization: `Bearer ${parsedToken}`,
           },
           body: JSON.stringify(formData),
-
         });
         // console.log(formData);
         // setIsLoading(true);
@@ -403,7 +398,10 @@ export default function Student() {
               </div>
               <div className="">
                 <div className="my-3">
-                  <label htmlFor="howDidYouHear" className="block text-gray-300 text-[16px]">
+                  <label
+                    htmlFor="howDidYouHear"
+                    className="block text-gray-300 text-[16px]"
+                  >
                     How did you hear about us (optional)
                   </label>
 
@@ -441,8 +439,7 @@ export default function Student() {
                       {...formik.getFieldProps("refId")}
                       className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
                     />
-                    {formik.touched.refId &&
-                    formik.errors.refId ? (
+                    {formik.touched.refId && formik.errors.refId ? (
                       <div className="text-[red] text-[14px] italic">
                         {formik.errors.refId}
                       </div>
@@ -462,10 +459,7 @@ export default function Student() {
                     </label>
                     <select
                       id="socialMedia"
-
-                      {...formik.getFieldProps(
-                        "socialMedia"
-                      )}
+                      {...formik.getFieldProps("socialMedia")}
                       className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
                     >
                       <option>Option</option>
@@ -473,8 +467,7 @@ export default function Student() {
                       <option value={"Instagram"}>Instagram</option>
                       <option value={"Snapchat"}>Snapchat</option>
                     </select>
-                    {formik.touched.socialMedia &&
-                    formik.errors.socialMedia ? (
+                    {formik.touched.socialMedia && formik.errors.socialMedia ? (
                       <div className="text-[red] text-[14px] italic">
                         {formik.errors.socialMedia}
                       </div>
@@ -541,7 +534,6 @@ export default function Student() {
                 className="bg-app-sblue border-2 cursor-pointer border-app-sblue text-white py-2 px-5 mt-3 rounded-full"
                 type="submit"
                 disabled={isLoading}
-               
               >
                 {isLoading ? <Spinner /> : "Proceed"}
               </button>
