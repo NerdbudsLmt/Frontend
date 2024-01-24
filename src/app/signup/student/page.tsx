@@ -452,7 +452,8 @@ export default function Student() {
                     <input
                       type="text"
                       id="howDidYouHear.details.refId"
-                      placeholder="Affiliate username"
+                      placeholder="Refferal Id"
+                      readOnly={storedRefId ? true : false}
                       defaultValue={
                         formik.values.howDidYouHear?.details?.refId ??
                         storedRefId!
