@@ -89,38 +89,30 @@ export default function Student() {
       const formData = new FormData();
       Object.entries(values).forEach(([key, value]) => {
         // Skip appending the proofOfIdentification field if it's null
-
-        formData.append("firstname", values.firstname);
-        formData.append("lastname", values.lastname);
-        formData.append("lastname", values.username);
-        formData.append("lastname", values.universityName);
-        formData.append("lastname", values.level);
-        formData.append("lastname", values.semester);
-        formData.append("lastname", values.universityEmail);
-        formData.append("lastname", values.universityRegNo);
-        if (values.proofOfIdentification !== null) {
-          formData.append(
-            "proofOfIdentification",
-            values.proofOfIdentification
-          );
-        }
-        // Skip appending the howDidYouHear field if no option is chosen
-        if (key === "howDidYouHear" && value.options === "") {
+        if (key === "proofOfIdentification" && value.proofOfIdentification === null) {
           return;
         }
-        formData.append("howDidYouHear", values.howDidYouHear);
 
-
-        if (values.howDidYouHear === "An affiliate" && values.refId) {
-          formData.append("refId", values.refId);
-        } else if (
-          values.howDidYouHear === "Social Media" && values.socialMedia
-        ) {
-          formData.append("socialMedia", values.socialMedia);
-        } 
-        // Append the proofOfIdentification field only if it's not null
+        // Skip appending the howDidYouHear field if no option is chosen
+        if (key === "howDidYouHear" && value.howDidYouHear === "") {
+          return;
+        }
+        if (key === "howDidYouHear") {
+          // Append the options property only if it's not an empty string
+          formData.append("howDidYouHear", value.howDidYouHear);
+          // Check if the options is "An affiliate" and append the refId
+          if (value.options === "An affiliate") {
+            formData.append("refId", value.refId || "");
+          }
+          // Check if the options is "Social Media" and append the socialMedia
+          if (value.options === "Social Media") {
+            formData.append("socialMedia", value.socialMedia || "");
+          }
+        } else if (value !== "") {
+          // Skip empty values
+          formData.append(key, value);
+        }
       });
-
       // console.log("formdata", JSON.stringify(formData));
       console.log(values);
 
