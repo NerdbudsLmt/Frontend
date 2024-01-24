@@ -23,11 +23,17 @@ export default function ProjectPalAffiliate() {
 
   const handleButtonClick = (value: boolean) => {
     setIsStudent(value);
+
+    // If the user is not a student, set the school field to an empty string
+    if (!value) {
+      formik.setFieldValue("school", "");
+    }
   };
 
   const validationSchema = Yup.object().shape({
     username: Yup.string().required("Username is required"),
     email: Yup.string().email("Invalid email").required("Email is required"),
+    school: Yup.string(),
   });
 
   const formik = useFormik<AffiliateDate>({
