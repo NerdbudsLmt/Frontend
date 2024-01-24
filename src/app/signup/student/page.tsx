@@ -494,6 +494,13 @@ export default function Student() {
                   className="block text-gray-300 text-[16px]"
                 >
                   Upload ID Card
+                  <Image
+                    src="/images/upload.svg"
+                    alt="Upload Icon"
+                    width={100}
+                    height={100}
+                    priority
+                  />
                 </label>
                 {imagePreview && (
                   <Image
@@ -504,13 +511,7 @@ export default function Student() {
                     className="relative rounded-xl mb-2"
                   />
                 )}
-                <Image
-                  src="/images/upload.svg"
-                  alt="Upload Icon"
-                  width={100}
-                  height={100}
-                  priority
-                />
+
                 <input
                   type="file"
                   id="proofOfIdentification"
@@ -531,7 +532,8 @@ export default function Student() {
                       setImagePreview(null);
                     }
                   }}
-                  className="border-[1.5px] absolute top-7 bg-white opacity-0 z-10 w-[200px] h-[170px] text-[16px] rounded-md text-black px-3 py-1 mt-1"
+                  style={{ zIndex: 1, pointerEvents: "none" }}
+                  className="border-[1.5px] absolute  bg-white opacity-0 z-10 w-[200px] h-[170px] text-[16px] rounded-md text-black px-3 py-1 mt-1"
                 />
                 {formik.touched.proofOfIdentification &&
                 formik.errors.proofOfIdentification ? (
@@ -541,13 +543,15 @@ export default function Student() {
                 ) : null}
               </div>
 
-              <button
-                className="bg-app-sblue border-2 border-app-sblue text-white py-2 px-5 mt-3 rounded-full"
-                type="submit"
-                disabled={isLoading}
-              >
-                {isLoading ? <Spinner /> : "Proceed"}
-              </button>
+              <div className="mt-3">
+                <button
+                  className="bg-app-sblue border-2 border-app-sblue text-white py-2 px-5 cursor-pointer  rounded-full"
+                  type="submit"
+                  disabled={isLoading}
+                >
+                  {isLoading ? <Spinner /> : "Proceed"}
+                </button>
+              </div>
             </form>
           </div>
         </div>
