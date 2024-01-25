@@ -78,10 +78,17 @@ export default function Home() {
       if (res.status === 201) {
         const data = await res.json();
         localStorage.removeItem("signupData");
-        console.log(data.data.accessToken)
+        console.log(data.data.accessToken);
         localStorage.setItem("token", JSON.stringify(data.data.accessToken));
         // localStorage.setItem("token", JSON.stringify(data.data.accessToken));
-        toast("Success", "success", true, 2000, data.data.message, "top-right");
+        toast(
+          "Success",
+          "success",
+          true,
+          2000,
+          "UserType Selected",
+          "top-right"
+        );
         router.push(`/signup/${userType}`);
       } else {
         const errData = await res.json();
@@ -90,14 +97,12 @@ export default function Home() {
           "Error occurred while sending data to the backend:",
           errData.message
         );
-        router.push('/signup');
-
+        router.push("/signup");
       }
     } catch (error: any) {
       toast("Error", "error", true, 2000, error, "top-right");
       console.error("Error occurred during fetch:", error);
-      router.push('/signup');
-
+      router.push("/signup");
     }
   };
 

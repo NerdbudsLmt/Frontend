@@ -25,7 +25,6 @@ interface CompanyFormValues {
   level: string;
   universityEmail: string;
   universityRegNo: string;
-  semester: string;
   howDidYouHear: string;
   refId: string | null;
   socialMedia: string;
@@ -35,6 +34,8 @@ interface CompanyFormValues {
 export default function Student() {
   const toast = useCustomToast();
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [proofOfIdentificationDataURL, setProofOfIdentificationDataURL] =
+    useState<string | null>(null);
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -54,7 +55,6 @@ export default function Student() {
     universityRegNo: Yup.string().required(
       "universityRegNo number is required"
     ),
-    semester: Yup.string().required("semester is required"),
     options: Yup.string(),
     // refId: Yup.string().required("refId is required"),
     // socialMedia: Yup.string().required("Choose one"),
@@ -78,7 +78,6 @@ export default function Student() {
       level: "",
       universityEmail: "",
       universityRegNo: "",
-      semester: "",
       howDidYouHear: "",
       refId: storedRefId,
       socialMedia: "",
@@ -88,28 +87,17 @@ export default function Student() {
     onSubmit: async (values) => {
       const formData = new FormData();
       Object.entries(values).forEach(([key, value]) => {
-        // Skip appending the proofOfIdentification field if it's null
-        if (key === "proofOfIdentification" && value.proofOfIdentification === null) {
-          return;
-        }
-
-        // Skip appending the howDidYouHear field if no option is chosen
-        if (key === "howDidYouHear" && value.howDidYouHear === "") {
-          return;
-        }
-        if (key === "howDidYouHear") {
-          // Append the options property only if it's not an empty string
-          formData.append("howDidYouHear", value.howDidYouHear);
-          // Check if the options is "An affiliate" and append the refId
-          if (value.howDidYouHear === "An affiliate") {
-            formData.append("refId", value.refId || "");
+        if (key === "proofOfIdentification" && value instanceof File) {
+          formData.append(key, value);
+        } else if (key === "howDidYouHear") {
+          formData.append("howDidYouHear", value || "");
+          if (value === "An affiliate" && values.refId) {
+            formData.append("refId", values.refId);
           }
-          // Check if the options is "Social Media" and append the socialMedia
-          if (value.howDidYouHear === "Social Media") {
-            formData.append("socialMedia", value.socialMedia || "");
+          if (value === "Social Media" && values.socialMedia) {
+            formData.append("socialMedia", values.socialMedia);
           }
-        } else if (value !== "") {
-          // Skip empty values
+        } else if (key !== "refId" && key !== "socialMedia" && value !== "") {
           formData.append(key, value);
         }
       });
@@ -130,20 +118,27 @@ export default function Student() {
           body: formData,
         });
         const data = await res.json();
-        console.log(data)
+        console.log(data);
         if (res.status === 200) {
+          // toast(
+          //   "Success",
+          //   "success",
+          //   true,
+          //   2000,
+          //   data.data.message,
+          //   "top-right"
+          // );
           toast(
             "Success",
             "success",
             true,
             2000,
-            data.data.message,
+            "Account Created successfully",
             "top-right"
           );
-          console.log("Success:", data);
-
           router.push("/login");
           setIsLoading(false);
+          sessionStorage.removeItem("refid");
         } else {
           toast("Error", "error", true, 2000, data.message, "top-right");
           console.log("errr 2");
@@ -158,11 +153,20 @@ export default function Student() {
   });
   useEffect(() => {
     if (storedRefId) {
-      // formik.setFieldValue("howDidYouHear", "An affiliate");
+      formik.setFieldValue("howDidYouHear", "An affiliate");
       formik.setFieldValue("refId", storedRefId);
     }
   }, []);
-  // }, [formik.values.howDidYouHear , storedRefId]);
+
+  useEffect(() => {
+    if (formik.values.proofOfIdentification) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setProofOfIdentificationDataURL(reader.result as string);
+      };
+      reader.readAsDataURL(formik.values.proofOfIdentification);
+    }
+  }, [formik.values.proofOfIdentification]);
 
   return (
     <div>
@@ -392,29 +396,10 @@ export default function Student() {
               <div className="">
                 <div className="my-3">
                   <label
-                    htmlFor="semester"
+                    htmlFor="howDidYouHear"
                     className="block text-gray-300 text-[16px]"
                   >
-                    Semester
-                  </label>
-                  <input
-                    type="text"
-                    id="semester"
-                    placeholder="semester"
-                    {...formik.getFieldProps("semester")}
-                    className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
-                  />
-                  {formik.touched.semester && formik.errors.semester ? (
-                    <div className="text-[red] text-[14px] italic">
-                      {formik.errors.semester}
-                    </div>
-                  ) : null}
-                </div>
-              </div>
-              <div className="">
-                <div className="my-3">
-                  <label htmlFor="" className="block text-gray-300 text-[16px]">
-                    How did you hear about us (optional)
+                    How did you hear about us
                   </label>
 
                   <select
@@ -449,7 +434,7 @@ export default function Student() {
                       placeholder="Refferal Id"
                       readOnly={storedRefId ? true : false}
                       defaultValue={formik.values.refId ?? storedRefId!}
-                      {...formik.getFieldProps("howDidYouHear.details.refId")}
+                      {...formik.getFieldProps("refId")}
                       className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
                     />
                     {formik.touched.refId && formik.errors.refId ? (
@@ -475,9 +460,10 @@ export default function Student() {
                       className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
                     >
                       <option value={""}>Option</option>
-                      <option value={"Facebook"}>Twitter</option>
+                      <option value={"Twitter"}>Twitter</option>
                       <option value={"Instagram"}>Instagram</option>
-                      <option value={"Snapchat"}>Snapchat</option>
+                      <option value={"LinkedIn"}>LinkedIn</option>
+                      <option value={"Facebook"}>Facebook</option>
                     </select>
                     {formik.touched.socialMedia && formik.errors.socialMedia ? (
                       <div className="text-[red] text-[14px] italic">
@@ -495,22 +481,22 @@ export default function Student() {
                 >
                   Upload ID Card
                   <Image
-                    src="/images/upload.svg"
+                    src={imagePreview ? imagePreview : "/images/upload.svg"}
                     alt="Upload Icon"
                     width={100}
                     height={100}
                     priority
                   />
                 </label>
-                {imagePreview && (
+                {/* {imagePreview && (
                   <Image
                     src={imagePreview}
                     alt="Image Preview"
-                    width={200}
-                    height={200}
-                    className="relative rounded-xl mb-2 w-[13rem] h-[10rem]"
+                    width={100}
+                    height={100}
+                    className="relative rounded-xl mb-2 "
                   />
-                )}
+                )} */}
 
                 <input
                   type="file"
