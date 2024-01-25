@@ -81,7 +81,14 @@ export default function Home() {
         console.log(data.data.accessToken);
         localStorage.setItem("token", JSON.stringify(data.data.accessToken));
         // localStorage.setItem("token", JSON.stringify(data.data.accessToken));
-        toast("Success", "success", true, 2000, data.data.message, "top-right");
+        toast(
+          "Success",
+          "success",
+          true,
+          2000,
+          "UserType Selected",
+          "top-right"
+        );
         router.push(`/signup/${userType}`);
       } else {
         const errData = await res.json();
