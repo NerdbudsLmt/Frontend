@@ -25,7 +25,6 @@ interface CompanyFormValues {
   level: string;
   universityEmail: string;
   universityRegNo: string;
-  semester: string;
   howDidYouHear: string;
   refId: string | null;
   socialMedia: string;
@@ -56,7 +55,6 @@ export default function Student() {
     universityRegNo: Yup.string().required(
       "universityRegNo number is required"
     ),
-    semester: Yup.string().required("semester is required"),
     options: Yup.string(),
     // refId: Yup.string().required("refId is required"),
     // socialMedia: Yup.string().required("Choose one"),
@@ -80,7 +78,6 @@ export default function Student() {
       level: "",
       universityEmail: "",
       universityRegNo: "",
-      semester: "",
       howDidYouHear: "",
       refId: storedRefId,
       socialMedia: "",
@@ -141,6 +138,7 @@ export default function Student() {
           );
           router.push("/login");
           setIsLoading(false);
+          sessionStorage.removeItem("refid");
         } else {
           toast("Error", "error", true, 2000, data.message, "top-right");
           console.log("errr 2");
@@ -155,7 +153,7 @@ export default function Student() {
   });
   useEffect(() => {
     if (storedRefId) {
-      // formik.setFieldValue("howDidYouHear", "An affiliate");
+      formik.setFieldValue("howDidYouHear", "An affiliate");
       formik.setFieldValue("refId", storedRefId);
     }
   }, []);
@@ -395,28 +393,6 @@ export default function Student() {
                 </div>
               </div>
 
-              <div className="">
-                <div className="my-3">
-                  <label
-                    htmlFor="semester"
-                    className="block text-gray-300 text-[16px]"
-                  >
-                    Semester
-                  </label>
-                  <input
-                    type="text"
-                    id="semester"
-                    placeholder="semester"
-                    {...formik.getFieldProps("semester")}
-                    className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1"
-                  />
-                  {formik.touched.semester && formik.errors.semester ? (
-                    <div className="text-[red] text-[14px] italic">
-                      {formik.errors.semester}
-                    </div>
-                  ) : null}
-                </div>
-              </div>
               <div className="">
                 <div className="my-3">
                   <label
