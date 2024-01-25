@@ -74,27 +74,19 @@ export default function LeaderBoard() {
   const { highestUser, secondHighestUser, thirdHighestUser } =
     displayedItems.reduce(
       (result, currentUser) => {
-        if (
-          currentUser.numberOfReferrals >= result.highestUser.numberOfReferrals
-        ) {
+        if (currentUser.earnings >= result.highestUser.earnings) {
           return {
             highestUser: currentUser,
             secondHighestUser: result.highestUser,
             thirdHighestUser: result.secondHighestUser,
           };
-        } else if (
-          currentUser.numberOfReferrals >=
-          result.secondHighestUser.numberOfReferrals
-        ) {
+        } else if (currentUser.earnings >= result.secondHighestUser.earnings) {
           return {
             highestUser: result.highestUser,
             secondHighestUser: currentUser,
             thirdHighestUser: result.secondHighestUser,
           };
-        } else if (
-          currentUser.numberOfReferrals >=
-          result.thirdHighestUser.numberOfReferrals
-        ) {
+        } else if (currentUser.earnings >= result.thirdHighestUser.earnings) {
           return {
             highestUser: result.highestUser,
             secondHighestUser: result.secondHighestUser,
@@ -104,9 +96,9 @@ export default function LeaderBoard() {
         return result;
       },
       {
-        highestUser: { numberOfReferrals: -1 },
-        secondHighestUser: { numberOfReferrals: -1 },
-        thirdHighestUser: { numberOfReferrals: -1 },
+        highestUser: { earnings: -1 },
+        secondHighestUser: { earnings: -1 },
+        thirdHighestUser: { earnings: -1 },
       }
     );
   return (
@@ -154,7 +146,7 @@ export default function LeaderBoard() {
       <div className="flex items-center justify-center mx-auto">
         {[highestUser, secondHighestUser, thirdHighestUser].map(
           (user: any, index) => (
-            <div className="bg-white rounded-md p-4" key={index}>
+            <div className="bg-white rounded-md py-4 px-8 m-4" key={index}>
               <span className="flex items-end mb-4">
                 <div className="bg-[#D9D9D9] rounded-full p-2 relative">
                   <Image
@@ -200,38 +192,39 @@ export default function LeaderBoard() {
                 </div>
               </div>
               <p className=" font-medium text-[#205584] text-base">
-                {currentPosts.length} affiliates{" "}
+                {displayedItems.length} affiliates{" "}
               </p>
             </span>
           </div>
-         
 
           <TableContainer>
             <Table variant="simple">
-              <Thead >
+              <Thead>
                 <Tr className="bg-gray-200">
-                  <Th  className="text-[1rem] capitalize text-[#717A8C] font-semibold">User Name</Th>
-                  <Th className="text-[1rem] capitalize text-[#717A8C] font-semibold">Number of Referrals</Th>
-                  <Th className="text-[1rem] capitalize text-[#717A8C] font-semibold">Earnings</Th>
+                  <Th className="text-[1rem] capitalize text-[#717A8C] font-semibold">
+                    User Name
+                  </Th>
+                  <Th className="text-[1rem] capitalize text-[#717A8C] font-semibold">
+                    Number of Referrals
+                  </Th>
+                  <Th className="text-[1rem] capitalize text-[#717A8C] font-semibold">
+                    Earnings
+                  </Th>
                 </Tr>
               </Thead>
               <Tbody>
-              {currentPosts.map((user, index) => (
-                <Tr key={index}>
-                  <Td className="text-[#205584]"> 
-                     {user.username}
-                     </Td>
-                  <Td className="text-[#205584]">
-                  {user?.numberOfReferrals}
-                  </Td>
-                  <Td className="text-[#205584]">
-                  {`N${(user?.earnings && user.earnings) || "0.00"}`}
-                  </Td>
-                </Tr>
-              ))}
-               
+                {currentPosts.map((user, index) => (
+                  <Tr key={index}>
+                    <Td className="text-[#205584]">{user.username}</Td>
+                    <Td className="text-[#205584]">
+                      {user?.numberOfReferrals}
+                    </Td>
+                    <Td className="text-[#205584]">
+                      {`N${(user?.earnings && user.earnings) || "0.00"}`}
+                    </Td>
+                  </Tr>
+                ))}
               </Tbody>
-             
             </Table>
           </TableContainer>
           {displayedItems?.length >= 11 && (
@@ -243,7 +236,6 @@ export default function LeaderBoard() {
               paginateFront={paginateFront}
               paginate={paginate}
             />
-
           )}
         </div>
       </section>
