@@ -80,7 +80,7 @@ const Otp: React.FC<NextPageProps> = ({ handleNext, steps, step }) => {
           </h1>
           <p className="text-gray-400 my-2">
             Input the code was sent to{" "}
-            <span className="text-app-porange">nerdbudsltd@gmail.com </span>
+            <span className="text-app-porange">geekOpsltd@gmail.com </span>
           </p>
           <form className="my-4" onSubmit={formik.handleSubmit}>
             <div className="">

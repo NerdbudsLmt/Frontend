@@ -111,7 +111,7 @@ export default function Contact() {
           </div>
           <div>
             <h1 className="text-5xl font-bold text-center lg:text-7xl text-app-sblue">
-              Nerd <span className="text-[#F9D262]">Support</span>
+              GeekOps <span className="text-[#F9D262]">Support</span>
             </h1>
           </div>
           <div className="text-center">

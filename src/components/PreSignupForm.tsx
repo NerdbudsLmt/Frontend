@@ -133,7 +133,7 @@ export default function PreSignupForm({ link }: PreSignupFormProps) {
             <span className="text-app-porange">Log in</span>
           </p>
           <p className="w-[450px]">
-            By continuing you agree to Nerdbuds{" "}
+            By continuing you agree to GeekOps{" "}
             <span className="text-app-sblue underline">Terms of Service</span>{" "}
             and acknowledge that you have read our{" "}
             <span className="text-app-porange underline">Privacy Policy.</span>

@@ -2,8 +2,8 @@ import Nav from "@/components/Nav/Nav";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "Nerdbuds",
-  description: "Home Page for Nerdbuds software development organization",
+  title: "GeekOps",
+  description: "Home Page for GeekOps software development organization",
 };
 
 export default function Home({ children }: { children: React.ReactNode }) {

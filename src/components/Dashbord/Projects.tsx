@@ -16,13 +16,13 @@ const meeting = [
   {
     title: "Project assistant meeting",
     link: "12.03.2023 (Zoom meeting) ",
-    host: "Nerdbuds Ltd",
+    host: "GeekOps Ltd",
     id: 1,
   },
   {
     title: "Project assistant meeting",
     link: "12.03.2023 (Zoom meeting) ",
-    host: "Nerdbuds Ltd",
+    host: "GeekOps Ltd",
     id: 1,
   },
 ];
@@ -176,7 +176,7 @@ export default function Projects() {
                         >
                           <p className=" text-app-sblue">{item.projectName}</p>
                           <p className="text-[.8rem] ">{item.callSchedule}</p>
-                          <p className="text-[.8rem]">Host: Nerdbuds Ltd</p>
+                          <p className="text-[.8rem]">Host: GeekOps Ltd</p>
                         </div>
                       ))}
                   </>

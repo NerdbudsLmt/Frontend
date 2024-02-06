@@ -1,4 +1,4 @@
-The frontend application for [NerdbudsLtd](https://nerdbuds.vercel.app/)
+The frontend application for [GeekOpsLtd](https://nerdbuds.vercel.app/)
 
 ## How to get started
 

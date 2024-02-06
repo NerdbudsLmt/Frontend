@@ -30,7 +30,7 @@ export default function QuickSet() {
   const bankName = [
     {
       title: "Moniepoint",
-      name: "Nerdbuds",
+      name: "GeekOps",
       number: " 6488403770",
       id: 1,
     },

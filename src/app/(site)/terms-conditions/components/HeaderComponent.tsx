@@ -34,7 +34,7 @@ export default function HeaderComponent() {
           </div>
           <div className='text-center'>
             <p className='w-[85%] tablet_l:w-[520px] text-[18px] mx-auto text-center'>
-              The terms and conditions governing Nerdbuds and all their products
+              The terms and conditions governing GeekOps and all their products
               are stated below.
             </p>
           </div>
