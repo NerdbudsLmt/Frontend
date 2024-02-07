@@ -30,8 +30,8 @@ const Footer = () => {
         <div className='py-10 grid grid-cols-2 md:grid-cols-4 ml-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-5 md:gap-y-4 lg:gap-y-4 xl:gap-y-0'>
           <div>
             <Image
-              className=' ml-[-1.4rem] sm:w-[8rem] sm:ml-[1rem] sm:mt-[-2rem] mt-[-1rem] md:sm:ml-[0rem] inline '
-              src='/images/footer logo.png'
+              className=' ml-[-1.4rem] sm:w-[8rem] sm:ml-[1rem] sm:mt-[-2rem] mt-[-1rem] md:sm:ml-[0rem] inline mr-3'
+              src='/images/GeekOps Logo.png'
               alt=''
               width={120}
               height={120}
@@ -119,7 +119,7 @@ const Footer = () => {
               <MdEmail />
             </Link>
           </div>
-          <p className='text-white'>&copy;2023 Nerdbuds. All rights reserved</p>
+          <p className='text-white'>&copy;2023 GeekOps. All rights reserved</p>
         </div>
       </div>
     </footer>

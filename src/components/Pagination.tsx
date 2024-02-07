@@ -27,7 +27,7 @@ const Pagination: React.FC<PaginationProps> = ({
   }
 
   const lastNumber = pageNumbers[pageNumbers.length - 1];
-
+  
   return (
     <div className="flex py-6">
       <nav

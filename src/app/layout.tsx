@@ -17,12 +17,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang='en'>
+      {/* <Head>
+        <link rel='icon' href='/Images/GeeksOps Logo.png' />
+      </Head> */}
       <body className={inter.className}>
         <AuthProvider>
           <Providers>{children}</Providers>
         </AuthProvider>
       </body>
     </html>
-  );
+  )
 }

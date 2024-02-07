@@ -87,7 +87,7 @@ export default function Login() {
                     <input
                       type="text"
                       id="email"
-                      placeholder="geekOpsltd@gmail.com"
+                      placeholder="johndoe@gmail.com"
                       {...formik.getFieldProps("email")}
                       className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2 mt-1 outline-none"
                     />

@@ -63,7 +63,7 @@ const Nav = () => {
         <div className="z-20 basis-full md:basis-auto flex items-center justify-between">
           <Link href="/">
             <Image
-              src="/images/footer logo.png"
+              src="/images/GeekOps Logo.png"
               alt="Vercel Logo"
               width={33}
               height={33}

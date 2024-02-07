@@ -98,7 +98,7 @@ const Email: React.FC<NextPageProps> = ({ handleNext, steps, step }) => {
                     type="text"
                     id="email"
                     // name="email"
-                    placeholder="geekOpsltd@gmail.com"
+                    placeholder="johndoe@gmail.com"
                     {...formik.getFieldProps("email")}
                     className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-2.5 mt-2"
                   />
