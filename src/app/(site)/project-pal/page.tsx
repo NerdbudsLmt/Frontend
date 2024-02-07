@@ -379,7 +379,7 @@ function ProjectPal() {
           </div>
           <div className='w-full sm:w-1/3 p-4 rounded-lg'>
             <Image
-              src='/images/Group 100892.png'
+              src='/images/geeksop.png'
               alt='comments'
               width={410}
               height={256}

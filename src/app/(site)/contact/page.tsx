@@ -124,7 +124,7 @@ export default function Contact() {
       </header>
 
       <Image
-        src="/images/contactimg.svg"
+        src="/images/Support.png"
         alt="hand"
         width={1400}
         height={1200}
