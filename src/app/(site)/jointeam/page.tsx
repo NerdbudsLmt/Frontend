@@ -22,7 +22,7 @@ export default function joinTeam() {
           <span className=" text-[#F9D262]">Team</span>
         </div>
         <p className=" w-[100%] sm:w-[70%] text-1xl lg:text-2xl text-center">
-          Sorry, there are currently no jobs available at Nerdbuds at the
+          Sorry, there are currently no jobs available at GeekOps at the
           moment. You can leave your name, email, and the position you can work
           in down below and when there is an opening you will be the first to
           know.{" "}

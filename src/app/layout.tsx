@@ -7,9 +7,9 @@ import AuthProvider from "./context/AuthProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Nerdbuds",
-  description: "Home Page for Nerdbuds software development organization",
-};
+  title: 'GeekOps',
+  description: 'Home Page for GeekOps software development organization',
+}
 
 export default function RootLayout({
   children,

@@ -66,7 +66,7 @@
 //             />
 //             <div>
 //               <h2 className=' text-lightBlue text-lg font-medium mb-1'>
-//                 Nerdbuds
+//                 GeekOps
 //               </h2>
 
 //               <p className=' text-sm font-medium '>
@@ -89,7 +89,7 @@
 //             />
 //             <div>
 //               <h2 className=' text-lightBlue text-lg font-medium mb-1'>
-//                 Nerdbuds
+//                 GeekOps
 //               </h2>
 
 //               <p className=' text-sm font-medium '>
@@ -112,7 +112,7 @@
 //             />
 //             <div>
 //               <h2 className=' text-lightBlue text-lg font-medium mb-1'>
-//                 Nerdbuds
+//                 GeekOps
 //               </h2>
 
 //               <p className=' text-sm font-medium '>
@@ -190,7 +190,7 @@ const InboxModal: React.FC<InboxModalProps> = ({ isOpen, onClose }) => {
             />
             <div className='flex flex-col justify-between'>
               <span className='flex justify-between items-start mb-1'>
-                <h2 className='text-lightBlue text-lg font-medium'>Nerdbuds</h2>
+                <h2 className='text-lightBlue text-lg font-medium'>GeekOps</h2>
               </span>
               <p className='text-sm font-medium'>
                 There has been a change in your project. Head over to your
@@ -218,7 +218,7 @@ const InboxModal: React.FC<InboxModalProps> = ({ isOpen, onClose }) => {
             />
             <div className='flex flex-col justify-between'>
               <span className='flex justify-between items-start mb-1'>
-                <h2 className='text-lightBlue text-lg font-medium'>Nerdbuds</h2>
+                <h2 className='text-lightBlue text-lg font-medium'>GeekOps</h2>
               </span>
               <p className='text-sm font-medium'>
                 Your email has been successfully changed.
@@ -242,7 +242,7 @@ const InboxModal: React.FC<InboxModalProps> = ({ isOpen, onClose }) => {
             />
             <div className='flex flex-col justify-between'>
               <span className='flex justify-between items-start mb-1'>
-                <h2 className='text-lightBlue text-lg font-medium'>Nerdbuds</h2>
+                <h2 className='text-lightBlue text-lg font-medium'>GeekOps</h2>
               </span>
               <p className='text-sm font-medium'>
                 There has been a change in your project. Head over to your

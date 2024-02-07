@@ -89,7 +89,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
             priority
           />
           <Text fontSize="3xl" fontWeight="bold">
-            Nerdbuds
+            GeekOps
           </Text>
         </Link>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />

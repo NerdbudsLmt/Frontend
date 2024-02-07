@@ -10,7 +10,7 @@ export default function TermsConditions() {
           1. Acceptance of Terms
         </h1>
         <p className='text-lg lg:text-xl mb-6'>
-          By engaging with Nerdbuds, here in after you agree to comply with and
+          By engaging with GeekOps, here in after you agree to comply with and
           be bound by these terms and conditions.
         </p>
         <h1 className='text-[#F9D262] text-2xl lg:text-3xl mb-2'>
@@ -103,7 +103,7 @@ export default function TermsConditions() {
           with the laws of the Federal Republic of Nigeria.
         </p>
         <p className='text-lg lg:text-xl '>
-          By entering into an agreement with Nerdbuds, you acknowledge that you
+          By entering into an agreement with GeekOps, you acknowledge that you
           have read, understood, and agree to be bound by these terms and
           conditions.
         </p>

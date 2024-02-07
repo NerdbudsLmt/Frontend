@@ -65,7 +65,7 @@ export const Tools = () => {
             team transforms ideas into reality. From intricate algorithms to
             sleek interfaces, we excel in building innovative software that
             empowers businesses and simplifies lives. Join us on the forefront
-            of technological advancement with Nerdbuds.
+            of technological advancement with GeekOps.
           </p>
           <Link
             href="/"

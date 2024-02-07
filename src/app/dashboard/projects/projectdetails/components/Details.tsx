@@ -93,7 +93,7 @@ export const ProjectDetails: React.FC<ProjectProgressProps> = ({ params }) => {
                 </h2>
               </span>
               <p className="text-[1.1rem] md:text-base ml-4 mt-[-0.5rem] text-[#205584]">
-                Nerdbuds
+                GeekOps
               </p>
             </div>
           </div>

@@ -174,7 +174,7 @@ export default function Company() {
                   type="text"
                   id="businessName"
                   // name="businessName"
-                  placeholder="Nerdbud Ltd"
+                  placeholder="GeekOps Ltd"
                   {...formik.getFieldProps("businessName")}
                   className="border-[1.5px] w-full text-[16px] rounded-md bg-white text-black px-3 py-1 mt-1"
                 />

@@ -12,7 +12,7 @@ const lang = [
   {
     img: "/images/cloud.svg",
     title: "2. Cloud services",
-    desc: "Experience the power of the cloud with our exceptional cloud services. Seamlessly store, access, and collaborate on your data from anywhere, with utmost security and reliability. Embrace efficiency and scalability with Nerdbuds' cloud products, revolutionizing the way you do business. Unlock the full potential of the cloud today!",
+    desc: "Experience the power of the cloud with our exceptional cloud services. Seamlessly store, access, and collaborate on your data from anywhere, with utmost security and reliability. Embrace efficiency and scalability with GeekOps' cloud products, revolutionizing the way you do business. Unlock the full potential of the cloud today!",
   },
   {
     img: "/images/r.svg",

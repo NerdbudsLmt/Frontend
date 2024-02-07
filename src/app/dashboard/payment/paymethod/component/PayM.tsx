@@ -90,7 +90,7 @@ export default function PayM() {
           <div className="responsive-div">
             <div className="content-left">
               <p className=" text-[#151515] font-bold ml-5 ">
-                You can also transfer money directly to the Nerdbuds account
+                You can also transfer money directly to the GeekOps account
                 displayed <br /> below.
               </p>
               <p className=" mt-5 ml-5">
@@ -102,7 +102,7 @@ export default function PayM() {
                 Account Name:
                 <span className=" text-[#132E40] font-semibold">
                   {" "}
-                  Nerdbuds
+                  GeekOps
                 </span>{" "}
                 <br />
                 Account Number:{" "}
@@ -116,7 +116,7 @@ export default function PayM() {
                   href="https://example.com/customer-support"
                   className="underline text-[#132E40]"
                 >
-                  support@nerdbuds.com
+                  support@geekOps.com
                 </a>
                 .
               </p>{" "}

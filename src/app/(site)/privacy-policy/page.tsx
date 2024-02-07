@@ -9,10 +9,10 @@ export default function privacyPolicy() {
       <HeaderComponent />
       <section className=' flex justify-center mx-auto flex-col lg:w-[70%] w-90%  mb-28'>
         <h1 className=' text-[#F9D262] text-3xl text-left mb-4'>
-          Privacy Policy for nerdbuds
+          Privacy Policy for GeekOps
         </h1>
         <p className='text-lg lg:xl mb-4'>
-          Nerdbuds Ltd, hereinafter referred to as &quot;Nerdbuds,&quot; is
+          GeekOps Ltd, hereinafter referred to as &quot;GeekOps,&quot; is
           committed to ensuring the privacy and security of personal information
           collected from clients and users of our website. This Privacy Policy
           outlines how we collect, use, disclose, and protect your information.
@@ -129,7 +129,7 @@ export default function privacyPolicy() {
           </h1>
           <p className='text-lg lg:xl mb-6'>
             If you have any questions, concerns, or requests regarding this
-            Privacy Policy, please contact us at nerdbudsltd@gmail.com
+            Privacy Policy, please contact us at geekOpsltd@gmail.com
           </p>
           <p className='text-lg lg:xl mb-6'>
             By using our website or engaging with our services, you acknowledge

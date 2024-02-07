@@ -38,7 +38,7 @@ export default function Pricing() {
       <div className="blue_gradient tablet_l:py-16 py-7 rounded-[28px] tablet_l:w-[75%] w-[95%] mx-auto">
         <div className="w-[90%] mx-auto">
           <h1 className="text-4xl tablet_l:text-6xl font-bold text-[#FFE393]">
-            Nerd <span className="text-[#3F9BD5]">Support</span>
+            GeekOps <span className="text-[#3F9BD5]">Support</span>
           </h1>
           <div className="flex flex-col tablet_l:flex-row justify-between items-start mt-3 mb-8">
             <p className="tablet_l:w-[65%] text-justify">
