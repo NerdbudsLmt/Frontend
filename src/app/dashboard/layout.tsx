@@ -82,10 +82,10 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       >
         <Link href="/" className="flex gap-4">
           <Image
-            src="/images/nav-logo.png"
+            src="/images/GeekOps Logo.png"
             alt="Vercel Logo"
-            width={33}
-            height={33}
+            width={40}
+            height={40}
             priority
           />
           <Text fontSize="3xl" fontWeight="bold">
