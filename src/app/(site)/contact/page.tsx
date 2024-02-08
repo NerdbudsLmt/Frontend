@@ -122,15 +122,13 @@ export default function Contact() {
           </div>
         </div>
       </header>
-
       <Image
-        src="/images/contactimg.svg"
+        src="/images/Support.png"
         alt="hand"
         width={1400}
         height={1200}
         priority
       />
-
       <div className="flex flex-col items-center w-full mx-auto my-20 lg:flex-row lg:justify-center">
         <div className="border-b-2 lg:border-b-0 lg:border-r-2 lg:pr-5 pb-5">
           <h1 className="text-2xl font-bold text-app-sblue">
