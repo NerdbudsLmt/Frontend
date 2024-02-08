@@ -17,9 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      {/* <Head>
-        <link rel='icon' href='/Images/GeeksOps Logo.png' />
-      </Head> */}
+      
       <body className={inter.className}>
         <AuthProvider>
           <Providers>{children}</Providers>
