@@ -28,7 +28,7 @@ const lang = [
 
 export const Offer = () => {
   return (
-    <div className="mt-0 md:mt-10 mb-10 md:mb-24 lg:mb-32">
+    <div className="mt-[-2.5rem] md:mt-5 mb-10 md:mb-24 lg:mb-32">
       <div>
         <p className="text-app-sblue text-[20px] font-[500]">
           Open For Business.
