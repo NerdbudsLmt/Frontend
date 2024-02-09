@@ -65,8 +65,8 @@ const Nav = () => {
             <Image
               src="/images/GeekOps Logo.png"
               alt="Vercel Logo"
-              width={33}
-              height={33}
+              width={40}
+              height={40}
               priority
             />
           </Link>
@@ -75,7 +75,6 @@ const Nav = () => {
             isOpen={navOpen}
             toggle={() => setNavOpen((prevState) => !prevState)}
           />
-         
         </div>
         {/* md:navbar */}
         <div className="hidden justify-between items-center space-x-8 lg:flex lg:justify-between lg:items-center lg:space-x-8 lg:ml-[5rem] lg:text-[1.2rem] md:flex md:justify-between md:items-center md:space-x-4 md:ml-[4rem] md:text-[0.9rem]">
@@ -86,7 +85,6 @@ const Nav = () => {
         <div className="hidden md:flex justify-between items-center space-x-3">
           {session?.user ? (
             <>
-           
               <div>
                 <button
                   className="border-2 border-app-porange text-white py-2 px-3 rounded-md"
@@ -148,35 +146,35 @@ const Nav = () => {
                 />
               ))}
               <div className="flex flex-col gap-8 px-5 ">
-              {session?.user ? (
-                <div>
-                <button
-                  className="border-2 border-app-porange text-[1.2rem]  text-white py-2 px-3 rounded-md"
-                  onClick={() => signOut()}
-                >
-                  Sign Out
-                </button>
-              </div>
-              ) : 
-            <>
-                <div>
-                  <Link
-                    href="/login"
-                    className="border-2 border-white text-[1.2rem]  text-white py-2 px-3 rounded-md"
-                  >
-                    Login
-                  </Link>
-                </div>
-                <div>
-                  <Link
-                    href="/signup"
-                    className="bg-app-porange text-[1.2rem]  border-2 border-app-porange text-white py-2 px-3 rounded-md"
-                  >
-                    Sign Up
-                  </Link>
-                </div>
-            </>
-            }
+                {session?.user ? (
+                  <div>
+                    <button
+                      className="border-2 border-app-porange text-[1.2rem]  text-white py-2 px-3 rounded-md"
+                      onClick={() => signOut()}
+                    >
+                      Sign Out
+                    </button>
+                  </div>
+                ) : (
+                  <>
+                    <div>
+                      <Link
+                        href="/login"
+                        className="border-2 border-white text-[1.2rem]  text-white py-2 px-3 rounded-md"
+                      >
+                        Login
+                      </Link>
+                    </div>
+                    <div>
+                      <Link
+                        href="/signup"
+                        className="bg-app-porange text-[1.2rem]  border-2 border-app-porange text-white py-2 px-3 rounded-md"
+                      >
+                        Sign Up
+                      </Link>
+                    </div>
+                  </>
+                )}
               </div>
             </motion.div>
           </div>

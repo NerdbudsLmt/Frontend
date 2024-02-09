@@ -21,7 +21,7 @@ const NLForm = () => {
           placeholder="Enter your email"
         />
       </div>
-      <button className=" ml-1 bg-[#3F9BD5] text-white text-[.9rem] p-2">
+      <button className=" ml-1 bg-[#3F9BD5] text-white text-[.9rem] rounded-md p-[0.6rem]">
         Subscribe
       </button>
     </form>
