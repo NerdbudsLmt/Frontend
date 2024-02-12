@@ -38,15 +38,11 @@ export default function LeaderBoard() {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
   const [displayedItems, setDisplayedItems] = useState<User[]>([]);
-  //  const [filter, setFilter] = useState("");
+  const [filter, setFilter] = useState("");
 
-  //  const handleFilterChange = (event) => {
-  //    setFilter(event.target.value);
-  //  };
-
-  //  const filteredItems = items.filter((item) =>
-  //    item.name.toLowerCase().includes(filter.toLowerCase())
-  //  );
+  const handleFilterChange = (event: any) => {
+    setFilter(event.target.value);
+  };
 
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
@@ -83,6 +79,16 @@ export default function LeaderBoard() {
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
   const paginateFront = () => setCurrentPage(currentPage + 1);
   const paginateBack = () => setCurrentPage(currentPage - 1);
+
+  const filteredItems = displayedItems.filter((item) =>
+    item.username.toLowerCase().includes(filter.toLowerCase())
+  );
+
+  console.log(filteredItems);
+  const currentFilteredPost = filteredItems?.slice(
+    indexOfFirstPost,
+    indexOfLastPost
+  );
 
   return (
     <>
@@ -167,6 +173,7 @@ export default function LeaderBoard() {
                   type="text"
                   className="border border-[#717A8C] p-1 pl-8 text-[#717A8C]  rounded-md"
                   placeholder="search"
+                  onChange={handleFilterChange}
                 />
                 <div className="absolute left-2 top-2">
                   <AiOutlineSearch className="text-[#717A8C]" />
@@ -197,7 +204,7 @@ export default function LeaderBoard() {
                 </Tr>
               </Thead>
               <Tbody>
-                {currentPosts.slice(3).map((user, index) => {
+                {currentFilteredPost.slice(3).map((user, index) => {
                   const serialNumber = indexOfFirstPost + index + 4;
                   return (
                     <Tr key={index}>
@@ -215,10 +222,10 @@ export default function LeaderBoard() {
               </Tbody>
             </Table>
           </TableContainer>
-          {displayedItems?.length >= 11 && (
+          {filteredItems.length > postsPerPage && (
             <Pagination
               postsPerPage={postsPerPage}
-              totalPosts={displayedItems?.length}
+              totalPosts={filteredItems.length}
               currentPage={currentPage}
               paginateBack={paginateBack}
               paginateFront={paginateFront}
