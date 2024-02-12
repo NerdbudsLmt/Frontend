@@ -38,6 +38,15 @@ export default function LeaderBoard() {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
   const [displayedItems, setDisplayedItems] = useState<User[]>([]);
+  //  const [filter, setFilter] = useState("");
+
+  //  const handleFilterChange = (event) => {
+  //    setFilter(event.target.value);
+  //  };
+
+  //  const filteredItems = items.filter((item) =>
+  //    item.name.toLowerCase().includes(filter.toLowerCase())
+  //  );
 
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
@@ -55,6 +64,10 @@ export default function LeaderBoard() {
           throw new Error("error");
         }
         console.log(data);
+        // const sortedAffiliates = data?.data.affiliates.sort(
+        //   (a: any, b: any) => b.earnings - a.earnings
+        // );
+        // setDisplayedItems(sortedAffiliates);
         setDisplayedItems(data?.data.affiliates);
       } catch (error) {
         console.log(error);
@@ -71,36 +84,6 @@ export default function LeaderBoard() {
   const paginateFront = () => setCurrentPage(currentPage + 1);
   const paginateBack = () => setCurrentPage(currentPage - 1);
 
-  const { highestUser, secondHighestUser, thirdHighestUser } =
-    displayedItems.reduce(
-      (result, currentUser) => {
-        if (currentUser.earnings >= result.highestUser.earnings) {
-          return {
-            highestUser: currentUser,
-            secondHighestUser: result.highestUser,
-            thirdHighestUser: result.secondHighestUser,
-          };
-        } else if (currentUser.earnings >= result.secondHighestUser.earnings) {
-          return {
-            highestUser: result.highestUser,
-            secondHighestUser: currentUser,
-            thirdHighestUser: result.secondHighestUser,
-          };
-        } else if (currentUser.earnings >= result.thirdHighestUser.earnings) {
-          return {
-            highestUser: result.highestUser,
-            secondHighestUser: result.secondHighestUser,
-            thirdHighestUser: currentUser,
-          };
-        }
-        return result;
-      },
-      {
-        highestUser: { earnings: -1 },
-        secondHighestUser: { earnings: -1 },
-        thirdHighestUser: { earnings: -1 },
-      }
-    );
   return (
     <>
       <header className="pt-10">
@@ -144,37 +127,35 @@ export default function LeaderBoard() {
       </header>
 
       <div className="flex items-center justify-center mx-auto">
-        {[highestUser, secondHighestUser, thirdHighestUser].map(
-          (user: any, index) => (
-            <div className="bg-white rounded-md py-4 px-8 m-4" key={index}>
-              <span className="flex items-end mb-4">
-                <div className="bg-[#D9D9D9] rounded-full p-2 relative">
-                  <Image
-                    alt=""
-                    src="./images/userProfile.svg"
-                    width={80}
-                    height={80}
-                    priority
-                    className="rounded-full"
-                  />
-                  {/* <p className='bg-[#132E40] rounded-full text-2xl p-3 font-bold mt-2 mb-2 w-10 h-10 flex items-center justify-center'> */}
-                  <p className="bg-[#132E40] rounded-full text-sm absolute bottom-0 left-0 px-2 py-1 font-bold w-6 h-6 flex items-center justify-center">
-                    {index + 1}
-                  </p>
-                </div>
-              </span>
-              <h1 className="text-[#132E40] font-bold">{`N${
-                user?.earnings !== undefined ? user.earnings : "0.00"
-              }`}</h1>
-              <p className="text-[#132E40] font-bold">{`${
-                user?.numberOfReferrals || 0
-              } referrals`}</p>
-              <p className="text-[#132E40] font-normal">
-                @{user?.username || "N/A"}
-              </p>
-            </div>
-          )
-        )}
+        {displayedItems.slice(0, 3).map((user: any, index) => (
+          <div className="bg-white rounded-md py-4 px-8 m-4" key={index}>
+            <span className="flex items-end mb-4">
+              <div className="bg-[#D9D9D9] rounded-full p-2 relative">
+                <Image
+                  alt=""
+                  src="./images/userProfile.svg"
+                  width={80}
+                  height={80}
+                  priority
+                  className="rounded-full"
+                />
+                {/* <p className='bg-[#132E40] rounded-full text-2xl p-3 font-bold mt-2 mb-2 w-10 h-10 flex items-center justify-center'> */}
+                <p className="bg-[#132E40] rounded-full text-sm absolute bottom-0 left-0 px-2 py-1 font-bold w-6 h-6 flex items-center justify-center">
+                  {index + 1}
+                </p>
+              </div>
+            </span>
+            <h1 className="text-[#132E40] font-bold">{`N${
+              user?.earnings !== undefined ? user.earnings : "0.00"
+            }`}</h1>
+            <p className="text-[#132E40] font-bold">{`${
+              user?.numberOfReferrals || 0
+            } referrals`}</p>
+            <p className="text-[#132E40] font-normal">
+              @{user?.username || "N/A"}
+            </p>
+          </div>
+        ))}
       </div>
 
       <section>
@@ -201,6 +182,9 @@ export default function LeaderBoard() {
             <Table variant="simple">
               <Thead>
                 <Tr className="bg-gray-200">
+                  {/* <Th className="text-[1rem] capitalize text-[#717A8C] font-semibold">
+                    S/N
+                  </Th> */}
                   <Th className="text-[1rem] capitalize text-[#717A8C] font-semibold">
                     User Name
                   </Th>
@@ -213,17 +197,21 @@ export default function LeaderBoard() {
                 </Tr>
               </Thead>
               <Tbody>
-                {currentPosts.map((user, index) => (
-                  <Tr key={index}>
-                    <Td className="text-[#205584]">{user.username}</Td>
-                    <Td className="text-[#205584]">
-                      {user?.numberOfReferrals}
-                    </Td>
-                    <Td className="text-[#205584]">
-                      {`N${(user?.earnings && user.earnings) || "0.00"}`}
-                    </Td>
-                  </Tr>
-                ))}
+                {currentPosts.slice(3).map((user, index) => {
+                  const serialNumber = indexOfFirstPost + index + 4;
+                  return (
+                    <Tr key={index}>
+                      {/* <Td className="text-[#205584]">{serialNumber}</Td> */}
+                      <Td className="text-[#205584]">{user.username}</Td>
+                      <Td className="text-[#205584]">
+                        {user?.numberOfReferrals || 0}
+                      </Td>
+                      <Td className="text-[#205584]">
+                        {`N${(user?.earnings && user.earnings) || "0.00"}`}
+                      </Td>
+                    </Tr>
+                  );
+                })}
               </Tbody>
             </Table>
           </TableContainer>
