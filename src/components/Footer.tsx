@@ -29,13 +29,15 @@ const Footer = () => {
         </div>
         <div className="py-10 grid grid-cols-2 md:grid-cols-4 ml-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-5 md:gap-y-4 lg:gap-y-4 xl:gap-y-0">
           <div>
-            <Image
-              className=" ml-[0.0rem] sm:w-[7rem] sm:ml-[1rem] sm:mt-[-0.5rem] mt-[-1rem] md:sm:ml-[0rem] inline mr-3"
-              src="/images/GeekOps Logo.png"
-              alt=""
-              width={80}
-              height={80}
-            />
+            <Link href="/">
+              <Image
+                className=" ml-[0.0rem] sm:w-[7rem] sm:ml-[1rem] sm:mt-[-0.5rem] mt-[-1rem] md:sm:ml-[0rem] inline mr-3"
+                src="/images/GeekOps Logo.png"
+                alt=""
+                width={80}
+                height={80}
+              />
+            </Link>
             <div className=" ml-[-0.7rem] inline-block">
               <h1 className="text-[0.7rem] font-bold text-center text-white lg:text-[0.8rem]">
                 You <span className="text-app-sblue">Dream.</span>
