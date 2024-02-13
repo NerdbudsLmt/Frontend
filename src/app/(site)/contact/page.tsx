@@ -100,7 +100,7 @@ export default function Contact() {
         <div className="flex flex-col items-center space-y-5 mb-16">
           <div>
             <Link
-              href="/about"
+              href="/pricing"
               className="flex items-center space-x-2 border-2 border-app-sblue text-app-sblue py-1 px-10 rounded-full transition-transform hover:scale-110"
             >
               <>
@@ -253,7 +253,7 @@ export default function Contact() {
             ) : (
               <div className="flex items-center">
                 Submit
-                <BsArrowRight className="text-md" />
+                <BsArrowRight className=" ml-2 text-md" />
               </div>
             )}
           </button>
