@@ -44,7 +44,7 @@ export const Work = ({ title, bg, content, img, btn, name }: webProps) => {
             <p className="mt-4 mb-5 text-[14px] laptop:text[16px] ">
               {content}
             </p>
-            <Link
+            {/* <Link
               href="/"
               style={{
                 background: btn,
@@ -52,7 +52,7 @@ export const Work = ({ title, bg, content, img, btn, name }: webProps) => {
               className="px-5 py-2 text-[14px] laptop:text[16px]  rounded-3xl transition-transform hover:scale-110"
             >
               Learn more
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>

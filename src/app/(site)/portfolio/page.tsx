@@ -7,6 +7,25 @@ import { BiMobileAlt } from "react-icons/bi";
 import { Web } from "./components/Web";
 import { Mobile } from "./components/Mobile";
 
+const partners = [
+  {
+    img: "/images/sec.svg",
+    link: "https://sec.gov.ng",
+  },
+  {
+    img: "/images/web3ladies.svg",
+    link: "https://www.web3ladies.com",
+  },
+  {
+    img: "/images/cert.svg",
+    link: "https://certgo.app",
+  },
+  {
+    img: "/images/qr-connect.png",
+    link: "https://qrconect.com/en",
+  },
+];
+
 export default function Portfolio() {
   const [isWeb, setIsWeb] = useState<boolean>(true);
   return (
@@ -71,27 +90,17 @@ export default function Portfolio() {
         </h1>
 
         <div className="my-10 flex gap-3 flex-wrap justify-around mx-auto ">
-          <Image
-            className=""
-            src="/images/sec.svg"
-            alt="web"
-            width={120}
-            height={120}
-          />
-          <Image
-            className=""
-            src="/images/web3ladies.svg"
-            alt="web"
-            width={120}
-            height={120}
-          />
-          <Image
-            className=""
-            src="/images/cert.svg"
-            alt="web"
-            width={120}
-            height={120}
-          />
+          {partners.map((item) => (
+            <a href={item.link} target="_blank" key={item.img}>
+              <Image
+                className=""
+                src={item.img}
+                alt="web"
+                width={120}
+                height={120}
+              />
+            </a>
+          ))}
         </div>
 
         <div
